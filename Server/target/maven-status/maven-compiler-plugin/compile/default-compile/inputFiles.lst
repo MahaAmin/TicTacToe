@@ -1,4 +1,12 @@
-C:\Users\Eslam\Desktop\ITI\Java\Project\Server\src\main\java\com\tictactoe\database\DBManager.java
-C:\Users\Eslam\Desktop\ITI\Java\Project\Server\src\main\java\com\tictactoe\server\MainApp.java
-C:\Users\Eslam\Desktop\ITI\Java\Project\Server\src\main\java\com\tictactoe\server\Server.java
-C:\Users\Eslam\Desktop\ITI\Java\Project\Server\src\main\java\com\tictactoe\server\FXMLController.java
+/home/halim/Desktop/tic_tac_toe/TicTacToe/Server/src/main/java/com/tictactoe/database/DatabaseManager.java
+/home/halim/Desktop/tic_tac_toe/TicTacToe/Server/src/main/java/com/tictactoe/server/Server.java
+/home/halim/Desktop/tic_tac_toe/TicTacToe/Server/src/main/java/com/tictactoe/actions/RequestType.java
+/home/halim/Desktop/tic_tac_toe/TicTacToe/Server/src/main/java/com/tictactoe/actions/PlayRequest.java
+/home/halim/Desktop/tic_tac_toe/TicTacToe/Server/src/main/java/com/tictactoe/database/gameModel/GameModel.java
+/home/halim/Desktop/tic_tac_toe/TicTacToe/Server/src/main/java/com/tictactoe/server/MainApp.java
+/home/halim/Desktop/tic_tac_toe/TicTacToe/Server/src/main/java/com/tictactoe/server/ServerHandler.java
+/home/halim/Desktop/tic_tac_toe/TicTacToe/Server/src/main/java/com/tictactoe/database/gameModel/Game.java
+/home/halim/Desktop/tic_tac_toe/TicTacToe/Server/src/main/java/com/tictactoe/database/playerModel/PlayerModel.java
+/home/halim/Desktop/tic_tac_toe/TicTacToe/Server/src/main/java/com/tictactoe/actions/DBConnection.java
+/home/halim/Desktop/tic_tac_toe/TicTacToe/Server/src/main/java/com/tictactoe/database/playerModel/Player.java
+/home/halim/Desktop/tic_tac_toe/TicTacToe/Server/src/main/java/com/tictactoe/server/FXMLController.java
