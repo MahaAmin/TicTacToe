@@ -1,0 +1,26 @@
+#AnchorPane
+{
+    -fx-background-color: white;
+}
+
+/*Input TextField*/
+#userNameTF, #passwordTF
+{
+     -fx-border-radius: 30em 30em 30em 30em;
+     -fx-background-color: #F3F3FA;
+    -fx-text-box-border: transparent;
+    -fx-border-width: 2px;
+}
+
+/*Buttons*/
+#signInButton 
+{
+    -fx-background-color:  #6F72FA;
+    -fx-background-radius:  35;
+}
+
+#signUpButton 
+{
+    -fx-background-color:  #3B7AE2;
+    -fx-background-radius: 35;
+}
