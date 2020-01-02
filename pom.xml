@@ -2,16 +2,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com</groupId>
-    <artifactId>TicTacToe</artifactId>
+    <groupId>com.tictactoe</groupId>
+    <artifactId>TicTacToeFX</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>TicTacToe</name>
+    <name>TicTacToeFX</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <mainClass>com.tictactoe.MainApp</mainClass>
+        <mainClass>com.tictactoe.tictactoefx.MainApp</mainClass>
     </properties>
 
     <organization>
@@ -104,5 +104,35 @@
             </plugin>
         </plugins>
     </build>
+    <dependencies>
+        <dependency>
+            <groupId>com.jfoenix</groupId>
+            <artifactId>jfoenix</artifactId>
+            <version>8.0.8</version>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/org.kordamp.ikonli/ikonli-javafx -->
+<dependency>
+    <groupId>org.kordamp.ikonli</groupId>
+    <artifactId>ikonli-javafx</artifactId>
+    <version>2.4.0</version>
+</dependency>
 
+<!-- https://mvnrepository.com/artifact/org.kordamp.ikonli/ikonli-fontawesome-pack -->
+<dependency>
+    <groupId>org.kordamp.ikonli</groupId>
+    <artifactId>ikonli-fontawesome-pack</artifactId>
+    <version>2.4.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.kordamp.ikonli/ikonli-core -->
+
+
+<dependency>
+  <groupId>io.github.typhon0</groupId>
+  <artifactId>AnimateFX</artifactId>
+  <version>1.2.1</version>
+</dependency>
+
+    </dependencies>
 </project>
