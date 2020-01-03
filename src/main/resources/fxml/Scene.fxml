@@ -64,7 +64,8 @@
             <FontIcon iconColor="WHITE" iconLiteral="fa-unlock-alt" iconSize="25" />
          </graphic>
       </JFXButton>
-      <JFXTextField id="userNameTF" labelFloat="true" layoutX="235.0" layoutY="194.0" prefHeight="25.0" prefWidth="298.0" promptText="Username" stylesheets="@../styles/Styles.css" />
+      <JFXTextField id="userNameTF" fx:id="usernameTF" labelFloat="true" layoutX="235.0" layoutY="194.0" prefHeight="25.0" prefWidth="298.0" promptText="Username" stylesheets="@../styles/Styles.css" />
+      <JFXPasswordField id="passwordTF" fx:id="passwordPF" labelFloat="true" layoutX="235.0" layoutY="244.0" prefHeight="25.0" prefWidth="298.0" promptText="Password" stylesheets="@../styles/Styles.css" />
       <Label layoutX="311.0" layoutY="377.0" text="Don't have an account yet ?">
          <font>
             <Font size="13.0" />
@@ -85,7 +86,6 @@
       </JFXButton>
       <FontIcon iconLiteral="fa-times" iconSize="30" layoutX="287.0" layoutY="138.0" fx:id="xIcon" />
       <FontIcon fx:id="oIcon" iconLiteral="fa-circle-o" iconSize="30" layoutX="473.0" layoutY="138.0" />
-      <JFXPasswordField id="passwordTF" labelFloat="true" layoutX="235.0" layoutY="244.0" prefHeight="25.0" prefWidth="298.0" promptText="Password" stylesheets="@../styles/Styles.css" />
    </children>
    <opaqueInsets>
       <Insets />

@@ -15,7 +15,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 
 public class RegisterFormController implements Initializable
