@@ -64,7 +64,7 @@ public class RegisterFormController implements Initializable
             System.out.println("streams created");
             JSONObject jsonMsg = new JSONObject();
             jsonMsg.put("type", "register");
-            jsonMsg.put("username", usernameTF.getText());
+            jsonMsg.put("name", usernameTF.getText());
             jsonMsg.put("email", emailTF.getText());
             jsonMsg.put("password", passwordPF.getText());
             System.out.println("json created");
