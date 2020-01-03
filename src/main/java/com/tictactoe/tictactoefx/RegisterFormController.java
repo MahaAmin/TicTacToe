@@ -1,7 +1,11 @@
 package com.tictactoe.tictactoefx;
 
 import com.jfoenix.controls.JFXPasswordField;
+import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.PrintStream;
+import java.io.StringWriter;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -10,12 +14,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 
 public class RegisterFormController implements Initializable
 {
-    @FXML private TextField userName,email;
-    @ FXML private JFXPasswordField passwordPF,confirmPasswordPF;
+    @FXML private TextField usernameTF,emailTF;
+    @FXML private JFXPasswordField passwordPF,confirmPasswordPF;
     Alert alert = new Alert(AlertType.ERROR);
     
     @FXML
@@ -50,7 +56,29 @@ public class RegisterFormController implements Initializable
         // TODO
     }
     public boolean validate(){
-        return false;
+        try{
+            Socket s = new Socket("127.0.0.1",5000);
+            System.out.println("Connection is up");
+            DataInputStream dis = new DataInputStream(s.getInputStream());
+            PrintStream os = new PrintStream(s.getOutputStream());
+            System.out.println("streams created");
+            JSONObject jsonMsg = new JSONObject();
+            jsonMsg.put("type", "register");
+            jsonMsg.put("username", usernameTF.getText());
+            jsonMsg.put("email", emailTF.getText());
+            jsonMsg.put("password", passwordPF.getText());
+            System.out.println("json created");
+            StringWriter out = new StringWriter();
+            jsonMsg.writeJSONString(out);
+            os.println(out.toString());
+            System.out.println("sent success");
+            return true;
+        }
+        catch(IOException e){
+            System.out.println("Changing json to string failed!!");
+            return false;
+        }
+    
     }
     
 }

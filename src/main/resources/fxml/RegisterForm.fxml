@@ -14,8 +14,8 @@
         <URL value="@/styles/Styles.css" />
     </stylesheets>
    <children>
-      <JFXTextField id="userNameTF" fx:id="userName" labelFloat="true" layoutX="235.0" layoutY="143.0" prefHeight="25.0" prefWidth="298.0" promptText="Username" stylesheets="@../styles/Styles.css" />
-      <JFXTextField id="userNameTF" fx:id="email" labelFloat="true" layoutX="235.0" layoutY="197.0" prefHeight="25.0" prefWidth="298.0" promptText="Email" stylesheets="@../styles/Styles.css" />
+      <JFXTextField id="userNameTF" fx:id="usernameTF" labelFloat="true" layoutX="235.0" layoutY="143.0" prefHeight="25.0" prefWidth="298.0" promptText="Username" stylesheets="@../styles/Styles.css" />
+      <JFXTextField id="userNameTF" fx:id="emailTF" labelFloat="true" layoutX="235.0" layoutY="197.0" prefHeight="25.0" prefWidth="298.0" promptText="Email" stylesheets="@../styles/Styles.css" />
       <JFXPasswordField id="passwordTF" fx:id="passwordPF" labelFloat="true" layoutX="235.0" layoutY="261.0" prefHeight="25.0" prefWidth="298.0" promptText="Password" stylesheets="@../styles/Styles.css" />
       <JFXPasswordField id="passwordTF" fx:id="confirmPasswordPF" labelFloat="true" layoutX="235.0" layoutY="322.0" prefHeight="25.0" prefWidth="298.0" promptText="Confirm Password" stylesheets="@../styles/Styles.css" />
       <JFXButton id="signUpButton" layoutX="235.0" layoutY="410.0" onAction="#registerButtonClicked" prefHeight="58.0" prefWidth="298.0" stylesheets="@../styles/Styles.css" text="Register" textAlignment="CENTER" textFill="WHITE">
