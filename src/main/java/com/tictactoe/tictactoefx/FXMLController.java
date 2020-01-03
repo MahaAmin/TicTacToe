@@ -1,6 +1,7 @@
 package com.tictactoe.tictactoefx;
 
 import animatefx.animation.Flash;
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,6 +14,7 @@ import org.kordamp.ikonli.javafx.FontIcon;
 public class FXMLController implements Initializable {
     @FXML private FontIcon xIcon;
     @FXML private FontIcon oIcon;
+    @FXML private JFXButton mySignupButton;
     
     @FXML private void signUpButtonClicked(ActionEvent event) throws IOException
     {

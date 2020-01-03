@@ -24,3 +24,26 @@
     -fx-background-color:  #3B7AE2;
     -fx-background-radius: 35;
 }
+
+/*
+Dashboard.fxml
+*/
+
+/*ScoreBoard ListView*/
+#scoreBoardLV .list-cell
+{
+     -fx-alignment: center;
+}
+
+#scoreBoardRegion
+{
+    -fx-background-color: #4D6AD2;
+    -fx-background-radius:  15 0 15 0;
+}
+
+#playersList 
+{
+    -fx-background-color: #4D6AD2;
+     -fx-background-radius:  0 10 0 10;
+
+}

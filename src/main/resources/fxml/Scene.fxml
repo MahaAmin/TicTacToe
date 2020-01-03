@@ -36,7 +36,7 @@
             </LinearGradient>
          </fill>
       </Circle>
-      <Circle layoutX="414.0" layoutY="14.0" radius="62.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+      <Circle layoutX="424.0" layoutY="-2.0" radius="62.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
          <fill>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>
@@ -56,7 +56,7 @@
             </LinearGradient>
          </fill>
       </Circle>
-      <JFXButton id="signInButton" alignment="CENTER" buttonType="RAISED" defaultButton="true" layoutX="235.0" layoutY="294.0" onAction="#signInButtonClicked" prefHeight="58.0" prefWidth="298.0" stylesheets="@../styles/Styles.css" text="Sign In" textAlignment="CENTER" textFill="WHITE">
+      <JFXButton id="signInButton" fx:id="mySignupButton" alignment="CENTER" buttonType="RAISED" defaultButton="true" layoutX="235.0" layoutY="294.0" onAction="#signInButtonClicked" prefHeight="58.0" prefWidth="298.0" stylesheets="@../styles/Styles.css" text="Sign In" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
