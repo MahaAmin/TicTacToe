@@ -9,7 +9,7 @@ package database;
  *
  * @author halim
  */
-public class Players {
+public class Player {
     private int id; // autoGenerate in database
     private String name; 
     private String password; //it's a VARCHAR in database with size (32)
@@ -17,13 +17,25 @@ public class Players {
     private int status; // it's a ENUM in database which contain offline(0), online(1), busy(2)
     private int score;
     
-    public Players(String n, String p, String e){
+    // constactor used for GUI only
+    public Player(String n, String p, String e){
         name = n;
         password = p;
         email = e;
         status = 0; // offline as initial 
         score = 0; // as initial value
     }
+    
+    // constactors used for retrieve in databaseManager only
+    public Player(int i, String n, String p, String e, int s, int sc){
+        id = i;
+        name = n;
+        password = p;
+        status = s;  
+        score = sc;         
+    }
+    
+    public Player(){}
     
     // setDATA for player
     public void setPlayerName(String n){
