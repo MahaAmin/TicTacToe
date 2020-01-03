@@ -71,8 +71,8 @@ public class RegisterFormController implements Initializable
             StringWriter out = new StringWriter();
             jsonMsg.writeJSONString(out);
             os.println(out.toString());
-            System.out.println("sent success");
-            return true;
+            String resp = dis.readLine();
+            return Boolean.parseBoolean(resp);
         }
         catch(IOException e){
             System.out.println("Changing json to string failed!!");
