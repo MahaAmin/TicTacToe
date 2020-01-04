@@ -1,0 +1,5 @@
+com\tictactoe\server\MainApp.class
+com\tictactoe\server\Server$DBHandler.class
+com\tictactoe\server\FXMLController.class
+com\tictactoe\database\DBManager.class
+com\tictactoe\server\Server.class
