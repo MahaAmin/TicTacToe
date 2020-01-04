@@ -46,6 +46,7 @@ public class TicTacToe extends javax.swing.JFrame {
         }
     }
 
+    
     private void winner() {
         /*   cell1    cell2   cell3 
              cell4    cell5   cell6
