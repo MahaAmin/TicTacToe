@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database;
+package database.playerModel;
 
 /**
  *
@@ -16,6 +16,7 @@ public class Player {
     private String email;
     private int status; // it's a ENUM in database which contain offline(0), online(1), busy(2)
     private int score;
+    private String avatar; // optional
     
     // constactor used for GUI only
     public Player(String n, String p, String e){
@@ -27,12 +28,13 @@ public class Player {
     }
     
     // constactors used for retrieve in databaseManager only
-    public Player(int i, String n, String p, String e, int s, int sc){
+    public Player(int i, String n, String p, String e, int s, String a, int sc){
         id = i;
         name = n;
         password = p;
         status = s;  
-        score = sc;         
+        score = sc;      
+        avatar = a;
     }
     
     public Player(){}
@@ -53,6 +55,9 @@ public class Player {
     public void setPlayerScore(int s){
         score = s;
     }
+    public void setPlayerAvatar(String s){
+        avatar = s;
+    }
     
     // getDATA for player
     public int getID(){
@@ -70,7 +75,10 @@ public class Player {
     public int getPlayerStatus(){
         return status;
     }        
-    public int setPlayerScore(){
+    public int getPlayerScore(){
         return score;
     }        
+    public String getPlayerAvatar(){
+        return avatar;
+    }            
 }
