@@ -93,5 +93,4 @@ public class DashboardController implements Initializable
         allUsers.add(new User("Ahmed", "20", "100", "Offline"));
         allUsersTable.setItems(allUsers);
     }    
-    
 }

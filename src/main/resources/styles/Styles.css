@@ -47,3 +47,72 @@ Dashboard.fxml
      -fx-background-radius:  0 10 0 10;
 
 }
+
+/*
+GamePlay.FXML
+*/
+
+/*Buttons*/
+#xoBTN1 ,#xoBTN2, #xoBTN3, #xoBTN4 , #xoBTN5,  #xoBTN6,  #xoBTN7,  #xoBTN8,  #xoBTN9
+{
+    -fx-background-color: white;
+    -fx-border-color: #DADADA;
+}
+
+#xoBTN1
+{
+        -fx-border-width: 0 3 3 0;
+}
+
+#xoBTN2 
+{
+      -fx-border-width: 0 0 3 0;
+     
+}
+
+#xoBTN3 
+{
+    -fx-border-width: 0 0 3 3;
+}
+
+#xoBTN4 
+{
+     -fx-border-width: 0 3 3 0;
+}
+
+#xoBTN5 
+{
+     -fx-border-width: 0 0 3 0;
+}
+
+#xoBTN6 
+{
+     -fx-border-width: 0 0 3 3;
+}
+
+ #xoBTN7
+ {
+     -fx-border-width: 0 3 0 0;
+ }
+ 
+  #xoBTN8
+  {
+      -fx-border-width: 0 0 0 0;
+  }
+  
+    #xoBTN9 
+    {
+        -fx-border-width: 0 0 0 3;
+    }
+    
+    #playerXRegion 
+    {
+        -fx-background-color: #4D6AD2;
+        -fx-background-radius:  0 0 0 10;
+    }
+    
+    #playerYRegion
+    {
+        -fx-background-color: #4D6AD2;
+        -fx-background-radius:  0 10 0 0;
+    }
