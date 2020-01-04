@@ -1,5 +1,8 @@
 package tic.player;
 
+import com.tictactoe.tictactoefx.SwitchTo;
+import javafx.application.Platform;
+import javafx.fxml.FXML;
 import tic.socket.actions.PlayRequest;
 
 import java.io.*;
@@ -38,6 +41,7 @@ public class PlayerSoc {
     }
 
 
+    @FXML
     private void receiveGameThread() {
         new Thread(new Runnable() {
             @Override
@@ -48,6 +52,13 @@ public class PlayerSoc {
                         if (req != null) {
                             switch (req.getRequestType()) {
                                 case REQUEST:
+                                    Platform.runLater(()->{
+                                        try {
+                                            SwitchTo.onlineListPopUpScene();
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                    });
 
                                     break;
                             }
