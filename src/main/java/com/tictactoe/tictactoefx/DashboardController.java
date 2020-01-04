@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import tic.player.PlayerHandler;
 
 
 public class DashboardController implements Initializable
@@ -19,6 +20,7 @@ public class DashboardController implements Initializable
     @FXML private void vsOnlinePlayerButtonClicked(ActionEvent event) throws IOException
     {
         //Popup the OnlineListPopUp.fxml scene
+//        PlayerHandler.sendPlayRequest();
         SwitchTo.onlineListPopUpScene();
     }
     @Override
