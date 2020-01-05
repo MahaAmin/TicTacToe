@@ -32,10 +32,10 @@ public class SwitchTo
     public static void transition(ActionEvent event, int sceneID) throws IOException
     {
         //Transition to the RegisterForm.fxml scene
-        Parent tableViewParent = FXMLLoader.load(SwitchTo.class.getResource("/fxml/" + ScenesList.get(sceneID) + ".fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
+        Parent root = FXMLLoader.load(SwitchTo.class.getResource("/fxml/" + ScenesList.get(sceneID) + ".fxml"));
+        Scene scene = new Scene(root);
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(tableViewScene);
+        window.setScene(scene);
         window.show();
     }
     

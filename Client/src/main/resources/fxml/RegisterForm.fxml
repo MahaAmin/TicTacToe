@@ -6,6 +6,10 @@
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
@@ -14,10 +18,10 @@
         <URL value="@/styles/Styles.css" />
     </stylesheets>
    <children>
-      <JFXTextField id="userNameTF" fx:id="usernameTF" labelFloat="true" layoutX="235.0" layoutY="143.0" prefHeight="25.0" prefWidth="298.0" promptText="Username" stylesheets="@../styles/Styles.css" />
-      <JFXTextField id="userNameTF" fx:id="emailTF" labelFloat="true" layoutX="235.0" layoutY="197.0" prefHeight="25.0" prefWidth="298.0" promptText="Email" stylesheets="@../styles/Styles.css" />
-      <JFXPasswordField id="passwordTF" fx:id="passwordPF" labelFloat="true" layoutX="235.0" layoutY="261.0" prefHeight="25.0" prefWidth="298.0" promptText="Password" stylesheets="@../styles/Styles.css" />
-      <JFXPasswordField id="passwordTF" fx:id="confirmPasswordPF" labelFloat="true" layoutX="235.0" layoutY="322.0" prefHeight="25.0" prefWidth="298.0" promptText="Confirm Password" stylesheets="@../styles/Styles.css" />
+      <JFXTextField id="userNameTF" labelFloat="true" layoutX="235.0" layoutY="180.0" prefHeight="25.0" prefWidth="298.0" promptText="Username" stylesheets="@../styles/Styles.css" />
+      <JFXPasswordField id="passwordTF" fx:id="passwordPF" labelFloat="true" layoutX="235.0" layoutY="298.0" prefHeight="25.0" prefWidth="298.0" promptText="Password" stylesheets="@../styles/Styles.css" />
+      <JFXPasswordField id="passwordTF" fx:id="confirmPasswordPF" labelFloat="true" layoutX="235.0" layoutY="359.0" prefHeight="25.0" prefWidth="298.0" promptText="Confirm Password" stylesheets="@../styles/Styles.css" />
+      <JFXTextField id="userNameTF" labelFloat="true" layoutX="235.0" layoutY="234.0" prefHeight="25.0" prefWidth="298.0" promptText="Email" stylesheets="@../styles/Styles.css" />
       <JFXButton id="signUpButton" layoutX="235.0" layoutY="410.0" onAction="#registerButtonClicked" prefHeight="58.0" prefWidth="298.0" stylesheets="@../styles/Styles.css" text="Register" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="14.0" />
@@ -26,15 +30,66 @@
             <FontIcon iconColor="WHITE" iconLiteral="fa-user-plus" iconSize="25" />
          </graphic>
       </JFXButton>
-      <Label layoutX="314.0" layoutY="26.0" text="TicTacToeFX" textFill="#6f72fa">
+      <Label layoutX="320.0" layoutY="84.0" text="TicTacToeFX" textFill="#6f72fa">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="276.0" layoutY="124.0" text="Registeration Form" textFill="#6f72fa">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="276.0" layoutY="79.0" text="Registeration Form" textFill="#6f72fa">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Label>
+      <Circle fill="#6f60fa" layoutX="157.0" layoutY="41.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Circle layoutX="127.0" layoutY="100.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#e65bfa" />
+                  <Stop color="#a06afa" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Circle>
+      <Circle layoutX="577.0" layoutY="73.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.9666666666666667">
+               <stops>
+                  <Stop color="#6a6dfa" />
+                  <Stop color="#6eb4fa" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Circle>
+      <FontIcon iconLiteral="fa-address-card" iconSize="30" layoutX="234.0" layoutY="152.0">
+         <iconColor>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#59f2c4" />
+                  <Stop color="#a06afa" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </iconColor>
+      </FontIcon>
+      <Rectangle arcHeight="100.0" arcWidth="75.0" height="65.0" layoutX="-121.0" layoutY="-32.0" rotate="32.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.9666666666666667">
+               <stops>
+                  <Stop color="#6a6dfa" />
+                  <Stop color="#6eb4fa" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Circle layoutX="424.0" layoutY="-2.0" radius="62.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#e65bfa" />
+                  <Stop color="#a06afa" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Circle>
    </children>
 </AnchorPane>
