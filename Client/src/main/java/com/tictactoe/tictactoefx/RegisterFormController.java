@@ -64,10 +64,7 @@ public class RegisterFormController implements Initializable
         try{
             //reimplement
             final PlayerSoc s = PlayerHandler.player;
-            System.out.println("Connection is up");
-            DataInputStream dis = new DataInputStream(s.getInputStream());
-            PrintStream os = new PrintStream(s.getOutputStream());
-            System.out.println("streams created");
+
             JSONObject jsonMsg = new JSONObject();
             jsonMsg.put("type", "register");
             jsonMsg.put("name", usernameTF.getText());
@@ -76,8 +73,8 @@ public class RegisterFormController implements Initializable
             System.out.println("json created");
             StringWriter out = new StringWriter();
             jsonMsg.writeJSONString(out);
-            os.println(out.toString());
-            String resp = dis.readLine();
+            s.ps.println(out.toString());
+            String resp = s.dis.readLine();
             return Boolean.parseBoolean(resp);
         }
         catch(IOException e){

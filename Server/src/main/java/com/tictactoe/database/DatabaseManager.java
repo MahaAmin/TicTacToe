@@ -10,8 +10,9 @@ public class DatabaseManager {
     public PreparedStatement preparedStatement;
     public String query;
     public ResultSet resultSet; // used for store data from database    
-    static final String DB_URL = "jdbc:mysql://localhost:3306/tic_tac_toe";
-    static final String DB_DRV = "com.mysql.jdbc.Driver";
+    static final String DB_URL = "jdbc:mysql://localhost:3306/tictactoe";
+//    static final String DB_DRV = "com.mysql.jdbc.Driver";
+    static final String DB_DRV = "com.mysql.cj.jdbc.Driver";
     static final String DB_USER = "root";
     static final String DB_PASSWD = "Root123#";
     
