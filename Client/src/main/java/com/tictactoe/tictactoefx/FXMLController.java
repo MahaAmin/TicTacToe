@@ -12,7 +12,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.util.Duration;
 import org.json.simple.JSONObject;
@@ -23,7 +23,7 @@ public class FXMLController implements Initializable {
     @FXML private FontIcon oIcon;
     @FXML private TextField usernameTF;
     @FXML private JFXPasswordField passwordPF;
-    //Alert alert = new Alert(Alert.AlertType.ERROR);
+    Alert alert = new Alert(Alert.AlertType.ERROR);
     
     @FXML private void signUpButtonClicked(ActionEvent event) throws IOException
     {
@@ -33,22 +33,22 @@ public class FXMLController implements Initializable {
     
     @FXML private void signInButtonClicked(ActionEvent event) throws IOException
     {
-//        if(usernameTF.getText()==null||passwordPF.getText() == null){
-//            alert.setTitle("Information Dialog");
-//            alert.setHeaderText("WRONG PASSword");
-//            alert.setContentText("Passwords don't match");
-//            alert.showAndWait();
-//        }else{
-//            if(validate()){
-//                //Transition to the Dashboard.fxml scene
-//                SwitchTo.dashboardScene(event);
-//            }else{
-//                alert.setTitle("Information Dialog");
-//                alert.setHeaderText("WRONG PASSword");
-//                alert.setContentText("Passwords don't match");
-//                alert.showAndWait();
-//            }
-//        }
+        if(usernameTF.getText()==null||passwordPF.getText() == null){
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText("WRONG PASSword");
+            alert.setContentText("Passwords don't match");
+            alert.showAndWait();
+        }else{
+            if(validate()){
+                //Transition to the Dashboard.fxml scene
+                SwitchTo.dashboardScene(event);
+            }else{
+                alert.setTitle("Information Dialog");
+                alert.setHeaderText("WRONG PASSword");
+                alert.setContentText("Passwords don't match");
+                alert.showAndWait();
+            }
+        }
     }
     
     @Override
