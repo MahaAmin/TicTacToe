@@ -6,12 +6,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import player.PlayerHandler;
+import player.PlayerSoc;
 
 
 public class MainApp extends Application {
 
     @Override
+    public void init() throws Exception {
+        super.init();
+    }
+
+    @Override
     public void start(Stage stage) throws Exception {
+        final PlayerSoc player = PlayerHandler.player;
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
         
         Scene scene = new Scene(root);

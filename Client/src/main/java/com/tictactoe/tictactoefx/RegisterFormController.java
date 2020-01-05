@@ -60,7 +60,7 @@ public class RegisterFormController implements Initializable
     }
     public boolean validate(){
         try{
-            Socket s = new Socket("127.0.0.1",5000);
+            Socket s = new Socket("127.0.0.1",5005);
             System.out.println("Connection is up");
             DataInputStream dis = new DataInputStream(s.getInputStream());
             PrintStream os = new PrintStream(s.getOutputStream());
