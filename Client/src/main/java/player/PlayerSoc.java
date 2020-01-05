@@ -21,22 +21,23 @@ public class PlayerSoc {
 
     public PlayerSoc() {
         startConnection();
-
     }
 
 
     private void startConnection() {
-        try {
-            socket = new Socket("127.0.0.1", 5005);
-            dis = new DataInputStream(socket.getInputStream());
-            ps = new PrintStream(socket.getOutputStream());
-            oos = new ObjectOutputStream(socket.getOutputStream());
-            ois = new ObjectInputStream(socket.getInputStream());
-            receiveGameThread();
+            try {
+                socket = new Socket("127.0.0.1", 5005);
+                dis = new DataInputStream(socket.getInputStream());
+                ps = new PrintStream(socket.getOutputStream());
+                oos = new ObjectOutputStream(socket.getOutputStream());
+                ois = new ObjectInputStream(socket.getInputStream());
+                receiveGameThread();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
     }
 
 

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -32,36 +33,23 @@ public class Server {
             myServerSocket = new ServerSocket(5005, 50);
             System.out.println("server started: <http://127.0.0.1:5005>\n");
             db = new DBManager();
-//            new Thread(() -> {
-//
-//                try {
-//                    while (true) {
-//                        Socket socket = myServerSocket.accept();
-//                        new ServerHandler(socket);
-//                    }
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                    try {
-//                        myServerSocket.close();
-//                    } catch (IOException ex) {
-//                        ex.printStackTrace();
-//                    }
-//                }
-//
-//            });
-            try {
-                while (true) {
-                    Socket socket = myServerSocket.accept();
-                    new ServerHandler(socket,db);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+
+            new Thread(() -> {
                 try {
-                    myServerSocket.close();
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+                    while (true) {
+                        Socket socket = myServerSocket.accept();
+                        new ServerHandler(socket, db);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    try {
+                        myServerSocket.close();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                 }
-            }
+            }).start();
+
 
         } catch (IOException e) {
             e.printStackTrace();
