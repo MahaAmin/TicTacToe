@@ -63,6 +63,7 @@ public class TicTacToe extends javax.swing.JFrame {
             cell3.setBackground(Color.yellow);
             JOptionPane.showMessageDialog(this, "Player X Wins!", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
             xPlayerScore++;
+            reset(); 
             gameScore();
         }
         /* * * *
@@ -75,6 +76,7 @@ public class TicTacToe extends javax.swing.JFrame {
             cell6.setBackground(Color.yellow);
             JOptionPane.showMessageDialog(this, "Player X Wins!", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
             xPlayerScore++;
+            reset(); 
             gameScore();
         } /* * * *
            * * *
@@ -85,6 +87,7 @@ public class TicTacToe extends javax.swing.JFrame {
             cell9.setBackground(Color.yellow);
             JOptionPane.showMessageDialog(this, "Player X Wins!", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
             xPlayerScore++;
+            reset(); 
             gameScore();
         } /* x * *
            x * *
@@ -95,6 +98,7 @@ public class TicTacToe extends javax.swing.JFrame {
             cell7.setBackground(Color.yellow);
             JOptionPane.showMessageDialog(this, "Player X Wins!", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
             xPlayerScore++;
+            reset(); 
             gameScore();
         } /* * x *
            * x *
@@ -105,6 +109,7 @@ public class TicTacToe extends javax.swing.JFrame {
             cell8.setBackground(Color.yellow);
             JOptionPane.showMessageDialog(this, "Player X Wins!", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
             xPlayerScore++;
+            reset(); 
             gameScore();
         } /* * * x
            * * x
@@ -115,6 +120,7 @@ public class TicTacToe extends javax.swing.JFrame {
             cell9.setBackground(Color.yellow);
             JOptionPane.showMessageDialog(this, "Player X Wins!", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
             xPlayerScore++;
+            reset(); 
             gameScore();
         } /* x * *
            * x *
@@ -125,6 +131,7 @@ public class TicTacToe extends javax.swing.JFrame {
             cell9.setBackground(Color.yellow);
             JOptionPane.showMessageDialog(this, "Player X Wins!", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
             xPlayerScore++;
+            reset(); 
             gameScore();
         } /* * * x
            * x *
@@ -135,6 +142,7 @@ public class TicTacToe extends javax.swing.JFrame {
             cell7.setBackground(Color.yellow);
             JOptionPane.showMessageDialog(this, "Player X Wins!", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
             xPlayerScore++;
+            reset(); 
             gameScore();
         } /* o o o
            * * *
@@ -145,6 +153,7 @@ public class TicTacToe extends javax.swing.JFrame {
             cell3.setBackground(Color.yellow);
             JOptionPane.showMessageDialog(this, "Player O Wins!", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
             oPlayerScore++;
+            reset(); 
             gameScore();
         } /* * * *
            o o o
@@ -155,6 +164,7 @@ public class TicTacToe extends javax.swing.JFrame {
             cell6.setBackground(Color.yellow);
             JOptionPane.showMessageDialog(this, "Player O Wins!", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
             oPlayerScore++;
+            reset(); 
             gameScore();
         } /* * * *
            * * *
@@ -165,6 +175,7 @@ public class TicTacToe extends javax.swing.JFrame {
             cell9.setBackground(Color.yellow);
             JOptionPane.showMessageDialog(this, "Player O Wins!", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
             oPlayerScore++;
+            reset(); 
             gameScore();
         } /* o * *
            o * *
@@ -175,6 +186,7 @@ public class TicTacToe extends javax.swing.JFrame {
             cell7.setBackground(Color.yellow);
             JOptionPane.showMessageDialog(this, "Player O Wins!", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
             oPlayerScore++;
+            reset(); 
             gameScore();
         } /* * o *
            * o *
@@ -185,6 +197,7 @@ public class TicTacToe extends javax.swing.JFrame {
             cell8.setBackground(Color.yellow);
             JOptionPane.showMessageDialog(this, "Player O Wins!", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
             oPlayerScore++;
+            reset(); 
             gameScore();
         } /* * * o
            * * o
@@ -195,6 +208,7 @@ public class TicTacToe extends javax.swing.JFrame {
             cell9.setBackground(Color.yellow);
             JOptionPane.showMessageDialog(this, "Player O Wins!", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
             oPlayerScore++;
+            reset(); 
             gameScore();
         } /* o * *
            * o *
@@ -205,6 +219,7 @@ public class TicTacToe extends javax.swing.JFrame {
             cell9.setBackground(Color.yellow);
             JOptionPane.showMessageDialog(this, "Player O Wins!", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
             oPlayerScore++;
+            reset(); 
             gameScore();
         } /* * * o
            * o *
@@ -215,6 +230,7 @@ public class TicTacToe extends javax.swing.JFrame {
             cell7.setBackground(Color.yellow);
             JOptionPane.showMessageDialog(this, "Player O Wins!", "Tic Tac Toe", JOptionPane.INFORMATION_MESSAGE);
             oPlayerScore++;
+            reset(); 
             gameScore();
         }
 
