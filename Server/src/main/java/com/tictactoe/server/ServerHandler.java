@@ -2,6 +2,8 @@ package com.tictactoe.server;
 
 import com.tictactoe.actions.PlayRequest;
 import com.tictactoe.database.DBManager;
+import com.tictactoe.database.DatabaseManager;
+import com.tictactoe.database.playerModel.PlayerModel;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -18,9 +20,8 @@ public class ServerHandler extends Thread {
     private ObjectOutputStream oos;
     private PrintStream ps;
     private Socket soc;
-    private DBManager db;
 
-    public ServerHandler(Socket socket, DBManager db) {
+    public ServerHandler(Socket socket) {
         players = new Vector<>();
         try {
             dis = new DataInputStream(socket.getInputStream());
@@ -29,7 +30,6 @@ public class ServerHandler extends Thread {
             oos = new ObjectOutputStream(socket.getOutputStream());
             soc = socket;
             players.add(this);
-            this.db = db;
             start();
         } catch (IOException e) {
             e.printStackTrace();
@@ -77,10 +77,10 @@ public class ServerHandler extends Thread {
         JSONObject jsonMsg = (JSONObject) parser.parse(data);
 
         if (jsonMsg.get("type").equals("register")) {
-            boolean resp = db.Register(jsonMsg);
+            boolean resp = PlayerModel.createPlayer(jsonMsg);
             ps.println(resp);
         } else if (jsonMsg.get("type").equals("login")) {
-            boolean resp = db.Login(jsonMsg);
+            boolean resp = PlayerModel.validatePlalyer(jsonMsg);
             ps.println(resp);
         }
     }

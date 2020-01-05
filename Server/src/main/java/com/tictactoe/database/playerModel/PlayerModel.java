@@ -5,8 +5,12 @@
  */
 package com.tictactoe.database.playerModel;
 
+import com.tictactoe.actions.DBConnection;
 import com.tictactoe.database.DatabaseManager;
+import org.json.simple.JSONObject;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -18,7 +22,7 @@ import java.util.logging.Logger;
  */
 public class PlayerModel {
     
-    DatabaseManager db = new DatabaseManager();
+    static  DatabaseManager db = DBConnection.db;
     private static Vector<Player> players = new Vector<>(); // used to send to the server to reduce the requests on the database
     // static for shared data "i need it once not for every object"
     
@@ -47,7 +51,7 @@ public class PlayerModel {
         return players;
     }
     
-    public Player getPlayer(int id){
+    public static Player getPlayer(int id){
         for(Player p: players){
             if(p.getID()==id)
                 return p;
@@ -55,42 +59,8 @@ public class PlayerModel {
         return null;
     }
     
-    // function used to register in GUI
-    public int createPlayer(Player p) {
-        int playerCreated = 0;
-        try {            
-            db.query = "INSERT INTO players  (name, password, email) VALUES (?,?,?)";
-            db.preparedStatement = db.connection.prepareStatement(db.query);
-            db.preparedStatement.setString(2, p.getPlayerName());
-            db.preparedStatement.setString(3, p.getPlayerPassword());
-            db.preparedStatement.setString(4, p.getPlayerEmail());
-            playerCreated = db.preparedStatement.executeUpdate();
-           
-        } catch (SQLException ex) {
-            Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return playerCreated;
-    }
-    
-    // function used to Login in GUI
-    public boolean validatePlalyer(String name, String pass){
-        try{    
-            db.preparedStatement = db.connection.prepareStatement("SELECT * FROM players WHERE name=? AND password=?");
-            db.preparedStatement.setString(1, name);
-            db.preparedStatement.setString(2, pass);
-            db.resultSet = db.preparedStatement.executeQuery();
-            if(db.resultSet.next()==false){
-                return false;
-            }
-            else{
-                updateStatus(db.resultSet.getInt(1), 1); // refer to online
-                return true;
-            }
-        }catch(SQLException e){
-            return false;
-        }
-    }    
-    
+
+
     // update score
     public void updateScore(int id, int point){
         try {
@@ -100,15 +70,17 @@ public class PlayerModel {
             db.preparedStatement.executeUpdate();
             
             Player p = getPlayer(id);
-            p.setPlayerScore(point);
-            
+            if (p != null) {
+                p.setPlayerScore(point);
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(PlayerModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     // update status
-    public void updateStatus(int id, int status){
+    public static void updateStatus(int id, int status){
         try {
             db.preparedStatement = db.connection.prepareStatement("UPDATE players SET status=? WHERE id=?");
             db.preparedStatement.setInt(1, status);
@@ -126,6 +98,42 @@ public class PlayerModel {
     // logout
     public void logout(int id){
         updateStatus(id, 0); // refer to offline
+    }
+
+
+    // function used to register in GUI
+    public static boolean createPlayer (JSONObject player){
+        try{
+            PreparedStatement statment = db.connection.prepareStatement("INSERT players SET name=?, password=?, email=?");
+            statment.setString(1, player.get("name").toString());
+            statment.setString(2, player.get("password").toString());
+            statment.setString(3,player.get("email").toString());
+            int res = statment.executeUpdate();
+            System.out.println("done update");
+            return res>0;
+        }catch(SQLException e){
+            return false;
+        }
+    }
+
+    // function used to Login in GUI
+    public static boolean validatePlalyer(JSONObject player){
+        try{
+            PreparedStatement statment = db.connection.prepareStatement("SELECT * FROM players WHERE name=? AND password=?");
+            statment.setString(1, player.get("name").toString());
+            statment.setString(2, player.get("password").toString());
+            ResultSet res = statment.executeQuery();
+            System.out.println("done select");
+            if(res.next()==false){
+                return false;
+            }
+            else{
+                updateStatus(db.resultSet.getInt(1), 1); // refer to online
+                return true;
+            }
+        }catch(SQLException e){
+            return false;
+        }
     }
     
 }

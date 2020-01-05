@@ -1,5 +1,6 @@
 package com.tictactoe.server;
 
+import com.tictactoe.actions.DBConnection;
 import com.tictactoe.database.DBManager;
 
 import java.io.DataInputStream;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.tictactoe.database.DatabaseManager;
 import javafx.application.Platform;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -21,7 +23,7 @@ import org.json.simple.parser.ParseException;
 public class Server {
 
     ServerSocket myServerSocket;
-    DBManager db;
+    DatabaseManager db;
 
     public Server() {
         startConnection();
@@ -32,13 +34,13 @@ public class Server {
 //            InetAddress addr=InetAddress.getByName("192.168.1.12");
             myServerSocket = new ServerSocket(5005, 50);
             System.out.println("server started: <http://127.0.0.1:5005>\n");
-            db = new DBManager();
+            DatabaseManager db=DBConnection.db;
 
             new Thread(() -> {
                 try {
                     while (true) {
                         Socket socket = myServerSocket.accept();
-                        new ServerHandler(socket, db);
+                        new ServerHandler(socket);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

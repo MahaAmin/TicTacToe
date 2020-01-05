@@ -15,6 +15,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import org.json.simple.JSONObject;
+import player.PlayerHandler;
+import player.PlayerSoc;
 
 
 public class RegisterFormController implements Initializable
@@ -60,7 +62,8 @@ public class RegisterFormController implements Initializable
     }
     public boolean validate(){
         try{
-            Socket s = new Socket("127.0.0.1",5005);
+            //reimplement
+            final PlayerSoc s = PlayerHandler.player;
             System.out.println("Connection is up");
             DataInputStream dis = new DataInputStream(s.getInputStream());
             PrintStream os = new PrintStream(s.getOutputStream());

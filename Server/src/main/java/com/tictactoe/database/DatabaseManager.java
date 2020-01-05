@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.tictactoe.database;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author halim
- */
+
 public class DatabaseManager {
     public Connection connection;
     public Statement statement;
@@ -21,7 +13,7 @@ public class DatabaseManager {
     static final String DB_URL = "jdbc:mysql://localhost:3306/tic_tac_toe";
     static final String DB_DRV = "com.mysql.jdbc.Driver";
     static final String DB_USER = "root";
-    static final String DB_PASSWD = "";
+    static final String DB_PASSWD = "Root123#";
     
     public DatabaseManager(){
         startConnection();
