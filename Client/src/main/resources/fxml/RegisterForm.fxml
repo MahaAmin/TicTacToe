@@ -13,17 +13,16 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-
 <AnchorPane id="AnchorPane" prefHeight="523.0" prefWidth="916.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictactoe.tictactoefx.RegisterFormController">
     <stylesheets>
         <URL value="@/styles/Styles.css" />
     </stylesheets>
    <children>
 
-      <JFXTextField id="userNameTF" labelFloat="true" layoutX="310.0" layoutY="194.0" prefHeight="25.0" prefWidth="298.0" promptText="Username" stylesheets="@../styles/Styles.css" />
+      <JFXTextField id="userNameTF" fx:id="usernameTF" labelFloat="true" layoutX="310.0" layoutY="194.0" prefHeight="25.0" prefWidth="298.0" promptText="Username" stylesheets="@../styles/Styles.css" />
+      <JFXTextField id="userNameTF" fx:id="emailTF" labelFloat="true" layoutX="310.0" layoutY="248.0" prefHeight="25.0" prefWidth="298.0" promptText="Email" stylesheets="@../styles/Styles.css" />
       <JFXPasswordField id="passwordTF" fx:id="passwordPF" labelFloat="true" layoutX="310.0" layoutY="312.0" prefHeight="25.0" prefWidth="298.0" promptText="Password" stylesheets="@../styles/Styles.css" />
       <JFXPasswordField id="passwordTF" fx:id="confirmPasswordPF" labelFloat="true" layoutX="310.0" layoutY="373.0" prefHeight="25.0" prefWidth="298.0" promptText="Confirm Password" stylesheets="@../styles/Styles.css" />
-      <JFXTextField id="userNameTF" labelFloat="true" layoutX="310.0" layoutY="248.0" prefHeight="25.0" prefWidth="298.0" promptText="Email" stylesheets="@../styles/Styles.css" />
       <JFXButton id="signUpButton" layoutX="309.0" layoutY="454.0" onAction="#registerButtonClicked" prefHeight="58.0" prefWidth="298.0" stylesheets="@../styles/Styles.css" text="Register" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="14.0" />
