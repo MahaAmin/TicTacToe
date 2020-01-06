@@ -15,12 +15,12 @@
    <children>
       <JFXButton id="xoBTN1" layoutX="288.0" layoutY="131.0" onAction="#xoBTN1Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" textFill="#3989d4" fx:id="xoBTN1">
          <font>
-            <Font name="System Bold" size="34.0" />
+            <Font name="System Bold" size="40.0" />
          </font>
       </JFXButton>
       <JFXButton id="xoBTN2" layoutX="388.0" layoutY="131.0" onAction="#xoBTN2Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" textFill="#3abcd4" fx:id="xoBTN2">
          <font>
-            <Font name="System Bold" size="34.0" />
+            <Font name="System Bold" size="40.0" />
          </font></JFXButton>
       <JFXButton id="xoBTN3" layoutX="488.0" layoutY="131.0" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN3" />
       <JFXButton id="xoBTN4" layoutX="288.0" layoutY="231.0" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN4" />
@@ -37,7 +37,7 @@
          </font>
       </Label>
       <Region id="playerYRegion" layoutY="491.0" prefHeight="70.0" prefWidth="283.0" stylesheets="@../styles/Styles.css" />
-      <Label layoutX="54.0" layoutY="506.0" text="Player Y" textFill="WHITE">
+      <Label layoutX="54.0" layoutY="506.0" text="Player O" textFill="WHITE">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>

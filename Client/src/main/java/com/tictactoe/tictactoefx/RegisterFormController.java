@@ -1,11 +1,7 @@
 package com.tictactoe.tictactoefx;
 
 import com.jfoenix.controls.JFXPasswordField;
-import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.PrintStream;
-import java.io.StringWriter;
-import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -13,43 +9,30 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TextField;
-import org.json.simple.JSONObject;
-import player.PlayerHandler;
-import player.PlayerSoc;
 
 
 public class RegisterFormController implements Initializable
 {
-    @FXML private TextField usernameTF,emailTF;
-    @FXML private JFXPasswordField passwordPF,confirmPasswordPF;
+
+    @FXML private JFXPasswordField  passwordPF;
+    @FXML private JFXPasswordField confirmPasswordPF;
     Alert alert = new Alert(AlertType.ERROR);
-    Alert s = new Alert(AlertType.INFORMATION);
-    @FXML
-    private void registerButtonClicked(ActionEvent event) throws IOException
+
+    
+    @FXML private void registerButtonClicked(ActionEvent event) throws IOException
     {
-        if(passwordPF.getText().equals(confirmPasswordPF.getText()))
+        //Check if the passwords match.
+        if(passwordPF.getText().equals(confirmPasswordPF.getText()) )
         {
-            if(validate()){
-                s.setTitle("Information Dialog");
-                s.setHeaderText("success ");
-                s.setContentText("succsefully signed up!");
-                s.showAndWait();
-                //Go back to the startup Scene.fxml
-                SwitchTo.mainScene(event);
-            }else{
-                //put red component here and don't switch
-                alert.setTitle("Information Dialog");
-                alert.setHeaderText("WRONG email or username ");
-                alert.setContentText("email or username might be wrong");
-                alert.showAndWait();
-            }
+            //Go back to the startup Scene.fxml if passwords match.
+             SwitchTo.mainScene(event);  
         }
         else 
         {
             alert.setTitle("Information Dialog");
-            alert.setHeaderText("WRONG PASSword");
-            alert.setContentText("Passwords don't match");
+            alert.setHeaderText("WRONG FOCKING PASS");
+            alert.setContentText("I have a great message for you!");
+
             alert.showAndWait();
         }
         
@@ -59,29 +42,6 @@ public class RegisterFormController implements Initializable
     public void initialize(URL url, ResourceBundle rb) 
     {
         // TODO
-    }
-    public boolean validate(){
-        try{
-            //reimplement
-            final PlayerSoc s = PlayerHandler.player;
-
-            JSONObject jsonMsg = new JSONObject();
-            jsonMsg.put("type", "register");
-            jsonMsg.put("name", usernameTF.getText());
-            jsonMsg.put("email", emailTF.getText());
-            jsonMsg.put("password", passwordPF.getText());
-            System.out.println("json created");
-            StringWriter out = new StringWriter();
-            jsonMsg.writeJSONString(out);
-            s.ps.println(out.toString());
-            String resp = s.dis.readLine();
-            return Boolean.parseBoolean(resp);
-        }
-        catch(IOException e){
-            System.out.println("Changing json to string failed!!");
-            return false;
-        }
-    
-    }
+    }    
     
 }
