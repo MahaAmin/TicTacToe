@@ -1,7 +1,7 @@
 package com.tictactoe.server;
 
 import com.tictactoe.actions.DBConnection;
-import com.tictactoe.database.DBManager;
+import com.tictactoe.database.DatabaseManager;
 
 import java.io.DataInputStream;
 import java.io.IOException;
