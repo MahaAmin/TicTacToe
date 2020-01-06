@@ -13,16 +13,16 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane id="AnchorPane" prefHeight="488.0" prefWidth="768.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictactoe.tictactoefx.RegisterFormController">
+<AnchorPane id="AnchorPane" prefHeight="523.0" prefWidth="916.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictactoe.tictactoefx.RegisterFormController">
     <stylesheets>
         <URL value="@/styles/Styles.css" />
     </stylesheets>
    <children>
-      <JFXTextField id="userNameTF" labelFloat="true" layoutX="235.0" layoutY="180.0" prefHeight="25.0" prefWidth="298.0" promptText="Username" stylesheets="@../styles/Styles.css" />
-      <JFXPasswordField id="passwordTF" fx:id="passwordPF" labelFloat="true" layoutX="235.0" layoutY="298.0" prefHeight="25.0" prefWidth="298.0" promptText="Password" stylesheets="@../styles/Styles.css" />
-      <JFXPasswordField id="passwordTF" fx:id="confirmPasswordPF" labelFloat="true" layoutX="235.0" layoutY="359.0" prefHeight="25.0" prefWidth="298.0" promptText="Confirm Password" stylesheets="@../styles/Styles.css" />
-      <JFXTextField id="userNameTF" labelFloat="true" layoutX="235.0" layoutY="234.0" prefHeight="25.0" prefWidth="298.0" promptText="Email" stylesheets="@../styles/Styles.css" />
-      <JFXButton id="signUpButton" layoutX="235.0" layoutY="410.0" onAction="#registerButtonClicked" prefHeight="58.0" prefWidth="298.0" stylesheets="@../styles/Styles.css" text="Register" textAlignment="CENTER" textFill="WHITE">
+      <JFXTextField id="userNameTF" labelFloat="true" layoutX="310.0" layoutY="194.0" prefHeight="25.0" prefWidth="298.0" promptText="Username" stylesheets="@../styles/Styles.css" />
+      <JFXPasswordField id="passwordTF" fx:id="passwordPF" labelFloat="true" layoutX="310.0" layoutY="312.0" prefHeight="25.0" prefWidth="298.0" promptText="Password" stylesheets="@../styles/Styles.css" />
+      <JFXPasswordField id="passwordTF" fx:id="confirmPasswordPF" labelFloat="true" layoutX="310.0" layoutY="373.0" prefHeight="25.0" prefWidth="298.0" promptText="Confirm Password" stylesheets="@../styles/Styles.css" />
+      <JFXTextField id="userNameTF" labelFloat="true" layoutX="310.0" layoutY="248.0" prefHeight="25.0" prefWidth="298.0" promptText="Email" stylesheets="@../styles/Styles.css" />
+      <JFXButton id="signUpButton" layoutX="309.0" layoutY="454.0" onAction="#registerButtonClicked" prefHeight="58.0" prefWidth="298.0" stylesheets="@../styles/Styles.css" text="Register" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
@@ -30,12 +30,12 @@
             <FontIcon iconColor="WHITE" iconLiteral="fa-user-plus" iconSize="25" />
          </graphic>
       </JFXButton>
-      <Label layoutX="320.0" layoutY="84.0" text="TicTacToeFX" textFill="#6f72fa">
+      <Label layoutX="395.0" layoutY="81.0" text="TicTacToeFX" textFill="#6f72fa">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <Label layoutX="276.0" layoutY="124.0" text="Registeration Form" textFill="#6f72fa">
+      <Label layoutX="361.0" layoutY="121.0" text="Registeration Form" textFill="#6f72fa">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -51,7 +51,7 @@
             </LinearGradient>
          </fill>
       </Circle>
-      <Circle layoutX="577.0" layoutY="73.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+      <Circle layoutX="714.0" layoutY="73.0" radius="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
          <fill>
             <LinearGradient endX="1.0" endY="1.0" startX="0.9666666666666667">
                <stops>
@@ -61,7 +61,7 @@
             </LinearGradient>
          </fill>
       </Circle>
-      <FontIcon iconLiteral="fa-address-card" iconSize="30" layoutX="234.0" layoutY="152.0">
+      <FontIcon iconLiteral="fa-address-card" iconSize="30" layoutX="309.0" layoutY="149.0">
          <iconColor>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>
@@ -81,7 +81,7 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <Circle layoutX="424.0" layoutY="-2.0" radius="62.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+      <Circle layoutX="561.0" layoutY="-8.0" radius="56.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
          <fill>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>
