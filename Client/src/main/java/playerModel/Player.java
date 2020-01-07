@@ -32,6 +32,7 @@ public class Player {
     public Player(int i, String n, String p, String e, int s, String a, int sc){
         id = i;
         name = n;
+        email = e;
         password = p;
         status = s;  
         score = sc;      

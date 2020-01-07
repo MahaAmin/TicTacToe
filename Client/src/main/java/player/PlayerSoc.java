@@ -88,6 +88,9 @@ public class PlayerSoc {
             case "playRequest":
                 playRequest();
                 break;
+            case "login":
+                login();
+                break;
 
         }
 
@@ -126,6 +129,18 @@ public class PlayerSoc {
                 e.printStackTrace();
             }
         });
+    }
+
+    private void login() {
+        if (jsonMsg.get("status").toString() == "true") {
+            PlayerHandler.playerSoc.setPlayer(new Player(
+                    Integer.toString(jsonMsg.get("id")),
+                    jsonMsg.get("name").toString()
+            ));
+        } else {
+
+        }
+
     }
 
 //    private void objectHandle(PlayRequest req) {

@@ -27,10 +27,10 @@ public class Player {
     }
 
     // constactors used for retrieve in databaseManager only
-    public Player(int i, String n, String p, String e, int s, String a, int sc) {
+    public Player(int i, String n,  String e, int s, String a, int sc) {
         id = i;
         name = n;
-        password = p;
+        email = e;
         status = s;
         score = sc;
         avatar = a;

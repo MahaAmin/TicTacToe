@@ -11,7 +11,7 @@ public class DatabaseManager {
     public String query;
     public ResultSet resultSet; // used for store data from database    
 
-    
+
     public DatabaseManager(){
         startConnection();
     }
@@ -32,5 +32,5 @@ public class DatabaseManager {
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }  
+    }
 }

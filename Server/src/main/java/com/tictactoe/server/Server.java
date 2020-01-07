@@ -1,7 +1,8 @@
 package com.tictactoe.server;
 
-import com.tictactoe.actions.DBConnection;
-import com.tictactoe.database.DatabaseManager;
+import com.tictactoe.actions.App;
+import com.tictactoe.database.playerModel.PlayerModel;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -20,7 +21,8 @@ public class Server {
 //            InetAddress addr=InetAddress.getByName("192.168.1.12");
             myServerSocket = new ServerSocket(5005, 50);
             System.out.println("server started: <http://127.0.0.1:5005>\n");
-            DatabaseManager db=DBConnection.db;
+            App.setDB();
+            PlayerModel.getPlayers();
 
             new Thread(() -> {
                 try {

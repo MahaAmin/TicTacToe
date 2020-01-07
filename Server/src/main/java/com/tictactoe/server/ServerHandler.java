@@ -13,24 +13,21 @@ import java.util.Vector;
 
 public class ServerHandler extends Thread {
 
-    private static Vector<ServerHandler> players;
+    private static Vector<ServerHandler> playersSoc;
     private DataInputStream dis;
-    //    private ObjectInputStream ois;
-//    private ObjectOutputStream oos;
     private PrintStream ps;
     private Socket soc;
     private Player player;
     private JSONObject jsonMsg;
 
     public ServerHandler(Socket socket) {
-        players = new Vector<>();
+        playersSoc = new Vector<>();
         try {
             dis = new DataInputStream(socket.getInputStream());
             ps = new PrintStream(socket.getOutputStream());
-//            ois = new ObjectInputStream(socket.getInputStream());
-//            oos = new ObjectOutputStream(socket.getOutputStream());
             soc = socket;
-            players.add(this);
+            playersSoc.add(this);
+
             start();
         } catch (IOException e) {
             e.printStackTrace();
@@ -45,13 +42,6 @@ public class ServerHandler extends Thread {
     public void run() {
         try {
             while (true) {
-                // receive OBJECT
-//                PlayRequest req = (PlayRequest) ois.readObject();
-//                if (req != null) {
-//                    objectHandle(req);
-//                } else {
-//
-//                }
 
                 // receive JSON
                 String data = dis.readLine();
@@ -60,7 +50,6 @@ public class ServerHandler extends Thread {
                     jsonHandle(data);
                 }
 
-
             }
 
         } catch (IOException e) {
@@ -68,8 +57,6 @@ public class ServerHandler extends Thread {
             try {
                 ps.close();
                 dis.close();
-//                ois.close();
-//                oos.close();
                 soc.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -121,12 +108,14 @@ public class ServerHandler extends Thread {
     }
 
     private void login() {
-        boolean resp = PlayerModel.validatePlalyer(jsonMsg);
+        JSONObject resp = PlayerModel.validatePlalyer(jsonMsg);
+        resp.put("type","login");
+//        System.out.println(resp);
         ps.println(resp);
     }
 
     private ServerHandler getPlayerHandler(int player_id) {
-        for (ServerHandler playerHandle : players) {
+        for (ServerHandler playerHandle : playersSoc) {
             if (playerHandle.player.getID() == player_id) {
                 return playerHandle;
             }
