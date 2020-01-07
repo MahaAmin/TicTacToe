@@ -1,8 +1,6 @@
 package com.tictactoe.server;
 
 import com.tictactoe.actions.PlayRequest;
-import com.tictactoe.database.DBManager;
-import com.tictactoe.database.DatabaseManager;
 import com.tictactoe.database.playerModel.PlayerModel;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;

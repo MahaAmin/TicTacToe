@@ -1,29 +1,15 @@
 package com.tictactoe.server;
 
 import com.tictactoe.actions.DBConnection;
-import com.tictactoe.database.DBManager;
-
-import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.PrintStream;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import com.tictactoe.database.DatabaseManager;
-import javafx.application.Platform;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+
 
 public class Server {
 
     ServerSocket myServerSocket;
-    DatabaseManager db;
 
     public Server() {
         startConnection();
