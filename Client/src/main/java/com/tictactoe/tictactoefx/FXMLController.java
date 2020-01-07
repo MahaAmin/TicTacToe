@@ -46,11 +46,6 @@ public class FXMLController implements Initializable {
     }
 
 
-    public int generateRandomIntIntRange(int min, int max) {
-        Random r = new Random();
-        return r.nextInt((max - min) + 1) + min;
-    }
-
     @FXML
     private void signInButtonClicked(ActionEvent event) throws IOException {
 

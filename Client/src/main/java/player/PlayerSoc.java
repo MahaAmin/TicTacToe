@@ -1,5 +1,6 @@
 package player;
 
+import actions.Alerts;
 import actions.App;
 import actions.PlayRequest;
 import com.tictactoe.tictactoefx.SwitchTo;
@@ -84,7 +85,7 @@ public class PlayerSoc {
     private void jsonHandle(String data) throws ParseException {
         JSONParser parser = new JSONParser();
         jsonMsg = (JSONObject) parser.parse(data);
-
+        System.out.println(data);
         switch (jsonMsg.get("type").toString()) {
             case "playRequest":
                 playRequest();
@@ -97,10 +98,9 @@ public class PlayerSoc {
 
     }
 
+
     public void setPlayer(Player player) {
         this.player = player;
-
-
         try {
 
             JSONObject jsonMsg = new JSONObject();
@@ -121,13 +121,10 @@ public class PlayerSoc {
     }
 
     private void playRequest() {
-        String fromPlayer = jsonMsg.get("from_name").toString();
+        // send invitation alert to a friend
+        String fromPlayer_name = jsonMsg.get("from_name").toString();
         Platform.runLater(() -> {
-            try {
-                SwitchTo.onlineListPopUpScene();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Alerts.sendRequestAlert(fromPlayer_name);
         });
     }
 
@@ -136,7 +133,7 @@ public class PlayerSoc {
             Player pl = new Player();
             pl.setID(Integer.parseInt(jsonMsg.get("id").toString()));
             pl.setPlayerName(jsonMsg.get("name").toString());
-            PlayerHandler.playerSoc.setPlayer(pl);
+            App.getPlayerSoc().setPlayer(pl);
             // redirect to dashboard
             Platform.runLater(() -> {
                 try {

@@ -18,7 +18,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         // connect to server socket
-//        final PlayerSoc player = PlayerHandler.playerSoc;
+        App.setPlayerSoc();
 
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
 
@@ -27,7 +27,7 @@ public class MainApp extends Application {
 
         stage.setResizable(false);
         stage.setTitle("Tic-Tac-ToeFX");
-        App.setStage(stage);
+        App.setWindow(stage);
         stage.setScene(scene);
         stage.show();
     }

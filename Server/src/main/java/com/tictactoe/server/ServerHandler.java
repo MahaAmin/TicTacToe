@@ -68,7 +68,6 @@ public class ServerHandler extends Thread {
     private void jsonHandle(String data) throws ParseException {
         JSONParser parser = new JSONParser();
         jsonMsg = (JSONObject) parser.parse(data);
-
         switch (jsonMsg.get("type").toString()) {
             case "playRequest":
                 playRequest(data);
@@ -113,8 +112,10 @@ public class ServerHandler extends Thread {
     }
 
     private ServerHandler getPlayerHandler(int player_id) {
+        System.out.println("search "+player_id);
         for (ServerHandler playerHandle : playersSoc) {
             if (playerHandle.player.getID() == player_id) {
+                System.out.println(playerHandle);
                 return playerHandle;
             }
 

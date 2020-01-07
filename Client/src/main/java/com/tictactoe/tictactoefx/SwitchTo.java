@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 
@@ -60,6 +61,7 @@ public class SwitchTo {
         transition(event, 1);
     }
 
+
     public static void dashboardScene(ActionEvent event) throws IOException {
         transition(event, 2);
     }
@@ -71,5 +73,7 @@ public class SwitchTo {
     public static void onlineListPopUpScene() throws IOException {
         popupTransition(0, "Online List");
     }
+
+
 
 }
