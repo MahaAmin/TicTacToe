@@ -22,13 +22,13 @@
          <font>
             <Font name="System Bold" size="40.0" />
          </font></JFXButton>
-      <JFXButton id="xoBTN3" layoutX="488.0" layoutY="131.0" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN3" />
-      <JFXButton id="xoBTN4" layoutX="288.0" layoutY="231.0" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN4" />
-      <JFXButton id="xoBTN5" layoutX="388.0" layoutY="231.0" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN5" />
-      <JFXButton id="xoBTN6" layoutX="488.0" layoutY="231.0" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN6" />
-      <JFXButton id="xoBTN7" layoutX="288.0" layoutY="331.0" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN7" />
-      <JFXButton id="xoBTN9" layoutX="488.0" layoutY="331.0" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN9" />
-      <JFXButton id="xoBTN8" layoutX="388.0" layoutY="331.0" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN8" />
+      <JFXButton id="xoBTN3" layoutX="488.0" layoutY="131.0" onAction="#xoBTN3Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN3" />
+      <JFXButton id="xoBTN4" layoutX="288.0" layoutY="231.0" onAction="#xoBTN4Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN4" />
+      <JFXButton id="xoBTN5" layoutX="388.0" layoutY="231.0" onAction="#xoBTN5Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN5" />
+      <JFXButton id="xoBTN6" layoutX="488.0" layoutY="231.0" onAction="#xoBTN6Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN6" />
+      <JFXButton id="xoBTN7" layoutX="288.0" layoutY="331.0" onAction="#xoBTN7Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN7" />
+      <JFXButton id="xoBTN9" layoutX="488.0" layoutY="331.0" onAction="#xoBTN9Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN9" />
+      <JFXButton id="xoBTN8" layoutX="388.0" layoutY="331.0" onAction="#xoBTN8Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN8" />
       <Region layoutX="554.0" prefHeight="70.0" prefWidth="214.0" />
       <Region id="playerXRegion" layoutX="592.0" prefHeight="70.0" prefWidth="283.0" stylesheets="@../styles/Styles.css" />
       <Label layoutX="626.0" layoutY="15.0" text="Player X" textFill="WHITE">
