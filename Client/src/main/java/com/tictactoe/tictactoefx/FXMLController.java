@@ -55,7 +55,7 @@ public class FXMLController implements Initializable {
     private void signInButtonClicked(ActionEvent event) throws IOException {
 
 //
-//        SwitchTo.dashboardScene(event);
+        SwitchTo.dashboardScene(event);
         if (usernameTF.getText() == null || passwordPF.getText() == null) {
             alert.setTitle("Information Dialog");
             alert.setHeaderText("WRONG PASSword");

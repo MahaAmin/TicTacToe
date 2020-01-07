@@ -137,8 +137,9 @@ public class PlayerSoc {
                     Integer.toString(jsonMsg.get("id")),
                     jsonMsg.get("name").toString()
             ));
+            // redirect to dashboard
         } else {
-
+            // alert wrong password
         }
 
     }
@@ -146,13 +147,7 @@ public class PlayerSoc {
 //    private void objectHandle(PlayRequest req) {
 //        switch (req.getRequestType()) {
 //            case REQUEST:
-//                Platform.runLater(() -> {
-//                    try {
-//                        SwitchTo.onlineListPopUpScene();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                });
+
 //
 //                break;
 //        }

@@ -71,9 +71,6 @@ public class ServerHandler extends Thread {
         jsonMsg = (JSONObject) parser.parse(data);
 
         switch (jsonMsg.get("type").toString()) {
-            case "setPlayer":
-                setPlayer();
-                break;
             case "playRequest":
                 playRequest(data);
                 break;
@@ -87,14 +84,13 @@ public class ServerHandler extends Thread {
 
     }
 
-    private void setPlayer() {
+    private void setPlayer(JSONObject client) {
 
         player = new Player();
         player.setID(
-                Integer.parseInt(
-                        jsonMsg.get("player_id").toString()
-                )
+                Integer.parseInt(client.get("id").toString())
         );
+        player.setPlayerName(client.get("name").toString());
     }
 
     private void playRequest(String data) {
@@ -109,8 +105,10 @@ public class ServerHandler extends Thread {
 
     private void login() {
         JSONObject resp = PlayerModel.validatePlalyer(jsonMsg);
-        resp.put("type","login");
-//        System.out.println(resp);
+        if (resp.get("status").toString() == "true") {
+            setPlayer(resp);
+        }
+        resp.put("type", "login");
         ps.println(resp);
     }
 
