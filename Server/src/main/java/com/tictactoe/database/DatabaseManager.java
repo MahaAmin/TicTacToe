@@ -14,7 +14,7 @@ public class DatabaseManager {
 //    static final String DB_DRV = "com.mysql.jdbc.Driver";
     static final String DB_DRV = "com.mysql.cj.jdbc.Driver";
     static final String DB_USER = "root";
-    static final String DB_PASSWD = "Root123#";
+    static final String DB_PASSWD = "123456";
     
     public DatabaseManager(){
         startConnection();

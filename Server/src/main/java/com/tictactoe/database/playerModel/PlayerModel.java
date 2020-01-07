@@ -129,6 +129,7 @@ public class PlayerModel {
             }
             else{
                 updateStatus(db.resultSet.getInt(1), 1); // refer to online
+                System.out.println("got the player");
                 return true;
             }
         }catch(SQLException e){

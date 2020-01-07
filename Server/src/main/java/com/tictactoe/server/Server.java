@@ -1,10 +1,10 @@
 package com.tictactoe.server;
 
 import com.tictactoe.actions.DBConnection;
+import com.tictactoe.database.DatabaseManager;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import com.tictactoe.database.DatabaseManager;
 
 
 public class Server {
