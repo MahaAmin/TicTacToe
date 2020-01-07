@@ -88,6 +88,7 @@ public class PlayerModel {
             db.preparedStatement.executeUpdate();
             
             Player p = getPlayer(id);
+            assert p != null;
             p.setPlayerStatus(status);
             
         } catch (SQLException ex) {
@@ -119,16 +120,16 @@ public class PlayerModel {
     // function used to Login in GUI
     public static boolean validatePlalyer(JSONObject player){
         try{
-            PreparedStatement statment = db.connection.prepareStatement("SELECT * FROM players WHERE name=? AND password=?");
-            statment.setString(1, player.get("name").toString());
+            PreparedStatement statment = db.connection.prepareStatement("SELECT * FROM players WHERE email=? AND password=?");
+            statment.setString(1, player.get("email").toString());
             statment.setString(2, player.get("password").toString());
             ResultSet res = statment.executeQuery();
             System.out.println("done select");
-            if(res.next()==false){
+            if(!res.next()){
                 return false;
             }
             else{
-                updateStatus(db.resultSet.getInt(1), 1); // refer to online
+                updateStatus(res.getInt(1), 1); // refer to online
                 System.out.println("got the player");
                 return true;
             }

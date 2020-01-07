@@ -11,7 +11,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import org.json.simple.JSONObject;
+import player.PlayerHandler;
 import player.PlayerSoc;
 
 
@@ -58,7 +60,7 @@ public class RegisterFormController implements Initializable
     }    
         public boolean validate(){
         try{
-            PlayerSoc player = new PlayerSoc();
+            PlayerSoc player = PlayerHandler.playerSoc;
             System.out.println("streams created");
             JSONObject jsonMsg = new JSONObject();
             jsonMsg.put("type", "register");
@@ -69,8 +71,8 @@ public class RegisterFormController implements Initializable
             StringWriter out = new StringWriter();
             jsonMsg.writeJSONString(out);
             player.ps.println(out.toString());
-            String resp = player.dis.readLine();
-            return Boolean.parseBoolean(resp);
+            boolean resp = player.dis.readBoolean();
+            return resp;
         }
         catch(IOException e){
             System.out.println("Changing json to string failed!!");

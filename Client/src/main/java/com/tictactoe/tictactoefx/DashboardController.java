@@ -19,6 +19,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import player.PlayerHandler;
 
 
 public class DashboardController implements Initializable
@@ -54,8 +55,10 @@ public class DashboardController implements Initializable
 
     @FXML private void vsOnlinePlayerButtonClicked(ActionEvent event) throws IOException
     {
+        System.out.println(PlayerHandler.playerSoc.getPlayer().getID());
         //Popup the OnlineListPopUp.fxml scene
         SwitchTo.onlineListPopUpScene();
+//        PlayerHandler.sendPlayRequest(10);
     }
     
     @Override

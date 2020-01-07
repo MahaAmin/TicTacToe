@@ -1,6 +1,7 @@
 package com.tictactoe.server;
 
 import com.tictactoe.actions.PlayRequest;
+import com.tictactoe.database.playerModel.Player;
 import com.tictactoe.database.playerModel.PlayerModel;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -14,18 +15,20 @@ public class ServerHandler extends Thread {
 
     private static Vector<ServerHandler> players;
     private DataInputStream dis;
-    private ObjectInputStream ois;
-    private ObjectOutputStream oos;
+    //    private ObjectInputStream ois;
+//    private ObjectOutputStream oos;
     private PrintStream ps;
     private Socket soc;
+    private Player player;
+    private JSONObject jsonMsg;
 
     public ServerHandler(Socket socket) {
         players = new Vector<>();
         try {
             dis = new DataInputStream(socket.getInputStream());
             ps = new PrintStream(socket.getOutputStream());
-            ois = new ObjectInputStream(socket.getInputStream());
-            oos = new ObjectOutputStream(socket.getOutputStream());
+//            ois = new ObjectInputStream(socket.getInputStream());
+//            oos = new ObjectOutputStream(socket.getOutputStream());
             soc = socket;
             players.add(this);
             start();
@@ -35,20 +38,26 @@ public class ServerHandler extends Thread {
 
     }
 
+    public ServerHandler() {
+    }
+
     @Override
     public void run() {
         try {
             while (true) {
                 // receive OBJECT
-                PlayRequest req = (PlayRequest) ois.readObject();
-                if (req != null) {
-                    objectHandle(req);
-                } else {
-                    // receive JSON
-                    String data = dis.readLine();
-                    if (!data.isEmpty()) {
-                        jsonHandle(data);
-                    }
+//                PlayRequest req = (PlayRequest) ois.readObject();
+//                if (req != null) {
+//                    objectHandle(req);
+//                } else {
+//
+//                }
+
+                // receive JSON
+                String data = dis.readLine();
+                if (!data.isEmpty()) {
+                    System.out.println(data);
+                    jsonHandle(data);
                 }
 
 
@@ -59,37 +68,70 @@ public class ServerHandler extends Thread {
             try {
                 ps.close();
                 dis.close();
-                ois.close();
-                oos.close();
+//                ois.close();
+//                oos.close();
                 soc.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-        } catch (ClassNotFoundException | ParseException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         }
     }
 
     private void jsonHandle(String data) throws ParseException {
         JSONParser parser = new JSONParser();
-        JSONObject jsonMsg = (JSONObject) parser.parse(data);
+        jsonMsg = (JSONObject) parser.parse(data);
 
-        if (jsonMsg.get("type").equals("register")) {
-            boolean resp = PlayerModel.createPlayer(jsonMsg);
-            ps.println(resp);
-        } else if (jsonMsg.get("type").equals("login")) {
-            boolean resp = PlayerModel.validatePlalyer(jsonMsg);
-            ps.println(resp);
+        switch (jsonMsg.get("type").toString()) {
+            case "setPlayer":
+                setPlayer();
+                break;
+            case "playRequest":
+                playRequest(data);
+                break;
+            case "register":
+                register();
+                break;
+            case "login":
+                login();
+                break;
         }
+
     }
 
-    private void objectHandle(PlayRequest req) {
-        for (ServerHandler player : players) {
-            try {
-                player.oos.writeObject(req);
-            } catch (IOException e) {
-                e.printStackTrace();
+    private void setPlayer() {
+
+        player = new Player();
+        player.setID(
+                Integer.parseInt(
+                        jsonMsg.get("player_id").toString()
+                )
+        );
+    }
+
+    private void playRequest(String data) {
+        ServerHandler toPlayerHandler = getPlayerHandler(Integer.parseInt(jsonMsg.get("to_id").toString()));
+        toPlayerHandler.ps.println(data);
+    }
+
+    private void register() {
+        boolean resp = PlayerModel.createPlayer(jsonMsg);
+        ps.println(resp);
+    }
+
+    private void login() {
+        boolean resp = PlayerModel.validatePlalyer(jsonMsg);
+        ps.println(resp);
+    }
+
+    private ServerHandler getPlayerHandler(int player_id) {
+        for (ServerHandler playerHandle : players) {
+            if (playerHandle.player.getID() == player_id) {
+                return playerHandle;
             }
+
         }
+        return new ServerHandler();
     }
 }

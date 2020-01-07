@@ -17,7 +17,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         // connect to server socket
-        final PlayerSoc player = PlayerHandler.player;
+//        final PlayerSoc player = PlayerHandler.playerSoc;
 
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
 

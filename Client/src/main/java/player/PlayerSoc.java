@@ -7,17 +7,23 @@ import javafx.fxml.FXML;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import playerModel.Player;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class PlayerSoc {
 
     public Socket socket;
     public DataInputStream dis;
     public PrintStream ps;
-    public ObjectOutputStream oos;
-    public ObjectInputStream ois;
+    //    public ObjectOutputStream oos;
+//    public ObjectInputStream ois;
+    private Player player;
+    private JSONObject jsonMsg;
 
     public PlayerSoc() {
         startConnection();
@@ -25,17 +31,17 @@ public class PlayerSoc {
 
 
     private void startConnection() {
-            try {
-                socket = new Socket("127.0.0.1", 5005);
-                dis = new DataInputStream(socket.getInputStream());
-                ps = new PrintStream(socket.getOutputStream());
-                oos = new ObjectOutputStream(socket.getOutputStream());
-                ois = new ObjectInputStream(socket.getInputStream());
-                receiveGameThread();
+        try {
+            socket = new Socket("127.0.0.1", 5005);
+            dis = new DataInputStream(socket.getInputStream());
+            ps = new PrintStream(socket.getOutputStream());
+//                oos = new ObjectOutputStream(socket.getOutputStream());
+//                ois = new ObjectInputStream(socket.getInputStream());
+            receiveGameThread();
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
     }
@@ -48,15 +54,10 @@ public class PlayerSoc {
             public void run() {
                 try {
                     while (true) {
-                        PlayRequest req = (PlayRequest) ois.readObject();
-                        if (req != null) {
-                            objectHandle(req);
-                        }else {
-                            // receive JSON
-                            String data = dis.readUTF();
-                            if (!data.isEmpty()) {
-                                jsonHandle(data);
-                            }
+                        // receive JSON
+                        String data = dis.readUTF();
+                        if (!data.isEmpty()) {
+                            jsonHandle(data);
                         }
                     }
                 } catch (IOException e) {
@@ -64,13 +65,13 @@ public class PlayerSoc {
                     try {
                         dis.close();
                         ps.close();
-                        oos.close();
-                        ois.close();
+//                        oos.close();
+//                        ois.close();
                         socket.close();
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
-                } catch (ClassNotFoundException e) {
+                } catch (ParseException e) {
                     e.printStackTrace();
                 }
 
@@ -79,24 +80,68 @@ public class PlayerSoc {
     }
 
 
-    private void jsonHandle(String data) {
-        
-    }
+    private void jsonHandle(String data) throws ParseException {
+        JSONParser parser = new JSONParser();
+        jsonMsg = (JSONObject) parser.parse(data);
 
-    private void objectHandle(PlayRequest req) {
-        switch (req.getRequestType()) {
-            case REQUEST:
-                Platform.runLater(() -> {
-                    try {
-                        SwitchTo.onlineListPopUpScene();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-
+        switch (jsonMsg.get("type").toString()) {
+            case "playRequest":
+                playRequest();
                 break;
+
         }
+
     }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+
+
+        try {
+
+            JSONObject jsonMsg = new JSONObject();
+            jsonMsg.put("type", "setPlayer");
+            jsonMsg.put("player_id", player.getID());
+
+            StringWriter out = new StringWriter();
+            jsonMsg.writeJSONString(out);
+            System.out.println(out.toString());
+            ps.println(out.toString());
+        } catch (IOException e) {
+            System.out.println("Changing json to string failed!!");
+        }
+
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    private void playRequest() {
+        String fromPlayer = jsonMsg.get("from_name").toString();
+        Platform.runLater(() -> {
+            try {
+                SwitchTo.onlineListPopUpScene();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+//    private void objectHandle(PlayRequest req) {
+//        switch (req.getRequestType()) {
+//            case REQUEST:
+//                Platform.runLater(() -> {
+//                    try {
+//                        SwitchTo.onlineListPopUpScene();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                });
+//
+//                break;
+//        }
+//    }
 
 }
 
