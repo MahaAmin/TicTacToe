@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.util.Duration;
 import org.json.simple.JSONObject;
 import org.kordamp.ikonli.javafx.FontIcon;
+import player.PlayerHandler;
 import player.PlayerSoc;
 
 public class FXMLController implements Initializable {
@@ -70,7 +71,7 @@ public class FXMLController implements Initializable {
 
     public boolean validate(){
         try{
-            PlayerSoc player = new PlayerSoc();
+            PlayerSoc player = PlayerHandler.player;
             JSONObject jsonMsg = new JSONObject();
             jsonMsg.put("type", "login");
             jsonMsg.put("name", usernameTF.getText());
