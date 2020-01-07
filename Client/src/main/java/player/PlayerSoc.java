@@ -147,7 +147,13 @@ public class PlayerSoc {
 //    private void objectHandle(PlayRequest req) {
 //        switch (req.getRequestType()) {
 //            case REQUEST:
-
+//                Platform.runLater(() -> {
+//                    try {
+//                        SwitchTo.onlineListPopUpScene();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                });
 //
 //                break;
 //        }
