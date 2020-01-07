@@ -56,7 +56,7 @@ public class PlayerSoc {
                 try {
                     while (true) {
                         // receive JSON
-                        String data = dis.readUTF();
+                        String data = dis.readLine();
                         if (!data.isEmpty()) {
                             jsonHandle(data);
                         }
@@ -109,7 +109,6 @@ public class PlayerSoc {
 
             StringWriter out = new StringWriter();
             jsonMsg.writeJSONString(out);
-            System.out.println(out.toString());
             ps.println(out.toString());
         } catch (IOException e) {
             System.out.println("Changing json to string failed!!");

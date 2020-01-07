@@ -46,7 +46,6 @@ public class ServerHandler extends Thread {
                 // receive JSON
                 String data = dis.readLine();
                 if (!data.isEmpty()) {
-                    System.out.println(data);
                     jsonHandle(data);
                 }
 
@@ -109,6 +108,7 @@ public class ServerHandler extends Thread {
             setPlayer(resp);
         }
         resp.put("type", "login");
+        System.out.println(resp);
         ps.println(resp);
     }
 
