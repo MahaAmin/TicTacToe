@@ -14,9 +14,7 @@ public class GamePlayController implements Initializable {
     @FXML private JFXButton xoBTN4, xoBTN5, xoBTN6;
     @FXML private JFXButton xoBTN7, xoBTN8, xoBTN9;
     ArrayList<JFXButton> xoButtonList = new ArrayList<>();
-    
 
-    
     @FXML private void xoBTN1Clicked(ActionEvent event)
     {
         xoBTN1.setText("X");
@@ -26,8 +24,42 @@ public class GamePlayController implements Initializable {
     {
         xoBTN2.setText("O");
     }
-
     
+    @FXML private void  xoBTN3Clicked(ActionEvent event)
+    {
+        xoBTN3.setText("X");
+    }
+    
+    @FXML private void  xoBTN4Clicked(ActionEvent event)
+    {
+        xoBTN4.setText("O");
+    }
+    
+    @FXML private void  xoBTN5Clicked(ActionEvent event)
+    {
+        xoBTN5.setText("X");
+    }
+    
+    @FXML private void  xoBTN6Clicked(ActionEvent event)
+    {
+        xoBTN6.setText("O");
+    }
+    
+    @FXML private void  xoBTN7Clicked(ActionEvent event)
+    {
+        xoBTN7.setText("X");
+    }
+    
+    @FXML private void  xoBTN8Clicked(ActionEvent event)
+    {
+        xoBTN8.setText("O");
+    }
+    
+    @FXML private void  xoBTN9Clicked(ActionEvent event)
+    {
+        xoBTN9.setText("X");
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         xoButtonList.add(xoBTN1);
