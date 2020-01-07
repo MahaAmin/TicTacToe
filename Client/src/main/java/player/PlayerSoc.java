@@ -1,5 +1,6 @@
 package player;
 
+import actions.App;
 import actions.PlayRequest;
 import com.tictactoe.tictactoefx.SwitchTo;
 import javafx.application.Platform;
@@ -133,31 +134,23 @@ public class PlayerSoc {
 
     private void login() {
         if (jsonMsg.get("status").toString() == "true") {
-            PlayerHandler.playerSoc.setPlayer(new Player(
-                    Integer.toString(jsonMsg.get("id")),
-                    jsonMsg.get("name").toString()
-            ));
+            Player pl = new Player();
+            pl.setID(Integer.parseInt(jsonMsg.get("id").toString()));
+            pl.setPlayerName(jsonMsg.get("name").toString());
+            PlayerHandler.playerSoc.setPlayer(pl);
             // redirect to dashboard
+            Platform.runLater(() -> {
+                try {
+                    SwitchTo.changeTo(App.getWindow(), 2);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
         } else {
             // alert wrong password
         }
 
     }
-
-//    private void objectHandle(PlayRequest req) {
-//        switch (req.getRequestType()) {
-//            case REQUEST:
-//                Platform.runLater(() -> {
-//                    try {
-//                        SwitchTo.onlineListPopUpScene();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                });
-//
-//                break;
-//        }
-//    }
 
 }
 

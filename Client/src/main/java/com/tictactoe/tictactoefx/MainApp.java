@@ -1,5 +1,6 @@
 package com.tictactoe.tictactoefx;
 
+import actions.App;
 import javafx.application.Application;
 
 import static javafx.application.Application.launch;
@@ -26,6 +27,7 @@ public class MainApp extends Application {
 
         stage.setResizable(false);
         stage.setTitle("Tic-Tac-ToeFX");
+        App.setStage(stage);
         stage.setScene(scene);
         stage.show();
     }
