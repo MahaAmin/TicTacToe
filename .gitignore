@@ -2,3 +2,7 @@
 TicTacToeFX.iml
 *.class
 target/
+<<<<<<< HEAD
+=======
+Server/src/main/java/com/tictactoe/database/DBConfig.java
+>>>>>>> Validation-Branch
