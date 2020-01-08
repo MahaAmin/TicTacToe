@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 08, 2020 at 03:00 PM
+-- Generation Time: Jan 08, 2020 at 03:16 PM
 -- Server version: 8.0.17
 -- PHP Version: 7.2.11
 
@@ -34,9 +34,9 @@ CREATE TABLE `games` (
   `to_player` int(11) NOT NULL,
   `winner` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL,
-  `status` enum('REQUESt','COMPLETE','INPROGRESS','FAIL','PAUSE','') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'REQUESt',
-  `board` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `status` enum('REQUESt','COMPLETE','INPROGRESS','FAIL','PAUSE','') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'REQUESt',
+  `board` text CHARACTER SET utf8 COLLATE utf8_general_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -46,13 +46,13 @@ CREATE TABLE `games` (
 
 CREATE TABLE `players` (
   `id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `password` varchar(32) NOT NULL,
-  `email` varchar(50) NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `password` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `score` int(11) DEFAULT '0',
-  `status` enum('0','1','2') NOT NULL DEFAULT '0',
-  `avatar` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `status` enum('0','1','2') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0',
+  `avatar` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `players`
