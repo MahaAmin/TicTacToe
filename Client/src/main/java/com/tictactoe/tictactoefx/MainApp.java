@@ -9,8 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import player.PlayerHandler;
-import player.PlayerSoc;
+
 
 
 public class MainApp extends Application {

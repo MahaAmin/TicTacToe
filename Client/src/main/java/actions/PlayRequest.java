@@ -4,10 +4,6 @@ import org.json.simple.JSONObject;
 import player.PlayerHandler;
 import player.PlayerSoc;
 
-import java.io.IOException;
-import java.io.Serializable;
-import java.io.StringWriter;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 
@@ -24,8 +20,6 @@ public class PlayRequest {
             jsonMsg.put(field.getKey(), field.getValue());
         }
 
-//            StringWriter out = new StringWriter();
-//            jsonMsg.writeJSONString(out);
         player.ps.println(jsonMsg.toJSONString());
         return true;
 

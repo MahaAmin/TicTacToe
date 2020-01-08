@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 public class PlayerModel {
 
     static DatabaseManager db = App.getDB();
-    private static Map<Integer, Player> players; // used to send to the server to reduce the requests on the database
+    public static Map<Integer, Player> players; // used to send to the server to reduce the requests on the database
     // static for shared data "i need it once not for every object"
 
     public static void getPlayers() {
@@ -50,6 +50,26 @@ public class PlayerModel {
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+
+    public static JSONObject getPlayersJSON() {
+
+        JSONObject playersJson = new JSONObject();
+
+        for (Map.Entry<Integer, Player> field : players.entrySet()) {
+            Player player = field.getValue();
+
+            JSONObject playerJson = new JSONObject();
+            playerJson.put("id", player.getID());
+            playerJson.put("name", player.getPlayerName());
+            playerJson.put("score", player.getPlayerScore());
+            playerJson.put("status", player.getPlayerStatus());
+
+            playersJson.put(field.getKey(), playerJson);
+        }
+        return playersJson;
+
     }
 
 
