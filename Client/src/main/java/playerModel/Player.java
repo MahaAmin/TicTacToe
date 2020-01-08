@@ -19,7 +19,7 @@ public class Player {
     private int score;
     private String avatar; // optional
     
-    // constactor used for GUI only
+    // constructor used for GUI only
     public Player(String n, String p, String e){
         name = n;
         password = p;
@@ -28,7 +28,7 @@ public class Player {
         score = 0; // as initial value
     }
     
-    // constactors used for retrieve in databaseManager only
+    // constructors used for retrieve in databaseManager only
     public Player(int i, String n, String p, String e, int s, String a, int sc){
         id = i;
         name = n;

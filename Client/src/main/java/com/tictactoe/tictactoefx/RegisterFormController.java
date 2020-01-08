@@ -1,6 +1,7 @@
 package com.tictactoe.tictactoefx;
 
 import actions.App;
+import actions.PlayRequest;
 import com.jfoenix.controls.JFXPasswordField;
 
 import com.jfoenix.controls.JFXButton;
@@ -15,6 +16,8 @@ import com.jfoenix.validation.RequiredFieldValidator;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -100,7 +103,7 @@ public class RegisterFormController implements Initializable {
             {
                 if (!usernameTF.getText().trim().isEmpty())//if the username wasn't empty
                     //Go back to the startup Scene.fxml if passwords match.
-                    SwitchTo.mainScene(event);
+                    validate();
             }
         }
 
@@ -133,26 +136,14 @@ public class RegisterFormController implements Initializable {
         // TODO
     }
 
-    public boolean validate() {
-        try {
-            PlayerSoc player = App.getPlayerSoc();
-            System.out.println("streams created");
-            JSONObject jsonMsg = new JSONObject();
-            jsonMsg.put("type", "register");
-            jsonMsg.put("name", usernameTF.getText());
-            jsonMsg.put("email", emailTF.getText());
-            jsonMsg.put("password", passwordPF.getText());
-            System.out.println("json created");
-            StringWriter out = new StringWriter();
-            jsonMsg.writeJSONString(out);
-            player.ps.println(out.toString());
-            boolean resp = player.dis.readBoolean();
-            return resp;
-        } catch (IOException e) {
-            System.out.println("Changing json to string failed!!");
-            return false;
-        }
-
+    public void validate() {
+        PlayerSoc player = App.getPlayerSoc();
+        Map<String, String> map = new HashMap<>();
+        map.put("type", "register");
+        map.put("name", usernameTF.getText());
+        map.put("email", emailTF.getText());
+        map.put("password", passwordPF.getText());
+        System.out.println(map);
+        PlayRequest.sendJSON(map);
     }
-
 }

@@ -93,7 +93,9 @@ public class PlayerSoc {
             case "login":
                 login();
                 break;
-
+            case "register":
+                register();
+                break;
         }
 
     }
@@ -144,6 +146,23 @@ public class PlayerSoc {
             });
         } else {
             // alert wrong password
+            Platform.runLater(() -> {
+                Alerts.wrongPasswordAlert();
+            });
+        }
+    }
+
+    private void register(){
+        System.out.println(jsonMsg.get("resp").toString());
+        if(jsonMsg.get("resp").toString().compareTo("true")==0){
+            Platform.runLater(() -> {
+                try {
+                    SwitchTo.changeTo(App.getWindow(), 0);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        }else{
             Platform.runLater(() -> {
                 Alerts.wrongPasswordAlert();
             });
