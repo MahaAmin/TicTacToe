@@ -1,5 +1,6 @@
 package actions;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
@@ -29,12 +30,18 @@ public class Alerts {
         PlayRequest.sendJSON(map);
         if (result.get() == buttonYes) {
             // ... user chose "Yes"
-            map.put("response","true");
+            map.put("response", "true");
 
         } else if (result.get() == buttonNo) {
             // ... user chose "No"
-            map.put("response","false");
+            map.put("response", "false");
         }
+    }
+    public static void wrongPasswordAlert(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("wrong information");
+        alert.setContentText("please enter the right credentials!");
+        alert.showAndWait();
     }
 
 }

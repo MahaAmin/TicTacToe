@@ -144,8 +144,10 @@ public class PlayerSoc {
             });
         } else {
             // alert wrong password
+            Platform.runLater(() -> {
+                Alerts.wrongPasswordAlert();
+            });
         }
-
     }
 
 }
