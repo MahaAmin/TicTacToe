@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="576.0" prefWidth="916.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictactoe.tictactoefx.RegisterFormController">
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="576.0" prefWidth="916.0" style="-fx-background-color: #FFFFFF;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictactoe.tictactoefx.RegisterFormController">
     <stylesheets>
         <URL value="@/styles/Styles.css" />
     </stylesheets>
@@ -41,8 +41,8 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Circle fill="#6f60fa" layoutX="157.0" layoutY="41.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Circle layoutX="127.0" layoutY="100.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+      <Circle fill="#6f60fa" layoutX="192.0" layoutY="43.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Circle layoutX="149.0" layoutY="138.0" radius="27.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
          <fill>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>
@@ -72,7 +72,7 @@
             </LinearGradient>
          </iconColor>
       </FontIcon>
-      <Rectangle arcHeight="100.0" arcWidth="75.0" height="65.0" layoutX="-121.0" layoutY="-32.0" rotate="32.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0">
+      <Rectangle arcHeight="100.0" arcWidth="75.0" height="65.0" layoutX="-113.0" layoutY="-33.0" rotate="32.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0">
          <fill>
             <LinearGradient endX="1.0" endY="1.0" startX="0.9666666666666667">
                <stops>
@@ -92,5 +92,10 @@
             </LinearGradient>
          </fill>
       </Circle>
+      <JFXButton id="backButtonRegister" layoutY="537.0" onAction="#backButtonClicked" prefHeight="40.0" prefWidth="65.0" stylesheets="@../styles/Styles.css" text=" ">
+         <graphic>
+            <FontIcon iconLiteral="fa-angle-left" iconSize="30" />
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>

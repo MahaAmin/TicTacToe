@@ -53,26 +53,6 @@ public class PlayerModel {
     }
 
 
-    public static JSONObject getPlayersJSON() {
-
-        JSONObject playersJson = new JSONObject();
-
-        for (Map.Entry<Integer, Player> field : players.entrySet()) {
-            Player player = field.getValue();
-
-            JSONObject playerJson = new JSONObject();
-            playerJson.put("id", player.getID());
-            playerJson.put("name", player.getPlayerName());
-            playerJson.put("score", player.getPlayerScore());
-            playerJson.put("status", player.getPlayerStatus());
-
-            playersJson.put(field.getKey(), playerJson);
-        }
-        return playersJson;
-
-    }
-
-
     public static Player getPlayer(int id) {
 
         Player player = players.get(id);

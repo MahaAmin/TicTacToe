@@ -48,6 +48,7 @@ public class FXMLController implements Initializable {
     boolean enteredGoogleBTN, enteredFacebookBTN; //Handle changing colors on hover (it detects if button was hovered over more than once)
 
 
+
     @FXML
     private void signUpButtonClicked(ActionEvent event) throws IOException {
         //Transition into RegisterForm.fxml

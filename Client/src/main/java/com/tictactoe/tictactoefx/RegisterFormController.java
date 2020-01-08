@@ -130,6 +130,11 @@ public class RegisterFormController implements Initializable {
 //            alert.showAndWait();
 //        }
     }
+    
+    @FXML private void backButtonClicked(ActionEvent event) throws IOException
+    {
+        SwitchTo.mainScene(event);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

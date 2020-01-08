@@ -1,6 +1,7 @@
 package com.tictactoe.tictactoefx;
 
 import com.jfoenix.controls.JFXButton;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -8,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Region;
 
 public class GamePlayController implements Initializable {
 
@@ -17,6 +19,12 @@ public class GamePlayController implements Initializable {
     private JFXButton xoBTN4, xoBTN5, xoBTN6;
     @FXML
     private JFXButton xoBTN7, xoBTN8, xoBTN9;
+    
+    //Player regions (The background color for the score section).
+    @FXML private Region playerORegion;
+    @FXML private Region playerXRegion;
+    //playerORegion.setStyle("-fx-background-color: #ff0000; ");
+    //playerXRegion.setStyle("-fx-background-color: #ff0000; ");
 
     private String xoTXT1, xoTXT2, xoTXT3;
     private String xoTXT4, xoTXT5, xoTXT6;
@@ -32,9 +40,14 @@ public class GamePlayController implements Initializable {
 
     // text on each button
     ArrayList<String> xoTextOnButtonsList = new ArrayList<>();
+    
+    //Player X and Player Y GUI Top and Bottom Sections
+    @FXML private Label playerXLabel, playerOLabel;//Set player X and player Y Names
+    @FXML private Label setPlayerXScore, setPlayerOScore;
 
     @FXML
     private void xoBTN1Clicked(ActionEvent event) {
+         
         placeMark(0);
         printBoard();
         if (checkForWin() || isBoardFull()) {
@@ -137,6 +150,16 @@ public class GamePlayController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Change the X & O Player names.
+        playerXLabel.setText("Mod The X");
+        playerOLabel.setText("Mod The O");
+        
+        //Change Their score
+        setPlayerXScore.setText("0");
+        setPlayerOScore.setText("0");
+        
+        //Change the background color for any plaer
+        
 
         currPlayerMark = "X";
 
@@ -253,5 +276,10 @@ public class GamePlayController implements Initializable {
         else if(isBoardFull() && !checkForWin()){
             System.out.println("It is a tie!");
         }
+    }
+    
+    @FXML private void backButtonClicked(ActionEvent event) throws IOException
+    {
+        SwitchTo.dashboardScene(event);
     }
 }
