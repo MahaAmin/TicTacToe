@@ -1,6 +1,8 @@
 package com.tictactoe.server;
 
 import com.tictactoe.actions.PlayRequest;
+import com.tictactoe.database.gameModel.Game;
+import com.tictactoe.database.gameModel.GameStatus;
 import com.tictactoe.database.playerModel.Player;
 import com.tictactoe.database.playerModel.PlayerModel;
 import org.json.simple.JSONObject;
@@ -19,6 +21,7 @@ public class ServerHandler extends Thread {
     private Socket soc;
     private Player player;
     private JSONObject jsonMsg;
+    private Game game;
 
     public ServerHandler(Socket socket) {
         playersSoc = new Vector<>();
@@ -92,8 +95,18 @@ public class ServerHandler extends Thread {
     }
 
     private void playRequest(String data) {
-        ServerHandler toPlayerHandler = getPlayerHandler(Integer.parseInt(jsonMsg.get("to_id").toString()));
-        toPlayerHandler.ps.println(data);
+        int from_id = Integer.parseInt(jsonMsg.get("from_id").toString());
+        int to_id = Integer.parseInt(jsonMsg.get("to_id").toString());
+        ServerHandler toPlayerHandler = getPlayerHandler(to_id);
+        if (toPlayerHandler.soc.isConnected()) {
+            // add new game with status request
+            game = new Game();
+            game.setFromPlayer(PlayerModel.getPlayer(from_id));
+            game.setToPlayer(PlayerModel.getPlayer(to_id));
+            game.setGameStatus(GameStatus.REQUEST);
+            // send play request to a friend
+            toPlayerHandler.ps.println(data);
+        }
     }
 
     private void register() {

@@ -55,10 +55,10 @@ public class PlayerModel {
 
     public static Player getPlayer(int id) {
 
-//        for (Player p : players) {
-//            if (p.getID() == id)
-//                return p;
-//        }
+        Player player = players.get(id);
+        if (player != null) {
+            return player;
+        }
         return null;
     }
 
