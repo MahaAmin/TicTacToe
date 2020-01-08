@@ -11,8 +11,6 @@ import java.util.Map;
 
 public interface PlayerHandler {
 
-//    public final static PlayerSoc playerSoc = new PlayerSoc();
-
     public static void sendPlayRequest(int player_id) throws IOException {
         PlayerSoc playerSoc= App.getPlayerSoc();
         Map<String, String> map = new HashMap<>();
