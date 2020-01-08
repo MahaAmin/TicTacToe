@@ -145,3 +145,9 @@ GamePlay.FXML
      -fx-background-color: #a06afa;
      -fx-text-fill: white;
  }
+ 
+#backButtonRegister
+{
+    -fx-border-color:black;
+    -fx-border-width: 0  0.1 0.1 0.1;
+}

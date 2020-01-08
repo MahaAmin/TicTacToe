@@ -16,7 +16,7 @@
 
 <AnchorPane id="AnchorPane" pickOnBounds="false" prefHeight="576.0" prefWidth="916.0" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictactoe.tictactoefx.FXMLController">
    <children>
-      <Rectangle arcHeight="100.0" arcWidth="75.0" height="65.0" layoutX="-121.0" layoutY="-32.0" rotate="32.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0">
+      <Rectangle arcHeight="100.0" arcWidth="75.0" height="65.0" layoutX="-113.0" layoutY="-33.0" rotate="32.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="200.0">
          <fill>
             <LinearGradient endX="1.0" endY="1.0" startX="0.9666666666666667">
                <stops>

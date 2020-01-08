@@ -11,15 +11,13 @@ import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.Map;
-import java.util.Set;
 import java.util.Vector;
 
 public class ServerHandler extends Thread {
 
     private static Vector<ServerHandler> playersSoc;
     private DataInputStream dis;
-    public PrintStream ps;
+    private PrintStream ps;
     private Socket soc;
     private Player player;
     private JSONObject jsonMsg;
@@ -120,10 +118,8 @@ public class ServerHandler extends Thread {
         JSONObject resp = PlayerModel.validatePlalyer(jsonMsg);
         if (resp.get("status").toString() == "true") {
             setPlayer(resp);
-            resp.put("players", PlayerModel.getPlayersJSON());
         }
         resp.put("type", "login");
-
         System.out.println(resp);
         ps.println(resp);
     }
@@ -137,6 +133,4 @@ public class ServerHandler extends Thread {
         }
         return new ServerHandler();
     }
-
-
 }
