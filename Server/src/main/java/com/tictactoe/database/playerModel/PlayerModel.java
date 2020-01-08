@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 public class PlayerModel {
 
     static DatabaseManager db = App.getDB();
-    private static Map<Integer, Player> players; // used to send to the server to reduce the requests on the database
+    public static Map<Integer, Player> players; // used to send to the server to reduce the requests on the database
     // static for shared data "i need it once not for every object"
 
     public static void getPlayers() {

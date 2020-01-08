@@ -22,7 +22,7 @@ public class Server {
             myServerSocket = new ServerSocket(5005, 50);
             System.out.println("server started: <http://127.0.0.1:5005>\n");
             App.setDB();
-            PlayerModel.getPlayers();
+
 
             new Thread(() -> {
                 try {
