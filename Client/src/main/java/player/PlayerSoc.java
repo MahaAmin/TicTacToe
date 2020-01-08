@@ -45,8 +45,6 @@ public class PlayerSoc {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
 
@@ -155,8 +153,8 @@ public class PlayerSoc {
     }
 
     private void register(){
-        System.out.println(jsonMsg.get("resp").toString());
-        if(jsonMsg.get("resp").toString().compareTo("true")==0){
+        System.out.println(jsonMsg.get("status"));
+        if(jsonMsg.get("status").toString().compareTo("true")==0){
             Platform.runLater(() -> {
                 try {
                     SwitchTo.changeTo(App.getWindow(), 0);
