@@ -113,7 +113,10 @@ public class ServerHandler extends Thread {
 
     private void register() {
         boolean resp = PlayerModel.createPlayer(jsonMsg);
-        ps.println(resp);
+        JSONObject jresp = new JSONObject();
+        jresp.put("type","register");
+        jresp.put("status",resp);
+        ps.println(jresp);
     }
 
     private void login() {
@@ -121,6 +124,7 @@ public class ServerHandler extends Thread {
         if (resp.get("status").toString() == "true") {
             setPlayer(resp);
             resp.put("players", PlayerModel.getPlayersJSON());
+            System.out.println("Specific player= "+PlayerModel.players);
         }
         resp.put("type", "login");
 

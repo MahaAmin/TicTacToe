@@ -7,8 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -82,7 +80,6 @@ public class DashboardController implements Initializable {
             currentUser.add(new User(img, "Jaxon Tani", "2nd Tani", "11111"));
         } catch (FileNotFoundException ex) {
         }
-
         //currentUser = FXCollections.observableArrayList();
         for (int i = 0; i < 40; i++)
             scoreBoardLV.getItems().add(new Label("UserName[" + i + "] " + " score: "));

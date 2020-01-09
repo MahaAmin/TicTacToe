@@ -24,6 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
+import playerModel.PlayerModel;
 
 
 public class FXMLController implements Initializable {
@@ -95,6 +96,7 @@ public class FXMLController implements Initializable {
         map.put("email", usernameTF.getText());
         map.put("password", passwordTF.getText());
         System.out.println(map);
+        System.out.println("Specific player= "+ PlayerModel.players);
         PlayRequest.sendJSON(map);
     }
 

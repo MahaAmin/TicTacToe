@@ -10,11 +10,10 @@ import java.net.ServerSocket;
 import java.util.Map;
 import java.util.Set;
 
-public class PlayRequest {
+public class PlayRequest  {
 
 
-    public static boolean sendJSON(Map<String, String> fields,ServerHandler serverHandler) {
-
+    public static boolean sendJSON(Map<String,String> fields, ServerHandler serverHandler){
         JSONObject jsonMsg = new JSONObject();
         // Returns Set view
         Set<Map.Entry<String, String>> st = fields.entrySet();

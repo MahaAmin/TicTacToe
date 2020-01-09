@@ -135,6 +135,7 @@ public class PlayerModel {
             statment.setString(3, player.get("email").toString());
             int res = statment.executeUpdate();
             System.out.println("done update");
+
             return res > 0;
         } catch (SQLException e) {
             return false;
