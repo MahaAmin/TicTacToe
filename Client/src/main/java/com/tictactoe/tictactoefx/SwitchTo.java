@@ -20,6 +20,7 @@ public class SwitchTo {
             add("RegisterForm"); // 1 ==> RegisterForm.fxml
             add("Dashboard"); // 2 ==> Dashboard.fxml
             add("GamePlay"); // 3 ==> GamePlay.fxml
+            add("DifficultySelection");//4 ==> DifficultySelection.fxml
         }
     };
 
@@ -68,6 +69,10 @@ public class SwitchTo {
 
     public static void gamePlayScene(ActionEvent event) throws IOException {
         transition(event, 3);
+    }
+    
+        public static void DifficultySelectionScene(ActionEvent event) throws IOException {
+        transition(event, 4);
     }
 
     public static void onlineListPopUpScene() throws IOException {

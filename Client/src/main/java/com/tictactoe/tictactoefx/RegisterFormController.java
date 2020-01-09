@@ -1,7 +1,7 @@
 package com.tictactoe.tictactoefx;
 
 import actions.App;
-import actions.PlayRequest;
+import animatefx.animation.Flash;
 import com.jfoenix.controls.JFXPasswordField;
 
 import com.jfoenix.controls.JFXButton;
@@ -16,8 +16,6 @@ import com.jfoenix.validation.RequiredFieldValidator;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -34,8 +32,11 @@ import player.PlayerSoc;
 
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 public class RegisterFormController implements Initializable {
+     @FXML private FontIcon xIcon, oIcon;
+    
     @FXML
     private JFXPasswordField passwordPF, confirmPasswordPF;
     @FXML
@@ -103,7 +104,7 @@ public class RegisterFormController implements Initializable {
             {
                 if (!usernameTF.getText().trim().isEmpty())//if the username wasn't empty
                     //Go back to the startup Scene.fxml if passwords match.
-                    validate();
+                    SwitchTo.mainScene(event);
             }
         }
 
@@ -138,17 +139,30 @@ public class RegisterFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        new Flash(xIcon).setCycleCount(60).setSpeed(.3).setResetOnFinished(true).play();
+        new Flash(oIcon).setCycleCount(60).setSpeed(.3).setResetOnFinished(true).setDelay(Duration.millis(300)).play();
     }
 
-    public void validate() {
-        PlayerSoc player = App.getPlayerSoc();
-        Map<String, String> map = new HashMap<>();
-        map.put("type", "register");
-        map.put("name", usernameTF.getText());
-        map.put("email", emailTF.getText());
-        map.put("password", passwordPF.getText());
-        System.out.println(map);
-        PlayRequest.sendJSON(map);
+    public boolean validate() {
+        try {
+            PlayerSoc player = App.getPlayerSoc();
+            System.out.println("streams created");
+            JSONObject jsonMsg = new JSONObject();
+            jsonMsg.put("type", "register");
+            jsonMsg.put("name", usernameTF.getText());
+            jsonMsg.put("email", emailTF.getText());
+            jsonMsg.put("password", passwordPF.getText());
+            System.out.println("json created");
+            StringWriter out = new StringWriter();
+            jsonMsg.writeJSONString(out);
+            player.ps.println(out.toString());
+            boolean resp = player.dis.readBoolean();
+            return resp;
+        } catch (IOException e) {
+            System.out.println("Changing json to string failed!!");
+            return false;
+        }
+
     }
+
 }

@@ -2,7 +2,6 @@ package com.tictactoe.server;
 
 import com.tictactoe.actions.PlayRequest;
 import com.tictactoe.database.gameModel.Game;
-import com.tictactoe.database.gameModel.GameModel;
 import com.tictactoe.database.gameModel.GameStatus;
 import com.tictactoe.database.playerModel.Player;
 import com.tictactoe.database.playerModel.PlayerModel;
@@ -74,16 +73,13 @@ public class ServerHandler extends Thread {
         jsonMsg = (JSONObject) parser.parse(data);
         switch (jsonMsg.get("type").toString()) {
             case "playRequest":
-                playRequest();
+                playRequest(data);
                 break;
             case "register":
                 register();
                 break;
             case "login":
                 login();
-                break;
-            case "acceptRequest":
-                acceptRequest();
                 break;
         }
 
@@ -98,22 +94,24 @@ public class ServerHandler extends Thread {
         player.setPlayerName(client.get("name").toString());
     }
 
-    private void playRequest() {
+    private void playRequest(String data) {
         int from_id = Integer.parseInt(jsonMsg.get("from_id").toString());
         int to_id = Integer.parseInt(jsonMsg.get("to_id").toString());
         ServerHandler toPlayerHandler = getPlayerHandler(to_id);
         if (toPlayerHandler.soc.isConnected()) {
             // add new game with status request
-            int game_id = GameModel.createGame(jsonMsg);
-            jsonMsg.put("game_id", game_id);
+            game = new Game();
+            game.setFromPlayer(PlayerModel.getPlayer(from_id));
+            game.setToPlayer(PlayerModel.getPlayer(to_id));
+            game.setGameStatus(GameStatus.REQUEST);
             // send play request to a friend
-            toPlayerHandler.ps.println(jsonMsg.toJSONString());
+            toPlayerHandler.ps.println(data);
         }
     }
 
     private void register() {
-//        boolean resp = PlayerModel.createPlayer(jsonMsg);
-//        ps.println(resp);
+        boolean resp = PlayerModel.createPlayer(jsonMsg);
+        ps.println(resp);
     }
 
     private void login() {
@@ -124,10 +122,6 @@ public class ServerHandler extends Thread {
         resp.put("type", "login");
         System.out.println(resp);
         ps.println(resp);
-    }
-
-    private void acceptRequest() {
-
     }
 
     private ServerHandler getPlayerHandler(int player_id) {

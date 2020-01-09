@@ -144,8 +144,10 @@ public class FXMLController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        new Flash(xIcon).setCycleCount(30).setSpeed(.3).setResetOnFinished(true).play();
-        new Flash(oIcon).setCycleCount(30).setSpeed(.3).setResetOnFinished(true).setDelay(Duration.millis(300)).play();
+        usernameTF.setText("eslam@iti.com");
+        passwordTF.setText("123456");
+        new Flash(xIcon).setCycleCount(60).setSpeed(.3).setResetOnFinished(true).play();
+        new Flash(oIcon).setCycleCount(60).setSpeed(.3).setResetOnFinished(true).setDelay(Duration.millis(300)).play();
     }
 
 }

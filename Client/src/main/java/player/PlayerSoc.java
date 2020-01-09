@@ -44,6 +44,8 @@ public class PlayerSoc {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
     }
 
 
@@ -91,9 +93,7 @@ public class PlayerSoc {
             case "login":
                 login();
                 break;
-            case "register":
-                register();
-                break;
+
         }
 
     }
@@ -101,6 +101,19 @@ public class PlayerSoc {
 
     public void setPlayer(Player player) {
         this.player = player;
+        try {
+
+            JSONObject jsonMsg = new JSONObject();
+            jsonMsg.put("type", "setPlayer");
+            jsonMsg.put("player_id", player.getID());
+
+            StringWriter out = new StringWriter();
+            jsonMsg.writeJSONString(out);
+            ps.println(out.toString());
+        } catch (IOException e) {
+            System.out.println("Changing json to string failed!!");
+        }
+
     }
 
     public Player getPlayer() {
@@ -109,8 +122,9 @@ public class PlayerSoc {
 
     private void playRequest() {
         // send invitation alert to a friend
+        String fromPlayer_name = jsonMsg.get("from_name").toString();
         Platform.runLater(() -> {
-            Alerts.sendRequestAlert(jsonMsg);
+            Alerts.sendRequestAlert(fromPlayer_name);
         });
     }
 
@@ -130,27 +144,9 @@ public class PlayerSoc {
             });
         } else {
             // alert wrong password
-            Platform.runLater(() -> {
-                Alerts.wrongPasswordAlert();
-            });
-        }
-    }
 
-    private void register(){
-        System.out.println(jsonMsg.get("status"));
-        if(jsonMsg.get("status").toString().compareTo("true")==0){
-            Platform.runLater(() -> {
-                try {
-                    SwitchTo.changeTo(App.getWindow(), 0);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-        }else{
-            Platform.runLater(() -> {
-                Alerts.wrongPasswordAlert();
-            });
         }
+
     }
 
 }

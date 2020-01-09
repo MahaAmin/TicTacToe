@@ -8,10 +8,10 @@ import java.util.Map;
 import java.util.Set;
 
 public class PlayRequest {
-    static PlayerSoc player = App.getPlayerSoc();
 
-    public static void sendJSON(Map<String, String> fields) {
+    public static boolean sendJSON(Map<String, String> fields) {
 
+        PlayerSoc player = App.getPlayerSoc();
         JSONObject jsonMsg = new JSONObject();
         // Returns Set view
         Set<Map.Entry<String, String>> st = fields.entrySet();
@@ -21,11 +21,8 @@ public class PlayRequest {
         }
 
         player.ps.println(jsonMsg.toJSONString());
+        return true;
 
-    }
-
-    public static void sendJSONObject(JSONObject jsonObject) {
-        player.ps.println(jsonObject.toJSONString());
     }
 
 }

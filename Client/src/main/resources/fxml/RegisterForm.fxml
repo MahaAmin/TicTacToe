@@ -92,10 +92,12 @@
             </LinearGradient>
          </fill>
       </Circle>
-      <JFXButton id="backButtonRegister" layoutY="537.0" onAction="#backButtonClicked" prefHeight="40.0" prefWidth="65.0" stylesheets="@../styles/Styles.css" text=" ">
+      <JFXButton id="backButtonRegister" layoutX="-2.0" layoutY="537.0" onAction="#backButtonClicked" prefHeight="40.0" prefWidth="65.0" ripplerFill="#c7b1ff" style="-fx-background-color: #480958;" stylesheets="@../styles/Styles.css" text=" ">
          <graphic>
-            <FontIcon iconLiteral="fa-angle-left" iconSize="30" />
+            <FontIcon iconColor="WHITE" iconLiteral="fa-angle-left" iconSize="30" translateX="2.0" />
          </graphic>
       </JFXButton>
+      <FontIcon iconLiteral="fa-times" iconSize="30" layoutX="362.0" layoutY="103.0" fx:id="xIcon" />
+      <FontIcon fx:id="oIcon" iconLiteral="fa-circle-o" iconSize="30" layoutX="548.0" layoutY="103.0" />
    </children>
 </AnchorPane>
