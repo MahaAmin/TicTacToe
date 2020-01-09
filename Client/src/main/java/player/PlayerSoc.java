@@ -109,9 +109,8 @@ public class PlayerSoc {
 
     private void playRequest() {
         // send invitation alert to a friend
-        String fromPlayer_name = jsonMsg.get("from_name").toString();
         Platform.runLater(() -> {
-            Alerts.sendRequestAlert(fromPlayer_name,Integer.parseInt(jsonMsg.get("game_id").toString()));
+            Alerts.sendRequestAlert(jsonMsg);
         });
     }
 

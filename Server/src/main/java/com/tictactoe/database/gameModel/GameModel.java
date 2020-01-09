@@ -54,14 +54,14 @@ public class GameModel {
 
     public static int createGame(JSONObject game) {
         try {
-            PreparedStatement statment = db.connection.prepareStatement("INSERT games SET from_player=?, to_player=?");
+            PreparedStatement statment = db.connection.prepareStatement("INSERT games SET from_player=?, to_player=?", Statement.RETURN_GENERATED_KEYS);
             statment.setString(1, game.get("from_id").toString());
             statment.setString(2, game.get("to_id").toString());
             int isInsearted = statment.executeUpdate();
             if(isInsearted > 0){
                 ResultSet keys = statment.getGeneratedKeys();
                 if (keys.next()){
-                    int id = keys.getInt("id");
+                    int id = keys.getInt(1);
                     return id;
                 }
             }

@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import org.json.simple.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,40 +12,43 @@ import java.util.Optional;
 
 public class Alerts {
 
-    public static void sendRequestAlert(String name, int game_id) {
+    public static void sendRequestAlert(JSONObject data) {
+        String name = data.get("from_name").toString();
+
+//        fromPlayer_name,Integer.parseInt(jsonMsg.get("game_id").toString())
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Invitation");
         alert.setHeaderText(name + " Want To Play With You");
         alert.setContentText("Are You Ready?");
 
-        ButtonType buttonYes = new ButtonType("Yes");
         ButtonType buttonNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+        ButtonType buttonYes = new ButtonType("Yes");
+
 
         alert.getButtonTypes().setAll(buttonYes, buttonNo);
 
         Optional<ButtonType> result = alert.showAndWait();
         Map<String, String> map = new HashMap<>();
-        map.put("type", "acceptRequest");
-        map.put("from_", "acceptRequest");
+        data.replace("type", "acceptRequest");
 
-        PlayRequest.sendJSON(map);
         if (result.get() == buttonYes) {
             // ... user chose "Yes"
-            map.put("response", "true");
+            data.put("response", "true");
+            PlayRequest.sendJSONObject(data);
 
         } else if (result.get() == buttonNo) {
             // ... user chose "No"
-            map.put("response", "false");
+            data.put("response", "false");
+            PlayRequest.sendJSONObject(data);
         }
     }
-    public static void wrongPasswordAlert(){
+
+    public static void wrongPasswordAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("wrong information");
         alert.setContentText("please enter the right credentials!");
         alert.showAndWait();
     }
-
-
 
 
 }
