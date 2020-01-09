@@ -85,13 +85,25 @@ public class GameModel {
         return null;
     }
 
-//    public static Game getGame(int id){
-//        Game game = games.get(id);
-//        if (game != null) {
-//            return game;
-//        }
-//        return null;
-//    }
 
+
+    
+        // update status
+    public static void updateGameStatus(JSONObject game) {
+        try {
+            PreparedStatement preparedStatement = db.connection.prepareStatement("UPDATE games SET status=? WHERE id=?");
+            preparedStatement.setString(1, game.get("status").toString());
+            preparedStatement.setInt(2, Integer.parseInt(game.get("id").toString()));
+            int isUpdated = preparedStatement.executeUpdate();
+            if (isUpdated > 0) {
+                Game g = games.get(Integer.parseInt(game.get("id").toString()));
+                g.setGameStatus(GameStatus.valueOf(game.get(g).toString()));
+                games.replace(Integer.parseInt(game.get("id").toString()), g);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+    }
 
 }
