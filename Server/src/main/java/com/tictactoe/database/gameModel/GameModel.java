@@ -14,6 +14,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 
 public class GameModel {
@@ -109,7 +111,25 @@ public class GameModel {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
     }
+    public static void updateGameBoard(JSONObject game) {
+        try {
+            PreparedStatement preparedStatement = db.connection.prepareStatement("UPDATE games SET bard=? WHERE id=?");
+            preparedStatement.setString(1, game.get("board").toString());
+            preparedStatement.setInt(2, Integer.parseInt(game.get("id").toString()));
+            int isUpdated = preparedStatement.executeUpdate();
+            if (isUpdated > 0) {
+                Game g = games.get(Integer.parseInt(game.get("id").toString()));
+                try {
+                    g.setBoard((JSONObject) new JSONParser().parse(game.get("board").toString()));
+                } catch (ParseException ex) {
+//                    Logger.getLogger(GameModel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                games.replace(Integer.parseInt(game.get("id").toString()), g);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }    
 
 }
