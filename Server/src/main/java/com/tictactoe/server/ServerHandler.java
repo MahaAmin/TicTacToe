@@ -123,20 +123,15 @@ public class ServerHandler extends Thread {
             setPlayer(resp);
         }
         resp.put("type", "login");
-        System.out.println(resp);
         ps.println(resp);
     }
 
     private void acceptRequest() {
         // set game data to [to_player]
-        System.out.println("game id "+jsonMsg.get("game_id").toString());
         game = GameModel.getGame(Integer.parseInt(jsonMsg.get("game_id").toString()));
-        System.out.println("from player "+game.getFromPlayer().getID());
-        System.out.println("to player "+game.getToPlayer().getID());
         JSONObject jsonObject = new JSONObject();
         // friend accept to play with me
         if (jsonMsg.get("response").equals("true")) {
-            System.out.println("game accepted");
             jsonObject.put("type", "gameStart");
             // send to player 1  to start the game
             getPlayerHandler(game.getFromPlayer().getID()).ps.println(jsonObject.toJSONString());
@@ -151,9 +146,7 @@ public class ServerHandler extends Thread {
     }
 
     private ServerHandler getPlayerHandler(int player_id) {
-        System.out.println(playersSoc.size());
         for (ServerHandler playerHandle : playersSoc) {
-            System.out.println("player soc"+ playerHandle.player.getID());
             if (playerHandle.player.getID() == player_id) {
                 return playerHandle;
             }
