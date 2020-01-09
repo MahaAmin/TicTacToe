@@ -16,7 +16,7 @@ import java.util.Vector;
 
 public class ServerHandler extends Thread {
 
-    private static Vector<ServerHandler> playersSoc;
+    private static Vector<ServerHandler> playersSoc = new Vector<>();
     private DataInputStream dis;
     private PrintStream ps;
     private Socket soc;
@@ -25,7 +25,7 @@ public class ServerHandler extends Thread {
     private Game game;
 
     public ServerHandler(Socket socket) {
-        playersSoc = new Vector<>();
+
         try {
             dis = new DataInputStream(socket.getInputStream());
             ps = new PrintStream(socket.getOutputStream());
@@ -99,13 +99,14 @@ public class ServerHandler extends Thread {
     }
 
     private void playRequest() {
-        int from_id = Integer.parseInt(jsonMsg.get("from_id").toString());
         int to_id = Integer.parseInt(jsonMsg.get("to_id").toString());
         ServerHandler toPlayerHandler = getPlayerHandler(to_id);
         if (toPlayerHandler.soc.isConnected()) {
             // add new game with status request
             int game_id = GameModel.createGame(jsonMsg);
             jsonMsg.put("game_id", game_id);
+            // set game data to [from_player]
+            game = GameModel.getGame(game_id);
             // send play request to a friend
             toPlayerHandler.ps.println(jsonMsg.toJSONString());
         }
@@ -127,16 +128,37 @@ public class ServerHandler extends Thread {
     }
 
     private void acceptRequest() {
-
+        // set game data to [to_player]
+        System.out.println("game id "+jsonMsg.get("game_id").toString());
+        game = GameModel.getGame(Integer.parseInt(jsonMsg.get("game_id").toString()));
+        System.out.println("from player "+game.getFromPlayer().getID());
+        System.out.println("to player "+game.getToPlayer().getID());
+        JSONObject jsonObject = new JSONObject();
+        // friend accept to play with me
+        if (jsonMsg.get("response").equals("true")) {
+            System.out.println("game accepted");
+            jsonObject.put("type", "gameStart");
+            // send to player 1  to start the game
+            getPlayerHandler(game.getFromPlayer().getID()).ps.println(jsonObject.toJSONString());
+            // send to player 2  to start the game
+            getPlayerHandler(game.getToPlayer().getID()).ps.println(jsonObject.toJSONString());
+        } else {
+            System.out.println("game refused");
+            jsonMsg.replace("type", "requestRejected");
+            // send to player 1  that player 2 refuse to play with you
+            getPlayerHandler(game.getFromPlayer().getID()).ps.println(jsonMsg.toJSONString());
+        }
     }
 
     private ServerHandler getPlayerHandler(int player_id) {
+        System.out.println(playersSoc.size());
         for (ServerHandler playerHandle : playersSoc) {
+            System.out.println("player soc"+ playerHandle.player.getID());
             if (playerHandle.player.getID() == player_id) {
                 return playerHandle;
             }
 
         }
-        return new ServerHandler();
+        return null;
     }
 }

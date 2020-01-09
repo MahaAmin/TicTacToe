@@ -94,6 +94,12 @@ public class PlayerSoc {
             case "register":
                 register();
                 break;
+            case "gameStart":
+                gameStart();
+                break;
+            case "requestRejected":
+                requestRejected();
+                break;
         }
 
     }
@@ -111,6 +117,24 @@ public class PlayerSoc {
         // send invitation alert to a friend
         Platform.runLater(() -> {
             Alerts.sendRequestAlert(jsonMsg);
+        });
+    }
+
+    private void gameStart() {
+        // send invitation alert to a friend
+        Platform.runLater(() -> {
+            try {
+                SwitchTo.changeTo(App.getWindow(),3);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private void requestRejected() {
+        // send invitation alert to a friend
+        Platform.runLater(() -> {
+            Alerts.gameRequestRejected(jsonMsg);
         });
     }
 
@@ -136,9 +160,9 @@ public class PlayerSoc {
         }
     }
 
-    private void register(){
+    private void register() {
         System.out.println(jsonMsg.get("status"));
-        if(jsonMsg.get("status").toString().compareTo("true")==0){
+        if (jsonMsg.get("status").toString().compareTo("true") == 0) {
             Platform.runLater(() -> {
                 try {
                     SwitchTo.changeTo(App.getWindow(), 0);
@@ -146,7 +170,7 @@ public class PlayerSoc {
                     e.printStackTrace();
                 }
             });
-        }else{
+        } else {
             Platform.runLater(() -> {
                 Alerts.wrongPasswordAlert();
             });

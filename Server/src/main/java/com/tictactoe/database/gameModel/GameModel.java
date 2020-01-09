@@ -42,7 +42,7 @@ public class GameModel {
                     PlayerModel.getPlayer(resultSet.getInt("from_player")),
                     PlayerModel.getPlayer(resultSet.getInt("to_player")),
                     PlayerModel.getPlayer(resultSet.getInt("winner")),
-                    resultSet.getTimestamp("create_at"),
+                    resultSet.getTimestamp("created_at"),
                     resultSet.getString("status"),
                     resultSet.getString("board")
             );
@@ -71,28 +71,27 @@ public class GameModel {
         return 0;
     }
 
-    public static Game getGame(JSONObject game) {
+    public static Game getGame(int id) {
         try {
             PreparedStatement statment = db.connection.prepareStatement("SELECT * FROM games WHERE id=?");
-            statment.setString(1, game.get("id").toString());
+            statment.setInt(1, id);
             ResultSet res = statment.executeQuery();
-            Game g = games.get(game.get("id"));
-            if (g != null) {
-                return g;
+            if (res.next()) {
+                return gameObject(res);
             }
         } catch (SQLException ex) {
-//            Logger.getLogger(PlayerModel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PlayerModel.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
 
-    public static Game getGame(int id){
-        Game game = games.get(id);
-        if (game != null) {
-            return game;
-        }
-        return null;
-    }
+//    public static Game getGame(int id){
+//        Game game = games.get(id);
+//        if (game != null) {
+//            return game;
+//        }
+//        return null;
+//    }
 
 
 }

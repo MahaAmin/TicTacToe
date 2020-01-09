@@ -51,4 +51,14 @@ public class Alerts {
     }
 
 
+    public static void gameRequestRejected(JSONObject data) {
+        String name = data.get("from_name").toString();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Game Request");
+        alert.setHeaderText("Oops,Game Rejected");
+        alert.setContentText("Sorry, "+name+" reject your play request.");
+        alert.showAndWait();
+    }
+
+
 }
