@@ -105,13 +105,14 @@ public class PlayerModel {
             preparedStatement.setInt(2, Integer.parseInt(player.get("id").toString()));
             int isUpdated = preparedStatement.executeUpdate();
             if (isUpdated > 0) {
-                Player p = players.get("id");
-                p.setPlayerStatus((int)player.get("status"));
+                Player p = players.get(Integer.parseInt(player.get("id").toString()));
+                p.setPlayerStatus(Integer.parseInt(player.get("status").toString()));
                 players.replace(Integer.parseInt(player.get("id").toString()), p);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+
     }
 
     // logout
@@ -147,6 +148,8 @@ public class PlayerModel {
             ResultSet res = statment.executeQuery();
             System.out.println("done select");
             if (res.next()) {
+                player.put("status","1");
+                player.put("id",res.getInt("id"));
                 updateStatus(player); // refer to online
                 jsonObject.put("id", res.getInt("id"));
                 jsonObject.put("name", res.getString("name"));
