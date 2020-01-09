@@ -110,8 +110,8 @@ public class ServerHandler extends Thread {
     }
 
     private void register() {
-        boolean resp = PlayerModel.createPlayer(jsonMsg);
-        ps.println(resp);
+//        boolean resp = PlayerModel.createPlayer(jsonMsg);
+//        ps.println(resp);
     }
 
     private void login() {

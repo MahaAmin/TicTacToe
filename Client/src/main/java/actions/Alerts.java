@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class Alerts {
 
-    public static void sendRequestAlert(String name) {
+    public static void sendRequestAlert(String name, int game_id) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Invitation");
         alert.setHeaderText(name + " Want To Play With You");

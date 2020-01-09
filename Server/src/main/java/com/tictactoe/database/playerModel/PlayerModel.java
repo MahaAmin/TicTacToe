@@ -6,28 +6,24 @@
 package com.tictactoe.database.playerModel;
 
 import com.tictactoe.actions.App;
-import com.tictactoe.actions.DBConnection;
 import com.tictactoe.database.DatabaseManager;
 import org.json.simple.JSONObject;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * @author halim
- */
+
 public class PlayerModel {
 
     static DatabaseManager db = App.getDB();
-    public static Map<Integer, Player> players; // used to send to the server to reduce the requests on the database
-    // static for shared data "i need it once not for every object"
+
+    private static Map<Integer, Player> players;
+
 
     public static void getPlayers() {
         players = new HashMap<>();
@@ -35,16 +31,7 @@ public class PlayerModel {
             Statement stmt = db.connection.createStatement();
             ResultSet resultSet = stmt.executeQuery("SELECT * FROM players");
             while (resultSet.next()) {
-
-                players.put(resultSet.getInt("id"),
-                        new Player(
-                                resultSet.getInt("id"), //return id
-                                resultSet.getString("name"), //return name
-                                resultSet.getString("email"), // return email
-                                resultSet.getInt("status"), // return status
-                                resultSet.getString("avatar"), //return avatar
-                                resultSet.getInt("score") // return score
-                        ));// adding all the players to vector
+                players.put(resultSet.getInt("id"),playerObiect(resultSet));
             }
 
         } catch (SQLException ex) {
@@ -52,8 +39,38 @@ public class PlayerModel {
         }
     }
 
+    private static Player playerObiect(ResultSet resultSet){
+        try {
+            return new Player(
+                    resultSet.getInt("id"), //return id
+                    resultSet.getString("name"), //return name
+                    resultSet.getString("email"), // return email
+                    resultSet.getInt("status"), // return status
+                    resultSet.getString("avatar"), //return avatar
+                    resultSet.getInt("score") // return score
+            );
 
-    public static Player getPlayer(int id) {
+        } catch (SQLException ex) {
+//            Logger.getLogger(PlayerModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return new Player();
+    }
+
+    public static Player getPlayer(String email) {
+        try {
+            PreparedStatement statment = db.connection.prepareStatement("SELECT * FROM players WHERE email=?");
+            statment.setString(1, email);
+            ResultSet res = statment.executeQuery();
+            if (res.next()) {
+                return playerObiect(res);
+            }
+        } catch (SQLException ex) {
+//            Logger.getLogger(PlayerModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public static Player getPlayer(int id){
 
         Player player = players.get(id);
         if (player != null) {
@@ -64,61 +81,59 @@ public class PlayerModel {
 
 
     // update score
-    public void updateScore(int id, int point) {
+    public void updateScore(JSONObject player) {
         try {
-            db.preparedStatement = db.connection.prepareStatement("UPDATE players SET score=? WHERE id=?");
-            db.preparedStatement.setInt(1, point);
-            db.preparedStatement.setInt(2, id);
-            db.preparedStatement.executeUpdate();
-
-            Player p = getPlayer(id);
-            if (p != null) {
-                p.setPlayerScore(point);
+            PreparedStatement preparedStatement = db.connection.prepareStatement("UPDATE players SET score=? WHERE id=?");
+            preparedStatement.setInt(1, Integer.parseInt(player.get("score").toString()));
+            preparedStatement.setInt(2, Integer.parseInt(player.get("id").toString()));
+            int isUpdated = preparedStatement.executeUpdate();
+            if (isUpdated > 0) {
+                Player p = players.get("id");
+                p.setPlayerScore((int) player.get("score"));
+                players.replace(Integer.parseInt(player.get("id").toString()), p);
             }
-
         } catch (SQLException ex) {
             Logger.getLogger(PlayerModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     // update status
-    public static void updateStatus(int id, int status) {
+    public static void updateStatus(JSONObject player) {
         try {
-            System.out.println("status id " + id);
             PreparedStatement preparedStatement = db.connection.prepareStatement("UPDATE players SET status=? WHERE id=?");
-            preparedStatement.setString(1, Integer.toString(status));
-            preparedStatement.setInt(2, id);
+            preparedStatement.setString(1, player.get("status").toString());
+            preparedStatement.setInt(2, Integer.parseInt(player.get("id").toString()));
             int isUpdated = preparedStatement.executeUpdate();
             if (isUpdated > 0) {
-                Player player = players.get(id);
-                player.setPlayerStatus(status);
-                players.replace(id, player);
+                Player p = players.get("id");
+                p.setPlayerStatus((int)player.get("status"));
+                players.replace(Integer.parseInt(player.get("id").toString()), p);
             }
-
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
 
     // logout
-    public void logout(int id) {
-        updateStatus(id, 0); // refer to offline
+    public void logout(JSONObject player) {
+        updateStatus(player); // refer to offline
     }
 
 
     // function used to register in GUI
-    public static boolean createPlayer(JSONObject player) {
-        try {
-            PreparedStatement statment = db.connection.prepareStatement("INSERT players SET name=?, password=?, email=?");
-            statment.setString(1, player.get("name").toString());
-            statment.setString(2, player.get("password").toString());
-            statment.setString(3, player.get("email").toString());
-            int res = statment.executeUpdate();
-            System.out.println("done update");
-            return res > 0;
-        } catch (SQLException e) {
-            return false;
+    public static JSONObject createPlayer(JSONObject player) {
+        if (getPlayer(player.get("email").toString())!=null){
+            try {
+                PreparedStatement statment = db.connection.prepareStatement("INSERT players SET name=?, password=?, email=?");
+                statment.setString(1, player.get("name").toString());
+                statment.setString(2, player.get("password").toString());
+                statment.setString(3, player.get("email").toString());
+                statment.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+        return validatePlalyer(player);
     }
 
     // function used to Login in GUI
@@ -126,14 +141,13 @@ public class PlayerModel {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("status", false);
         try {
-
             PreparedStatement statment = db.connection.prepareStatement("SELECT * FROM players WHERE email=? AND password=?");
             statment.setString(1, player.get("email").toString());
             statment.setString(2, player.get("password").toString());
             ResultSet res = statment.executeQuery();
             System.out.println("done select");
             if (res.next()) {
-                updateStatus(res.getInt("id"), 1); // refer to online
+                updateStatus(player); // refer to online
                 jsonObject.put("id", res.getInt("id"));
                 jsonObject.put("name", res.getString("name"));
                 jsonObject.put("status", true);

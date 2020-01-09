@@ -101,19 +101,6 @@ public class PlayerSoc {
 
     public void setPlayer(Player player) {
         this.player = player;
-        try {
-
-            JSONObject jsonMsg = new JSONObject();
-            jsonMsg.put("type", "setPlayer");
-            jsonMsg.put("player_id", player.getID());
-
-            StringWriter out = new StringWriter();
-            jsonMsg.writeJSONString(out);
-            ps.println(out.toString());
-        } catch (IOException e) {
-            System.out.println("Changing json to string failed!!");
-        }
-
     }
 
     public Player getPlayer() {
@@ -124,7 +111,7 @@ public class PlayerSoc {
         // send invitation alert to a friend
         String fromPlayer_name = jsonMsg.get("from_name").toString();
         Platform.runLater(() -> {
-            Alerts.sendRequestAlert(fromPlayer_name);
+            Alerts.sendRequestAlert(fromPlayer_name,Integer.parseInt(jsonMsg.get("game_id").toString()));
         });
     }
 
