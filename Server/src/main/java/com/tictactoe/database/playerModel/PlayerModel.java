@@ -33,7 +33,7 @@ public class PlayerModel {
         players = new HashMap<>();
         try {
             Statement stmt = db.connection.createStatement();
-            ResultSet resultSet = stmt.executeQuery("SELECT * FROM players");
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM players ORDER BY score DESC");
             while (resultSet.next()) {
 
                 players.put(resultSet.getInt("id"),

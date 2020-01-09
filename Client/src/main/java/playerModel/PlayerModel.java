@@ -26,7 +26,9 @@ public class PlayerModel {
             pl.setPlayerStatus(Integer.parseInt(playerJson.get("status").toString()));
             pl.setPlayerScore(Integer.parseInt(playerJson.get("score").toString()));
             players.put(Integer.parseInt(keyStr), pl);
+            
         }
+       System.out.println(players);
 
     }
 }

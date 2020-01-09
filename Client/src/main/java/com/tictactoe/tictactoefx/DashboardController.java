@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,6 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import player.PlayerHandler;
+import player.PlayerSoc;
 
 
 public class DashboardController implements Initializable {
@@ -82,10 +84,14 @@ public class DashboardController implements Initializable {
             currentUser.add(new User(img, "Jaxon Tani", "2nd Tani", "11111"));
         } catch (FileNotFoundException ex) {
         }
-
+    //playerModel.PlayerModel.players.get("1").getID() ;
+       // System.err.println("AAA"+    playerModel.PlayerModel.players.get(1).getPlayerName());
         //currentUser = FXCollections.observableArrayList();
-        for (int i = 0; i < 40; i++)
-            scoreBoardLV.getItems().add(new Label("UserName[" + i + "] " + " score: "));
+        
+        for (int key:playerModel.PlayerModel.players.keySet())
+             
+            
+            scoreBoardLV.getItems().add(new Label(playerModel.PlayerModel.players.get(key).getPlayerName() + ": " + playerModel.PlayerModel.players.get(key).getPlayerScore()));
         scoreBoardLV.getStyleClass().add("mylistview");
 
         //Table 1 [User Profile]
@@ -93,8 +99,10 @@ public class DashboardController implements Initializable {
         rankColumnT1.setCellValueFactory(new PropertyValueFactory<>("rank"));
         scoreColumnT1.setCellValueFactory(new PropertyValueFactory<>("score"));
         avatarColumnT1.setCellValueFactory(new PropertyValueFactory<>("avatar"));
-
-        currentUser.add(new User("JAXON", "2nd", "12"));
+       // player.PlayerSoc.getPlayerName();
+     //   p.getPlayer().getPlayerName();
+        //for (int key:playerModel.PlayerModel.players.keySet())
+        currentUser.add(new User("Zalabia", "2nd", "100"));
         userTable.setItems(currentUser);
 
         //Table 2 [All users]
