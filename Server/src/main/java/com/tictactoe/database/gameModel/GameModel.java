@@ -7,6 +7,7 @@ package com.tictactoe.database.gameModel;
 
 import com.tictactoe.actions.App;
 import com.tictactoe.database.DatabaseManager;
+import com.tictactoe.database.playerModel.Player;
 import com.tictactoe.database.playerModel.PlayerModel;
 import java.sql.*;
 import java.util.HashMap;
@@ -131,5 +132,21 @@ public class GameModel {
             ex.printStackTrace();
         }
     }    
+    
+    public static void setWinner(JSONObject game) {
+        try {
+            PreparedStatement preparedStatement = db.connection.prepareStatement("UPDATE games SET winner=? WHERE id=?");
+            preparedStatement.setInt(1, Integer.parseInt(game.get("winner").toString()));
+            preparedStatement.setInt(2, Integer.parseInt(game.get("id").toString()));
+            int isUpdated = preparedStatement.executeUpdate();
+            if (isUpdated > 0) {
+                Game g = games.get(Integer.parseInt(game.get("id").toString()));
+                g.setWinnerPlayer((Player)game.get("winner"));
+                games.replace(Integer.parseInt(game.get("id").toString()), g);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }      
 
 }
