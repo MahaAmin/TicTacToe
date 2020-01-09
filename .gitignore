@@ -1,6 +1,6 @@
 .idea
 TicTacToeFX.iml
 *.class
-target/
 Server/src/main/java/com/tictactoe/database/DBConfig.java
-
+Client/target/
+Server/target/
