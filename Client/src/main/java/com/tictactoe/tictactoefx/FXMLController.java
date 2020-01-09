@@ -96,7 +96,6 @@ public class FXMLController implements Initializable {
         map.put("email", usernameTF.getText());
         map.put("password", passwordTF.getText());
         System.out.println(map);
-        System.out.println("Specific player= "+ PlayerModel.players);
         PlayRequest.sendJSON(map);
     }
 

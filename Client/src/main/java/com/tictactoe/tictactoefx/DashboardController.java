@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -19,7 +20,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import player.PlayerHandler;
+import playerModel.Player;
+import playerModel.PlayerModel;
 
 
 public class DashboardController implements Initializable {
@@ -81,8 +85,9 @@ public class DashboardController implements Initializable {
         } catch (FileNotFoundException ex) {
         }
         //currentUser = FXCollections.observableArrayList();
-        for (int i = 0; i < 40; i++)
-            scoreBoardLV.getItems().add(new Label("UserName[" + i + "] " + " score: "));
+
+
+
         scoreBoardLV.getStyleClass().add("mylistview");
 
         //Table 1 [User Profile]
@@ -103,4 +108,5 @@ public class DashboardController implements Initializable {
         allUsers.add(new User("Ahmed", "20", "100", "Offline"));
         allUsersTable.setItems(allUsers);
     }
+
 }

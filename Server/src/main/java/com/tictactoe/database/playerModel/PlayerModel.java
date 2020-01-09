@@ -115,13 +115,13 @@ public class PlayerModel {
                 players.replace(id, player);
             }
 
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
     // logout
-    public void logout(int id) {
+    public static void logout(int id) {
         updateStatus(id, 0); // refer to offline
     }
 

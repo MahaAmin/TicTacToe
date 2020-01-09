@@ -83,6 +83,9 @@ public class ServerHandler extends Thread {
             case "login":
                 login();
                 break;
+            case"logout":
+                logout();
+                break;
         }
 
     }
@@ -124,7 +127,6 @@ public class ServerHandler extends Thread {
         if (resp.get("status").toString() == "true") {
             setPlayer(resp);
             resp.put("players", PlayerModel.getPlayersJSON());
-            System.out.println("Specific player= "+PlayerModel.players);
         }
         resp.put("type", "login");
 
@@ -142,5 +144,7 @@ public class ServerHandler extends Thread {
         return new ServerHandler();
     }
 
-
+    private void logout(){
+        PlayerModel.logout(Integer.parseInt(jsonMsg.get("id").toString()));
+    }
 }
