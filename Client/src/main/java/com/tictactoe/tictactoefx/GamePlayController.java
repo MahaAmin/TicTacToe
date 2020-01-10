@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
+import javafx.scene.shape.Circle;
 
 public class GamePlayController implements Initializable {
 
@@ -26,6 +27,9 @@ public class GamePlayController implements Initializable {
     @FXML
     private Region playerXRegion;
 
+    //Player Circles (The stroke color for the circle score section).
+    @FXML Circle playerXCircle, playerOCircle;
+
     private String xoTXT1, xoTXT2, xoTXT3;
     private String xoTXT4, xoTXT5, xoTXT6;
     private String xoTXT7, xoTXT8, xoTXT9;
@@ -33,7 +37,7 @@ public class GamePlayController implements Initializable {
     private final String colorX = "-fx-text-fill: #3989d4; ";
     private final String colorO = "-fx-text-fill: #3abcd4; ";
 
-    // int to choose which mode to play in (PCMode(1) / TwoPlayersMode(2))  
+    // int to choose which mode to play in (PCMode(1) / TwoPlayersMode(2))
     public int mode = 1;
 
     // ------------------------------------------------------------------ //
@@ -56,6 +60,7 @@ public class GamePlayController implements Initializable {
 
     @FXML
     private void xoBTN1Clicked(ActionEvent event) {
+        playerXCircle.setStyle("-fx-stroke: #F06585; ");
         placeMark(0, currPlayerMark);
         printBoard();
 
@@ -75,8 +80,9 @@ public class GamePlayController implements Initializable {
 
     @FXML
     private void xoBTN2Clicked(ActionEvent event) {
+        playerOCircle.setStyle("-fx-stroke: #F06585; ");
         placeMark(1, currPlayerMark);
-         printBoard();
+        printBoard();
 
         if (mode == 1) // PCMode
         {
@@ -95,7 +101,7 @@ public class GamePlayController implements Initializable {
     @FXML
     private void xoBTN3Clicked(ActionEvent event) {
         placeMark(2, currPlayerMark);
-         printBoard();
+        printBoard();
 
         if (mode == 1) // PCMode
         {

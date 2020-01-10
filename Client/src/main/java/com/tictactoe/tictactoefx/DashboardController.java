@@ -63,6 +63,7 @@ public class DashboardController implements Initializable {
     private void vsPCbuttonClicked(ActionEvent event) throws IOException {
         //Transition to the GamePlay.fxml 
         SwitchTo.gamePlayScene(event);
+//        SwitchTo.DifficultySelectionScene(event);
     }
 
     @FXML

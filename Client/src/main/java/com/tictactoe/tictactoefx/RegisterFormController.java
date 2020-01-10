@@ -2,6 +2,7 @@ package com.tictactoe.tictactoefx;
 
 import actions.App;
 import actions.PlayRequest;
+import animatefx.animation.Flash;
 import com.jfoenix.controls.JFXPasswordField;
 
 import com.jfoenix.controls.JFXButton;
@@ -28,6 +29,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import org.json.simple.JSONObject;
+import org.kordamp.ikonli.javafx.FontIcon;
 import player.PlayerHandler;
 import player.PlayerSoc;
 
@@ -47,6 +49,7 @@ public class RegisterFormController implements Initializable {
 
     Alert alert = new Alert(AlertType.ERROR);
 
+    @FXML private FontIcon xIcon, oIcon;
 
     RegexValidator regexValidator = new RegexValidator(); //Checks the email.
     RequiredFieldValidator validator = new RequiredFieldValidator();
@@ -130,7 +133,7 @@ public class RegisterFormController implements Initializable {
 //            alert.showAndWait();
 //        }
     }
-    
+
     @FXML private void backButtonClicked(ActionEvent event) throws IOException
     {
         SwitchTo.mainScene(event);
@@ -138,8 +141,10 @@ public class RegisterFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        new Flash(xIcon).setCycleCount(60).setSpeed(.3).setResetOnFinished(true).play();
+        new Flash(oIcon).setCycleCount(60).setSpeed(.3).setResetOnFinished(true).setDelay(Duration.millis(300)).play();
     }
+
 
     public void validate() {
         PlayerSoc player = App.getPlayerSoc();

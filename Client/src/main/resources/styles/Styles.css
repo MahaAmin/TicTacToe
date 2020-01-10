@@ -25,6 +25,13 @@
     -fx-background-radius: 35;
 }
 
+#backButtonRegister
+{
+    -fx-background-color:  #480958;
+    -fx-border-width: 0  0.1 0.1 0.1;
+    -fx-background-radius: 0 5 0 0;
+}
+
 /*
 Dashboard.fxml
 */
@@ -38,13 +45,13 @@ Dashboard.fxml
 #scoreBoardRegion
 {
     -fx-background-color: #4D6AD2;
-    -fx-background-radius:  15 0 15 0;
+    -fx-background-radius:  15 0 0 0;
 }
 
 #playersList 
 {
     -fx-background-color: #4D6AD2;
-     -fx-background-radius:  0 10 0 10;
+     -fx-background-radius:  0 15 0 0;
 
 }
 
@@ -66,6 +73,13 @@ GamePlay.FXML
 */
 
 /*Buttons*/
+#backButtonGamePlay
+{
+     -fx-background-color:  #480958;
+    -fx-border-width: 0  0.1 0.1 0.1;
+    -fx-background-radius: 0 0 5 0;
+}
+
 #xoBTN1 ,#xoBTN2, #xoBTN3, #xoBTN4 , #xoBTN5,  #xoBTN6,  #xoBTN7,  #xoBTN8,  #xoBTN9
 {
     -fx-background-color: white;
@@ -118,17 +132,6 @@ GamePlay.FXML
         -fx-border-width: 0 0 0 3;
     }
     
-    #playerXRegion 
-    {
-        -fx-background-color: #4D6AD2;
-        -fx-background-radius:  0 0 0 10;
-    }
-    
-    #playerYRegion
-    {
-        -fx-background-color: #4D6AD2;
-        -fx-background-radius:  0 10 0 0;
-    }
     
     /*
     RegisterForm.FXML
@@ -146,8 +149,48 @@ GamePlay.FXML
      -fx-text-fill: white;
  }
  
-#backButtonRegister
-{
-    -fx-border-color:black;
-    -fx-border-width: 0  0.1 0.1 0.1;
+ #playerRegion
+ {
+     -fx-background-color:   #6f60fa;
+     -fx-background-radius: 20;
+ }
+ 
+ /*Styling the Dashboard Tables on the left*/
+.table-view{
+   -fx-background-color: transparent;
 }
+
+.table-view:focused{
+    -fx-background-color:  #F3F5F9;
+}
+
+.table-view .column-header {
+    -fx-background-color: #EEF3FD;
+}
+
+.table-view .column-header-background .label{
+    -fx-text-fill: #062F7A;
+}
+
+.table-column {
+  -fx-alignment: CENTER;
+}
+
+/*Styling the table on the right*/
+/*Change the text color to white upon selection*/
+
+.list-view .list-cell:selected .label {
+    -fx-text-fill: white;
+}
+
+/*Change color of all rows */
+
+.list-view .label {
+    -fx-text-fill: #062F7A;
+}
+
+.list-view, .list-view:focused
+{
+    -fx-background-color: #F3F5F9;
+}
+

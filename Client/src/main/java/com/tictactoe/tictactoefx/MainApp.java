@@ -18,7 +18,6 @@ public class MainApp extends Application {
     public void start(Stage stage) throws Exception {
         // connect to server socket
         App.setPlayerSoc();
-
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
 
         Scene scene = new Scene(root);
