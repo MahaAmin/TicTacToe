@@ -6,9 +6,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,7 +21,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import player.PlayerHandler;
+import playerModel.Player;
+import playerModel.PlayerModel;
 
 
 public class DashboardController implements Initializable {
@@ -83,10 +86,11 @@ public class DashboardController implements Initializable {
             currentUser.add(new User(img, "Jaxon Tani", "2nd Tani", "11111"));
         } catch (FileNotFoundException ex) {
         }
-
         //currentUser = FXCollections.observableArrayList();
-        for (int i = 0; i < 40; i++)
-            scoreBoardLV.getItems().add(new Label("UserName[" + i + "] " + " score: "));
+
+
+        for (Map.Entry<Integer, playerModel.Player> key : playerModel.PlayerModel.players.entrySet())
+            scoreBoardLV.getItems().add(new Label(key.getValue().getPlayerName() + ": " + key.getValue().getPlayerScore()));
         scoreBoardLV.getStyleClass().add("mylistview");
 
         //Table 1 [User Profile]
@@ -107,4 +111,5 @@ public class DashboardController implements Initializable {
         allUsers.add(new User("Ahmed", "20", "100", "Offline"));
         allUsersTable.setItems(allUsers);
     }
+
 }

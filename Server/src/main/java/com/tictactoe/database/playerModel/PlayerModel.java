@@ -8,6 +8,7 @@ package com.tictactoe.database.playerModel;
 import com.tictactoe.actions.App;
 import com.tictactoe.database.DatabaseManager;
 import org.json.simple.JSONObject;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,9 +30,9 @@ public class PlayerModel {
         players = new HashMap<>();
         try {
             Statement stmt = db.connection.createStatement();
-            ResultSet resultSet = stmt.executeQuery("SELECT * FROM players");
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM players ORDER BY score DESC");
             while (resultSet.next()) {
-                players.put(resultSet.getInt("id"),playerObiect(resultSet));
+                players.put(resultSet.getInt("id"), playerObiect(resultSet));
             }
 
         } catch (SQLException ex) {
@@ -39,7 +40,7 @@ public class PlayerModel {
         }
     }
 
-    private static Player playerObiect(ResultSet resultSet){
+    private static Player playerObiect(ResultSet resultSet) {
         try {
             return new Player(
                     resultSet.getInt("id"), //return id
@@ -56,6 +57,25 @@ public class PlayerModel {
         return new Player();
     }
 
+    public static JSONObject getPlayersJSON() {
+
+        JSONObject playersJson = new JSONObject();
+
+        for (Map.Entry<Integer, Player> field : players.entrySet()) {
+            Player player = field.getValue();
+
+            JSONObject playerJson = new JSONObject();
+            playerJson.put("id", player.getID());
+            playerJson.put("name", player.getPlayerName());
+            playerJson.put("score", player.getPlayerScore());
+            playerJson.put("status", player.getPlayerStatus());
+
+            playersJson.put(field.getKey(), playerJson);
+        }
+        return playersJson;
+
+    }
+
     public static Player getPlayer(String email) {
         try {
             PreparedStatement statment = db.connection.prepareStatement("SELECT * FROM players WHERE email=?");
@@ -70,7 +90,7 @@ public class PlayerModel {
         return null;
     }
 
-    public static Player getPlayer(int id){
+    public static Player getPlayer(int id) {
 
         Player player = players.get(id);
         if (player != null) {
@@ -109,33 +129,36 @@ public class PlayerModel {
                 p.setPlayerStatus(Integer.parseInt(player.get("status").toString()));
                 players.replace(Integer.parseInt(player.get("id").toString()), p);
             }
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 
     }
 
     // logout
-    public void logout(JSONObject player) {
+    public static void logout(JSONObject player) {
+        player.put("status", "0");
         updateStatus(player); // refer to offline
     }
 
 
     // function used to register in GUI
-    public static JSONObject createPlayer(JSONObject player) {
-        if (getPlayer(player.get("email").toString())!=null){
-            try {
-                PreparedStatement statment = db.connection.prepareStatement("INSERT players SET name=?, password=?, email=?");
-                statment.setString(1, player.get("name").toString());
-                statment.setString(2, player.get("password").toString());
-                statment.setString(3, player.get("email").toString());
-                statment.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+    public static boolean createPlayer(JSONObject player) {
+        try {
+            PreparedStatement statment = db.connection.prepareStatement("INSERT players SET name=?, password=?, email=?");
+            statment.setString(1, player.get("name").toString());
+            statment.setString(2, player.get("password").toString());
+            statment.setString(3, player.get("email").toString());
+            int isInserted=statment.executeUpdate();
+            if(isInserted>0)
+                return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return validatePlalyer(player);
+
+        return false;
     }
+
 
     // function used to Login in GUI
     public static JSONObject validatePlalyer(JSONObject player) {
@@ -148,8 +171,8 @@ public class PlayerModel {
             ResultSet res = statment.executeQuery();
             System.out.println("done select");
             if (res.next()) {
-                player.put("status","1");
-                player.put("id",res.getInt("id"));
+                player.put("status", "1");
+                player.put("id", res.getInt("id"));
                 updateStatus(player); // refer to online
                 jsonObject.put("id", res.getInt("id"));
                 jsonObject.put("name", res.getString("name"));

@@ -90,6 +90,8 @@ public class ServerHandler extends Thread {
                 break;
             case "updateBoard":
                 updateBoard();
+            case "logout":
+                logout();
                 break;
         }
 
@@ -119,14 +121,18 @@ public class ServerHandler extends Thread {
     }
 
     private void register() {
-//        boolean resp = PlayerModel.createPlayer(jsonMsg);
-//        ps.println(resp);
+        boolean resp = PlayerModel.createPlayer(jsonMsg);
+        JSONObject jresp = new JSONObject();
+        jresp.put("type", "register");
+        jresp.put("status", resp);
+        ps.println(jresp);
     }
 
     private void login() {
         JSONObject resp = PlayerModel.validatePlalyer(jsonMsg);
         if (resp.get("status").toString() == "true") {
             setPlayer(resp);
+            resp.put("players", PlayerModel.getPlayersJSON());
         }
         resp.put("type", "login");
         ps.println(resp);
@@ -167,5 +173,10 @@ public class ServerHandler extends Thread {
 
         }
         return null;
+    }
+
+
+    private void logout() {
+        PlayerModel.logout(jsonMsg);
     }
 }

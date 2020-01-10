@@ -36,6 +36,7 @@ import player.PlayerSoc;
 
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import playerModel.PlayerModel;
 
 public class RegisterFormController implements Initializable {
     @FXML
@@ -147,7 +148,7 @@ public class RegisterFormController implements Initializable {
 
 
     public void validate() {
-        PlayerSoc player = App.getPlayerSoc();
+        
         Map<String, String> map = new HashMap<>();
         map.put("type", "register");
         map.put("name", usernameTF.getText());

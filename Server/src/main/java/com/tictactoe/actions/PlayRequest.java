@@ -1,5 +1,6 @@
 package com.tictactoe.actions;
 
+import com.tictactoe.server.ServerHandler;
 import org.json.simple.JSONObject;
 
 import java.io.IOException;
@@ -11,8 +12,8 @@ import java.util.Set;
 public class PlayRequest  {
 
 
-//    public static boolean sendJSON(Map<String,String> fields){
-//        PlayerSoc player = App.getPlayerSoc();
+
+//    public static boolean sendJSON(Map<String,String> fields, ServerHandler serverHandler){
 //        JSONObject jsonMsg = new JSONObject();
 //        // Returns Set view
 //        Set<Map.Entry<String, String>> st = fields.entrySet();
@@ -23,7 +24,7 @@ public class PlayRequest  {
 //
 ////            StringWriter out = new StringWriter();
 ////            jsonMsg.writeJSONString(out);
-//        player.ps.println(jsonMsg.toJSONString());
+//        serverHandler.ps.println(jsonMsg.toJSONString());
 //        return true;
 //    }
 

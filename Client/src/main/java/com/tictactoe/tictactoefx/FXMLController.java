@@ -24,6 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
+import playerModel.PlayerModel;
 
 
 public class FXMLController implements Initializable {
