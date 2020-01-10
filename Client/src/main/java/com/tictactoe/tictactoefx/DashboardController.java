@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.logging.Level;
@@ -88,10 +89,10 @@ public class DashboardController implements Initializable {
        // System.err.println("AAA"+    playerModel.PlayerModel.players.get(1).getPlayerName());
         //currentUser = FXCollections.observableArrayList();
         
-        for (int key:playerModel.PlayerModel.players.keySet())
+        for (Map.Entry<Integer,playerModel.Player> key:playerModel.PlayerModel.players.entrySet())
              
             
-            scoreBoardLV.getItems().add(new Label(playerModel.PlayerModel.players.get(key).getPlayerName() + ": " + playerModel.PlayerModel.players.get(key).getPlayerScore()));
+            scoreBoardLV.getItems().add(new Label(key.getValue().getPlayerName() + ": " + key.getValue().getPlayerScore()));
         scoreBoardLV.getStyleClass().add("mylistview");
 
         //Table 1 [User Profile]
