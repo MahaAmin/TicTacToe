@@ -311,9 +311,6 @@ public class GamePlayController implements Initializable {
     }
 
     private void printBoard() {
-        System.out.println("in board " + xoTextOnButtonsList);
-        System.out.println("playerXScore " + playerXScore);
-        System.out.println("playerOScore " + playerOScore);
         setPlayerXScore.setText(Integer.toString(playerXScore));
         setPlayerOScore.setText(Integer.toString(playerOScore));
         for (int i = 0; i < xoButtonList.size(); i++) {

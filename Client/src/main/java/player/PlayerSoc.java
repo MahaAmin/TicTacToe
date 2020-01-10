@@ -143,7 +143,6 @@ public class PlayerSoc {
     }
 
     private void updateBoard() {
-        System.out.println("updateBoard player soc");
         Platform.runLater(() -> {
             App.getGamePlayController().invokePrintBoard(jsonMsg);
         });

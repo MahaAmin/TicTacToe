@@ -35,7 +35,6 @@ public interface PlayerHandler {
         map.putAll(subMap);
         map.put("playerXScore", Integer.toString(playerXScore));
         map.put("playerOScore", Integer.toString(playerOScore));
-        System.out.println("map tes" + map);
         PlayRequest.sendJSON(map);
     }
 

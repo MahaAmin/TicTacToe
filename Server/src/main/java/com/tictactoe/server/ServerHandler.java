@@ -152,17 +152,8 @@ public class ServerHandler extends Thread {
     }
 
     private void updateBoard() {
-        // send to player 1  to start the game
         jsonMsg.replace("type", "updateBoard");
-//        String xoList = jsonMsg.get("xoTextOnButtonsList").toString();
-//        System.out.println("server sting "+xoList);
-//        List<String> ll = new ArrayList<>(Arrays.asList(xoList.split(",")));
-//        ArrayList<String> board = new ArrayList<>();
-//        for (int i = 0; i < ll.size(); i++) {
-//            board.add(ll.get(i));
-//        }
-//        jsonMsg.replace("xoTextOnButtonsList", );
-        System.out.println(jsonMsg);
+        // send to player 1  to start the game
         getPlayerHandler(game.getFromPlayer().getID()).ps.println(jsonMsg.toJSONString());
         // send to player 2  to start the game
         getPlayerHandler(game.getToPlayer().getID()).ps.println(jsonMsg.toJSONString());

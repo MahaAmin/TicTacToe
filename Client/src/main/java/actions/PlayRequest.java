@@ -11,17 +11,9 @@ public class PlayRequest {
     static PlayerSoc player = App.getPlayerSoc();
 
     public static void sendJSON(Map<String, String> fields) {
-
         JSONObject jsonMsg = new JSONObject();
-        // Returns Set view
-        Set<Map.Entry<String, String>> st = fields.entrySet();
-
-        for (Map.Entry<String, String> field : st) {
-            jsonMsg.put(field.getKey(), field.getValue());
-        }
-
+        jsonMsg.putAll(fields);
         player.ps.println(jsonMsg.toJSONString());
-
     }
 
     public static void sendJSONObject(JSONObject jsonObject) {
