@@ -48,7 +48,7 @@ public class RegisterFormController implements Initializable {
     private JFXButton registerButton;
 
     Alert alert = new Alert(AlertType.ERROR);
-
+    public String ah="here";
     @FXML private FontIcon xIcon, oIcon;
 
     RegexValidator regexValidator = new RegexValidator(); //Checks the email.

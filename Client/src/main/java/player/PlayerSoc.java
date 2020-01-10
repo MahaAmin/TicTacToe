@@ -3,6 +3,7 @@ package player;
 import actions.Alerts;
 import actions.App;
 import actions.PlayRequest;
+import com.tictactoe.tictactoefx.GamePlayController;
 import com.tictactoe.tictactoefx.SwitchTo;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -100,6 +101,9 @@ public class PlayerSoc {
             case "requestRejected":
                 requestRejected();
                 break;
+            case "updateBoard":
+                updateBoard();
+                break;
         }
 
     }
@@ -124,7 +128,7 @@ public class PlayerSoc {
         // send invitation alert to a friend
         Platform.runLater(() -> {
             try {
-                SwitchTo.changeTo(App.getWindow(),3);
+                SwitchTo.changeTo(App.getWindow(), 3);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -136,6 +140,14 @@ public class PlayerSoc {
         Platform.runLater(() -> {
             Alerts.gameRequestRejected(jsonMsg);
         });
+    }
+
+    private void updateBoard() {
+        System.out.println("updateBoard player soc");
+        Platform.runLater(() -> {
+            App.getGamePlayController().invokePrintBoard(jsonMsg);
+        });
+
     }
 
     private void login() {
