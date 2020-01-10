@@ -67,7 +67,7 @@ public class DashboardController implements Initializable {
     @FXML
     private void vsPCbuttonClicked(ActionEvent event) throws IOException {
         //Transition to the GamePlay.fxml 
-        SwitchTo.gamePlayScene(event);
+        SwitchTo.DifficultySelectionScene(event);
     }
 
     @FXML
@@ -88,8 +88,8 @@ public class DashboardController implements Initializable {
         } catch (FileNotFoundException ex) {
         }
         //currentUser = FXCollections.observableArrayList();
-        for (Map.Entry<Integer, playerModel.Player> key : playerModel.PlayerModel.players.entrySet())
-            scoreBoardLV.getItems().add(new Label(key.getValue().getPlayerName() + ": " + key.getValue().getPlayerScore()));
+        for (int i = 0; i < 5; i++)
+            scoreBoardLV.getItems().add(new Label("UserName[" + i + "] " + " score: "));
         scoreBoardLV.getStyleClass().add("mylistview");
 
 

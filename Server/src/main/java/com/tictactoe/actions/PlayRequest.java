@@ -1,12 +1,10 @@
 package com.tictactoe.actions;
 
-import com.tictactoe.server.ServerHandler;
 import org.json.simple.JSONObject;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.io.StringWriter;
-import java.net.ServerSocket;
 import java.util.Map;
 import java.util.Set;
 

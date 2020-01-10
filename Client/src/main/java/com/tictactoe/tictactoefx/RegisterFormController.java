@@ -1,7 +1,7 @@
 package com.tictactoe.tictactoefx;
 
 import actions.App;
-import actions.PlayRequest;
+import animatefx.animation.Flash;
 import com.jfoenix.controls.JFXPasswordField;
 
 import com.jfoenix.controls.JFXButton;
@@ -16,8 +16,6 @@ import com.jfoenix.validation.RequiredFieldValidator;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -35,8 +33,11 @@ import player.PlayerSoc;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import playerModel.PlayerModel;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 public class RegisterFormController implements Initializable {
+     @FXML private FontIcon xIcon, oIcon;
+    
     @FXML
     private JFXPasswordField passwordPF, confirmPasswordPF;
     @FXML
@@ -104,7 +105,7 @@ public class RegisterFormController implements Initializable {
             {
                 if (!usernameTF.getText().trim().isEmpty())//if the username wasn't empty
                     //Go back to the startup Scene.fxml if passwords match.
-                    validate();
+                    SwitchTo.mainScene(event);
             }
         }
 
@@ -131,10 +132,16 @@ public class RegisterFormController implements Initializable {
 //            alert.showAndWait();
 //        }
     }
+    
+    @FXML private void backButtonClicked(ActionEvent event) throws IOException
+    {
+        SwitchTo.mainScene(event);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        new Flash(xIcon).setCycleCount(60).setSpeed(.3).setResetOnFinished(true).play();
+        new Flash(oIcon).setCycleCount(60).setSpeed(.3).setResetOnFinished(true).setDelay(Duration.millis(300)).play();
     }
 
     public void validate() {
@@ -147,4 +154,5 @@ public class RegisterFormController implements Initializable {
         System.out.println(map);
         PlayRequest.sendJSON(map);
     }
+
 }

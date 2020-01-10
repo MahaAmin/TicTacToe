@@ -5,6 +5,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
@@ -13,46 +17,99 @@
         <URL value="@/styles/Styles.css" />
     </stylesheets>
    <children>
-      <JFXButton id="xoBTN1" layoutX="288.0" layoutY="131.0" onAction="#xoBTN1Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" textFill="#3989d4" fx:id="xoBTN1">
+      <JFXButton id="xoBTN1" layoutX="288.0" layoutY="131.0" onAction="#xoBTN1Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN1">
          <font>
             <Font name="System Bold" size="40.0" />
          </font>
       </JFXButton>
-      <JFXButton id="xoBTN2" layoutX="388.0" layoutY="131.0" onAction="#xoBTN2Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" textFill="#3abcd4" fx:id="xoBTN2">
+      <JFXButton id="xoBTN2" layoutX="388.0" layoutY="131.0" onAction="#xoBTN2Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN2">
          <font>
             <Font name="System Bold" size="40.0" />
          </font></JFXButton>
-      <JFXButton id="xoBTN3" layoutX="488.0" layoutY="131.0" onAction="#xoBTN3Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN3" />
-      <JFXButton id="xoBTN4" layoutX="288.0" layoutY="231.0" onAction="#xoBTN4Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN4" />
-      <JFXButton id="xoBTN5" layoutX="388.0" layoutY="231.0" onAction="#xoBTN5Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN5" />
-      <JFXButton id="xoBTN6" layoutX="488.0" layoutY="231.0" onAction="#xoBTN6Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN6" />
-      <JFXButton id="xoBTN7" layoutX="288.0" layoutY="331.0" onAction="#xoBTN7Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN7" />
-      <JFXButton id="xoBTN9" layoutX="488.0" layoutY="331.0" onAction="#xoBTN9Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN9" />
-      <JFXButton id="xoBTN8" layoutX="388.0" layoutY="331.0" onAction="#xoBTN8Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN8" />
-      <Region layoutX="554.0" prefHeight="70.0" prefWidth="214.0" />
-      <Region id="playerXRegion" layoutX="592.0" prefHeight="70.0" prefWidth="283.0" stylesheets="@../styles/Styles.css" />
-      <Label layoutX="626.0" layoutY="15.0" text="Player X" textFill="WHITE">
+      <JFXButton id="xoBTN3" layoutX="488.0" layoutY="131.0" onAction="#xoBTN3Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN3">
          <font>
-            <Font name="System Bold" size="28.0" />
+            <Font name="System Bold" size="40.0" />
+         </font></JFXButton>
+      <JFXButton id="xoBTN4" layoutX="288.0" layoutY="231.0" onAction="#xoBTN4Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN4">
+         <font>
+            <Font name="System Bold" size="40.0" />
+         </font></JFXButton>
+      <JFXButton id="xoBTN5" layoutX="388.0" layoutY="231.0" onAction="#xoBTN5Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN5">
+         <font>
+            <Font name="System Bold" size="40.0" />
+         </font></JFXButton>
+      <JFXButton id="xoBTN6" layoutX="488.0" layoutY="231.0" onAction="#xoBTN6Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN6">
+         <font>
+            <Font name="System Bold" size="40.0" />
+         </font></JFXButton>
+      <JFXButton id="xoBTN7" layoutX="288.0" layoutY="331.0" onAction="#xoBTN7Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN7">
+         <font>
+            <Font name="System Bold" size="40.0" />
+         </font></JFXButton>
+      <JFXButton id="xoBTN9" layoutX="488.0" layoutY="331.0" onAction="#xoBTN9Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN9">
+         <font>
+            <Font name="System Bold" size="40.0" />
+         </font></JFXButton>
+      <JFXButton id="xoBTN8" layoutX="388.0" layoutY="331.0" onAction="#xoBTN8Clicked" prefHeight="100.0" prefWidth="100.0" ripplerFill="#dadada" stylesheets="@../styles/Styles.css" fx:id="xoBTN8">
+         <font>
+            <Font name="System Bold" size="40.0" />
+         </font></JFXButton>
+      <JFXButton id="backButtonGamePlay" onAction="#backButtonClicked" prefHeight="40.0" prefWidth="63.0" ripplerFill="#c7b1ff" stylesheets="@../styles/Styles.css" text=" ">
+         <graphic>
+            <FontIcon iconColor="WHITE" iconLiteral="fa-angle-left" iconSize="30" translateX="3.0" />
+         </graphic>
+      </JFXButton>
+      <Region layoutX="9.0" layoutY="72.0" prefHeight="385.0" prefWidth="262.0" style="-fx-background-radius: 20; -fx-background-color: #F3F5F9;" />
+      <Rectangle arcHeight="30.0" arcWidth="200.0" fill="#6f60fa" height="89.0" layoutX="24.0" layoutY="99.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="232.0" />
+      <Region layoutX="606.0" layoutY="63.0" prefHeight="385.0" prefWidth="262.0" style="-fx-background-radius: 20; -fx-background-color: #F3F5F9;" />
+      <Region id="playerRegion" layoutX="25.0" layoutY="89.0" prefHeight="89.0" prefWidth="232.0" stylesheets="@../styles/Styles.css" />
+      <Circle id="playerXCircle" fx:id="playerXCircle" fill="#6f60fa" layoutX="140.0" layoutY="136.0" radius="41.0" stroke="#54dfc4" strokeType="INSIDE" strokeWidth="5.0" />
+      <Label layoutX="122.0" layoutY="112.0" text="Score" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Region id="playerYRegion" layoutY="491.0" prefHeight="70.0" prefWidth="283.0" stylesheets="@../styles/Styles.css" />
-      <Label layoutX="54.0" layoutY="506.0" text="Player O" textFill="WHITE">
+      <Circle layoutX="140.0" layoutY="172.0" radius="9.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#12ddc1" />
+                  <Stop color="#0dcaaa" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Circle>
+      <Label fx:id="setPlayerXScore" layoutX="135.0" layoutY="132.0" text="0" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="28.0" />
+            <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-      <Label layoutX="792.0" layoutY="14.0" text="0" textFill="WHITE">
+      <Rectangle arcHeight="30.0" arcWidth="200.0" fill="#6f60fa" height="89.0" layoutX="628.0" layoutY="99.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="232.0" />
+      <Region id="playerRegion" layoutX="628.0" layoutY="89.0" prefHeight="89.0" prefWidth="232.0" stylesheets="@../styles/Styles.css" />
+      <Circle fx:id="playerOCircle" fill="#6e61fa" layoutX="745.0" layoutY="136.0" radius="41.0" stroke="#54dfc4" strokeType="INSIDE" strokeWidth="5.0" />
+      <Label layoutX="727.0" layoutY="112.0" text="Score" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="28.0" />
+            <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <FontIcon iconColor="#e77f9a" iconLiteral="fa-hashtag" iconSize="30" layoutX="755.0" layoutY="45.0" />
-      <FontIcon iconColor="#e77f9a" iconLiteral="fa-hashtag" iconSize="30" layoutX="176.0" layoutY="536.0" />
-      <Label layoutX="216.0" layoutY="506.0" text="0" textFill="WHITE">
+      <Circle layoutX="746.0" layoutY="172.0" radius="9.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="5.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#12ddc1" />
+                  <Stop color="#0dcaaa" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Circle>
+      <Label fx:id="setPlayerOScore" layoutX="740.0" layoutY="132.0" text="0" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="28.0" />
+            <Font name="System Bold" size="19.0" />
          </font>
       </Label>
+      <Label fx:id="playerXLabel" alignment="CENTER" layoutX="24.0" layoutY="304.0" prefHeight="40.0" prefWidth="232.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: #54dfc4; -fx-border-radius: 20;" text="playerXLabel" />
+      <FontIcon iconColor="#6f60fa" iconLiteral="fa-user-o" iconSize="30" layoutX="127.0" layoutY="266.0" />
+      <Label fx:id="playerOLabel" alignment="CENTER" layoutX="630.0" layoutY="304.0" prefHeight="40.0" prefWidth="232.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: #54dfc4; -fx-border-radius: 20;" text="playerOLabel" />
+      <FontIcon iconColor="#6f60fa" iconLiteral="fa-user-o" iconSize="30" layoutX="733.0" layoutY="266.0" />
    </children>
 </AnchorPane>

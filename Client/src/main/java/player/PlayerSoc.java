@@ -10,7 +10,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import playerModel.Player;
-import playerModel.PlayerModel;
 
 import java.io.*;
 import java.net.Socket;
@@ -45,6 +44,8 @@ public class PlayerSoc {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
     }
 
 
@@ -133,13 +134,12 @@ public class PlayerSoc {
         });
     }
 
-    private void login() throws ParseException {
+    private void login() {
         if (jsonMsg.get("status").toString() == "true") {
             Player pl = new Player();
             pl.setID(Integer.parseInt(jsonMsg.get("id").toString()));
             pl.setPlayerName(jsonMsg.get("name").toString());
             App.getPlayerSoc().setPlayer(pl);
-            PlayerModel.getPlayers(jsonMsg.get("players").toString());
             // redirect to dashboard
             Platform.runLater(() -> {
                 try {
@@ -150,27 +150,9 @@ public class PlayerSoc {
             });
         } else {
             // alert wrong password
-            Platform.runLater(() -> {
-                Alerts.wrongPasswordAlert();
-            });
-        }
-    }
 
-    private void register(){
-        System.out.println(jsonMsg.get("status"));
-        if(jsonMsg.get("status").toString().compareTo("true")==0){
-            Platform.runLater(() -> {
-                try {
-                    SwitchTo.changeTo(App.getWindow(), 0);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-        }else{
-            Platform.runLater(() -> {
-                Alerts.wrongPasswordAlert();
-            });
         }
+
     }
 
 }

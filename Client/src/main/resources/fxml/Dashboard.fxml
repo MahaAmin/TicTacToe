@@ -12,17 +12,18 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane id="AnchorPane" prefHeight="616.0" prefWidth="1022.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictactoe.tictactoefx.DashboardController">
+<AnchorPane id="AnchorPane" prefHeight="616.0" prefWidth="1022.0" style="-fx-background-color: #ffffff;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictactoe.tictactoefx.DashboardController">
     <stylesheets>
         <URL value="@/styles/Styles.css" />
     </stylesheets>
    <children>
-      <Region id="scoreBoardRegion" layoutX="671.0" prefHeight="45.0" prefWidth="351.0" stylesheets="@../styles/Styles.css">
+      <Region id="scoreBoardRegion" layoutX="720.0" prefHeight="45.0" prefWidth="302.0" stylesheets="@../styles/Styles.css" />
+      <Region layoutX="390.0" layoutY="118.0" prefHeight="424.0" prefWidth="287.0" style="-fx-background-color: #F3F5F9; -fx-background-radius: 20;">
          <effect>
-            <DropShadow />
+            <DropShadow blurType="ONE_PASS_BOX" />
          </effect>
       </Region>
-      <JFXButton id="signInButton" alignment="CENTER" buttonType="RAISED" defaultButton="true" layoutX="399.0" layoutY="251.0" onAction="#vsPCbuttonClicked" prefHeight="58.0" prefWidth="225.0" stylesheets="@../styles/Styles.css" text="VS PC" textAlignment="CENTER" textFill="WHITE">
+      <JFXButton id="signInButton" alignment="CENTER" defaultButton="true" layoutX="421.0" layoutY="264.0" onAction="#vsPCbuttonClicked" prefHeight="58.0" prefWidth="225.0" stylesheets="@../styles/Styles.css" text="VS PC" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
@@ -30,7 +31,7 @@
             <FontIcon iconColor="WHITE" iconLiteral="fa-desktop" iconSize="25" />
          </graphic>
       </JFXButton>
-      <JFXButton id="signInButton" alignment="CENTER" buttonType="RAISED" defaultButton="true" layoutX="399.0" layoutY="389.0" onAction="#vsOnlinePlayerButtonClicked" prefHeight="58.0" prefWidth="225.0" stylesheets="@../styles/Styles.css" text="VS Online Player" textAlignment="CENTER" textFill="WHITE">
+      <JFXButton id="signInButton" alignment="CENTER" defaultButton="true" layoutX="421.0" layoutY="430.0" onAction="#vsOnlinePlayerButtonClicked" prefHeight="58.0" prefWidth="225.0" stylesheets="@../styles/Styles.css" text="VS Online Player" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
@@ -38,51 +39,43 @@
             <FontIcon iconColor="WHITE" iconLiteral="fa-group" iconSize="25" />
          </graphic>
       </JFXButton>
-      <Label layoutX="805.0" layoutY="8.0" text="Score Board" textFill="WHITE">
+      <Label layoutX="814.0" layoutY="8.0" text="Score Board" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <JFXListView id="scoreBoardLV" fx:id="scoreBoardLV" layoutX="671.0" layoutY="44.0" prefHeight="572.0" prefWidth="351.0" showTooltip="true" stylesheets="@../styles/Styles.css" />
-      <TableView fx:id="userTable" layoutY="47.0" prefHeight="86.0" prefWidth="351.0">
+      <JFXListView id="scoreBoardLV" fx:id="scoreBoardLV" layoutX="720.0" layoutY="42.0" prefHeight="174.0" prefWidth="302.0" showTooltip="true" stylesheets="@../styles/Styles.css" />
+      <TableView fx:id="userTable" fixedCellSize="1.0" layoutX="-1.0" layoutY="44.0" prefHeight="86.0" prefWidth="351.0" stylesheets="@../styles/Styles.css">
         <columns>
             <TableColumn id="avatarColumnT1" fx:id="avatarColumnT1" prefWidth="92.0" text="Avatar" />
-            <TableColumn id="userNameColumnT1" fx:id="userNameColumnT1" minWidth="0.0" prefWidth="105.0" text="Username" />
-            <TableColumn id="rankColumnT1" fx:id="rankColumnT1" prefWidth="69.0" text="Rank" />
-            <TableColumn id="scoreColumnT1" fx:id="scoreColumnT1" minWidth="3.0" prefWidth="84.0" text="Score" />
+            <TableColumn id="userNameColumnT1" fx:id="userNameColumnT1" minWidth="0.0" prefWidth="97.0" text="Username" />
+            <TableColumn id="rankColumnT1" fx:id="rankColumnT1" prefWidth="77.0" text="Rank" />
+            <TableColumn id="scoreColumnT1" fx:id="scoreColumnT1" minWidth="3.0" prefWidth="83.0" text="Score" />
         </columns>
       </TableView>
-      <TableView fx:id="allUsersTable" layoutY="228.0" prefHeight="389.0" prefWidth="351.0">
+      <TableView fx:id="allUsersTable" layoutY="228.0" prefHeight="389.0" prefWidth="351.0" stylesheets="@../styles/Styles.css">
          <columns>
             <TableColumn fx:id="statusColumnT2" prefWidth="75.0" text="Status" />
             <TableColumn fx:id="usernameColumnT2" prefWidth="98.0" text="Username" />
             <TableColumn fx:id="rankColumnT2" prefWidth="74.0" text="Rank" />
-            <TableColumn fx:id="scoreColumnT2" prefWidth="103.0" text="Score" />
+            <TableColumn fx:id="scoreColumnT2" prefWidth="101.0" text="Score" />
          </columns>
       </TableView>
-      <Label layoutX="449.0" layoutY="115.0" text="Dashboard" textFill="#4ba1ff">
+      <Label layoutX="472.0" layoutY="151.0" text="Dashboard" textFill="#4ba1ff">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <FontIcon iconColor="#4ba1ff" iconLiteral="fa-television" iconSize="35" layoutX="402.0" layoutY="150.0" />
-      <FontIcon iconColor="#e77f9a" iconLiteral="fa-bar-chart-o" iconSize="35" layoutX="753.0" layoutY="35.0" />
-      <Region id="playersList" layoutY="183.0" prefHeight="45.0" prefWidth="351.0" stylesheets="@../styles/Styles.css">
-         <effect>
-            <DropShadow />
-         </effect>
-      </Region>
+      <FontIcon iconColor="#4ba1ff" iconLiteral="fa-television" iconSize="35" layoutX="423.0" layoutY="186.0" />
+      <FontIcon iconColor="#e77f9a" iconLiteral="fa-bar-chart-o" iconSize="35" layoutX="760.0" layoutY="35.0" />
+      <Region id="playersList" layoutY="183.0" prefHeight="45.0" prefWidth="351.0" stylesheets="@../styles/Styles.css" />
       <Label layoutX="119.0" layoutY="191.0" text="Players List" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
       <FontIcon iconColor="#e77f9a" iconLiteral="fa-user-o" iconSize="35" layoutX="79.0" layoutY="217.0" />
-      <Region id="playersList" layoutY="1.0" prefHeight="45.0" prefWidth="351.0" stylesheets="@../styles/Styles.css">
-         <effect>
-            <DropShadow />
-         </effect>
-      </Region>
+      <Region id="playersList" prefHeight="45.0" prefWidth="351.0" stylesheets="@../styles/Styles.css" />
       <Label layoutX="116.0" layoutY="9.0" text="Your profile" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
