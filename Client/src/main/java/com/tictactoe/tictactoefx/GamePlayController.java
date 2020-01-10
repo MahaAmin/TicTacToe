@@ -63,63 +63,51 @@ public class GamePlayController implements Initializable {
         {
             if (checkForWin() || isBoardFull()) {
                 announceGameResult();
-            }
-            currPlayerMark = "O";
-            pcTurn();
-        } else if (mode == 2) // TwoPlayersMode
-        {
-            if (checkForWin() || isBoardFull()) {
-                announceGameResult();
-                changePlayer();
             } else {
                 changePlayer();
+                pcTurn();
             }
+
+        } else if (mode == 2) // TwoPlayersMode
+        {
         }
     }
 
     @FXML
     private void xoBTN2Clicked(ActionEvent event) {
         placeMark(1, currPlayerMark);
-        printBoard();
+         printBoard();
 
         if (mode == 1) // PCMode
         {
             if (checkForWin() || isBoardFull()) {
                 announceGameResult();
-            }
-            currPlayerMark = "O";
-            pcTurn();
-        } else if (mode == 2) // TwoPlayersMode
-        {
-            if (checkForWin() || isBoardFull()) {
-                announceGameResult();
-                changePlayer();
             } else {
                 changePlayer();
+                pcTurn();
             }
+
+        } else if (mode == 2) // TwoPlayersMode
+        {
         }
     }
 
     @FXML
     private void xoBTN3Clicked(ActionEvent event) {
         placeMark(2, currPlayerMark);
-        printBoard();
+         printBoard();
 
         if (mode == 1) // PCMode
         {
             if (checkForWin() || isBoardFull()) {
                 announceGameResult();
-            }
-            currPlayerMark = "O";
-            pcTurn();
-        } else if (mode == 2) // TwoPlayersMode
-        {
-            if (checkForWin() || isBoardFull()) {
-                announceGameResult();
-                changePlayer();
             } else {
                 changePlayer();
+                pcTurn();
             }
+
+        } else if (mode == 2) // TwoPlayersMode
+        {
         }
     }
 
@@ -132,17 +120,13 @@ public class GamePlayController implements Initializable {
         {
             if (checkForWin() || isBoardFull()) {
                 announceGameResult();
-            }
-            currPlayerMark = "O";
-            pcTurn();
-        } else if (mode == 2) // TwoPlayersMode
-        {
-            if (checkForWin() || isBoardFull()) {
-                announceGameResult();
-                changePlayer();
             } else {
                 changePlayer();
+                pcTurn();
             }
+
+        } else if (mode == 2) // TwoPlayersMode
+        {
         }
     }
 
@@ -151,21 +135,19 @@ public class GamePlayController implements Initializable {
         placeMark(4, currPlayerMark);
         printBoard();
 
+        printBoard();
+
         if (mode == 1) // PCMode
         {
             if (checkForWin() || isBoardFull()) {
                 announceGameResult();
-            }
-            currPlayerMark = "O";
-            pcTurn();
-        } else if (mode == 2) // TwoPlayersMode
-        {
-            if (checkForWin() || isBoardFull()) {
-                announceGameResult();
-                changePlayer();
             } else {
                 changePlayer();
+                pcTurn();
             }
+
+        } else if (mode == 2) // TwoPlayersMode
+        {
         }
     }
 
@@ -178,17 +160,13 @@ public class GamePlayController implements Initializable {
         {
             if (checkForWin() || isBoardFull()) {
                 announceGameResult();
-            }
-            currPlayerMark = "O";
-            pcTurn();
-        } else if (mode == 2) // TwoPlayersMode
-        {
-            if (checkForWin() || isBoardFull()) {
-                announceGameResult();
-                changePlayer();
             } else {
                 changePlayer();
+                pcTurn();
             }
+
+        } else if (mode == 2) // TwoPlayersMode
+        {
         }
     }
 
@@ -201,17 +179,13 @@ public class GamePlayController implements Initializable {
         {
             if (checkForWin() || isBoardFull()) {
                 announceGameResult();
-            }
-            currPlayerMark = "O";
-            pcTurn();
-        } else if (mode == 2) // TwoPlayersMode
-        {
-            if (checkForWin() || isBoardFull()) {
-                announceGameResult();
-                changePlayer();
             } else {
                 changePlayer();
+                pcTurn();
             }
+
+        } else if (mode == 2) // TwoPlayersMode
+        {
         }
     }
 
@@ -224,17 +198,13 @@ public class GamePlayController implements Initializable {
         {
             if (checkForWin() || isBoardFull()) {
                 announceGameResult();
-            }
-            currPlayerMark = "O";
-            pcTurn();
-        } else if (mode == 2) // TwoPlayersMode
-        {
-            if (checkForWin() || isBoardFull()) {
-                announceGameResult();
-                changePlayer();
             } else {
                 changePlayer();
+                pcTurn();
             }
+
+        } else if (mode == 2) // TwoPlayersMode
+        {
         }
     }
 
@@ -247,17 +217,13 @@ public class GamePlayController implements Initializable {
         {
             if (checkForWin() || isBoardFull()) {
                 announceGameResult();
-            }
-            currPlayerMark = "O";
-            pcTurn();
-        } else if (mode == 2) // TwoPlayersMode
-        {
-            if (checkForWin() || isBoardFull()) {
-                announceGameResult();
-                changePlayer();
             } else {
                 changePlayer();
+                pcTurn();
             }
+
+        } else if (mode == 2) // TwoPlayersMode
+        {
         }
     }
 
@@ -332,7 +298,7 @@ public class GamePlayController implements Initializable {
 
     private boolean isBoardFull() {
         for (int i = 0; i < xoTextOnButtonsList.size(); i++) {
-            if (xoTextOnButtonsList.get(i) == " ") {
+            if (xoTextOnButtonsList.get(i).equals(" ")) {
                 return false;
             }
         }
@@ -369,19 +335,19 @@ public class GamePlayController implements Initializable {
     }
 
     private boolean checkTripleEquality(String txt1, String txt2, String txt3) {
-        return ((txt1 != " ") && (txt1 == txt2) && (txt2 == txt3));
+        return ((!txt1.equalsIgnoreCase(" ")) && (txt1.equalsIgnoreCase(txt2)) && (txt2.equalsIgnoreCase(txt3)));
     }
 
     private void changePlayer() {
-        if (currPlayerMark == "x" || currPlayerMark == "X") {
+        if (currPlayerMark.equalsIgnoreCase("x")) {
             currPlayerMark = "O";
-        } else if (currPlayerMark == "o" || currPlayerMark == "O") {
+        } else if (currPlayerMark.equalsIgnoreCase("o")) {
             currPlayerMark = "X";
         }
     }
 
     private boolean isCellAvailable(int index) {
-        if ((index >= 0 && index < 9) && (xoTextOnButtonsList.get(index) == " ")) {
+        if ((index >= 0 && index < 9) && (xoTextOnButtonsList.get(index).equals(" "))) {
             return true;
         }
         return false;
@@ -394,20 +360,17 @@ public class GamePlayController implements Initializable {
             System.out.println("can not place mark");
         }
     }
-    
-    private void removeCell(int index)
-    {
+
+    private void removeCell(int index) {
         xoTextOnButtonsList.set(index, " ");
     }
-    
 
-    
     public void announceGameResult() {
-        if (checkForWin() && (currPlayerMark == "X" || currPlayerMark == "x")) {
+        if (checkForWin() && (currPlayerMark.equalsIgnoreCase("X"))) {
             playerXScore++;
             setPlayerXScore.setText(Integer.toString(playerXScore));
             System.out.println("Player X Wins!");
-        } else if (checkForWin() && (currPlayerMark == "O" || currPlayerMark == "o")) {
+        } else if (checkForWin() && (currPlayerMark.equalsIgnoreCase("O"))) {
             playerOScore++;
             setPlayerOScore.setText(Integer.toString(playerOScore));
             System.out.println("Player O Wins!");
@@ -423,49 +386,49 @@ public class GamePlayController implements Initializable {
             xoBTN1.setStyle(colorO);
         }
 
-        if (xoTextOnButtonsList.get(1) == "X") {
+        if (xoTextOnButtonsList.get(1).equalsIgnoreCase("X")) {
             xoBTN2.setStyle(colorX);
         } else {
             xoBTN2.setStyle(colorO);
         }
 
-        if (xoTextOnButtonsList.get(2) == "X") {
+        if (xoTextOnButtonsList.get(2).equalsIgnoreCase("X")) {
             xoBTN3.setStyle(colorX);
         } else {
             xoBTN3.setStyle(colorO);
         }
 
-        if (xoTextOnButtonsList.get(3) == "X") {
+        if (xoTextOnButtonsList.get(3).equalsIgnoreCase("X")) {
             xoBTN4.setStyle(colorX);
         } else {
             xoBTN4.setStyle(colorO);
         }
 
-        if (xoTextOnButtonsList.get(4) == "X") {
+        if (xoTextOnButtonsList.get(4).equalsIgnoreCase("X")) {
             xoBTN5.setStyle(colorX);
         } else {
             xoBTN5.setStyle(colorO);
         }
 
-        if (xoTextOnButtonsList.get(5) == "X") {
+        if (xoTextOnButtonsList.get(5).equalsIgnoreCase("X")) {
             xoBTN6.setStyle(colorX);
         } else {
             xoBTN6.setStyle(colorO);
         }
 
-        if (xoTextOnButtonsList.get(6) == "X") {
+        if (xoTextOnButtonsList.get(6).equalsIgnoreCase("X")) {
             xoBTN7.setStyle(colorX);
         } else {
             xoBTN7.setStyle(colorO);
         }
 
-        if (xoTextOnButtonsList.get(7) == "X") {
+        if (xoTextOnButtonsList.get(7).equalsIgnoreCase("X")) {
             xoBTN8.setStyle(colorX);
         } else {
             xoBTN8.setStyle(colorO);
         }
 
-        if (xoTextOnButtonsList.get(8) == "X") {
+        if (xoTextOnButtonsList.get(8).equalsIgnoreCase("X")) {
             xoBTN9.setStyle(colorX);
         } else {
             xoBTN9.setStyle(colorO);
@@ -477,50 +440,47 @@ public class GamePlayController implements Initializable {
         int bestScore = Integer.MIN_VALUE;
         int move = 100;
 
-        
         for (int i = 0; i < 9; i++) {
             if (isCellAvailable(i)) {
                 placeMark(i, currPlayerMark);
                 int score = minimax(xoTextOnButtonsList, 0, false);
                 removeCell(i);
-                if(score > bestScore)
-                {
+                if (score > bestScore) {
                     bestScore = score;
                     move = i;
-                }   
+                }
             }
         }
         placeMark(move, currPlayerMark);
         printBoard();
-        currPlayerMark = "X";
+        if (checkForWin() || isBoardFull()) {
+            announceGameResult();
+        }
+        changePlayer();
     }
-    
-    
-    public int minimax(ArrayList<String> board, int depth, boolean isMaximizing)
-    {
+
+    public int minimax(ArrayList<String> board, int depth, boolean isMaximizing) {
         /*
             Score function:
             X-win = -10;
             O-win = 10;
             tie = 0;
-        */
-        
+         */
+
         // base-case
-        if(checkForWin() && currPlayerMark == "X")
+        if (checkForWin() && currPlayerMark.equalsIgnoreCase("X")) {
             return -10;
-        else if(checkForWin() && currPlayerMark == "O")
+        } else if (checkForWin() && currPlayerMark.equalsIgnoreCase("O")) {
             return 10;
-        else if(!checkForWin() && isBoardFull())
+        } else if (isBoardFull()) {
             return 0;
-        
+        }
+
         // recursive part
-        if(isMaximizing)
-        {
+        if (isMaximizing) {
             int bestScore = Integer.MIN_VALUE;
-            for(int i=0; i<9; i++)
-            {
-                if(isCellAvailable(i))
-                {
+            for (int i = 0; i < 9; i++) {
+                if (isCellAvailable(i)) {
                     placeMark(i, "O");
                     int score = minimax(board, depth + 1, false);
                     removeCell(i);
@@ -528,14 +488,10 @@ public class GamePlayController implements Initializable {
                 }
             }
             return bestScore;
-        }
-        else
-        {
+        } else {
             int bestScore = Integer.MAX_VALUE;
-            for(int i=0; i<9; i++)
-            {
-                if(isCellAvailable(i))
-                {
+            for (int i = 0; i < 9; i++) {
+                if (isCellAvailable(i)) {
                     placeMark(i, "X");
                     int score = minimax(board, depth + 1, true);
                     removeCell(i);
