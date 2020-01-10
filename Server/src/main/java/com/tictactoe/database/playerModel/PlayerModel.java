@@ -8,6 +8,7 @@ package com.tictactoe.database.playerModel;
 import com.mysql.cj.xdevapi.JsonArray;
 import com.tictactoe.actions.App;
 import com.tictactoe.database.DatabaseManager;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.sql.PreparedStatement;
@@ -59,10 +60,10 @@ public class PlayerModel {
         return new Player();
     }
 
-    public static LinkedHashMap<String, JSONObject> getPlayersJSON() {
+    public static JSONArray getPlayersJSON() {
 
         LinkedHashMap<String, JSONObject> jsonOrderedMap = new LinkedHashMap<String, JSONObject>();
-
+        JSONArray jsonArray=new JSONArray();
         System.out.println(players);
         for (Map.Entry<Integer, Player> field : players.entrySet()) {
             System.out.println(field.getKey());
@@ -74,11 +75,11 @@ public class PlayerModel {
             playerJson.put("score", player.getPlayerScore());
             playerJson.put("status", player.getPlayerStatus());
 
-            jsonOrderedMap.put(Integer.toString(field.getKey()), playerJson);
-            System.out.println(jsonOrderedMap);
+            jsonArray.add(playerJson);
+//            System.out.println(jsonOrderedMap);
         }
 
-        return jsonOrderedMap;
+        return jsonArray;
 
     }
 

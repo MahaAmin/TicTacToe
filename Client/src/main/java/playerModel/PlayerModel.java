@@ -1,5 +1,6 @@
 package playerModel;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -14,20 +15,18 @@ public class PlayerModel {
     public static void getPlayers(String data) throws ParseException {
         players = new LinkedHashMap<>();
         JSONParser parser = new JSONParser();
-        JSONObject jsonObj = (JSONObject) parser.parse(data);
-        for (Object key : jsonObj.keySet()) {
-            //player id
-            String keyStr = (String) key;
-            // player object
-            JSONObject playerJson = (JSONObject) jsonObj.get(keyStr);
+        JSONArray jsonArray = (JSONArray) parser.parse(data);
+        System.out.println(jsonArray);
+
+        jsonArray.forEach((playerJson) -> {
+            JSONObject playerJs = (JSONObject) playerJson;
             // add player to map
             Player pl = new Player();
-            pl.setID(Integer.parseInt(playerJson.get("id").toString()));
-            pl.setPlayerName(playerJson.get("name").toString());
-            pl.setPlayerStatus(Integer.parseInt(playerJson.get("status").toString()));
-            pl.setPlayerScore(Integer.parseInt(playerJson.get("score").toString()));
-            players.put(Integer.parseInt(keyStr), pl);
-        }
-
+            pl.setID(Integer.parseInt(playerJs.get("id").toString()));
+            pl.setPlayerName(playerJs.get("name").toString());
+            pl.setPlayerStatus(Integer.parseInt(playerJs.get("status").toString()));
+            pl.setPlayerScore(Integer.parseInt(playerJs.get("score").toString()));
+            players.put(Integer.parseInt(playerJs.get("id").toString()), pl);
+        });
     }
 }

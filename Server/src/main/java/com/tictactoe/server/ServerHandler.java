@@ -132,7 +132,7 @@ public class ServerHandler extends Thread {
         JSONObject resp = PlayerModel.validatePlalyer(jsonMsg);
         if (resp.get("status").toString() == "true") {
             setPlayer(resp);
-            resp.put("players", PlayerModel.getPlayersJSON());
+            resp.put("players", PlayerModel.getPlayersJSON().toJSONString());
         }
         resp.put("type", "login");
         ps.println(resp);
