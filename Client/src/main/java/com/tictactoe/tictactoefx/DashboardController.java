@@ -1,14 +1,17 @@
 package com.tictactoe.tictactoefx;
 
-import com.jfoenix.controls.JFXListView;
+
+
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -85,10 +88,10 @@ public class DashboardController implements Initializable {
         } catch (FileNotFoundException ex) {
         }
         //currentUser = FXCollections.observableArrayList();
-
-
-
+        for (Map.Entry<Integer, playerModel.Player> key : playerModel.PlayerModel.players.entrySet())
+            scoreBoardLV.getItems().add(new Label(key.getValue().getPlayerName() + ": " + key.getValue().getPlayerScore()));
         scoreBoardLV.getStyleClass().add("mylistview");
+
 
         //Table 1 [User Profile]
         userNameColumnT1.setCellValueFactory(new PropertyValueFactory<>("userName"));

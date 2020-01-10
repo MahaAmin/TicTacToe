@@ -82,6 +82,7 @@ public class PlayerSoc {
 
 
     private void jsonHandle(String data) throws ParseException {
+        System.out.println("Data "+data);
         JSONParser parser = new JSONParser();
         jsonMsg = (JSONObject) parser.parse(data);
         System.out.println(data);
@@ -95,8 +96,11 @@ public class PlayerSoc {
             case "register":
                 register();
                 break;
+            case "getall":
+                PlayerModel.getPlayers(jsonMsg.get("players").toString());
+                System.out.println("this is an update   "+PlayerModel.players.get(player.getID()).getPlayerStatus());
+                break;
         }
-
     }
 
 

@@ -26,7 +26,6 @@ public class ServerHandler extends Thread {
     private Game game;
 
     public ServerHandler(Socket socket) {
-        playersSoc = new Vector<>();
         try {
             dis = new DataInputStream(socket.getInputStream());
             ps = new PrintStream(socket.getOutputStream());
@@ -83,8 +82,11 @@ public class ServerHandler extends Thread {
             case "login":
                 login();
                 break;
-            case"logout":
+            case "logout":
                 logout();
+                break;
+            case "getall":
+                getall();
                 break;
         }
 
@@ -120,6 +122,7 @@ public class ServerHandler extends Thread {
         jresp.put("type","register");
         jresp.put("status",resp);
         ps.println(jresp);
+        getall();   //tell the client that something updated
     }
 
     private void login() {
@@ -132,6 +135,7 @@ public class ServerHandler extends Thread {
 
         System.out.println(resp);
         ps.println(resp);
+        getall();
     }
 
     private ServerHandler getPlayerHandler(int player_id) {
@@ -146,5 +150,16 @@ public class ServerHandler extends Thread {
 
     private void logout(){
         PlayerModel.logout(Integer.parseInt(jsonMsg.get("id").toString()));
+        getall();
+    }
+
+    private void getall() {
+        PlayerModel.getPlayers();
+        JSONObject resp=new JSONObject();
+        resp.put("players", PlayerModel.getPlayersJSON());
+        resp.put("type", "getall");
+        for(playersSoc soc: playersoc)
+        ps.println(resp);
+        playersSoc.
     }
 }
