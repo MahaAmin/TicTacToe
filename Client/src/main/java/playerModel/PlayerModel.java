@@ -5,13 +5,14 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class PlayerModel {
     public static Map<Integer, Player> players;
 
     public static void getPlayers(String data) throws ParseException {
-        players = new HashMap<>();
+        players = new LinkedHashMap<>();
         JSONParser parser = new JSONParser();
         JSONObject jsonObj = (JSONObject) parser.parse(data);
         for (Object key : jsonObj.keySet()) {

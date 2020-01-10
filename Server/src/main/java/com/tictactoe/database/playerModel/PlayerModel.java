@@ -5,6 +5,7 @@
  */
 package com.tictactoe.database.playerModel;
 
+import com.mysql.cj.xdevapi.JsonArray;
 import com.tictactoe.actions.App;
 import com.tictactoe.database.DatabaseManager;
 import org.json.simple.JSONObject;
@@ -14,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +29,7 @@ public class PlayerModel {
 
 
     public static void getPlayers() {
-        players = new HashMap<>();
+        players = new LinkedHashMap<>();
         try {
             Statement stmt = db.connection.createStatement();
             ResultSet resultSet = stmt.executeQuery("SELECT * FROM players ORDER BY score DESC");
@@ -57,11 +59,13 @@ public class PlayerModel {
         return new Player();
     }
 
-    public static JSONObject getPlayersJSON() {
+    public static LinkedHashMap<String, JSONObject> getPlayersJSON() {
 
-        JSONObject playersJson = new JSONObject();
+        LinkedHashMap<String, JSONObject> jsonOrderedMap = new LinkedHashMap<String, JSONObject>();
 
+        System.out.println(players);
         for (Map.Entry<Integer, Player> field : players.entrySet()) {
+            System.out.println(field.getKey());
             Player player = field.getValue();
 
             JSONObject playerJson = new JSONObject();
@@ -70,9 +74,11 @@ public class PlayerModel {
             playerJson.put("score", player.getPlayerScore());
             playerJson.put("status", player.getPlayerStatus());
 
-            playersJson.put(field.getKey(), playerJson);
+            jsonOrderedMap.put(Integer.toString(field.getKey()), playerJson);
+            System.out.println(jsonOrderedMap);
         }
-        return playersJson;
+
+        return jsonOrderedMap;
 
     }
 
