@@ -4,3 +4,4 @@ TicTacToeFX.iml
 Server/src/main/java/com/tictactoe/database/DBConfig.java
 Client/target/
 Server/target/
+Server/src/main/java/com/tictactoe/database/DBConfig.java
