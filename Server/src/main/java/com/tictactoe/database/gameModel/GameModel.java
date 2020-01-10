@@ -7,6 +7,7 @@ package com.tictactoe.database.gameModel;
 
 import com.tictactoe.actions.App;
 import com.tictactoe.database.DatabaseManager;
+import com.tictactoe.database.playerModel.Player;
 import com.tictactoe.database.playerModel.PlayerModel;
 import java.sql.*;
 import java.util.HashMap;
@@ -14,6 +15,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 
 public class GameModel {
@@ -103,7 +106,41 @@ public class GameModel {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
     }
+    public static void updateGameBoard(JSONObject game) {
+        try {
+            PreparedStatement preparedStatement = db.connection.prepareStatement("UPDATE games SET bard=? WHERE id=?");
+            preparedStatement.setString(1, game.get("board").toString());
+            preparedStatement.setInt(2, Integer.parseInt(game.get("id").toString()));
+            int isUpdated = preparedStatement.executeUpdate();
+            if (isUpdated > 0) {
+                Game g = games.get(Integer.parseInt(game.get("id").toString()));
+                try {
+                    g.setBoard((JSONObject) new JSONParser().parse(game.get("board").toString()));
+                } catch (ParseException ex) {
+//                    Logger.getLogger(GameModel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                games.replace(Integer.parseInt(game.get("id").toString()), g);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }    
+    
+    public static void setWinner(JSONObject game) {
+        try {
+            PreparedStatement preparedStatement = db.connection.prepareStatement("UPDATE games SET winner=? WHERE id=?");
+            preparedStatement.setInt(1, Integer.parseInt(game.get("winner").toString()));
+            preparedStatement.setInt(2, Integer.parseInt(game.get("id").toString()));
+            int isUpdated = preparedStatement.executeUpdate();
+            if (isUpdated > 0) {
+                Game g = games.get(Integer.parseInt(game.get("id").toString()));
+                g.setWinnerPlayer((Player)game.get("winner"));
+                games.replace(Integer.parseInt(game.get("id").toString()), g);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }      
 
 }
