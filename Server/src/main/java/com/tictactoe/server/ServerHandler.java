@@ -16,12 +16,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ServerHandler extends Thread {
 
-    private static Vector<ServerHandler> playersSoc = new Vector<>();
+    public static Vector<ServerHandler> playersSoc = new Vector<>();
     private DataInputStream dis;
-    private PrintStream ps;
+    public PrintStream ps;
     private Socket soc;
     private Player player;
     private JSONObject jsonMsg;
@@ -99,6 +101,9 @@ public class ServerHandler extends Thread {
                 break;
             case "getall":
                 getall();
+                break;
+            case "serverClose":
+                serverClose();
                 break;
         }
 
@@ -204,6 +209,16 @@ public class ServerHandler extends Thread {
         resp.put("players",PlayerModel.getPlayersJSON());
         for (ServerHandler playerHandle : playersSoc) {
             playerHandle.ps.println(resp);
+        }
+    }
+
+    private void serverClose() {
+        try {
+            ps.close();
+            dis.close();
+            soc.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ServerHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
