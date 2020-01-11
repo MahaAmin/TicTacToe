@@ -105,6 +105,9 @@ public class PlayerSoc {
             case "updateBoard":
                 updateBoard();
                 break;
+            case "getall":
+                PlayerModel.getPlayers(jsonMsg.get("players").toString());
+                break;
         }
 
     }

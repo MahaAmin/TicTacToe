@@ -5,12 +5,15 @@ import com.jfoenix.controls.JFXListView;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.management.PlatformLoggingMXBean;
 import java.net.URL;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +26,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import player.PlayerHandler;
 import playerModel.Player;
 import playerModel.PlayerModel;
@@ -47,21 +51,6 @@ public class DashboardController implements Initializable {
     private TableColumn<User, String> avatarColumnT1;
 
     ObservableList<User> currentUser = FXCollections.observableArrayList();
-
-    //Table 2 For all users
-    @FXML
-    private TableView<User> allUsersTable;
-
-    @FXML
-    private TableColumn<User, String> statusColumnT2;
-    @FXML
-    private TableColumn<User, String> usernameColumnT2;
-    @FXML
-    private TableColumn<User, String> rankColumnT2;
-    @FXML
-    private TableColumn<User, String> scoreColumnT2;
-
-    ObservableList<User> allUsers = FXCollections.observableArrayList();
 
     @FXML
     private void vsPCbuttonClicked(ActionEvent event) throws IOException {
@@ -104,15 +93,6 @@ public class DashboardController implements Initializable {
 
         currentUser.add(new User("JAXON", "2nd", "12"));
         userTable.setItems(currentUser);
-
-        //Table 2 [All users]
-        statusColumnT2.setCellValueFactory(new PropertyValueFactory<>("status"));
-        usernameColumnT2.setCellValueFactory(new PropertyValueFactory<>("userName"));
-        rankColumnT2.setCellValueFactory(new PropertyValueFactory<>("rank"));
-        scoreColumnT2.setCellValueFactory(new PropertyValueFactory<>("score"));
-
-        allUsers.add(new User("Ahmed", "20", "100", "Offline"));
-        allUsersTable.setItems(allUsers);
     }
 
 }
