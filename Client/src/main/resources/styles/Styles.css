@@ -156,9 +156,6 @@ GamePlay.FXML
  }
  
  /*Styling the Dashboard Tables on the left*/
-.table-view{
-   -fx-background-color: transparent;
-}
 
 .table-view:focused{
     -fx-background-color:  #F3F5F9;
