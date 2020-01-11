@@ -72,7 +72,6 @@ public class RegisterFormController implements Initializable {
         }
 
         //Check the sanity of the email TF.
-        //From the tutorial https://www.techgalery.com/2019/08/javafx-email-validation-using-jfoenix.html
         if (!emailTF.getText().trim().isEmpty()) {
             regexValidator.setRegexPattern("^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
             emailTF.setValidators(regexValidator);
