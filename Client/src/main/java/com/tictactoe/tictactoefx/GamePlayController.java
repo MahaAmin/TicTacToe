@@ -579,5 +579,10 @@ public class GamePlayController implements Initializable {
     private void backButtonClicked(ActionEvent event) throws IOException {
         SwitchTo.dashboardScene(event);
     }
+    
+    @FXML private void saveButtonClicked(ActionEvent event)
+    {
+        System.out.println("Save button clicked");
+    }
 
 }

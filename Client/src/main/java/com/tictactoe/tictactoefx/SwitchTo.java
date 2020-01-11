@@ -27,7 +27,7 @@ public class SwitchTo {
     static ArrayList<String> popUpList = new ArrayList<String>() {
         {
             add("OnlineListPopup"); // 0 ==> OnlineListPopup.fxml
-
+            add("InvitationRequestPopup");// 1==> InvitationRequestPopupController.fxml
         }
     };
 
@@ -79,5 +79,9 @@ public class SwitchTo {
         popupTransition(0, "Online List");
     }
 
+    public static void InvitationRequestPopupScene() throws IOException
+    {
+        popupTransition(1, "Invitation Request");
+    }
 
 }
