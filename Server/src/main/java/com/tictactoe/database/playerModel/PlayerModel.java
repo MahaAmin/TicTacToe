@@ -126,6 +126,7 @@ public class PlayerModel {
 
     // update status
     public static void updateStatus(JSONObject player) {
+        System.out.println("update "+player);
         try {
             PreparedStatement preparedStatement = db.connection.prepareStatement("UPDATE players SET status=? WHERE id=?");
             preparedStatement.setString(1, player.get("status").toString());

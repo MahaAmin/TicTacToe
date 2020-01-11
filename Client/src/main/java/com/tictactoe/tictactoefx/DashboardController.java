@@ -1,5 +1,6 @@
 package com.tictactoe.tictactoefx;
 
+import actions.GameConfig;
 import com.jfoenix.controls.JFXListView;
 
 import java.io.FileInputStream;
@@ -67,6 +68,7 @@ public class DashboardController implements Initializable {
     private void vsPCbuttonClicked(ActionEvent event) throws IOException {
         //Transition to the GamePlay.fxml 
 //        SwitchTo.gamePlayScene(event);
+        GameConfig.setMode(1);  // pc mode
         SwitchTo.DifficultySelectionScene(event);
     }
 

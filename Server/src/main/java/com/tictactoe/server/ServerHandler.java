@@ -141,19 +141,24 @@ public class ServerHandler extends Thread {
     private void acceptRequest() {
         // set game data to [to_player]
         game = GameModel.getGame(Integer.parseInt(jsonMsg.get("game_id").toString()));
+        Player from_player = game.getFromPlayer();
         JSONObject jsonObject = new JSONObject();
         // friend accept to play with me
         if (jsonMsg.get("response").equals("true")) {
+            Player to_player = game.getToPlayer();
             jsonObject.put("type", "gameStart");
+            jsonObject.put("from_name", from_player.getPlayerName());
+            jsonObject.put("from_id", from_player.getID());
+            jsonObject.put("to_name", to_player.getPlayerName());
             // send to player 1  to start the game
-            getPlayerHandler(game.getFromPlayer().getID()).ps.println(jsonObject.toJSONString());
+            getPlayerHandler(from_player.getID()).ps.println(jsonObject.toJSONString());
             // send to player 2  to start the game
-            getPlayerHandler(game.getToPlayer().getID()).ps.println(jsonObject.toJSONString());
+            getPlayerHandler(to_player.getID()).ps.println(jsonObject.toJSONString());
         } else {
             System.out.println("game refused");
             jsonMsg.replace("type", "requestRejected");
             // send to player 1  that player 2 refuse to play with you
-            getPlayerHandler(game.getFromPlayer().getID()).ps.println(jsonMsg.toJSONString());
+            getPlayerHandler(from_player.getID()).ps.println(jsonMsg.toJSONString());
         }
     }
 

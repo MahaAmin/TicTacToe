@@ -2,6 +2,7 @@ package player;
 
 import actions.Alerts;
 import actions.App;
+import actions.GameConfig;
 import actions.PlayRequest;
 import com.tictactoe.tictactoefx.GamePlayController;
 import com.tictactoe.tictactoefx.SwitchTo;
@@ -126,7 +127,12 @@ public class PlayerSoc {
     }
 
     private void gameStart() {
-        // send invitation alert to a friend
+        // start the game
+        GameConfig.setPlayerX(jsonMsg.get("from_name").toString());
+        GameConfig.setPlayerO(jsonMsg.get("to_name").toString());
+        // player x play first
+        GameConfig.setTurn(Integer.parseInt(jsonMsg.get("from_id").toString()));
+        GameConfig.setMode(2);  // two players mode
         Platform.runLater(() -> {
             try {
                 SwitchTo.changeTo(App.getWindow(), 3);
@@ -144,6 +150,10 @@ public class PlayerSoc {
     }
 
     private void updateBoard() {
+        if(GameConfig.getTurn()==1)
+            GameConfig.setTurn(2);
+        else
+            GameConfig.setTurn(1);
         Platform.runLater(() -> {
             App.getGamePlayController().invokePrintBoard(jsonMsg);
         });

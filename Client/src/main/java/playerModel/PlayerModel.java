@@ -16,7 +16,6 @@ public class PlayerModel {
         players = new LinkedHashMap<>();
         JSONParser parser = new JSONParser();
         JSONArray jsonArray = (JSONArray) parser.parse(data);
-        System.out.println(jsonArray);
 
         jsonArray.forEach((playerJson) -> {
             JSONObject playerJs = (JSONObject) playerJson;
