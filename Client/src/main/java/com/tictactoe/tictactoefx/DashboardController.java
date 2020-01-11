@@ -56,9 +56,9 @@ public class DashboardController implements Initializable {
     ObservableList<User> currentUser = FXCollections.observableArrayList();
 
     @FXML
-        private TableView allUsersTable = new TableView();
+        private TableView allUsersTable;
     @FXML
-    TableColumn<Player, String> userNameColumnT2, UserScoreColumnT2;
+    TableColumn<Player, String> usernameColumnT2,statusColumnT2,scoreColumnT2;
 
 
     @FXML
@@ -72,14 +72,13 @@ public class DashboardController implements Initializable {
     @FXML
     private void vsOnlinePlayerButtonClicked(ActionEvent event) throws IOException {
         //Popup the OnlineListPopUp.fxml scene
-//        SwitchTo.onlineListPopUpScene();
-        PlayerHandler.sendPlayRequest(2);
+        SwitchTo.onlineListPopUpScene();
+        //PlayerHandler.sendPlayRequest(2);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Image image1;
-        ObservableList<Map.Entry<Integer,Player>> playerslist = FXCollections.observableArrayList(PlayerModel.players.entrySet());
         try {
 
             image1 = new Image(new FileInputStream("C:\\Users\\Jaxon\\Desktop\\me.jpg"));
@@ -106,12 +105,12 @@ public class DashboardController implements Initializable {
         currentUser.add(new User(current.getPlayerName(), "2nd", Integer.toString(current.getPlayerScore()),current.getPlayerAvatar()));
         userTable.setItems(currentUser);
 
-        userNameColumnT2 = new TableColumn("First Name");
-        userNameColumnT2.setCellValueFactory(new PropertyValueFactory<Player, String>("PlayerName"));
+        usernameColumnT2.setCellValueFactory(new PropertyValueFactory<>("name"));
+        scoreColumnT2.setCellValueFactory(new PropertyValueFactory<>("score"));
+        statusColumnT2.setCellValueFactory(new PropertyValueFactory<>("status"));
         System.out.println("dashboard: " +PlayerModel.players.values());
-        System.out.println("this is the observable list"+playerslist);
-        allUsersTable.setItems(FXCollections.observableArrayList(PlayerModel.players.values()));
-        allUsersTable.getColumns().addAll(userNameColumnT2);
+        System.out.println("this is the observable list"+PlayerModel.playerslist);
+        allUsersTable.setItems(PlayerModel.playerslist);
     }
 
 }

@@ -57,7 +57,6 @@
          <columns>
             <TableColumn fx:id="statusColumnT2" prefWidth="75.0" text="Status" />
             <TableColumn fx:id="usernameColumnT2" prefWidth="98.0" text="Username" />
-            <TableColumn fx:id="rankColumnT2" prefWidth="74.0" text="Rank" />
             <TableColumn fx:id="scoreColumnT2" prefWidth="101.0" text="Score" />
          </columns>
       </TableView>
