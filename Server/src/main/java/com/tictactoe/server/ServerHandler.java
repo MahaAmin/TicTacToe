@@ -22,9 +22,9 @@ import java.util.logging.Logger;
 public class ServerHandler extends Thread {
 
     public static Vector<ServerHandler> playersSoc = new Vector<>();
-    private DataInputStream dis;
+    public DataInputStream dis;
     public PrintStream ps;
-    private Socket soc;
+    public Socket soc;
     private Player player;
     private JSONObject jsonMsg;
     private Game game;
