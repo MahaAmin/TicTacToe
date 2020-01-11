@@ -205,6 +205,9 @@ public class PlayerSoc {
 
     private void serverClose() {
         try {
+        Platform.runLater(() -> {
+            Alerts.serverIsShuttingDown();
+        });
             ps.close();
             dis.close();
             socket.close();
