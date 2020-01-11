@@ -56,7 +56,7 @@ public class DashboardController implements Initializable {
     ObservableList<User> currentUser = FXCollections.observableArrayList();
 
     @FXML
-        private TableView Allusers = new TableView();
+        private TableView allUsersTable = new TableView();
     @FXML
     TableColumn<Player, String> userNameColumnT2, UserScoreColumnT2;
 
@@ -108,8 +108,10 @@ public class DashboardController implements Initializable {
 
         userNameColumnT2 = new TableColumn("First Name");
         userNameColumnT2.setCellValueFactory(new PropertyValueFactory<Player, String>("PlayerName"));
-        Allusers.setItems(playerslist);
-        Allusers.getColumns().addAll(userNameColumnT2);
+        System.out.println("dashboard: " +PlayerModel.players.values());
+        System.out.println("this is the observable list"+playerslist);
+        allUsersTable.setItems(FXCollections.observableArrayList(PlayerModel.players.values()));
+        allUsersTable.getColumns().addAll(userNameColumnT2);
     }
 
 }

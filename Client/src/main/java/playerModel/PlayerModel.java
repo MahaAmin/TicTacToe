@@ -1,6 +1,5 @@
 package playerModel;
 
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -25,6 +24,7 @@ public class PlayerModel {
             pl.setPlayerName(playerJs.get("name").toString());
             pl.setPlayerStatus(Integer.parseInt(playerJs.get("status").toString()));
             pl.setPlayerScore(Integer.parseInt(playerJs.get("score").toString()));
+            players.put(Integer.parseInt(playerJs.get("id").toString()), pl);
         });
     }
 }
