@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -54,6 +55,12 @@ public class DashboardController implements Initializable {
     ObservableList<User> currentUser = FXCollections.observableArrayList();
 
     @FXML
+        private TableView Allusers = new TableView();
+    @FXML
+    TableColumn<Player, String> userNameColumnT2, UserScoreColumnT2;
+
+
+    @FXML
     private void vsPCbuttonClicked(ActionEvent event) throws IOException {
         //Transition to the GamePlay.fxml 
 //        SwitchTo.gamePlayScene(event);
@@ -71,6 +78,7 @@ public class DashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Image image1;
+        ObservableList<Map.Entry<Integer,Player>> playerslist = FXCollections.observableArrayList(PlayerModel.players.entrySet());
         try {
 
             image1 = new Image(new FileInputStream("C:\\Users\\Jaxon\\Desktop\\me.jpg"));
@@ -95,6 +103,11 @@ public class DashboardController implements Initializable {
 
         currentUser.add(new User("JAXON", "2nd", "12"));
         userTable.setItems(currentUser);
+
+        userNameColumnT2 = new TableColumn("First Name");
+        userNameColumnT2.setCellValueFactory(new PropertyValueFactory<Player, String>("PlayerName"));
+        Allusers.setItems(playerslist);
+        Allusers.getColumns().addAll(userNameColumnT2);
     }
 
 }

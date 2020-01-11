@@ -86,5 +86,5 @@ public class Player {
     }        
     public String getPlayerAvatar(){
         return avatar;
-    }            
+    }
 }
