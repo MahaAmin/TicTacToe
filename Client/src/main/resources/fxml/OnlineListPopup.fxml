@@ -4,6 +4,7 @@
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
@@ -17,7 +18,11 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <JFXListView id="OnlineLV" fx:id="onlinePlayersLV" layoutY="97.0" prefHeight="464.0" prefWidth="875.0" stylesheets="@../styles/Styles.css" />
+      <HBox fx:id="hbox" layoutY="97.0" style="-fx-alignment: center;" stylesheets="@../styles/Styles.css">
+         <children>
+            <JFXListView id="onlinePlayersLV" fx:id="onlinePlayersLV" prefHeight="464.0" prefWidth="875.0" stylesheets="@../styles/Styles.css" />
+         </children>
+      </HBox>
       <FontIcon iconColor="#44ddba" iconLiteral="fa-flash" iconSize="30" layoutX="322.0" layoutY="50.0" />
    </children>
 </AnchorPane>
