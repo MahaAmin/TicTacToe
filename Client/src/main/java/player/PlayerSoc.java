@@ -2,6 +2,7 @@ package player;
 
 import actions.Alerts;
 import actions.App;
+import actions.GameConfig;
 import actions.PlayRequest;
 import com.tictactoe.tictactoefx.GamePlayController;
 import com.tictactoe.tictactoefx.SwitchTo;
@@ -85,7 +86,6 @@ public class PlayerSoc {
     private void jsonHandle(String data) throws ParseException {
         JSONParser parser = new JSONParser();
         jsonMsg = (JSONObject) parser.parse(data);
-        System.out.println(data);
         switch (jsonMsg.get("type").toString()) {
             case "playRequest":
                 playRequest();
@@ -129,7 +129,13 @@ public class PlayerSoc {
     }
 
     private void gameStart() {
-        // send invitation alert to a friend
+        // start the game
+        GameConfig.setPlayerX(jsonMsg.get("from_name").toString());
+        GameConfig.setPlayerO(jsonMsg.get("to_name").toString());
+        // player x play first [from player]
+        if (Integer.parseInt(jsonMsg.get("from_id").toString()) == player.getID())
+            GameConfig.setTurn(true);
+        GameConfig.setMode(2);  // two players mode
         Platform.runLater(() -> {
             try {
                 SwitchTo.changeTo(App.getWindow(), 3);
@@ -147,6 +153,12 @@ public class PlayerSoc {
     }
 
     private void updateBoard() {
+        // switch the turn between players
+        if (GameConfig.getTurn())
+            GameConfig.setTurn(false);
+        else
+            GameConfig.setTurn(true);
+
         Platform.runLater(() -> {
             App.getGamePlayController().invokePrintBoard(jsonMsg);
         });
@@ -177,7 +189,6 @@ public class PlayerSoc {
     }
 
     private void register() {
-        System.out.println(jsonMsg.get("status"));
         if (jsonMsg.get("status").toString().compareTo("true") == 0) {
             Platform.runLater(() -> {
                 try {
