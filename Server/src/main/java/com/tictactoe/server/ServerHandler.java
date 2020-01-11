@@ -91,18 +91,21 @@ public class ServerHandler extends Thread {
             case "updateBoard":
                 updateBoard();
             case "logout":
-                try {
-                    logout();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+//                logout();
                 break;
             case "getall":
                 getall();
                 break;
+            case "saveGameRequest":
+                saveGameRequest();
+                break;
+            case "saveGameAnswer":
+                saveGameAnswer();
+                break;
         }
 
     }
+
 
     private void setPlayer(JSONObject client) {
 
@@ -178,18 +181,42 @@ public class ServerHandler extends Thread {
         getPlayerHandler(game.getToPlayer().getID()).ps.println(jsonMsg.toJSONString());
     }
 
+    private void saveGameRequest() {
+
+        // send to player 2  a request to save the game
+        getPlayerHandler(game.getToPlayer().getID()).ps.println(jsonMsg.toJSONString());
+    }
+
+    private void saveGameAnswer() {
+        // if player 2 who want to save the game send save game answer to him
+        if (game.getFromPlayer().getID()==player.getID()){
+            getPlayerHandler(game.getToPlayer().getID()).ps.println(jsonMsg.toJSONString());
+        }else {
+            // if player 1 who want to save the game send save game answer to him
+            getPlayerHandler(game.getFromPlayer().getID()).ps.println(jsonMsg.toJSONString());
+        }
+        // if the both players wants to save the game then save it
+        if (jsonMsg.get("response").equals("true")) {
+            jsonMsg.remove("type");
+            jsonMsg.remove("response");
+            game.setBoard(jsonMsg);
+            GameModel.updateGameBoard(jsonMsg,game.getId());
+
+        }
+    }
+
+
     private ServerHandler getPlayerHandler(int player_id) {
         for (ServerHandler playerHandle : playersSoc) {
             if (playerHandle.player.getID() == player_id) {
                 return playerHandle;
             }
-
         }
         return null;
     }
 
 
-    private void logout() throws IOException {
+    private void logout() {
 
         PlayerModel.logout(jsonMsg);
         //System.out.println("This is the logout id"+jsonMsg.get("id"));p
@@ -199,9 +226,9 @@ public class ServerHandler extends Thread {
     }
 
     public void getall() {
-        JSONObject resp= new JSONObject();
-        resp.put("type","getall");
-        resp.put("players",PlayerModel.getPlayersJSON());
+        JSONObject resp = new JSONObject();
+        resp.put("type", "getall");
+        resp.put("players", PlayerModel.getPlayersJSON());
         for (ServerHandler playerHandle : playersSoc) {
             playerHandle.ps.println(resp);
         }

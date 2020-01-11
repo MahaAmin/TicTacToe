@@ -64,9 +64,7 @@ public class PlayerModel {
 
         LinkedHashMap<String, JSONObject> jsonOrderedMap = new LinkedHashMap<String, JSONObject>();
         JSONArray jsonArray=new JSONArray();
-        System.out.println(players);
         for (Map.Entry<Integer, Player> field : players.entrySet()) {
-            System.out.println(field.getKey());
             Player player = field.getValue();
 
             JSONObject playerJson = new JSONObject();
@@ -76,7 +74,6 @@ public class PlayerModel {
             playerJson.put("status", player.getPlayerStatus());
 
             jsonArray.add(playerJson);
-//            System.out.println(jsonOrderedMap);
         }
 
         return jsonArray;

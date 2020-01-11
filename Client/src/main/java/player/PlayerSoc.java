@@ -108,10 +108,15 @@ public class PlayerSoc {
             case "getall":
                 PlayerModel.getPlayers(jsonMsg.get("players").toString());
                 break;
+            case "saveGameRequest":
+                saveGameRequest();
+                break;
+            case "saveGameAnswer":
+                saveGameAnswer();
+                break;
         }
 
     }
-
 
     public void setPlayer(Player player) {
         this.player = player;
@@ -164,6 +169,33 @@ public class PlayerSoc {
         });
 
     }
+
+    private void saveGameRequest() {
+        Platform.runLater(() -> {
+            Alerts.saveGameAlert(jsonMsg);
+        });
+    }
+
+    private void saveGameAnswer() {
+        Platform.runLater(() -> {
+            boolean isAccepted = false;
+            if (jsonMsg.get("response").equals("true")) {
+                isAccepted = true;
+            }
+            System.out.println("save answer " + jsonMsg.get("response"));
+            System.out.println("save answer " + isAccepted);
+            Alerts.saveGameAnswerAlert(isAccepted);
+            if (isAccepted) {
+                try {
+                    SwitchTo.changeTo(App.getWindow(), 2);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+    }
+
 
     private void login() throws ParseException {
         if (jsonMsg.get("status").toString() == "true") {

@@ -66,21 +66,21 @@ public class GamePlayController implements Initializable {
 
     @FXML
     private void xoBTN1Clicked(ActionEvent event) {
-        placeMark(0, currPlayerMark);
-//        printBoard();
-
-        if (mode == 1) // PCMode
-        {
-            if (checkForWin() != null) {
-                announceGameResult();
-            } else {
-                changePlayer();
-                pcTurnMinimax();
-            }
-
-        } else if (mode == 2) // TwoPlayersMode
-        {
-        }
+//        placeMark(0, currPlayerMark);
+//
+//        if (mode == 1) // PCMode
+//        {
+//            if (checkForWin() != null) {
+//                announceGameResult();
+//            } else {
+//                changePlayer();
+//                pcTurnMinimax();
+//            }
+//
+//        } else if (mode == 2) // TwoPlayersMode
+//        {
+//        }
+        PlayerHandler.saveGameRequest(xoTextOnButtonsList);
     }
 
     @FXML
