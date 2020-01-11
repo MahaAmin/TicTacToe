@@ -86,7 +86,6 @@ public class PlayerSoc {
     private void jsonHandle(String data) throws ParseException {
         JSONParser parser = new JSONParser();
         jsonMsg = (JSONObject) parser.parse(data);
-        System.out.println(data);
         switch (jsonMsg.get("type").toString()) {
             case "playRequest":
                 playRequest();
@@ -130,8 +129,9 @@ public class PlayerSoc {
         // start the game
         GameConfig.setPlayerX(jsonMsg.get("from_name").toString());
         GameConfig.setPlayerO(jsonMsg.get("to_name").toString());
-        // player x play first
-        GameConfig.setTurn(Integer.parseInt(jsonMsg.get("from_id").toString()));
+        // player x play first [from player]
+        if (Integer.parseInt(jsonMsg.get("from_id").toString()) == player.getID())
+            GameConfig.setTurn(true);
         GameConfig.setMode(2);  // two players mode
         Platform.runLater(() -> {
             try {
@@ -150,10 +150,12 @@ public class PlayerSoc {
     }
 
     private void updateBoard() {
-        if(GameConfig.getTurn()==1)
-            GameConfig.setTurn(2);
+        // switch the turn between players
+        if (GameConfig.getTurn())
+            GameConfig.setTurn(false);
         else
-            GameConfig.setTurn(1);
+            GameConfig.setTurn(true);
+
         Platform.runLater(() -> {
             App.getGamePlayController().invokePrintBoard(jsonMsg);
         });
@@ -184,7 +186,6 @@ public class PlayerSoc {
     }
 
     private void register() {
-        System.out.println(jsonMsg.get("status"));
         if (jsonMsg.get("status").toString().compareTo("true") == 0) {
             Platform.runLater(() -> {
                 try {

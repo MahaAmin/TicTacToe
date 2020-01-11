@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
+import javafx.scene.shape.Circle;
 import org.json.simple.JSONObject;
 import player.PlayerHandler;
 
@@ -38,6 +39,9 @@ public class GamePlayController implements Initializable {
 
     private final String colorX = "-fx-text-fill: #3989d4; ";
     private final String colorO = "-fx-text-fill: #3abcd4; ";
+
+    @FXML
+    Circle playerXCircle, playerOCircle;
 
     // int to choose which mode to play in (PCMode(1) / TwoPlayersMode(2))  
     private int mode = GameConfig.getMode();
@@ -279,6 +283,7 @@ public class GamePlayController implements Initializable {
             //Change the X & O Player names.
             playerXLabel.setText(GameConfig.getPlayerX());
             playerOLabel.setText(GameConfig.getPlayerO());
+            playerXCircle.setStyle("-fx-stroke: #F06585; ");
         }
 
         playerXScore = 0;
@@ -298,7 +303,6 @@ public class GamePlayController implements Initializable {
 
         setPlayerXScore.setText(Integer.toString(playerXScore));
         setPlayerOScore.setText(Integer.toString(playerOScore));
-        System.out.println("xo " + xoTextOnButtonsList);
         for (int i = 0; i < xoButtonList.size(); i++) {
             // set label color
             setColorToTextOnButton();
@@ -372,13 +376,31 @@ public class GamePlayController implements Initializable {
     public void invokePrintBoard(JSONObject jsonObject) {
         playerXScore = Integer.parseInt(jsonObject.get("playerXScore").toString());
         playerOScore = Integer.parseInt(jsonObject.get("playerOScore").toString());
-        System.out.println("json " + jsonObject);
+
+        String OColor = "#54dfc4";
+        String XColor = "#54dfc4";
+
+        if (GameConfig.getTurn()) {
+            if (currPlayerMark.equals("X")) {
+                XColor = "#F06585";
+
+            } else {
+                OColor = "#F06585";
+            }
+        } else {
+            if (currPlayerMark.equals("X")) {
+                OColor = "#F06585";
+            } else {
+                XColor = "#F06585";
+            }
+        }
+
+        playerXCircle.setStyle("-fx-stroke: " + XColor + "; ");
+        playerOCircle.setStyle("-fx-stroke: " + OColor + "; ");
+
         for (int i = 0; i < xoTextOnButtonsList.size(); i++) {
-            System.out.println("xoTextOnButtonsList " + i + xoTextOnButtonsList.get(i));
-            System.out.println("jsonObject " + i + jsonObject.get("cell" + i).toString());
             xoTextOnButtonsList.set(i, jsonObject.get("cell" + i).toString());
         }
-        System.out.println("invoke" + xoTextOnButtonsList);
         printBoard();
     }
 
@@ -395,7 +417,8 @@ public class GamePlayController implements Initializable {
             if (mode == 1) {
                 printBoard();
             } else {
-                if (GameConfig.getTurn() == App.getPlayerSoc().getPlayer().getID()) {
+                // if it my turn send updates to the other player
+                if (GameConfig.getTurn()) {
                     // update board in the friend side also
                     PlayerHandler.updateFriendBoard(xoTextOnButtonsList, playerXScore, playerOScore);
                 }
