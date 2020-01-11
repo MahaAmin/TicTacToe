@@ -1,5 +1,6 @@
 package com.tictactoe.tictactoefx;
 
+import actions.App;
 import actions.GameConfig;
 import com.jfoenix.controls.JFXListView;
 
@@ -96,12 +97,13 @@ public class DashboardController implements Initializable {
         scoreBoardLV.getStyleClass().add("mylistview");
 
         //Table 1 [User Profile]
+        Player current= App.getPlayerSoc().getPlayer();
         userNameColumnT1.setCellValueFactory(new PropertyValueFactory<>("userName"));
         rankColumnT1.setCellValueFactory(new PropertyValueFactory<>("rank"));
         scoreColumnT1.setCellValueFactory(new PropertyValueFactory<>("score"));
         avatarColumnT1.setCellValueFactory(new PropertyValueFactory<>("avatar"));
 
-        currentUser.add(new User("JAXON", "2nd", "12"));
+        currentUser.add(new User(current.getPlayerName(), "2nd", Integer.toString(current.getPlayerScore()),current.getPlayerAvatar()));
         userTable.setItems(currentUser);
 
         userNameColumnT2 = new TableColumn("First Name");
