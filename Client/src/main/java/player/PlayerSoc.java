@@ -25,8 +25,6 @@ public class PlayerSoc {
     public Socket socket;
     public DataInputStream dis;
     public PrintStream ps;
-    //    public ObjectOutputStream oos;
-//    public ObjectInputStream ois;
     private Player player;
     private JSONObject jsonMsg;
 
@@ -68,8 +66,6 @@ public class PlayerSoc {
                     try {
                         dis.close();
                         ps.close();
-//                        oos.close();
-//                        ois.close();
                         socket.close();
                     } catch (IOException ex) {
                         ex.printStackTrace();
@@ -108,6 +104,9 @@ public class PlayerSoc {
             case "getall":
                 PlayerModel.getPlayers(jsonMsg.get("players").toString());
                 break;
+            case "serverClose":
+                serverClose();
+                break;        
         }
 
     }
@@ -201,6 +200,16 @@ public class PlayerSoc {
             Platform.runLater(() -> {
                 Alerts.wrongPasswordAlert();
             });
+        }
+    }
+
+    private void serverClose() {
+        try {
+            ps.close();
+            dis.close();
+            socket.close();
+        } catch (IOException ex) {
+//            Logger.getLogger(ServerHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

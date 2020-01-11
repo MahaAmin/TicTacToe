@@ -102,9 +102,6 @@ public class ServerHandler extends Thread {
             case "getall":
                 getall();
                 break;
-            case "serverClose":
-                serverClose();
-                break;
         }
 
     }
@@ -209,16 +206,6 @@ public class ServerHandler extends Thread {
         resp.put("players",PlayerModel.getPlayersJSON());
         for (ServerHandler playerHandle : playersSoc) {
             playerHandle.ps.println(resp);
-        }
-    }
-
-    private void serverClose() {
-        try {
-            ps.close();
-            dis.close();
-            soc.close();
-        } catch (IOException ex) {
-            Logger.getLogger(ServerHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
