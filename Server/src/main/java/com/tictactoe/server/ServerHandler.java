@@ -91,7 +91,14 @@ public class ServerHandler extends Thread {
             case "updateBoard":
                 updateBoard();
             case "logout":
-                logout();
+                try {
+                    logout();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "getall":
+                getall();
                 break;
         }
 
@@ -136,6 +143,7 @@ public class ServerHandler extends Thread {
         }
         resp.put("type", "login");
         ps.println(resp);
+        getall();
     }
 
     private void acceptRequest() {
@@ -181,7 +189,21 @@ public class ServerHandler extends Thread {
     }
 
 
-    private void logout() {
+    private void logout() throws IOException {
+
         PlayerModel.logout(jsonMsg);
+        //System.out.println("This is the logout id"+jsonMsg.get("id"));p
+        soc.close();
+        playersSoc.remove(this);
+        getall();
+    }
+
+    public void getall() {
+        JSONObject resp= new JSONObject();
+        resp.put("type","getall");
+        resp.put("players",PlayerModel.getPlayersJSON());
+        for (ServerHandler playerHandle : playersSoc) {
+            playerHandle.ps.println(resp);
+        }
     }
 }
