@@ -1,25 +1,16 @@
 package com.tictactoe.tictactoefx;
 
-import actions.App;
 import com.jfoenix.controls.JFXButton;
-
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
-
-import com.mysql.cj.jdbc.SuspendableXAConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import javafx.scene.shape.Circle;
 import org.json.simple.JSONObject;
-import player.PlayerHandler;
 
 public class GamePlayController implements Initializable {
 
@@ -36,10 +27,6 @@ public class GamePlayController implements Initializable {
     @FXML
     private Region playerXRegion;
 
-    //Player Circles (The stroke color for the circle score section).
-    @FXML
-    Circle playerXCircle, playerOCircle;
-
     private String xoTXT1, xoTXT2, xoTXT3;
     private String xoTXT4, xoTXT5, xoTXT6;
     private String xoTXT7, xoTXT8, xoTXT9;
@@ -47,8 +34,8 @@ public class GamePlayController implements Initializable {
     private final String colorX = "-fx-text-fill: #3989d4; ";
     private final String colorO = "-fx-text-fill: #3abcd4; ";
 
-    // int to choose which mode to play in (PCMode(1) / TwoPlayersMode(2))
-    public int mode = 2;
+    // int to choose which mode to play in (PCMode(1) / TwoPlayersMode(2))  
+    public int mode = 1;
 
     // ------------------------------------------------------------------ //
     private String currPlayerMark;
@@ -70,17 +57,16 @@ public class GamePlayController implements Initializable {
 
     @FXML
     private void xoBTN1Clicked(ActionEvent event) {
-        playerXCircle.setStyle("-fx-stroke: #F06585; ");
         placeMark(0, currPlayerMark);
-//        printBoard();
+        printBoard();
 
         if (mode == 1) // PCMode
         {
-            if (checkForWin() || isBoardFull()) {
+            if (checkForWin() != null) {
                 announceGameResult();
             } else {
                 changePlayer();
-                pcTurn();
+                pcTurnMinimax();
             }
 
         } else if (mode == 2) // TwoPlayersMode
@@ -90,17 +76,16 @@ public class GamePlayController implements Initializable {
 
     @FXML
     private void xoBTN2Clicked(ActionEvent event) {
-        playerOCircle.setStyle("-fx-stroke: #F06585; ");
         placeMark(1, currPlayerMark);
-//        printBoard();
+        printBoard();
 
         if (mode == 1) // PCMode
         {
-            if (checkForWin() || isBoardFull()) {
+            if (checkForWin() != null) {
                 announceGameResult();
             } else {
                 changePlayer();
-                pcTurn();
+                pcTurnMinimax();
             }
 
         } else if (mode == 2) // TwoPlayersMode
@@ -111,15 +96,15 @@ public class GamePlayController implements Initializable {
     @FXML
     private void xoBTN3Clicked(ActionEvent event) {
         placeMark(2, currPlayerMark);
-//        printBoard();
+        printBoard();
 
         if (mode == 1) // PCMode
         {
-            if (checkForWin() || isBoardFull()) {
+            if (checkForWin() != null) {
                 announceGameResult();
             } else {
                 changePlayer();
-                pcTurn();
+                pcTurnMinimax();
             }
 
         } else if (mode == 2) // TwoPlayersMode
@@ -130,15 +115,15 @@ public class GamePlayController implements Initializable {
     @FXML
     private void xoBTN4Clicked(ActionEvent event) {
         placeMark(3, currPlayerMark);
-//        printBoard();
+        printBoard();
 
         if (mode == 1) // PCMode
         {
-            if (checkForWin() || isBoardFull()) {
+            if (checkForWin() != null) {
                 announceGameResult();
             } else {
                 changePlayer();
-                pcTurn();
+                pcTurnMinimax();
             }
 
         } else if (mode == 2) // TwoPlayersMode
@@ -149,17 +134,17 @@ public class GamePlayController implements Initializable {
     @FXML
     private void xoBTN5Clicked(ActionEvent event) {
         placeMark(4, currPlayerMark);
-//        printBoard();
+        printBoard();
 
-//        printBoard();
+        printBoard();
 
         if (mode == 1) // PCMode
         {
-            if (checkForWin() || isBoardFull()) {
+            if (checkForWin() != null) {
                 announceGameResult();
             } else {
                 changePlayer();
-                pcTurn();
+                pcTurnMinimax();
             }
 
         } else if (mode == 2) // TwoPlayersMode
@@ -170,15 +155,15 @@ public class GamePlayController implements Initializable {
     @FXML
     private void xoBTN6Clicked(ActionEvent event) {
         placeMark(5, currPlayerMark);
-//        printBoard();
+        printBoard();
 
         if (mode == 1) // PCMode
         {
-            if (checkForWin() || isBoardFull()) {
+            if (checkForWin() != null) {
                 announceGameResult();
             } else {
                 changePlayer();
-                pcTurn();
+                pcTurnMinimax();
             }
 
         } else if (mode == 2) // TwoPlayersMode
@@ -189,15 +174,15 @@ public class GamePlayController implements Initializable {
     @FXML
     private void xoBTN7Clicked(ActionEvent event) {
         placeMark(6, currPlayerMark);
-//        printBoard();
+        printBoard();
 
         if (mode == 1) // PCMode
         {
-            if (checkForWin() || isBoardFull()) {
+            if (checkForWin() != null) {
                 announceGameResult();
             } else {
                 changePlayer();
-                pcTurn();
+                pcTurnMinimax();
             }
 
         } else if (mode == 2) // TwoPlayersMode
@@ -208,15 +193,15 @@ public class GamePlayController implements Initializable {
     @FXML
     private void xoBTN8Clicked(ActionEvent event) {
         placeMark(7, currPlayerMark);
-//        printBoard();
+        printBoard();
 
         if (mode == 1) // PCMode
         {
-            if (checkForWin() || isBoardFull()) {
+            if (checkForWin() != null) {
                 announceGameResult();
             } else {
                 changePlayer();
-                pcTurn();
+                pcTurnMinimax();
             }
 
         } else if (mode == 2) // TwoPlayersMode
@@ -227,15 +212,15 @@ public class GamePlayController implements Initializable {
     @FXML
     private void xoBTN9Clicked(ActionEvent event) {
         placeMark(8, currPlayerMark);
-//        printBoard();
+        printBoard();
 
         if (mode == 1) // PCMode
         {
-            if (checkForWin() || isBoardFull()) {
+            if (checkForWin() != null) {
                 announceGameResult();
             } else {
                 changePlayer();
-                pcTurn();
+                pcTurnMinimax();
             }
 
         } else if (mode == 2) // TwoPlayersMode
@@ -245,6 +230,7 @@ public class GamePlayController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         xoButtonList.add(xoBTN1);
         xoButtonList.add(xoBTN2);
         xoButtonList.add(xoBTN3);
@@ -255,20 +241,20 @@ public class GamePlayController implements Initializable {
         xoButtonList.add(xoBTN8);
         xoButtonList.add(xoBTN9);
 
-//        xoTextOnButtonsList.add(xoTXT1);
-//        xoTextOnButtonsList.add(xoTXT2);
-//        xoTextOnButtonsList.add(xoTXT3);
-//        xoTextOnButtonsList.add(xoTXT4);
-//        xoTextOnButtonsList.add(xoTXT5);
-//        xoTextOnButtonsList.add(xoTXT6);
-//        xoTextOnButtonsList.add(xoTXT7);
-//        xoTextOnButtonsList.add(xoTXT8);
-//        xoTextOnButtonsList.add(xoTXT9);
+        xoTextOnButtonsList.add(xoTXT1);
+        xoTextOnButtonsList.add(xoTXT2);
+        xoTextOnButtonsList.add(xoTXT3);
+        xoTextOnButtonsList.add(xoTXT4);
+        xoTextOnButtonsList.add(xoTXT5);
+        xoTextOnButtonsList.add(xoTXT6);
+        xoTextOnButtonsList.add(xoTXT7);
+        xoTextOnButtonsList.add(xoTXT8);
+        xoTextOnButtonsList.add(xoTXT9);
 
-        for (int i = 0; i < 9; i++) {
-            xoTextOnButtonsList.add(" ");
+        for (int i = 0; i < xoTextOnButtonsList.size(); i++) {
+            xoTextOnButtonsList.set(i, " ");
         }
-        currPlayerMark = "X";
+
         if (mode == 1) // PCMode
         {
             // human starts game with label X
@@ -290,14 +276,82 @@ public class GamePlayController implements Initializable {
         setPlayerXScore.setText(Integer.toString(playerXScore));
         setPlayerOScore.setText(Integer.toString(playerOScore));
 
-//        printBoard();
-        // save game controller to access it from anywhere
-        App.setGamePlayController(this);
+        printBoard();
 
     }
 
-    private String getCurrPlayerMark() {
-        return currPlayerMark;
+    private void printBoard() {
+
+        setPlayerXScore.setText(Integer.toString(playerXScore));
+        setPlayerOScore.setText(Integer.toString(playerOScore));
+        for (int i = 0; i < xoButtonList.size(); i++) {
+            // set label color
+            setColorToTextOnButton();
+
+            // print the button label
+            xoButtonList.get(i).setText(xoTextOnButtonsList.get(i));
+        }
+    }
+
+    private boolean isBoardFull() {
+        for (int i = 0; i < xoTextOnButtonsList.size(); i++) {
+            if (xoTextOnButtonsList.get(i).equals(" ")) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private String checkForWin() {
+        String winner = null;
+        // check Rows For win
+        // 1st row
+        if(checkTripleEquality(xoTextOnButtonsList.get(0), xoTextOnButtonsList.get(1), xoTextOnButtonsList.get(2)))
+                winner = xoTextOnButtonsList.get(0);
+        // 2nd row
+        if(checkTripleEquality(xoTextOnButtonsList.get(3), xoTextOnButtonsList.get(4), xoTextOnButtonsList.get(5)))
+            winner = xoTextOnButtonsList.get(3);
+        // 3rd row
+        if(checkTripleEquality(xoTextOnButtonsList.get(6), xoTextOnButtonsList.get(7), xoTextOnButtonsList.get(8)))
+            winner = xoTextOnButtonsList.get(6);
+        
+        // check Cols for win
+        // 1st col
+        if(checkTripleEquality(xoTextOnButtonsList.get(0), xoTextOnButtonsList.get(3), xoTextOnButtonsList.get(6)))
+            winner = xoTextOnButtonsList.get(0);
+        // 2nd col
+        if(checkTripleEquality(xoTextOnButtonsList.get(1), xoTextOnButtonsList.get(4), xoTextOnButtonsList.get(7)))
+            winner = xoTextOnButtonsList.get(1);
+        // 3rd row
+        if(checkTripleEquality(xoTextOnButtonsList.get(2), xoTextOnButtonsList.get(5), xoTextOnButtonsList.get(8)))
+            winner = xoTextOnButtonsList.get(2);
+        
+        // check Diagonals for win
+        // 1st diagonal
+        if(checkTripleEquality(xoTextOnButtonsList.get(0), xoTextOnButtonsList.get(4), xoTextOnButtonsList.get(8)))
+            winner = xoTextOnButtonsList.get(0);
+        // 2nd diagonal
+        if(checkTripleEquality(xoTextOnButtonsList.get(2), xoTextOnButtonsList.get(4), xoTextOnButtonsList.get(6)))
+            winner = xoTextOnButtonsList.get(2);
+        
+        if(isBoardFull() && winner == null)
+            return "Tie";
+        else
+            return winner;
+        
+    }
+
+
+    private boolean checkTripleEquality(String txt1, String txt2, String txt3) {
+        return ((!txt1.equalsIgnoreCase(" ")) && (txt1.equalsIgnoreCase(txt2)) && (txt2.equalsIgnoreCase(txt3)));
+    }
+
+    private void changePlayer() {
+        if (currPlayerMark.equalsIgnoreCase("x")) {
+            currPlayerMark = "O";
+        } else if (currPlayerMark.equalsIgnoreCase("o")) {
+            currPlayerMark = "X";
+        }
     }
 
     public void invokePrintBoard(JSONObject jsonObject) {
@@ -310,16 +364,37 @@ public class GamePlayController implements Initializable {
         printBoard();
     }
 
-    private void printBoard() {
-        setPlayerXScore.setText(Integer.toString(playerXScore));
-        setPlayerOScore.setText(Integer.toString(playerOScore));
-        for (int i = 0; i < xoButtonList.size(); i++) {
-            // set label color
-            setColorToTextOnButton();
-            // print the button label
-            xoButtonList.get(i).setText(xoTextOnButtonsList.get(i));
+    private boolean isCellAvailable(int index) {
+        if ((index >= 0 && index < 9) && (xoTextOnButtonsList.get(index).equals(" "))) {
+            return true;
         }
+        return false;
+    }
 
+    private void placeMark(int index, String text) {
+        if (isCellAvailable(index)) {
+            xoTextOnButtonsList.set(index, text);
+        } else {
+            System.out.println("can not place mark");
+        }
+    }
+
+    private void removeCell(int index) {
+        xoTextOnButtonsList.set(index, " ");
+    }
+
+    public void announceGameResult() {
+        if (checkForWin().equalsIgnoreCase("X")) {
+            playerXScore++;
+            setPlayerXScore.setText(Integer.toString(playerXScore));
+            System.out.println("Player X Wins!");
+        } else if (checkForWin().equalsIgnoreCase("O")) {
+            playerOScore++;
+            setPlayerOScore.setText(Integer.toString(playerOScore));
+            System.out.println("Player O Wins!");
+        } else if (isBoardFull() && !checkForWin().equalsIgnoreCase("Tie")) {
+            System.out.println("It is a tie!");
+        }
     }
 
     private void setColorToTextOnButton() {
@@ -379,99 +454,13 @@ public class GamePlayController implements Initializable {
 
     }
 
-    private boolean isBoardFull() {
-        for (int i = 0; i < xoTextOnButtonsList.size(); i++) {
-            if (xoTextOnButtonsList.get(i).equals(" ")) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean checkForWin() {
-        return (checkRowsForWin() || checkColsForWin() || checkDiagonalsForWin());
-    }
-
-    private boolean checkRowsForWin() {
-        if (checkTripleEquality(xoTextOnButtonsList.get(0), xoTextOnButtonsList.get(1), xoTextOnButtonsList.get(2))
-                || checkTripleEquality(xoTextOnButtonsList.get(3), xoTextOnButtonsList.get(4), xoTextOnButtonsList.get(5))
-                || checkTripleEquality(xoTextOnButtonsList.get(6), xoTextOnButtonsList.get(7), xoTextOnButtonsList.get(8))) {
-            return true;
-        }
-
-        return false;
-    }
-
-    private boolean checkColsForWin() {
-        if (checkTripleEquality(xoTextOnButtonsList.get(0), xoTextOnButtonsList.get(3), xoTextOnButtonsList.get(6))
-                || checkTripleEquality(xoTextOnButtonsList.get(1), xoTextOnButtonsList.get(4), xoTextOnButtonsList.get(7))
-                || checkTripleEquality(xoTextOnButtonsList.get(2), xoTextOnButtonsList.get(5), xoTextOnButtonsList.get(8))) {
-            return true;
-        }
-
-        return false;
-    }
-
-    private boolean checkDiagonalsForWin() {
-        return (checkTripleEquality(xoTextOnButtonsList.get(0), xoTextOnButtonsList.get(4), xoTextOnButtonsList.get(8))
-                || checkTripleEquality(xoTextOnButtonsList.get(2), xoTextOnButtonsList.get(4), xoTextOnButtonsList.get(6)));
-    }
-
-    private boolean checkTripleEquality(String txt1, String txt2, String txt3) {
-        return ((!txt1.equalsIgnoreCase(" ")) && (txt1.equalsIgnoreCase(txt2)) && (txt2.equalsIgnoreCase(txt3)));
-    }
-
-    private void changePlayer() {
-        if (currPlayerMark.equalsIgnoreCase("x")) {
-            currPlayerMark = "O";
-        } else if (currPlayerMark.equalsIgnoreCase("o")) {
-            currPlayerMark = "X";
-        }
-    }
-
-    private boolean isCellAvailable(int index) {
-        if ((index >= 0 && index < 9) && (xoTextOnButtonsList.get(index).equals(" "))) {
-            return true;
-        }
-        return false;
-    }
-
-    private void placeMark(int index, String text) {
-        if (isCellAvailable(index)) {
-            xoTextOnButtonsList.set(index, text);
-            // update board in the friend side also
-            PlayerHandler.updateFriendBoard(xoTextOnButtonsList, playerXScore, playerOScore);
-        } else {
-            System.out.println("can not place mark");
-        }
-    }
-
-    private void removeCell(int index) {
-        xoTextOnButtonsList.set(index, " ");
-    }
-
-    public void announceGameResult() {
-        if (checkForWin() && (currPlayerMark.equalsIgnoreCase("X"))) {
-            playerXScore++;
-            setPlayerXScore.setText(Integer.toString(playerXScore));
-            System.out.println("Player X Wins!");
-        } else if (checkForWin() && (currPlayerMark.equalsIgnoreCase("O"))) {
-            playerOScore++;
-            setPlayerOScore.setText(Integer.toString(playerOScore));
-            System.out.println("Player O Wins!");
-        } else if (isBoardFull() && !checkForWin()) {
-            System.out.println("It is a tie!");
-        }
-    }
-
-
-    private void pcTurn() {
+    private void pcTurnMinimax() {
         int bestScore = Integer.MIN_VALUE;
         int move = 100;
 
         for (int i = 0; i < 9; i++) {
             if (isCellAvailable(i)) {
-                placeMark(i, currPlayerMark);
+                placeMark(i, "O");
                 int score = minimax(xoTextOnButtonsList, 0, false);
                 removeCell(i);
                 if (score > bestScore) {
@@ -481,8 +470,8 @@ public class GamePlayController implements Initializable {
             }
         }
         placeMark(move, currPlayerMark);
-//        printBoard();
-        if (checkForWin() || isBoardFull()) {
+        printBoard();
+        if (checkForWin() != null) {
             announceGameResult();
         }
         changePlayer();
@@ -496,14 +485,18 @@ public class GamePlayController implements Initializable {
             tie = 0;
          */
 
+        String result = checkForWin();
         // base-case
-        if (checkForWin() && currPlayerMark.equalsIgnoreCase("X")) {
-            return -10;
-        } else if (checkForWin() && currPlayerMark.equalsIgnoreCase("O")) {
-            return 10;
-        } else if (isBoardFull()) {
-            return 0;
+        if (result != null) {
+            if (result.equalsIgnoreCase("X")) {
+                return -10;
+            } else if (result.equalsIgnoreCase("O")) {
+                return 10;
+            } else if (result.equalsIgnoreCase("Tie")) {
+                return 0;
+            }
         }
+        
 
         // recursive part
         if (isMaximizing) {
@@ -534,10 +527,6 @@ public class GamePlayController implements Initializable {
     @FXML
     private void backButtonClicked(ActionEvent event) throws IOException {
         SwitchTo.dashboardScene(event);
-    }
-
-    class TwoPlayersMode {
-
     }
 
 }
