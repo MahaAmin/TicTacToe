@@ -23,8 +23,7 @@ public class InvitationRequestPopupController implements Initializable {
     
     @FXML private void yesButtonClicked(ActionEvent event)
     {
-        data.put("response", "true");
-        PlayRequest.sendJSONObject(data);
+        System.out.println("yes button clicked");
     }
     
     @Override
