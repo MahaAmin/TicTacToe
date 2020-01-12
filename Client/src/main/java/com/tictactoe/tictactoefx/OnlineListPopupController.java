@@ -14,37 +14,66 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import playerModel.Player;
 import playerModel.PlayerModel;
 
 
 public class OnlineListPopupController implements Initializable {
     @FXML
-    private JFXListView<Object> onlinePlayersLV;
+    private JFXListView<String> onlinePlayersLV;
+     JFXButton btn ;
     //Here all usernames are stored
     ObservableList<String> listView = FXCollections.observableArrayList("User 1", "User 2", "User3");
+    
+    static class Cell extends ListCell<String>
+    {
+        HBox hbox = new HBox();
+        JFXButton btn = new JFXButton("button");
+        Label label = new Label("Label");
+        Pane pane = new Pane();
+      //  Image avatar = new Image("C:\\Users\\Jaxon\\Desktop\\me.jpg");
+        //ImageView img = new ImageView(avatar);
+        public Cell()
+        {
+            super();
+            btn.setStyle("-fx-background-color:  #ff000;");
+            hbox.getChildren().addAll(btn, label);
+            hbox.setHgrow(pane, Priority.ALWAYS);
+            btn.setOnAction(e -> getListView().getItems().remove(getItem()));
+        }
+        
+        public void updateItem(String name, boolean empty)
+        {
+            btn.setStyle("-fx-background-color:  #ff000;");
+            super.updateItem(name, empty);
+            setText(null);
+            setGraphic(null);
+            
+            if(name != null && !empty)
+            {
+                label.setText(name);
+                setGraphic(hbox);
+            }
+        }
+        
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        OnlineLV.setItems(PlayerModel.playerslist);
-//        OnlineLV.setCellFactory(param -> new ListCell<Player>() {
-//            @Override
-//            protected void updateItem(Player p, boolean empty) {
-//                super.updateItem(p, empty);
-//
-//                if (empty || p == null || p.getPlayerName() == null) {
-//                    setText(null);
-//                } else {
-//                    setText(p.getPlayerName()+" "+p.getPlayerStatus());
-//                }
-//            }
-//        });
-
-        JFXButton testButton = new JFXButton("Demo");
-        Label label = new Label("Test Label");
-        //ImageView img = new ImageView(avatar);
-        onlinePlayersLV.getItems().addAll( testButton, label);
-    
+        onlinePlayersLV.setItems(listView);
+        
+        GridPane pane = new GridPane();
+        Label name = new Label("h");
+        JFXButton btn = new JFXButton("Button");
+        //That's the column display
+        pane.add(name, 0, 0);
+        pane.add(btn, 0, 3);
+        
+        onlinePlayersLV.setCellFactory(param -> new Cell());
 
     }    
     

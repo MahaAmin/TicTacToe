@@ -2,6 +2,7 @@ package com.tictactoe.tictactoefx;
 
 import actions.App;
 import actions.GameConfig;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 
 import java.io.FileInputStream;
@@ -48,23 +49,26 @@ public class DashboardController implements Initializable {
     @FXML
     private TableColumn<User, String> userNameColumnT1;
     @FXML
-    private TableColumn<User, String> rankColumnT1;
-    @FXML
     private TableColumn<User, String> scoreColumnT1;
     @FXML
     private TableColumn<User, String> avatarColumnT1;
 
     ObservableList<User> currentUser = FXCollections.observableArrayList();
 
+
     @FXML
-        private TableView allUsersTable;
+    private TableView<Player> allUsersTable;
     @FXML
-    TableColumn<Player, String> usernameColumnT2,statusColumnT2,scoreColumnT2;
+    private TableColumn<Player, String> username;
+    @FXML
+    private TableColumn<Player, String> score;
+    @FXML
+    private TableColumn<Player, JFXButton> status;
 
 
     @FXML
     private void vsPCbuttonClicked(ActionEvent event) throws IOException {
-        //Transition to the GamePlay.fxml 
+        //Transition to the GamePlay.fxml
 //        SwitchTo.gamePlayScene(event);
         GameConfig.setMode(1);  // pc mode
         SwitchTo.DifficultySelectionScene(event);
@@ -73,7 +77,11 @@ public class DashboardController implements Initializable {
     @FXML
     private void vsOnlinePlayerButtonClicked(ActionEvent event) throws IOException {
         //Popup the OnlineListPopUp.fxml scene
+<<<<<<< HEAD
       //  SwitchTo.onlineListPopUpScene();
+=======
+        SwitchTo.onlineListPopUpScene();
+>>>>>>> 329e21374c9026fcc79aca580488d0eeab04824c
         PlayerHandler.sendPlayRequest(2);
     }
 
@@ -99,18 +107,19 @@ public class DashboardController implements Initializable {
         //Table 1 [User Profile]
         Player current= App.getPlayerSoc().getPlayer();
         userNameColumnT1.setCellValueFactory(new PropertyValueFactory<>("userName"));
+<<<<<<< HEAD
        rankColumnT1.setCellValueFactory(new PropertyValueFactory<>("rank"));
+=======
+>>>>>>> 329e21374c9026fcc79aca580488d0eeab04824c
         scoreColumnT1.setCellValueFactory(new PropertyValueFactory<>("score"));
         avatarColumnT1.setCellValueFactory(new PropertyValueFactory<>("avatar"));
 
         currentUser.add(new User(current.getPlayerName(),"first", Integer.toString(current.getPlayerScore()),current.getPlayerAvatar()));
         userTable.setItems(currentUser);
 
-        usernameColumnT2.setCellValueFactory(new PropertyValueFactory<>("name"));
-        scoreColumnT2.setCellValueFactory(new PropertyValueFactory<>("score"));
-        statusColumnT2.setCellValueFactory(new PropertyValueFactory<>("status"));
-        System.out.println("dashboard: " +PlayerModel.players.values());
-        System.out.println("this is the observable list"+PlayerModel.playerslist);
+        username.setCellValueFactory(new PropertyValueFactory<>("name"));
+        score.setCellValueFactory(new PropertyValueFactory<>("score"));
+        status.setCellValueFactory(new PropertyValueFactory<>("status"));
         allUsersTable.setItems(PlayerModel.playerslist);
     }
 

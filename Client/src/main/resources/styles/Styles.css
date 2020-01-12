@@ -191,3 +191,7 @@ GamePlay.FXML
     -fx-background-color: #F3F5F9;
 }
 
+#onlinePlayersLV
+{
+     -fx-alignment: center;
+}

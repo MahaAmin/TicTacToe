@@ -5,6 +5,8 @@
  */
 package com.tictactoe.database.playerModel;
 
+import com.jfoenix.controls.JFXButton;
+
 /**
  * @author halim
  */
@@ -16,7 +18,28 @@ public class Player {
     private int status; // it's a ENUM in database which contain offline(0), online(1), busy(2)
     private int score;
     private String avatar; // optional
+    private JFXButton btn=new JFXButton();
 
+    public String getName() {
+        return name;
+    }
+    public String getScore(){
+        return Integer.toString(score);
+    }
+    public JFXButton getStatus(){
+        if(status==0){
+            btn.setStyle("-fx-background-color: #F8327E;");
+            btn.setText("Offline");
+            return btn;
+        }
+        else if (status==1){
+            btn.setStyle("-fx-background-color: #54dfc4;");
+            btn.setText("Online");
+            return btn;
+        }
+        btn.setText("Busy");
+        return btn;
+    }
     // constactor used for GUI only
     public Player(String n, String p, String e) {
         name = n;

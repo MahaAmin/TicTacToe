@@ -36,6 +36,7 @@ public class MainApp extends Application {
         stage.show();
 
         stage.setOnCloseRequest(e -> {
+            System.out.println("on close");
             Map<String, String> map = new HashMap<>();
             map.put("type", "logout");
             map.put("id",Integer.toString(App.getPlayerSoc().getPlayer().getID()));
