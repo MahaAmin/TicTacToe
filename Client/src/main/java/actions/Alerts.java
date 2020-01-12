@@ -112,5 +112,12 @@ public class Alerts {
         }
     }
 
+    public static void serverIsShuttingDown(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Server");
+        alert.setHeaderText("Oops,Server has a problem");
+        alert.setContentText("Sorry, we will fix it soon");
+        alert.showAndWait();
+    }
 
 }

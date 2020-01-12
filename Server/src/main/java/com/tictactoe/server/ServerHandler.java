@@ -16,13 +16,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ServerHandler extends Thread {
 
-    private static Vector<ServerHandler> playersSoc = new Vector<>();
-    private DataInputStream dis;
-    private PrintStream ps;
-    private Socket soc;
+    public static Vector<ServerHandler> playersSoc = new Vector<>();
+    public DataInputStream dis;
+    public PrintStream ps;
+    public Socket soc;
     private Player player;
     private JSONObject jsonMsg;
     private Game game;
