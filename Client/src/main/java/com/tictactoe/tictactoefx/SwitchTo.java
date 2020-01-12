@@ -27,7 +27,12 @@ public class SwitchTo {
     static ArrayList<String> popUpList = new ArrayList<String>() {
         {
             add("OnlineListPopup"); // 0 ==> OnlineListPopup.fxml
-
+            add("InvitationRequestPopup");// 1==> InvitationRequestPopup.fxml
+            add("RequestRejectedPopup"); //2 ==> RequestRejectedPopup.fxml
+            add("SaveGameRejectedPopup"); //3 ==> SaveGameRejectedPopup.fxml
+            add("SaveGameRequestPopup"); //4 ==> SaveGameRequest.fxml
+            add("SaveGameSuccessPopup"); //5 ==> SaveGameSuccessPopup.fxml
+            add("Winner"); //6 ==> Winner.fxml
         }
     };
 
@@ -79,5 +84,34 @@ public class SwitchTo {
         popupTransition(0, "Online List");
     }
 
+    public static void InvitationRequestPopupScene() throws IOException
+    {
+        popupTransition(1, "Invitation Request");
+    }
+    
+    public static void RequestRejectedPopupScene() throws IOException
+    {
+        popupTransition(2, "Request was rejected");
+    }
+    
+    public static void SaveGameRejectedPopupScene() throws IOException
+    {
+        popupTransition(3, "Game save  request was rejected");
+    }
+    
+    public static void SaveGameRequestPopupScene() throws IOException
+    {
+        popupTransition(4, "Request for game save");
+    }
+    
+    public static void SaveGameSuccessPopupScene() throws IOException
+    {
+        popupTransition(5, "Game save success");
+    }
+    
+    public static void WinnerPopupScene() throws IOException
+    {
+        popupTransition(6, "Game Result");
+    }
 
 }

@@ -16,13 +16,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ServerHandler extends Thread {
 
-    private static Vector<ServerHandler> playersSoc = new Vector<>();
-    private DataInputStream dis;
-    private PrintStream ps;
-    private Socket soc;
+    public static Vector<ServerHandler> playersSoc = new Vector<>();
+    public DataInputStream dis;
+    public PrintStream ps;
+    public Socket soc;
     private Player player;
     private JSONObject jsonMsg;
     private Game game;
@@ -92,19 +94,22 @@ public class ServerHandler extends Thread {
                 updateBoard();
                 break;
             case "logout":
-                try {
-                    logout();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+//                logout();
                 break;
             case "getall":
                 System.out.println("This is sending the update");
                 getall();
                 break;
+            case "saveGameRequest":
+                saveGameRequest();
+                break;
+            case "saveGameAnswer":
+                saveGameAnswer();
+                break;
         }
 
     }
+
 
     private void setPlayer(JSONObject client) {
 
@@ -119,6 +124,9 @@ public class ServerHandler extends Thread {
         int to_id = Integer.parseInt(jsonMsg.get("to_id").toString());
         ServerHandler toPlayerHandler = getPlayerHandler(to_id);
         if (toPlayerHandler.soc.isConnected()) {
+            // check first if there is saved game ask from player what do you want to start
+            // the saved game or new one then send to [to player] that
+
             // add new game with status request
             int game_id = GameModel.createGame(jsonMsg);
             jsonMsg.put("game_id", game_id);
@@ -128,6 +136,7 @@ public class ServerHandler extends Thread {
             toPlayerHandler.ps.println(jsonMsg.toJSONString());
         }
     }
+
 
     private void register() {
         boolean resp = PlayerModel.createPlayer(jsonMsg);
@@ -180,18 +189,42 @@ public class ServerHandler extends Thread {
         getPlayerHandler(game.getToPlayer().getID()).ps.println(jsonMsg.toJSONString());
     }
 
+    private void saveGameRequest() {
+
+        // send to player 2  a request to save the game
+        getPlayerHandler(game.getToPlayer().getID()).ps.println(jsonMsg.toJSONString());
+    }
+
+    private void saveGameAnswer() {
+        // if player 2 who want to save the game send save game answer to him
+        if (game.getFromPlayer().getID()==player.getID()){
+            getPlayerHandler(game.getToPlayer().getID()).ps.println(jsonMsg.toJSONString());
+        }else {
+            // if player 1 who want to save the game send save game answer to him
+            getPlayerHandler(game.getFromPlayer().getID()).ps.println(jsonMsg.toJSONString());
+        }
+        // if the both players wants to save the game then save it
+        if (jsonMsg.get("response").equals("true")) {
+            jsonMsg.remove("type");
+            jsonMsg.remove("response");
+            game.setBoard(jsonMsg);
+            GameModel.updateGameBoard(jsonMsg,game.getId());
+
+        }
+    }
+
+
     private ServerHandler getPlayerHandler(int player_id) {
         for (ServerHandler playerHandle : playersSoc) {
             if (playerHandle.player.getID() == player_id) {
                 return playerHandle;
             }
-
         }
         return null;
     }
 
 
-    private void logout() throws IOException {
+    private void logout() {
 
         PlayerModel.logout(jsonMsg);
         //System.out.println("This is the logout id"+jsonMsg.get("id"));p
@@ -201,12 +234,11 @@ public class ServerHandler extends Thread {
     }
 
     public void getall() {
-        JSONObject resp= new JSONObject();
-        System.out.println("this is the get all method");
-        resp.put("type","getall");
-        resp.put("players",PlayerModel.getPlayersJSON());
+        JSONObject resp = new JSONObject();
+        resp.put("type", "getall");
+        resp.put("players", PlayerModel.getPlayersJSON());
         for (ServerHandler playerHandle : playersSoc) {
             playerHandle.ps.println(resp);
         }
     }
-}
+}s

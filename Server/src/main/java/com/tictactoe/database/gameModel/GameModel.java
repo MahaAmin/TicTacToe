@@ -9,11 +9,13 @@ import com.tictactoe.actions.App;
 import com.tictactoe.database.DatabaseManager;
 import com.tictactoe.database.playerModel.Player;
 import com.tictactoe.database.playerModel.PlayerModel;
+
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -31,7 +33,7 @@ public class GameModel {
             ResultSet resultSet = stmt.executeQuery("SELECT * FROM games");
             while (resultSet.next()) {
 
-                games.put(resultSet.getInt("id"),gameObject(resultSet));// adding all the players to map
+                games.put(resultSet.getInt("id"), gameObject(resultSet));// adding all the players to map
             }
 
         } catch (SQLException ex) {
@@ -39,9 +41,10 @@ public class GameModel {
         }
     }
 
-    private static Game gameObject(ResultSet resultSet){
+    private static Game gameObject(ResultSet resultSet) {
         try {
             return new Game(
+                    resultSet.getInt("id"),
                     PlayerModel.getPlayer(resultSet.getInt("from_player")),
                     PlayerModel.getPlayer(resultSet.getInt("to_player")),
                     PlayerModel.getPlayer(resultSet.getInt("winner")),
@@ -61,9 +64,9 @@ public class GameModel {
             statment.setString(1, game.get("from_id").toString());
             statment.setString(2, game.get("to_id").toString());
             int isInsearted = statment.executeUpdate();
-            if(isInsearted > 0){
+            if (isInsearted > 0) {
                 ResultSet keys = statment.getGeneratedKeys();
-                if (keys.next()){
+                if (keys.next()) {
                     int id = keys.getInt(1);
                     return id;
                 }
@@ -89,9 +92,7 @@ public class GameModel {
     }
 
 
-
-    
-        // update status
+    // update status
     public static void updateGameStatus(JSONObject game) {
         try {
             PreparedStatement preparedStatement = db.connection.prepareStatement("UPDATE games SET status=? WHERE id=?");
@@ -107,26 +108,29 @@ public class GameModel {
             ex.printStackTrace();
         }
     }
-    public static void updateGameBoard(JSONObject game) {
+
+    public static void updateGameBoard(JSONObject game, int game_id) {
+        System.out.println("game " + game);
         try {
-            PreparedStatement preparedStatement = db.connection.prepareStatement("UPDATE games SET bard=? WHERE id=?");
-            preparedStatement.setString(1, game.get("board").toString());
-            preparedStatement.setInt(2, Integer.parseInt(game.get("id").toString()));
+            PreparedStatement preparedStatement = db.connection.prepareStatement("UPDATE games SET board=? , status=? WHERE id=?");
+            preparedStatement.setString(1, game.toJSONString());
+            preparedStatement.setString(2, GameStatus.PAUSE.toString());
+            preparedStatement.setInt(3, game_id);
             int isUpdated = preparedStatement.executeUpdate();
             if (isUpdated > 0) {
-                Game g = games.get(Integer.parseInt(game.get("id").toString()));
-                try {
-                    g.setBoard((JSONObject) new JSONParser().parse(game.get("board").toString()));
-                } catch (ParseException ex) {
-//                    Logger.getLogger(GameModel.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                games.replace(Integer.parseInt(game.get("id").toString()), g);
+//                Game g = games.get(Integer.parseInt(game.get("id").toString()));
+//                try {
+//                    g.setBoard((JSONObject) new JSONParser().parse(game.get("board").toString()));
+//                } catch (ParseException ex) {
+////                    Logger.getLogger(GameModel.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//                games.replace(Integer.parseInt(game.get("id").toString()), g);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-    }    
-    
+    }
+
     public static void setWinner(JSONObject game) {
         try {
             PreparedStatement preparedStatement = db.connection.prepareStatement("UPDATE games SET winner=? WHERE id=?");
@@ -135,12 +139,12 @@ public class GameModel {
             int isUpdated = preparedStatement.executeUpdate();
             if (isUpdated > 0) {
                 Game g = games.get(Integer.parseInt(game.get("id").toString()));
-                g.setWinnerPlayer((Player)game.get("winner"));
+                g.setWinnerPlayer((Player) game.get("winner"));
                 games.replace(Integer.parseInt(game.get("id").toString()), g);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-    }      
+    }
 
 }

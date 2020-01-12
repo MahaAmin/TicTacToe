@@ -111,5 +111,13 @@
       <FontIcon iconColor="#6f60fa" iconLiteral="fa-user-o" iconSize="30" layoutX="127.0" layoutY="266.0" />
       <Label fx:id="playerOLabel" alignment="CENTER" layoutX="630.0" layoutY="304.0" prefHeight="40.0" prefWidth="232.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: #54dfc4; -fx-border-radius: 20;" text="playerOLabel" />
       <FontIcon iconColor="#6f60fa" iconLiteral="fa-user-o" iconSize="30" layoutX="733.0" layoutY="266.0" />
+      <JFXButton layoutX="381.0" layoutY="505.0" onAction="#saveButtonClicked" prefHeight="42.0" prefWidth="114.0" style="-fx-background-color: #6f60fa; -fx-background-radius: 5;" text="Save" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <graphic>
+            <FontIcon iconColor="WHITE" iconLiteral="fa-save" iconSize="28" translateX="-5.0" />
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>

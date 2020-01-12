@@ -78,8 +78,8 @@ public class DashboardController implements Initializable {
     @FXML
     private void vsOnlinePlayerButtonClicked(ActionEvent event) throws IOException {
         //Popup the OnlineListPopUp.fxml scene
-        SwitchTo.onlineListPopUpScene();
-        //PlayerHandler.sendPlayRequest(2);
+//        SwitchTo.onlineListPopUpScene();
+        PlayerHandler.sendPlayRequest(2);
     }
 
     @Override

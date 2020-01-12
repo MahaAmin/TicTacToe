@@ -6,9 +6,11 @@
 package com.tictactoe.database.gameModel;
 
 import com.tictactoe.database.playerModel.Player;
+
 import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -23,9 +25,10 @@ public class Game {
     private GameStatus status;
     private String board;
 
-    public Game(){}
+    public Game() {
+    }
 
-    public Game(Player firstPlayer, Player secondPlayer, String b){
+    public Game(Player firstPlayer, Player secondPlayer, String b) {
         from_player = firstPlayer;
         to_player = secondPlayer;
         board = b;
@@ -34,7 +37,8 @@ public class Game {
         status = GameStatus.REQUEST;
     }
 
-    Game(Player f_player, Player t_player, Player w_player, Timestamp timestamp, String s, String b) {
+    Game(int id,Player f_player, Player t_player, Player w_player, Timestamp timestamp, String s, String b) {
+        this.id=id;
         from_player = f_player;
         to_player = t_player;
         winner = w_player;
@@ -43,58 +47,67 @@ public class Game {
         board = b;
     }
 
-    public void setFromPlayer(Player p){
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setFromPlayer(Player p) {
         from_player = p;
     }
 
-    public void setToPlayer(Player p){
+    public void setToPlayer(Player p) {
         to_player = p;
     }
 
-    public void setWinnerPlayer(Player p){
+    public void setWinnerPlayer(Player p) {
         winner = p;
     }
 
-    public void setBoard(JSONObject cells){
+    public void setBoard(JSONObject cells) {
 
         board = cells.toJSONString();
     }
 
-    public void setGameStatus(GameStatus g){
+    public void setGameStatus(GameStatus g) {
         status = g;
     }
 
-    public void setCreatedAt(){
+    public void setCreatedAt() {
         created_at = new Timestamp(System.currentTimeMillis());
     }
 
-    public Player getFromPlayer(){
+    public Player getFromPlayer() {
         return from_player;
     }
-    public Player getToPlayer(){
+
+    public Player getToPlayer() {
         return to_player;
     }
 
-    public Player getWinnerPlayer(){
+    public Player getWinnerPlayer() {
         return winner;
     }
 
-    public JSONObject getBoard(){
-        JSONParser jp= new JSONParser();
+    public JSONObject getBoard() {
+        JSONParser jp = new JSONParser();
         JSONObject bo = new JSONObject();
         try {
-            bo = (JSONObject)jp.parse(board);
+            bo = (JSONObject) jp.parse(board);
         } catch (ParseException ex) {
             Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
         }
         return bo;
     }
 
-    public Timestamp getCreatedAt(){
+    public Timestamp getCreatedAt() {
         return created_at;
     }
 
-    public GameStatus getGameStatus(){
+    public GameStatus getGameStatus() {
         return status;
     }
 

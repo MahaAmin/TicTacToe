@@ -25,8 +25,6 @@ public class PlayerSoc {
     public Socket socket;
     public DataInputStream dis;
     public PrintStream ps;
-    //    public ObjectOutputStream oos;
-//    public ObjectInputStream ois;
     private Player player;
     private JSONObject jsonMsg;
 
@@ -45,6 +43,7 @@ public class PlayerSoc {
             receiveGameThread();
 
         } catch (IOException e) {
+            System.out.println("error2");
             e.printStackTrace();
         }
     }
@@ -56,6 +55,7 @@ public class PlayerSoc {
             @Override
             public void run() {
                 try {
+                    System.out.println("thread");
                     while (true) {
                         // receive JSON
                         String data = dis.readLine();
@@ -64,22 +64,36 @@ public class PlayerSoc {
                         }
                     }
                 } catch (IOException e) {
+                    System.out.println("error1");
                     e.printStackTrace();
-                    try {
-                        dis.close();
-                        ps.close();
-//                        oos.close();
-//                        ois.close();
-                        socket.close();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
+
                 } catch (ParseException e) {
+                    System.out.println("error10");
                     e.printStackTrace();
+
+                } catch (Exception ex) {
+                    /** if server close show alert to all players and close the app */
+                    closeSocket();
+                    Platform.runLater(() -> {
+                        Alerts.serverIsShuttingDown();
+                        App.getWindow().close();
+
+                    });
                 }
 
             }
         }).start();
+    }
+
+    private void closeSocket() {
+        try {
+            dis.close();
+            ps.close();
+            socket.close();
+        } catch (IOException ex) {
+            System.out.println("error3");
+            ex.printStackTrace();
+        }
     }
 
 
@@ -109,10 +123,15 @@ public class PlayerSoc {
                 System.out.println("This is sending the update");
                 PlayerModel.getPlayers(jsonMsg.get("players").toString());
                 break;
+            case "saveGameRequest":
+                saveGameRequest();
+                break;
+            case "saveGameAnswer":
+                saveGameAnswer();
+                break;
         }
 
     }
-
 
     public void setPlayer(Player player) {
         this.player = player;
@@ -141,7 +160,9 @@ public class PlayerSoc {
             try {
                 SwitchTo.changeTo(App.getWindow(), 3);
             } catch (IOException e) {
+                System.out.println("error4");
                 e.printStackTrace();
+
             }
         });
     }
@@ -166,6 +187,33 @@ public class PlayerSoc {
 
     }
 
+    private void saveGameRequest() {
+        Platform.runLater(() -> {
+            Alerts.saveGameAlert(jsonMsg);
+        });
+    }
+
+    private void saveGameAnswer() {
+        Platform.runLater(() -> {
+            boolean isAccepted = false;
+            if (jsonMsg.get("response").equals("true")) {
+                isAccepted = true;
+            }
+            System.out.println("save answer " + jsonMsg.get("response"));
+            System.out.println("save answer " + isAccepted);
+            Alerts.saveGameAnswerAlert(isAccepted);
+            if (isAccepted) {
+                try {
+                    SwitchTo.changeTo(App.getWindow(), 2);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+    }
+
+
     private void login() throws ParseException {
         if (jsonMsg.get("status").toString() == "true") {
             Player pl = new Player();
@@ -178,7 +226,9 @@ public class PlayerSoc {
                 try {
                     SwitchTo.changeTo(App.getWindow(), 2);
                 } catch (IOException e) {
+                    System.out.println("error5");
                     e.printStackTrace();
+
                 }
             });
         } else {
@@ -195,6 +245,8 @@ public class PlayerSoc {
                 try {
                     SwitchTo.changeTo(App.getWindow(), 0);
                 } catch (IOException e) {
+
+                    System.out.println("error6");
                     e.printStackTrace();
                 }
             });
@@ -204,6 +256,7 @@ public class PlayerSoc {
             });
         }
     }
+
 
 }
 
