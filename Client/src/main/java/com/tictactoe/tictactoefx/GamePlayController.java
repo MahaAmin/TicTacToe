@@ -369,6 +369,13 @@ public class GamePlayController implements Initializable {
             playerXScore++;
             setPlayerXScore.setText(Integer.toString(playerXScore));
             System.out.println("Player X Wins!");
+            try{
+                SwitchTo.WinnerPopupScene();
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+            
+            
         } else if (checkForWin().equalsIgnoreCase("O")) {
             playerOScore++;
             setPlayerOScore.setText(Integer.toString(playerOScore));
