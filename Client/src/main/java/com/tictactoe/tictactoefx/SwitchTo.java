@@ -92,8 +92,7 @@ public class SwitchTo {
         popupTransition(0, "Online List");
     }
 
-    public static void InvitationRequestPopupScene(JSONObject data) throws IOException
-    {
+    public static void InvitationRequestPopupScene(JSONObject data) throws IOException {
 
         popupTransition(1, "Invitation Request");
         String name = data.get("from_name").toString();
@@ -123,34 +122,27 @@ public class SwitchTo {
             PlayRequest.sendJSONObject(data);
         }
     }
-<<<<<<< HEAD
-    }
 
-=======
-    
-    public static void RequestRejectedPopupScene() throws IOException
-    {
+
+    public static void RequestRejectedPopupScene() throws IOException {
         popupTransition(2, "Request was rejected");
     }
-    
-    public static void SaveGameRejectedPopupScene() throws IOException
-    {
+
+    public static void SaveGameRejectedPopupScene() throws IOException {
         popupTransition(3, "Game save  request was rejected");
     }
-    
-    public static void SaveGameRequestPopupScene() throws IOException
-    {
+
+    public static void SaveGameRequestPopupScene() throws IOException {
         popupTransition(4, "Request for game save");
     }
-    
-    public static void SaveGameSuccessPopupScene() throws IOException
-    {
+
+    public static void SaveGameSuccessPopupScene() throws IOException {
         popupTransition(5, "Game save success");
     }
-    
-    public static void WinnerPopupScene() throws IOException
-    {
+
+    public static void WinnerPopupScene() throws IOException {
         popupTransition(6, "Game Result");
     }
->>>>>>> 329e21374c9026fcc79aca580488d0eeab04824c
+}
+
 
