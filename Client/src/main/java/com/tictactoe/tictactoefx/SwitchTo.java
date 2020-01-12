@@ -47,6 +47,7 @@ public class SwitchTo {
         Parent root = FXMLLoader.load(SwitchTo.class.getResource("/fxml/" + ScenesList.get(sceneID) + ".fxml"));
         Scene scene = new Scene(root);
         window.setScene(scene);
+        window.setResizable(false);
         window.show();
     }
 

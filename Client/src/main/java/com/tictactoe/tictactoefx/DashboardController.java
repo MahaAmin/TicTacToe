@@ -48,8 +48,6 @@ public class DashboardController implements Initializable {
     @FXML
     private TableColumn<User, String> userNameColumnT1;
     @FXML
-    private TableColumn<User, String> rankColumnT1;
-    @FXML
     private TableColumn<User, String> scoreColumnT1;
     @FXML
     private TableColumn<User, String> avatarColumnT1;
@@ -78,7 +76,7 @@ public class DashboardController implements Initializable {
     @FXML
     private void vsOnlinePlayerButtonClicked(ActionEvent event) throws IOException {
         //Popup the OnlineListPopUp.fxml scene
-//        SwitchTo.onlineListPopUpScene();
+        SwitchTo.onlineListPopUpScene();
         PlayerHandler.sendPlayRequest(2);
     }
 
@@ -104,7 +102,6 @@ public class DashboardController implements Initializable {
         //Table 1 [User Profile]
         Player current= App.getPlayerSoc().getPlayer();
         userNameColumnT1.setCellValueFactory(new PropertyValueFactory<>("userName"));
-        rankColumnT1.setCellValueFactory(new PropertyValueFactory<>("rank"));
         scoreColumnT1.setCellValueFactory(new PropertyValueFactory<>("score"));
         avatarColumnT1.setCellValueFactory(new PropertyValueFactory<>("avatar"));
 
