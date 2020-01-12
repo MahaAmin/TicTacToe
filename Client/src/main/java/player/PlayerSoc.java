@@ -43,6 +43,7 @@ public class PlayerSoc {
             receiveGameThread();
 
         } catch (IOException e) {
+            System.out.println("error2");
             e.printStackTrace();
         }
     }
@@ -54,6 +55,7 @@ public class PlayerSoc {
             @Override
             public void run() {
                 try {
+                    System.out.println("thread");
                     while (true) {
                         // receive JSON
                         String data = dis.readLine();
@@ -62,20 +64,36 @@ public class PlayerSoc {
                         }
                     }
                 } catch (IOException e) {
+                    System.out.println("error1");
                     e.printStackTrace();
-                    try {
-                        dis.close();
-                        ps.close();
-                        socket.close();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
+
                 } catch (ParseException e) {
+                    System.out.println("error10");
                     e.printStackTrace();
+
+                } catch (Exception ex) {
+                    /** if server close show alert to all players and close the app */
+                    closeSocket();
+                    Platform.runLater(() -> {
+                        Alerts.serverIsShuttingDown();
+                        App.getWindow().close();
+
+                    });
                 }
 
             }
         }).start();
+    }
+
+    private void closeSocket() {
+        try {
+            dis.close();
+            ps.close();
+            socket.close();
+        } catch (IOException ex) {
+            System.out.println("error3");
+            ex.printStackTrace();
+        }
     }
 
 
@@ -104,9 +122,6 @@ public class PlayerSoc {
             case "getall":
                 PlayerModel.getPlayers(jsonMsg.get("players").toString());
                 break;
-            case "serverClose":
-                serverClose();
-                break;        
         }
 
     }
@@ -139,7 +154,9 @@ public class PlayerSoc {
             try {
                 SwitchTo.changeTo(App.getWindow(), 3);
             } catch (IOException e) {
+                System.out.println("error4");
                 e.printStackTrace();
+
             }
         });
     }
@@ -176,7 +193,9 @@ public class PlayerSoc {
                 try {
                     SwitchTo.changeTo(App.getWindow(), 2);
                 } catch (IOException e) {
+                    System.out.println("error5");
                     e.printStackTrace();
+
                 }
             });
         } else {
@@ -193,6 +212,8 @@ public class PlayerSoc {
                 try {
                     SwitchTo.changeTo(App.getWindow(), 0);
                 } catch (IOException e) {
+
+                    System.out.println("error6");
                     e.printStackTrace();
                 }
             });
@@ -203,18 +224,6 @@ public class PlayerSoc {
         }
     }
 
-    private void serverClose() {
-        Platform.runLater(() -> {
-            Alerts.serverIsShuttingDown();
-        });
-        try {
-            ps.close();
-            dis.close();
-            socket.close();
-        } catch (IOException ex) {
-//            Logger.getLogger(ServerHandler.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
 }
 

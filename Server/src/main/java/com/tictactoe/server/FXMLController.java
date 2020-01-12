@@ -1,49 +1,43 @@
 package com.tictactoe.server;
 
 import com.jfoenix.controls.JFXToggleButton;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import org.json.simple.JSONObject;
 
-public class FXMLController implements Initializable 
-{
-    @FXML private JFXToggleButton serverToggleButton;
-    @FXML private void serverToggleClicked(ActionEvent event)
-    {
-        if(serverToggleButton.isSelected() == true)
-        {
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class FXMLController implements Initializable {
+    @FXML
+    private JFXToggleButton serverToggleButton;
+
+    @FXML
+    private void serverToggleClicked(ActionEvent event) {
+        if (serverToggleButton.isSelected() == true) {
+            System.out.println("server start");
             serverToggleButton.setText("Close Server");
             new Server();
-        }
-        else 
-        {
+        } else {
+            System.out.println("Server closed");
             serverToggleButton.setText("Start Server");
-            JSONObject jsono=new JSONObject();
-            jsono.put("type", "serverClose");
-            ServerHandler.playersSoc.forEach((socket)->{
+            for (ServerHandler soc : ServerHandler.playersSoc) {
                 try {
-                    ServerHandler soc=(ServerHandler)socket;
-                    soc.ps.println(jsono);
                     soc.ps.close();
                     soc.dis.close();
                     soc.soc.close();
-                    // close dis , ps , socket
-                } catch (IOException ex) {
-                    Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            });
+                // close dis , ps , socket
+            }
         }
     }
-    
-    
+
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 }
