@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXListView?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -44,20 +43,11 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <JFXListView id="scoreBoardLV" fx:id="scoreBoardLV" layoutX="720.0" layoutY="42.0" prefHeight="174.0" prefWidth="302.0" showTooltip="true" stylesheets="@../styles/Styles.css" />
-      <TableView fx:id="userTable" layoutX="-1.0" layoutY="44.0" prefHeight="86.0" prefWidth="351.0" stylesheets="@../styles/Styles.css">
-        <columns>
-            <TableColumn id="avatarColumnT1" fx:id="avatarColumnT1" prefWidth="92.0" text="Avatar" />
-            <TableColumn id="userNameColumnT1" fx:id="userNameColumnT1" minWidth="0.0" prefWidth="97.0" text="Username" />
-            <TableColumn id="rankColumnT1" fx:id="rankColumnT1" prefWidth="77.0" text="Rank" />
-            <TableColumn id="scoreColumnT1" fx:id="scoreColumnT1" minWidth="3.0" prefWidth="83.0" text="Score" />
-        </columns>
-      </TableView>
       <TableView fx:id="allUsersTable" layoutY="228.0" prefHeight="389.0" prefWidth="351.0" stylesheets="@../styles/Styles.css">
          <columns>
-            <TableColumn fx:id="statusColumnT2" prefWidth="75.0" text="Status" />
-            <TableColumn fx:id="usernameColumnT2" prefWidth="98.0" text="Username" />
-            <TableColumn fx:id="scoreColumnT2" prefWidth="101.0" text="Score" />
+            <TableColumn fx:id="username" prefWidth="91.0" text="username" />
+            <TableColumn fx:id="score" prefWidth="120.0" text="score" />
+            <TableColumn fx:id="status" prefWidth="139.0" text="status" />
          </columns>
       </TableView>
       <Label layoutX="472.0" layoutY="151.0" text="Dashboard" textFill="#4ba1ff">

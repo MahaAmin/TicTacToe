@@ -6,41 +6,64 @@
 package playerModel;
 
 
+import com.jfoenix.controls.JFXButton;
+
 /**
  *
  * @author halim
  */
 public class Player {
     private int id; // autoGenerate in database
-    private String name; 
+    private String name;
     private String password; //it's a VARCHAR in database with size (32)
     private String email;
     private int status; // it's a ENUM in database which contain offline(0), online(1), busy(2)
     private int score;
     private String avatar; // optional
-    
+    private JFXButton btn=new JFXButton();
     // constructor used for GUI only
     public Player(String n, String p, String e){
         name = n;
         password = p;
         email = e;
-        status = 0; // offline as initial 
+        status = 0; // offline as initial
         score = 0; // as initial value
     }
-    
+
+    public String getName() {
+        return name;
+    }
+    public String getScore(){
+        return Integer.toString(score);
+    }
+    public JFXButton getStatus(){
+        if(status==0){
+            btn.setStyle("-fx-background-color: #F8327E;");
+            btn.setText("Offline");
+            return btn;
+        }
+        else if (status==1){
+            btn.setStyle("-fx-background-color: #54dfc4;");
+            btn.setText("Online");
+            return btn;
+        }
+        btn.setText("Busy");
+        return btn;
+    }
+
     // constructors used for retrieve in databaseManager only
     public Player(int i, String n, String p, String e, int s, String a, int sc){
         id = i;
         name = n;
         email = e;
         password = p;
-        status = s;  
-        score = sc;      
+        status = s;
+        score = sc;
         avatar = a;
     }
-    
+
     public Player(){}
-    
+
     // setDATA for player
     public void setPlayerName(String n){
         name = n;
@@ -53,14 +76,14 @@ public class Player {
     }
     public void setPlayerStatus(int s){
         status = s;
-    }        
+    }
     public void setPlayerScore(int s){
         score = s;
     }
     public void setPlayerAvatar(String s){
         avatar = s;
     }
-    
+
     // getDATA for player
     public int getID(){
         return id;
@@ -80,10 +103,10 @@ public class Player {
     }
     public int getPlayerStatus(){
         return status;
-    }        
+    }
     public int getPlayerScore(){
         return score;
-    }        
+    }
     public String getPlayerAvatar(){
         return avatar;
     }

@@ -90,6 +90,7 @@ public class ServerHandler extends Thread {
                 break;
             case "updateBoard":
                 updateBoard();
+                break;
             case "logout":
                 try {
                     logout();
@@ -98,6 +99,7 @@ public class ServerHandler extends Thread {
                 }
                 break;
             case "getall":
+                System.out.println("This is sending the update");
                 getall();
                 break;
         }
@@ -200,6 +202,7 @@ public class ServerHandler extends Thread {
 
     public void getall() {
         JSONObject resp= new JSONObject();
+        System.out.println("this is the get all method");
         resp.put("type","getall");
         resp.put("players",PlayerModel.getPlayersJSON());
         for (ServerHandler playerHandle : playersSoc) {

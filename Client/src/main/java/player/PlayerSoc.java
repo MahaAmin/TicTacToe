@@ -106,6 +106,7 @@ public class PlayerSoc {
                 updateBoard();
                 break;
             case "getall":
+                System.out.println("This is sending the update");
                 PlayerModel.getPlayers(jsonMsg.get("players").toString());
                 break;
         }
