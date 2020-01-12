@@ -120,6 +120,9 @@ public class ServerHandler extends Thread {
         int to_id = Integer.parseInt(jsonMsg.get("to_id").toString());
         ServerHandler toPlayerHandler = getPlayerHandler(to_id);
         if (toPlayerHandler.soc.isConnected()) {
+            // check first if there is saved game ask from player what do you want to start
+            // the saved game or new one then send to [to player] that
+
             // add new game with status request
             int game_id = GameModel.createGame(jsonMsg);
             jsonMsg.put("game_id", game_id);
@@ -129,6 +132,7 @@ public class ServerHandler extends Thread {
             toPlayerHandler.ps.println(jsonMsg.toJSONString());
         }
     }
+
 
     private void register() {
         boolean resp = PlayerModel.createPlayer(jsonMsg);
