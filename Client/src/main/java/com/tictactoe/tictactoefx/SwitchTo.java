@@ -32,6 +32,7 @@ public class SwitchTo {
             add("SaveGameRejectedPopup"); //3 ==> SaveGameRejectedPopup.fxml
             add("SaveGameRequestPopup"); //4 ==> SaveGameRequest.fxml
             add("SaveGameSuccessPopup"); //5 ==> SaveGameSuccessPopup.fxml
+            add("Winner"); //6 ==> Winner.fxml
         }
     };
 
@@ -106,6 +107,11 @@ public class SwitchTo {
     public static void SaveGameSuccessPopupScene() throws IOException
     {
         popupTransition(5, "Game save success");
+    }
+    
+    public static void WinnerPopupScene() throws IOException
+    {
+        popupTransition(6, "Game Result");
     }
 
 }
