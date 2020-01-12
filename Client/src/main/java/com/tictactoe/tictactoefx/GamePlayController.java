@@ -46,11 +46,14 @@ public class GamePlayController implements Initializable {
     // int to choose which mode to play in (PCMode(1) / TwoPlayersMode(2))  
     private int mode = GameConfig.getMode();
 
+    // int to choose pc difficult level (Easy(1), Medium(2), Hard(3))
+    private int level = GameConfig.getPcLevel(); 
     // ------------------------------------------------------------------ //
     private String currPlayerMark;
 
     int playerXScore;
     int playerOScore;
+    
 
     // board
     ArrayList<JFXButton> xoButtonList = new ArrayList<>();
@@ -78,8 +81,6 @@ public class GamePlayController implements Initializable {
                 pcTurnMinimax();
             }
 
-        } else if (mode == 2) // TwoPlayersMode
-        {
         }
     }
 
@@ -97,8 +98,6 @@ public class GamePlayController implements Initializable {
                 pcTurnMinimax();
             }
 
-        } else if (mode == 2) // TwoPlayersMode
-        {
         }
     }
 
@@ -116,8 +115,6 @@ public class GamePlayController implements Initializable {
                 pcTurnMinimax();
             }
 
-        } else if (mode == 2) // TwoPlayersMode
-        {
         }
     }
 
@@ -135,8 +132,6 @@ public class GamePlayController implements Initializable {
                 pcTurnMinimax();
             }
 
-        } else if (mode == 2) // TwoPlayersMode
-        {
         }
     }
 
@@ -156,8 +151,6 @@ public class GamePlayController implements Initializable {
                 pcTurnMinimax();
             }
 
-        } else if (mode == 2) // TwoPlayersMode
-        {
         }
     }
 
@@ -175,8 +168,6 @@ public class GamePlayController implements Initializable {
                 pcTurnMinimax();
             }
 
-        } else if (mode == 2) // TwoPlayersMode
-        {
         }
     }
 
@@ -194,8 +185,6 @@ public class GamePlayController implements Initializable {
                 pcTurnMinimax();
             }
 
-        } else if (mode == 2) // TwoPlayersMode
-        {
         }
     }
 
@@ -213,8 +202,6 @@ public class GamePlayController implements Initializable {
                 pcTurnMinimax();
             }
 
-        } else if (mode == 2) // TwoPlayersMode
-        {
         }
     }
 
@@ -232,14 +219,13 @@ public class GamePlayController implements Initializable {
                 pcTurnMinimax();
             }
 
-        } else if (mode == 2) // TwoPlayersMode
-        {
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        System.out.println("Mode: "+mode+", Level: "+level);
         xoButtonList.add(xoBTN1);
         xoButtonList.add(xoBTN2);
         xoButtonList.add(xoBTN3);
