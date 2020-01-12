@@ -10,6 +10,7 @@ public class App {
     private static PlayerSoc playerSoc;
     private static GamePlayController gamePlayController;
 
+
     public static void setWindow(Stage stage) {
         window = stage;
     }

@@ -33,6 +33,7 @@ import javafx.util.Callback;
 import player.PlayerHandler;
 import playerModel.Player;
 import playerModel.PlayerModel;
+import sun.audio.AudioPlayer;
 
 
 public class DashboardController implements Initializable {
@@ -72,8 +73,8 @@ public class DashboardController implements Initializable {
     @FXML
     private void vsOnlinePlayerButtonClicked(ActionEvent event) throws IOException {
         //Popup the OnlineListPopUp.fxml scene
-        SwitchTo.onlineListPopUpScene();
-        //PlayerHandler.sendPlayRequest(2);
+      //  SwitchTo.onlineListPopUpScene();
+        PlayerHandler.sendPlayRequest(2);
     }
 
     @Override
@@ -98,11 +99,11 @@ public class DashboardController implements Initializable {
         //Table 1 [User Profile]
         Player current= App.getPlayerSoc().getPlayer();
         userNameColumnT1.setCellValueFactory(new PropertyValueFactory<>("userName"));
-        rankColumnT1.setCellValueFactory(new PropertyValueFactory<>("rank"));
+       rankColumnT1.setCellValueFactory(new PropertyValueFactory<>("rank"));
         scoreColumnT1.setCellValueFactory(new PropertyValueFactory<>("score"));
         avatarColumnT1.setCellValueFactory(new PropertyValueFactory<>("avatar"));
 
-        currentUser.add(new User(current.getPlayerName(), "2nd", Integer.toString(current.getPlayerScore()),current.getPlayerAvatar()));
+        currentUser.add(new User(current.getPlayerName(),"first", Integer.toString(current.getPlayerScore()),current.getPlayerAvatar()));
         userTable.setItems(currentUser);
 
         usernameColumnT2.setCellValueFactory(new PropertyValueFactory<>("name"));

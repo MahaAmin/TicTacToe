@@ -185,6 +185,7 @@ public class PlayerModel {
                 jsonObject.put("id", res.getInt("id"));
                 jsonObject.put("name", res.getString("name"));
                 jsonObject.put("status", true);
+                jsonObject.put("score", res.getString("score"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

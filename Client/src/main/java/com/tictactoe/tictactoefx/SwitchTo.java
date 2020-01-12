@@ -2,14 +2,21 @@ package com.tictactoe.tictactoefx;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
+import actions.PlayRequest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
+import org.json.simple.JSONObject;
 
 
 public class SwitchTo {
@@ -79,9 +86,37 @@ public class SwitchTo {
         popupTransition(0, "Online List");
     }
 
-    public static void InvitationRequestPopupScene() throws IOException
+    public static void InvitationRequestPopupScene(JSONObject data) throws IOException
     {
+
         popupTransition(1, "Invitation Request");
+        String name = data.get("from_name").toString();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Invitation");
+        alert.setHeaderText(name + " Want To Play With You");
+        alert.setContentText("Are You Ready?");
+
+        ButtonType buttonNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+        ButtonType buttonYes = new ButtonType("Yes");
+
+
+        //alert.getButtonTypes().setAll(buttonYes, buttonNo);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        Map<String, String> map = new HashMap<>();
+        data.replace("type", "acceptRequest");
+
+        if (result.get() == buttonYes) {
+            // ... user chose "Yes"
+            data.put("response", "true");
+            PlayRequest.sendJSONObject(data);
+
+        } else if (result.get() == buttonNo) {
+            // ... user chose "No"
+            data.put("response", "false");
+            PlayRequest.sendJSONObject(data);
+        }
+    }
     }
 
-}
+

@@ -124,7 +124,13 @@ public class PlayerSoc {
     private void playRequest() {
         // send invitation alert to a friend
         Platform.runLater(() -> {
-            Alerts.sendRequestAlert(jsonMsg);
+         //   Alerts.sendRequestAlert(jsonMsg);
+            try {
+                SwitchTo.InvitationRequestPopupScene(jsonMsg);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         });
     }
 
