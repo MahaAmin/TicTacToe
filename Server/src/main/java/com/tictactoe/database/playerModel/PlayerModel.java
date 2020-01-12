@@ -8,6 +8,8 @@ package com.tictactoe.database.playerModel;
 import com.mysql.cj.xdevapi.JsonArray;
 import com.tictactoe.actions.App;
 import com.tictactoe.database.DatabaseManager;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -25,7 +27,7 @@ import java.util.logging.Logger;
 public class PlayerModel {
 
     static DatabaseManager db = App.getDB();
-
+    public static ObservableList<Player> playerslist;
     private static Map<Integer, Player> players;
 
 
@@ -61,7 +63,8 @@ public class PlayerModel {
     }
 
     public static JSONArray getPlayersJSON() {
-
+        playerslist = FXCollections.observableArrayList();
+        playerslist.removeAll();
         LinkedHashMap<String, JSONObject> jsonOrderedMap = new LinkedHashMap<String, JSONObject>();
         JSONArray jsonArray=new JSONArray();
         for (Map.Entry<Integer, Player> field : players.entrySet()) {
@@ -72,12 +75,11 @@ public class PlayerModel {
             playerJson.put("name", player.getPlayerName());
             playerJson.put("score", player.getPlayerScore());
             playerJson.put("status", player.getPlayerStatus());
-
+            playerslist.add(player);
             jsonArray.add(playerJson);
         }
 
         return jsonArray;
-
     }
 
     public static Player getPlayer(String email) {
