@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane id="AnchorPane" prefHeight="561.0" prefWidth="875.0" style="-fx-background-color: #ffffff;" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.tictactoe.tictactoefx.DifficultySelectionController">
+<AnchorPane id="AnchorPane" prefHeight="561.0" prefWidth="875.0" style="-fx-background-color: #ffffff;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictactoe.tictactoefx.DifficultySelectionController">
     <stylesheets>
         <URL value="@/styles/Styles.css" />
     </stylesheets>
@@ -43,5 +43,10 @@
          </graphic>
       </JFXButton>
       <FontIcon iconColor="WHITE" iconLiteral="fa-star" iconSize="26" layoutX="377.0" layoutY="408.0" />
+      <JFXButton id="backButtonGamePlay" onAction="#backButtonClicked" prefHeight="40.0" prefWidth="63.0" ripplerFill="#c7b1ff" stylesheets="@../styles/Styles.css" text=" ">
+         <graphic>
+            <FontIcon iconColor="WHITE" iconLiteral="fa-angle-left" iconSize="30" translateX="3.0" />
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>

@@ -22,7 +22,7 @@
             <Font size="14.0" />
          </font>
       </JFXToggleButton>
-      <TableView fx:id="allUsersTable" layoutX="-1.0" layoutY="198.0" prefHeight="419.0" prefWidth="1022.0">
+      <TableView fx:id="allUsersTable" layoutX="-1.0" layoutY="198.0" prefHeight="419.0" prefWidth="1022.0" stylesheets="@../styles/Styles.css">
          <columns>
             <TableColumn fx:id="statusColumnT2" prefWidth="174.0" text="Status" />
             <TableColumn fx:id="usernameColumnT2" prefWidth="454.0" text="Username" />

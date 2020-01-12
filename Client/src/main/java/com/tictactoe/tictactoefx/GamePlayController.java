@@ -3,6 +3,9 @@ package com.tictactoe.tictactoefx;
 import actions.App;
 import actions.GameConfig;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXNodesList;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
 
 import java.io.IOException;
 import java.net.URL;
@@ -15,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.Circle;
 import org.json.simple.JSONObject;
@@ -22,6 +26,11 @@ import player.PlayerHandler;
 
 public class GamePlayController implements Initializable {
 
+    @FXML private JFXNodesList nodeList = new JFXNodesList();
+    @FXML private JFXTextArea messageTA;
+    @FXML private JFXTextField messageTF;
+
+    
     @FXML
     private JFXButton xoBTN1, xoBTN2, xoBTN3;
     @FXML
@@ -161,7 +170,6 @@ public class GamePlayController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         System.out.println("Mode: " + mode + ", Level: " + level);
         xoButtonList.add(xoBTN1);
         xoButtonList.add(xoBTN2);
@@ -568,12 +576,23 @@ public class GamePlayController implements Initializable {
 
     @FXML
     private void backButtonClicked(ActionEvent event) throws IOException {
-        SwitchTo.dashboardScene(event);
+        SwitchTo.DifficultySelectionScene(event);
     }
 
     @FXML
     private void saveButtonClicked(ActionEvent event) {
         PlayerHandler.saveGameRequest(xoTextOnButtonsList);
+    }
+    
+    @FXML private void messageTFaction(ActionEvent event)
+    {
+        //Get the typed text.
+        String getMessage = messageTF.getText();
+        //Clear the screen.
+        messageTF.setText("");
+        
+        messageTA.appendText(getMessage);
+        messageTA.appendText("\n");
     }
 
 }

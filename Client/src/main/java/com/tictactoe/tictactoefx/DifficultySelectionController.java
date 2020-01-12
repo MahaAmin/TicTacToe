@@ -31,6 +31,11 @@ public class DifficultySelectionController implements Initializable {
         SwitchTo.gamePlayScene(event);
          
     }
+    
+    @FXML private void backButtonClicked(ActionEvent event) throws IOException
+    {
+        SwitchTo.dashboardScene(event);
+    }
 
     
     @Override
