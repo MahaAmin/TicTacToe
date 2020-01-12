@@ -77,11 +77,11 @@ public class DashboardController implements Initializable {
     @FXML
     private void vsOnlinePlayerButtonClicked(ActionEvent event) throws IOException {
         //Popup the OnlineListPopUp.fxml scene
-<<<<<<< HEAD
+
       //  SwitchTo.onlineListPopUpScene();
-=======
+
         SwitchTo.onlineListPopUpScene();
->>>>>>> 329e21374c9026fcc79aca580488d0eeab04824c
+
         PlayerHandler.sendPlayRequest(2);
     }
 
@@ -107,10 +107,9 @@ public class DashboardController implements Initializable {
         //Table 1 [User Profile]
         Player current= App.getPlayerSoc().getPlayer();
         userNameColumnT1.setCellValueFactory(new PropertyValueFactory<>("userName"));
-<<<<<<< HEAD
-       rankColumnT1.setCellValueFactory(new PropertyValueFactory<>("rank"));
-=======
->>>>>>> 329e21374c9026fcc79aca580488d0eeab04824c
+
+       
+
         scoreColumnT1.setCellValueFactory(new PropertyValueFactory<>("score"));
         avatarColumnT1.setCellValueFactory(new PropertyValueFactory<>("avatar"));
 
