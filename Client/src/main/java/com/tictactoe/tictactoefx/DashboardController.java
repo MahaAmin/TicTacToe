@@ -80,7 +80,7 @@ public class DashboardController implements Initializable {
 
       //  SwitchTo.onlineListPopUpScene();
 
-        SwitchTo.onlineListPopUpScene();
+//        SwitchTo.onlineListPopUpScene();
 
         PlayerHandler.sendPlayRequest(2);
     }

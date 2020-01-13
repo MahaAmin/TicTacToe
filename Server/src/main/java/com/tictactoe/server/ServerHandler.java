@@ -1,23 +1,18 @@
 package com.tictactoe.server;
 
-import com.tictactoe.actions.PlayRequest;
 import com.tictactoe.database.gameModel.Game;
 import com.tictactoe.database.gameModel.GameModel;
-import com.tictactoe.database.gameModel.GameStatus;
 import com.tictactoe.database.playerModel.Player;
 import com.tictactoe.database.playerModel.PlayerModel;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.*;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ServerHandler extends Thread {
 
