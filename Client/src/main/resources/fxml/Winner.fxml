@@ -33,7 +33,7 @@
             <FontIcon iconColor="WHITE" iconLiteral="fa-share-alt" iconSize="30" translateX="-5.0" />
          </graphic>
       </JFXButton>
-      <JFXButton id="shareButton" alignment="CENTER" buttonType="RAISED" defaultButton="true" layoutX="326.0" layoutY="350.0" onAction="#exitButtonClicked" prefHeight="58.0" prefWidth="225.0" style="-fx-background-color: #6F72FA;" stylesheets="@../styles/Styles.css" text="Exit" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="326.0" AnchorPane.rightAnchor="324.0">
+      <JFXButton id="shareButton" fx:id="exitButton" alignment="CENTER" buttonType="RAISED" defaultButton="true" layoutX="326.0" layoutY="350.0" onAction="#exitButtonClicked" prefHeight="58.0" prefWidth="225.0" style="-fx-background-color: #6F72FA;" stylesheets="@../styles/Styles.css" text="Exit" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="326.0" AnchorPane.rightAnchor="324.0">
          <font>
             <Font size="14.0" />
          </font>

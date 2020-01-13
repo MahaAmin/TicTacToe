@@ -1,5 +1,6 @@
 package com.tictactoe.tictactoefx;
 
+import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -8,6 +9,7 @@ import javafx.fxml.Initializable;
 
 public class WinnerController implements Initializable 
 {
+    @FXML private JFXButton exitButton;
     @FXML private void resetButtonClicked(ActionEvent event)
     {
         System.out.println("Reset was Pressed");
@@ -21,6 +23,8 @@ public class WinnerController implements Initializable
     @FXML private void exitButtonClicked(ActionEvent event)
     {
         System.out.println("Exit was pressed");
+        exitButton.getScene().getWindow().hide();
+   
     }
     
     @Override
