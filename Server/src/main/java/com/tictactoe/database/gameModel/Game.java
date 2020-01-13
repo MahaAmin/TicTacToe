@@ -6,14 +6,9 @@
 package com.tictactoe.database.gameModel;
 
 import com.tictactoe.database.playerModel.Player;
+import org.json.simple.JSONObject;
 
 import java.sql.Timestamp;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 
 public class Game {
@@ -92,15 +87,15 @@ public class Game {
         return winner;
     }
 
-    public JSONObject getBoard() {
-        JSONParser jp = new JSONParser();
-        JSONObject bo = new JSONObject();
-        try {
-            bo = (JSONObject) jp.parse(board);
-        } catch (ParseException ex) {
-            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return bo;
+    public String getBoard() {
+//        JSONParser jp = new JSONParser();
+//        JSONObject bo = new JSONObject();
+//        try {
+//            bo = (JSONObject) jp.parse(board);
+//        } catch (ParseException ex) {
+//            Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        return board;
     }
 
     public Timestamp getCreatedAt() {

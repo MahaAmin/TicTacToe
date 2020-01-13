@@ -128,29 +128,57 @@ public class PlayerSoc {
             case "saveGameAnswer":
                 saveGameAnswer();
                 break;
+            case "chooseGame":
+                chooseGame();
+                break;
         }
 
     }
 
+    /**
+     * after player became login save his data is his socket object
+     */
     public void setPlayer(Player player) {
         this.player = player;
     }
 
+    /**
+     * to use player login data in anywhere
+     */
     public Player getPlayer() {
         return player;
     }
 
+    /**
+     * popup alert for player2 to accept or refuse a new game request
+     * popup alert for player2 to accept or refuse resume old game
+     */
     private void playRequest() {
-        // send invitation alert to a friend
         Platform.runLater(() -> {
             Alerts.sendRequestAlert(jsonMsg);
         });
     }
 
+    /**
+     * popup alert for player1 to choose game type [old or new]
+     */
+    private void chooseGame() {
+        Platform.runLater(() -> {
+            Alerts.chooseGameAlert(jsonMsg);
+        });
+    }
+
+
+    /**
+     * switch to game scene for the 2 players
+     */
     private void gameStart() {
         // start the game
         GameConfig.setPlayerX(jsonMsg.get("from_name").toString());
         GameConfig.setPlayerO(jsonMsg.get("to_name").toString());
+        if (jsonMsg.containsKey("old_game")) {
+            GameConfig.setXOList(jsonMsg.get("board").toString());
+        }
         // player x play first [from player]
         if (Integer.parseInt(jsonMsg.get("from_id").toString()) == player.getID())
             GameConfig.setTurn(true);
@@ -166,13 +194,21 @@ public class PlayerSoc {
         });
     }
 
+    /**
+     * for player1
+     * popup alert when player2 refused new/old game request from player1
+     */
     private void requestRejected() {
-        // send invitation alert to a friend
+        // inform play1 that players2 rejected his request to play a game
         Platform.runLater(() -> {
             Alerts.gameRequestRejected(jsonMsg);
         });
     }
 
+    /**
+     * for both players
+     * update the game board after each turn
+     */
     private void updateBoard() {
         // switch the turn between players
         if (GameConfig.getTurn())
@@ -186,12 +222,20 @@ public class PlayerSoc {
 
     }
 
+    /**
+     * for both players
+     * each player can send a request to save the game and resume it later
+     */
     private void saveGameRequest() {
         Platform.runLater(() -> {
             Alerts.saveGameAlert(jsonMsg);
         });
     }
 
+    /**
+     * for both players
+     * the second player can accept or refuse first player save game request
+     */
     private void saveGameAnswer() {
         Platform.runLater(() -> {
             boolean isAccepted = false;
