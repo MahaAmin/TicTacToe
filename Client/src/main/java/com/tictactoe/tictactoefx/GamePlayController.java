@@ -26,11 +26,14 @@ import player.PlayerHandler;
 
 public class GamePlayController implements Initializable {
 
-    @FXML private JFXNodesList nodeList = new JFXNodesList();
-    @FXML private JFXTextArea messageTA;
-    @FXML private JFXTextField messageTF;
+    @FXML
+    private JFXNodesList nodeList = new JFXNodesList();
+    @FXML
+    private JFXTextArea messageTA;
+    @FXML
+    private JFXTextField messageTF;
 
-    
+
     @FXML
     private JFXButton xoBTN1, xoBTN2, xoBTN3;
     @FXML
@@ -171,6 +174,7 @@ public class GamePlayController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println("Mode: " + mode + ", Level: " + level);
+
         xoButtonList.add(xoBTN1);
         xoButtonList.add(xoBTN2);
         xoButtonList.add(xoBTN3);
@@ -181,19 +185,25 @@ public class GamePlayController implements Initializable {
         xoButtonList.add(xoBTN8);
         xoButtonList.add(xoBTN9);
 
-        xoTextOnButtonsList.add(xoTXT1);
-        xoTextOnButtonsList.add(xoTXT2);
-        xoTextOnButtonsList.add(xoTXT3);
-        xoTextOnButtonsList.add(xoTXT4);
-        xoTextOnButtonsList.add(xoTXT5);
-        xoTextOnButtonsList.add(xoTXT6);
-        xoTextOnButtonsList.add(xoTXT7);
-        xoTextOnButtonsList.add(xoTXT8);
-        xoTextOnButtonsList.add(xoTXT9);
-
-        for (int i = 0; i < xoTextOnButtonsList.size(); i++) {
-            xoTextOnButtonsList.set(i, " ");
+//        xoTextOnButtonsList.add(xoTXT1);
+//        xoTextOnButtonsList.add(xoTXT2);
+//        xoTextOnButtonsList.add(xoTXT3);
+//        xoTextOnButtonsList.add(xoTXT4);
+//        xoTextOnButtonsList.add(xoTXT5);
+//        xoTextOnButtonsList.add(xoTXT6);
+//        xoTextOnButtonsList.add(xoTXT7);
+//        xoTextOnButtonsList.add(xoTXT8);
+//        xoTextOnButtonsList.add(xoTXT9);
+        if (!GameConfig.getXOList().isEmpty()) {
+            System.out.println("in old list");
+            xoTextOnButtonsList = GameConfig.getXOList();
+        } else {
+            System.out.println("in new list");
+            for (int i = 0; i < xoButtonList.size(); i++) {
+                xoTextOnButtonsList.add(" ");
+            }
         }
+
 
         if (mode == 1) // PCMode
         {
@@ -378,13 +388,13 @@ public class GamePlayController implements Initializable {
             playerXScore++;
             setPlayerXScore.setText(Integer.toString(playerXScore));
             System.out.println("Player X Wins!");
-            try{
+            try {
                 SwitchTo.WinnerPopupScene();
-            }catch(IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
-            
-            
+
+
         } else if (checkForWin().equalsIgnoreCase("O")) {
             playerOScore++;
             setPlayerOScore.setText(Integer.toString(playerOScore));
@@ -583,14 +593,14 @@ public class GamePlayController implements Initializable {
     private void saveButtonClicked(ActionEvent event) {
         PlayerHandler.saveGameRequest(xoTextOnButtonsList);
     }
-    
-    @FXML private void messageTFaction(ActionEvent event)
-    {
+
+    @FXML
+    private void messageTFaction(ActionEvent event) {
         //Get the typed text.
         String getMessage = messageTF.getText();
         //Clear the screen.
         messageTF.setText("");
-        
+
         messageTA.appendText(getMessage);
         messageTA.appendText("\n");
     }

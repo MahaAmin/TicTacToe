@@ -184,6 +184,7 @@ public class PlayerSoc {
         GameConfig.setPlayerX(jsonMsg.get("from_name").toString());
         GameConfig.setPlayerO(jsonMsg.get("to_name").toString());
         if (jsonMsg.containsKey("old_game")) {
+            System.out.println("start old game");
             GameConfig.setXOList(jsonMsg.get("board").toString());
         }
         // player x play first [from player]

@@ -156,10 +156,10 @@ public class ServerHandler extends Thread {
         int to_id = Integer.parseInt(jsonMsg.get("to_id").toString());
         ServerHandler toPlayerHandler = getPlayerHandler(to_id);
         if (toPlayerHandler != null) {
+            jsonMsg.replace("type", "playRequest");
             if (jsonMsg.get("response").equals("true")) {
                 int game_id = Integer.parseInt(jsonMsg.get("old_game").toString());
                 game = GameModel.getGame(game_id);
-                jsonMsg.replace("type", "playRequest");
                 jsonMsg.put("game_id", game_id);
                 toPlayerHandler.ps.println(jsonMsg.toJSONString());
             } else {
@@ -167,6 +167,7 @@ public class ServerHandler extends Thread {
                  **** TODO
                  * remove old game
                  */
+                jsonMsg.remove("old_game");
                 sendNewGameRequest(toPlayerHandler);
             }
         }
@@ -180,6 +181,7 @@ public class ServerHandler extends Thread {
         // set game data to [from_player]
         game = GameModel.getGame(game_id);
         // send play request to a friend
+        System.out.println("game "+jsonMsg);
         toPlayerHandler.ps.println(jsonMsg.toJSONString());
     }
 

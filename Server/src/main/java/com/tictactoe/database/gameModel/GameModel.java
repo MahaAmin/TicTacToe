@@ -94,7 +94,7 @@ public class GameModel {
 
     public static int getGame(JSONObject jsonObject) {
         try {
-            PreparedStatement statment = db.connection.prepareStatement("SELECT * FROM games WHERE status='PAUSE' AND form_player=? AND to_player=?");
+            PreparedStatement statment = db.connection.prepareStatement("SELECT * FROM games WHERE status='PAUSE' AND from_player=? AND to_player=?");
             statment.setString(1, jsonObject.get("from_id").toString());
             statment.setString(2, jsonObject.get("to_id").toString());
             ResultSet res = statment.executeQuery();

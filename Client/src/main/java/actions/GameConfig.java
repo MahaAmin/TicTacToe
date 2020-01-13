@@ -12,7 +12,7 @@ public class GameConfig {
     private static String player_x;
     private static String player_o;
     private static boolean turn = false;
-    private static ArrayList<String> XOList;
+    private static ArrayList<String> XOList = new ArrayList<>();
 
     public static void setMode(int mod) {
         mode = mod;
@@ -60,9 +60,8 @@ public class GameConfig {
             JSONParser parser = new JSONParser();
             JSONObject jsonObject = (JSONObject) parser.parse(board);
             for (int i = 0; i < 9; i++) {
-                XOList.set(i, jsonObject.get("cell" + i).toString());
+                XOList.add(jsonObject.get("cell" + i).toString());
             }
-            System.out.println("XOLIST" + XOList);
         } catch (ParseException ex) {
             ex.printStackTrace();
         }
