@@ -20,9 +20,15 @@ public class Alerts {
 
 //        fromPlayer_name,Integer.parseInt(jsonMsg.get("game_id").toString())
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Invitation");
-        alert.setHeaderText(name + " Want To Play With You");
-        alert.setContentText("Are You Ready?");
+        if (data.containsKey("old_game")) {
+            alert.setTitle("Resume Old Game");
+            alert.setHeaderText(name + " want to resume the old game with you!");
+            alert.setContentText("Are You want to resume it?");
+        } else {
+            alert.setTitle("Invitation");
+            alert.setHeaderText(name + " Want To Play With You");
+            alert.setContentText("Are You Ready?");
+        }
 
         ButtonType buttonNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
         ButtonType buttonYes = new ButtonType("Yes");
@@ -44,6 +50,34 @@ public class Alerts {
             PlayRequest.sendJSONObject(data);
         }
     }
+
+    public static void chooseGameAlert(JSONObject data) {
+        String name = data.get("from_name").toString();
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Choose Game Type");
+        alert.setHeaderText("You already have a saved game with " + name + "!");
+        alert.setContentText("Are You want to resume it?");
+
+        ButtonType buttonNo = new ButtonType("No,Start new", ButtonBar.ButtonData.CANCEL_CLOSE);
+        ButtonType buttonYes = new ButtonType("Yes, I want");
+
+        alert.getButtonTypes().setAll(buttonYes, buttonNo);
+        Optional<ButtonType> result = alert.showAndWait();
+        data.replace("type", "chosenPlayRequest");
+
+        if (result.get() == buttonYes) {
+            // ... user chose "Yes"
+            data.put("response", "true");
+            PlayRequest.sendJSONObject(data);
+
+        } else if (result.get() == buttonNo) {
+            // ... user chose "No"
+            data.put("response", "false");
+            PlayRequest.sendJSONObject(data);
+        }
+    }
+
 
     public static void wrongPasswordAlert() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -82,9 +116,9 @@ public class Alerts {
             // ... user chose "Yes"
             data.put("response", "true");
             PlayRequest.sendJSONObject(data);
-            Platform.runLater(()->{
+            Platform.runLater(() -> {
                 try {
-                    SwitchTo.changeTo(App.getWindow(),2);
+                    SwitchTo.changeTo(App.getWindow(), 2);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -112,7 +146,7 @@ public class Alerts {
         }
     }
 
-    public static void serverIsShuttingDown(){
+    public static void serverIsShuttingDown() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Server");
         alert.setHeaderText("Oops,Server has a problem");

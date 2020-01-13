@@ -9,16 +9,16 @@ import com.tictactoe.actions.App;
 import com.tictactoe.database.DatabaseManager;
 import com.tictactoe.database.playerModel.Player;
 import com.tictactoe.database.playerModel.PlayerModel;
+import org.json.simple.JSONObject;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 
 public class GameModel {
@@ -55,7 +55,7 @@ public class GameModel {
         } catch (SQLException ex) {
             Logger.getLogger(GameModel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return new Game();
+        return null;
     }
 
     public static int createGame(JSONObject game) {
@@ -89,6 +89,22 @@ public class GameModel {
             Logger.getLogger(PlayerModel.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+
+    public static int getGame(JSONObject jsonObject) {
+        try {
+            PreparedStatement statment = db.connection.prepareStatement("SELECT * FROM games WHERE status='PAUSE' AND form_player=? AND to_player=?");
+            statment.setString(1, jsonObject.get("from_id").toString());
+            statment.setString(2, jsonObject.get("to_id").toString());
+            ResultSet res = statment.executeQuery();
+            if (res.next()) {
+                return res.getInt("id");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PlayerModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
     }
 
 
