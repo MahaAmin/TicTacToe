@@ -156,7 +156,7 @@ public class PlayerSoc {
      */
     private void playRequest() {
         Platform.runLater(() -> {
-<<<<<<< HEAD
+
            // Alerts.sendRequestAlert(jsonMsg);
 
             try {
@@ -164,14 +164,13 @@ public class PlayerSoc {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-=======
             Alerts.sendRequestAlert(jsonMsg);
 //            try {
 //                SwitchTo.InvitationRequestPopupScene(jsonMsg);
 //            } catch (IOException e) {
 //                e.printStackTrace();
 //            }
->>>>>>> 00b44a6176c710a451d8d38b50a34f51e3e7d001
+
 
 
         });
