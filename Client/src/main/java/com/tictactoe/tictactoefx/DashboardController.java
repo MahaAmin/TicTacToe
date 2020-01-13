@@ -80,7 +80,7 @@ public class DashboardController implements Initializable {
 
       //  SwitchTo.onlineListPopUpScene();
 
-        SwitchTo.onlineListPopUpScene();
+      //  SwitchTo.onlineListPopUpScene();
 
         PlayerHandler.sendPlayRequest(2);
     }
@@ -113,7 +113,7 @@ public class DashboardController implements Initializable {
         scoreColumnT1.setCellValueFactory(new PropertyValueFactory<>("score"));
         avatarColumnT1.setCellValueFactory(new PropertyValueFactory<>("avatar"));
 
-        currentUser.add(new User(current.getPlayerName(),"first", Integer.toString(current.getPlayerScore()),current.getPlayerAvatar()));
+        currentUser.add(new User(current.getPlayerName(),"f", Integer.toString(current.getPlayerScore()),current.getPlayerAvatar()));
         userTable.setItems(currentUser);
 
         username.setCellValueFactory(new PropertyValueFactory<>("name"));

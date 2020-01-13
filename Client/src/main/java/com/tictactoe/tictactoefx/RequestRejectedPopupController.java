@@ -1,5 +1,6 @@
 package com.tictactoe.tictactoefx;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -9,18 +10,28 @@ import javafx.scene.control.Label;
 
 public class RequestRejectedPopupController implements Initializable {
 
+
+    {
+      /*  try {
+            SwitchTo.RequestRejectedPopupScene();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }*/
+    }
+
+
     @FXML private Label informingLabel;
    
    @FXML private void okButtonClicked(ActionEvent event)
    {
-       System.out.println("Ok button Clicked");
+
    }
    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-       informingLabel.setText("Sorry but "+ " Username"  + " rejected your play request.");
+       informingLabel.setText("Sorry but "+ "username"  + " rejected your play request.");
     }    
     
 }

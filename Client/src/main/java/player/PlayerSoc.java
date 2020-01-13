@@ -144,12 +144,14 @@ public class PlayerSoc {
     private void playRequest() {
         // send invitation alert to a friend
         Platform.runLater(() -> {
-         //   Alerts.sendRequestAlert(jsonMsg);
+           // Alerts.sendRequestAlert(jsonMsg);
+
             try {
                 SwitchTo.InvitationRequestPopupScene(jsonMsg);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
 
         });
     }
@@ -176,7 +178,12 @@ public class PlayerSoc {
     private void requestRejected() {
         // send invitation alert to a friend
         Platform.runLater(() -> {
-            Alerts.gameRequestRejected(jsonMsg);
+           // Alerts.gameRequestRejected(jsonMsg);
+           try {
+                SwitchTo.RequestRejectedPopupScene();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
     }
 
@@ -195,7 +202,7 @@ public class PlayerSoc {
 
     private void saveGameRequest() {
         Platform.runLater(() -> {
-            Alerts.saveGameAlert(jsonMsg);
+        //    Alerts.saveGameAlert(jsonMsg);
         });
     }
 

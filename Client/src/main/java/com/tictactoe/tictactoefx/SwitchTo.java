@@ -94,8 +94,8 @@ public class SwitchTo {
 
     public static void InvitationRequestPopupScene(JSONObject data) throws IOException {
 
-        popupTransition(1, "Invitation Request");
-        String name = data.get("from_name").toString();
+        popupTransition(1, "Invitation To Play");
+      /*  String name = data.get("from_name").toString();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Invitation");
         alert.setHeaderText(name + " Want To Play With You");
@@ -120,12 +120,12 @@ public class SwitchTo {
             // ... user chose "No"
             data.put("response", "false");
             PlayRequest.sendJSONObject(data);
-        }
+        }*/
     }
 
 
     public static void RequestRejectedPopupScene() throws IOException {
-        popupTransition(2, "Request was rejected");
+        popupTransition(2, "Oops,Game Rejected");
     }
 
     public static void SaveGameRejectedPopupScene() throws IOException {

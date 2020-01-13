@@ -1,5 +1,6 @@
 package com.tictactoe.tictactoefx;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -10,17 +11,26 @@ public class SaveGameRequestPopupController implements Initializable {
 
     @FXML private void noButtonClicked(ActionEvent event)
     {
-        System.out.println("No clicked");
+        try {
+            SwitchTo.SaveGameRejectedPopupScene();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
     
     @FXML private void yesButtonClicked(ActionEvent event)
     {
-        System.out.println("Yes clicked");
+        try {
+            SwitchTo.SaveGameSuccessPopupScene();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        
+
     }    
     
 }
