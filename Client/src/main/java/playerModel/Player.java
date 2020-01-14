@@ -7,6 +7,12 @@ package playerModel;
 
 
 import com.jfoenix.controls.JFXButton;
+import javafx.application.Platform;
+import javafx.beans.property.StringProperty;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+
+import java.io.IOException;
 
 /**
  *
@@ -20,7 +26,7 @@ public class Player {
     private int status; // it's a ENUM in database which contain offline(0), online(1), busy(2)
     private int score;
     private String avatar; // optional
-    private JFXButton btn=new JFXButton();
+    public JFXButton btn = new JFXButton();
     // constructor used for GUI only
     public Player(String n, String p, String e){
         name = n;
@@ -30,16 +36,11 @@ public class Player {
         score = 0; // as initial value
     }
 
-    public String getName() {
-        return name;
-    }
-    public String getScore(){
-        return Integer.toString(score);
-    }
     public JFXButton getStatus(){
         if(status==0){
             btn.setStyle("-fx-background-color: #F8327E;");
             btn.setText("Offline");
+            btn.setDisable(true);
             return btn;
         }
         else if (status==1){
@@ -50,6 +51,13 @@ public class Player {
         btn.setText("Busy");
         return btn;
     }
+    public String getName() {
+        return name;
+    }
+    public String getScore(){
+        return Integer.toString(score);
+    }
+
 
     // constructors used for retrieve in databaseManager only
     public Player(int i, String n, String p, String e, int s, String a, int sc){
@@ -62,7 +70,9 @@ public class Player {
         avatar = a;
     }
 
-    public Player(){}
+    public Player(){
+        event();
+    }
 
     // setDATA for player
     public void setPlayerName(String n){
@@ -109,5 +119,13 @@ public class Player {
     }
     public String getPlayerAvatar(){
         return avatar;
+    }
+    public void event(){
+        btn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println(id+":"+name);
+            }
+        });
     }
 }

@@ -14,6 +14,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.function.Function;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -21,9 +22,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -78,10 +81,10 @@ public class DashboardController implements Initializable {
     private void vsOnlinePlayerButtonClicked(ActionEvent event) throws IOException {
         //Popup the OnlineListPopUp.fxml scene
 
-      //  SwitchTo.onlineListPopUpScene();
+        //  SwitchTo.onlineListPopUpScene();
 
 
-      //  SwitchTo.onlineListPopUpScene();
+        //  SwitchTo.onlineListPopUpScene();
 
 //        SwitchTo.onlineListPopUpScene();
 
@@ -102,22 +105,21 @@ public class DashboardController implements Initializable {
         //currentUser = FXCollections.observableArrayList();
 
         PlayerModel.players.values()
-                .forEach((player) ->{
+                .forEach((player) -> {
                     scoreBoardLV.getItems().add(new Label(player.getPlayerName() + ": " + player.getPlayerScore()));
                 });
 
         scoreBoardLV.getStyleClass().add("mylistview");
 
         //Table 1 [User Profile]
-        Player current= App.getPlayerSoc().getPlayer();
+        Player current = App.getPlayerSoc().getPlayer();
         userNameColumnT1.setCellValueFactory(new PropertyValueFactory<>("userName"));
-
 
 
         scoreColumnT1.setCellValueFactory(new PropertyValueFactory<>("score"));
         avatarColumnT1.setCellValueFactory(new PropertyValueFactory<>("avatar"));
 
-        currentUser.add(new User(current.getPlayerName(),"f", Integer.toString(current.getPlayerScore()),current.getPlayerAvatar()));
+        currentUser.add(new User(current.getPlayerName(), "f", Integer.toString(current.getPlayerScore()), current.getPlayerAvatar()));
         userTable.setItems(currentUser);
 
         username.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -125,5 +127,4 @@ public class DashboardController implements Initializable {
         status.setCellValueFactory(new PropertyValueFactory<>("status"));
         allUsersTable.setItems(PlayerModel.playerslist);
     }
-
 }
