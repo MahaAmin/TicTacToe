@@ -80,5 +80,13 @@
          </font>
       </Label>
       <FontIcon iconColor="#e77f9a" iconLiteral="fa-fire" iconSize="35" layoutX="80.0" layoutY="37.0" />
+      <JFXButton id="signInButton" alignment="CENTER" defaultButton="true" layoutX="481.0" layoutY="568.0" onAction="#logoutButtonClicked" prefHeight="35.0" prefWidth="106.0" stylesheets="@../styles/Styles.css" text="Logout" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <graphic>
+            <FontIcon iconColor="WHITE" iconLiteral="fa-chain-broken" iconSize="20" />
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>
