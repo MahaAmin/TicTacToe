@@ -76,6 +76,11 @@ public class DashboardController implements Initializable {
         GameConfig.setMode(1);  // pc mode
         SwitchTo.DifficultySelectionScene(event);
     }
+    
+    @FXML private void logoutButtonClicked(ActionEvent event)
+    {
+        System.out.println("logout clicked");
+    }
 
     @FXML
     private void vsOnlinePlayerButtonClicked(ActionEvent event) throws IOException {
