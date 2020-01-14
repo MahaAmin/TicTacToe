@@ -19,6 +19,8 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PlayerSoc {
 
@@ -35,7 +37,7 @@ public class PlayerSoc {
 
     private void startConnection() {
         try {
-            socket = new Socket("192.168.43.76", 5005);
+            socket = new Socket("127.0.0.1", 5005);
             dis = new DataInputStream(socket.getInputStream());
             ps = new PrintStream(socket.getOutputStream());
 //                oos = new ObjectOutputStream(socket.getOutputStream());
@@ -243,7 +245,13 @@ public class PlayerSoc {
      */
     private void saveGameRequest() {
         Platform.runLater(() -> {
-            //    Alerts.saveGameAlert(jsonMsg);
+            try {
+                //    Alerts.saveGameAlert(jsonMsg);
+                GameConfig.setSaveGameRequestPopupJson(jsonMsg);
+                SwitchTo.SaveGameRequestPopupScene();
+            } catch (IOException ex) {
+//                Logger.getLogger(PlayerSoc.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
     }
 
