@@ -33,7 +33,6 @@ public class GamePlayController implements Initializable {
     @FXML
     private JFXTextField messageTF;
 
-
     @FXML
     private JFXButton xoBTN1, xoBTN2, xoBTN3;
     @FXML
@@ -68,6 +67,8 @@ public class GamePlayController implements Initializable {
     int playerXScore;
     int playerOScore;
 
+    boolean gameOverFlag;
+
     // board
     ArrayList<JFXButton> xoButtonList = new ArrayList<>();
 
@@ -84,96 +85,115 @@ public class GamePlayController implements Initializable {
     private void xoBTN1Clicked(ActionEvent event) {
 
         placeMark(0, currPlayerMark);
-        pcTurn();
         if (checkForWin() != null) {
+            gameOverFlag = true;
             announceGameResult();
+        }
+        if (!gameOverFlag) {
+            pcTurn();
         }
     }
 
     @FXML
     private void xoBTN2Clicked(ActionEvent event) {
         placeMark(1, currPlayerMark);
-
-        pcTurn();
         if (checkForWin() != null) {
+            gameOverFlag = true;
             announceGameResult();
+        }
+        if (!gameOverFlag) {
+            pcTurn();
         }
     }
 
     @FXML
     private void xoBTN3Clicked(ActionEvent event) {
         placeMark(2, currPlayerMark);
-
-        pcTurn();
         if (checkForWin() != null) {
+            gameOverFlag = true;
             announceGameResult();
+        }
+        if (!gameOverFlag) {
+            pcTurn();
         }
     }
 
     @FXML
     private void xoBTN4Clicked(ActionEvent event) {
         placeMark(3, currPlayerMark);
-
-        pcTurn();
-
         if (checkForWin() != null) {
+            gameOverFlag = true;
             announceGameResult();
         }
+        if (!gameOverFlag) {
+            pcTurn();
+        }
+
     }
 
     @FXML
     private void xoBTN5Clicked(ActionEvent event) {
         placeMark(4, currPlayerMark);
-
-        pcTurn();
         if (checkForWin() != null) {
+            gameOverFlag = true;
             announceGameResult();
+        }
+        if (!gameOverFlag) {
+            pcTurn();
         }
     }
 
     @FXML
     private void xoBTN6Clicked(ActionEvent event) {
         placeMark(5, currPlayerMark);
-
-        pcTurn();
         if (checkForWin() != null) {
+            gameOverFlag = true;
             announceGameResult();
+        }
+        if (!gameOverFlag) {
+            pcTurn();
         }
     }
 
     @FXML
     private void xoBTN7Clicked(ActionEvent event) {
         placeMark(6, currPlayerMark);
-
-        pcTurn();
         if (checkForWin() != null) {
+            gameOverFlag = true;
             announceGameResult();
         }
+        pcTurn();
     }
 
     @FXML
     private void xoBTN8Clicked(ActionEvent event) {
         placeMark(7, currPlayerMark);
-
-        pcTurn();
         if (checkForWin() != null) {
+            gameOverFlag = true;
             announceGameResult();
+        }
+        if (!gameOverFlag) {
+            pcTurn();
         }
     }
 
     @FXML
     private void xoBTN9Clicked(ActionEvent event) {
         placeMark(8, currPlayerMark);
-
-        pcTurn();
         if (checkForWin() != null) {
+            gameOverFlag = true;
             announceGameResult();
+        }
+        if (!gameOverFlag) {
+            pcTurn();
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println("Mode: " + mode + ", Level: " + level);
+
+        gameOverFlag = false;
 
         xoButtonList.add(xoBTN1);
         xoButtonList.add(xoBTN2);
@@ -185,15 +205,6 @@ public class GamePlayController implements Initializable {
         xoButtonList.add(xoBTN8);
         xoButtonList.add(xoBTN9);
 
-//        xoTextOnButtonsList.add(xoTXT1);
-//        xoTextOnButtonsList.add(xoTXT2);
-//        xoTextOnButtonsList.add(xoTXT3);
-//        xoTextOnButtonsList.add(xoTXT4);
-//        xoTextOnButtonsList.add(xoTXT5);
-//        xoTextOnButtonsList.add(xoTXT6);
-//        xoTextOnButtonsList.add(xoTXT7);
-//        xoTextOnButtonsList.add(xoTXT8);
-//        xoTextOnButtonsList.add(xoTXT9);
         if (!GameConfig.getXOList().isEmpty()) {
             System.out.println("in old list");
             xoTextOnButtonsList = GameConfig.getXOList();
@@ -203,7 +214,6 @@ public class GamePlayController implements Initializable {
                 xoTextOnButtonsList.add(" ");
             }
         }
-
 
         if (mode == 1) // PCMode
         {
@@ -394,13 +404,22 @@ public class GamePlayController implements Initializable {
                 e.printStackTrace();
             }
 
-
         } else if (checkForWin().equalsIgnoreCase("O")) {
             playerOScore++;
             setPlayerOScore.setText(Integer.toString(playerOScore));
             System.out.println("Player O Wins!");
+            try {
+                SwitchTo.WinnerPopupScene();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else if (isBoardFull() && !checkForWin().equalsIgnoreCase("Tie")) {
             System.out.println("It is a tie!");
+            try {
+                SwitchTo.WinnerPopupScene();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -415,81 +434,28 @@ public class GamePlayController implements Initializable {
     }
 
     private void setColorToTextOnButton() {
-        if (xoTextOnButtonsList.get(0).equalsIgnoreCase("X")) {
-            xoBTN1.setStyle(colorX);
-        } else {
-            xoBTN1.setStyle(colorO);
-        }
 
-        if (xoTextOnButtonsList.get(1).equalsIgnoreCase("X")) {
-            xoBTN2.setStyle(colorX);
-        } else {
-            xoBTN2.setStyle(colorO);
+        for (int i = 0; i < xoButtonList.size(); i++) {
+            if (xoTextOnButtonsList.get(i).equalsIgnoreCase("X")) {
+                xoButtonList.get(i).setStyle(colorX);
+            } else {
+                xoButtonList.get(i).setStyle(colorO);
+            }
         }
-
-        if (xoTextOnButtonsList.get(2).equalsIgnoreCase("X")) {
-            xoBTN3.setStyle(colorX);
-        } else {
-            xoBTN3.setStyle(colorO);
-        }
-
-        if (xoTextOnButtonsList.get(3).equalsIgnoreCase("X")) {
-            xoBTN4.setStyle(colorX);
-        } else {
-            xoBTN4.setStyle(colorO);
-        }
-
-        if (xoTextOnButtonsList.get(4).equalsIgnoreCase("X")) {
-            xoBTN5.setStyle(colorX);
-        } else {
-            xoBTN5.setStyle(colorO);
-        }
-
-        if (xoTextOnButtonsList.get(5).equalsIgnoreCase("X")) {
-            xoBTN6.setStyle(colorX);
-        } else {
-            xoBTN6.setStyle(colorO);
-        }
-
-        if (xoTextOnButtonsList.get(6).equalsIgnoreCase("X")) {
-            xoBTN7.setStyle(colorX);
-        } else {
-            xoBTN7.setStyle(colorO);
-        }
-
-        if (xoTextOnButtonsList.get(7).equalsIgnoreCase("X")) {
-            xoBTN8.setStyle(colorX);
-        } else {
-            xoBTN8.setStyle(colorO);
-        }
-
-        if (xoTextOnButtonsList.get(8).equalsIgnoreCase("X")) {
-            xoBTN9.setStyle(colorX);
-        } else {
-            xoBTN9.setStyle(colorO);
-        }
-
     }
 
     private void pcTurn() {
-        if (mode == 1) // PCMode
-        {
-            if (checkForWin() != null) {
-                announceGameResult();
-            } else {
-                changePlayer();
-                switch (level) {
-                    case 1:
-                        pcTurnRandom();
-                        break;
-                    case 2:
-                        //pcTurnMedium();
-                        break;
-                    case 3:
-                        pcTurnMinimax();
-                        break;
-                }
-            }
+        changePlayer();
+        switch (level) {
+            case 1:
+                pcTurnRandom();
+                break;
+            case 2:
+                //pcTurnMedium();
+                break;
+            case 3:
+                pcTurnMinimax();
+                break;
         }
     }
 
@@ -510,6 +476,7 @@ public class GamePlayController implements Initializable {
         }
         placeMark(move, currPlayerMark);
         if (checkForWin() != null) {
+            gameOverFlag = true;
             announceGameResult();
         }
         changePlayer();
@@ -581,6 +548,10 @@ public class GamePlayController implements Initializable {
         // cell Where to play next turn
         int nextTurn = availableCells.get(rand);
         placeMark(nextTurn, currPlayerMark);
+        if (checkForWin() != null) {
+            gameOverFlag = true;
+            announceGameResult();
+        }
         changePlayer();
     }
 
