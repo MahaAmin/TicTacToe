@@ -89,7 +89,7 @@ public class GamePlayController implements Initializable {
             gameOverFlag = true;
             announceGameResult();
         }
-        if (!gameOverFlag) {
+        if (mode ==1 && !gameOverFlag) {
             pcTurn();
         }
     }
@@ -101,7 +101,7 @@ public class GamePlayController implements Initializable {
             gameOverFlag = true;
             announceGameResult();
         }
-        if (!gameOverFlag) {
+        if (mode ==1 && !gameOverFlag) {
             pcTurn();
         }
     }
@@ -113,7 +113,7 @@ public class GamePlayController implements Initializable {
             gameOverFlag = true;
             announceGameResult();
         }
-        if (!gameOverFlag) {
+        if (mode ==1 && !gameOverFlag) {
             pcTurn();
         }
     }
@@ -125,7 +125,7 @@ public class GamePlayController implements Initializable {
             gameOverFlag = true;
             announceGameResult();
         }
-        if (!gameOverFlag) {
+        if (mode ==1 && !gameOverFlag) {
             pcTurn();
         }
 
@@ -138,7 +138,7 @@ public class GamePlayController implements Initializable {
             gameOverFlag = true;
             announceGameResult();
         }
-        if (!gameOverFlag) {
+        if (mode ==1 && !gameOverFlag) {
             pcTurn();
         }
     }
@@ -150,7 +150,7 @@ public class GamePlayController implements Initializable {
             gameOverFlag = true;
             announceGameResult();
         }
-        if (!gameOverFlag) {
+        if (mode ==1 && !gameOverFlag) {
             pcTurn();
         }
     }
@@ -162,17 +162,19 @@ public class GamePlayController implements Initializable {
             gameOverFlag = true;
             announceGameResult();
         }
-        pcTurn();
+        if (mode ==1 && !gameOverFlag) {
+            pcTurn();
+        }
     }
 
     @FXML
     private void xoBTN8Clicked(ActionEvent event) {
         placeMark(7, currPlayerMark);
-        if (checkForWin() != null) {
+        if (mode ==1 && checkForWin() != null) {
             gameOverFlag = true;
             announceGameResult();
         }
-        if (!gameOverFlag) {
+        if (mode ==1 && !gameOverFlag) {
             pcTurn();
         }
     }
@@ -180,11 +182,11 @@ public class GamePlayController implements Initializable {
     @FXML
     private void xoBTN9Clicked(ActionEvent event) {
         placeMark(8, currPlayerMark);
-        if (checkForWin() != null) {
+        if (mode ==1 && checkForWin() != null) {
             gameOverFlag = true;
             announceGameResult();
         }
-        if (!gameOverFlag) {
+        if (mode == 1 && !gameOverFlag) {
             pcTurn();
         }
     }
@@ -451,7 +453,7 @@ public class GamePlayController implements Initializable {
                 pcTurnRandom();
                 break;
             case 2:
-                //pcTurnMedium();
+                pcTurnMedium();
                 break;
             case 3:
                 pcTurnMinimax();
@@ -459,6 +461,24 @@ public class GamePlayController implements Initializable {
         }
     }
 
+    
+    private void pcTurnMedium(){
+        /*
+        - AI win if it can
+        - else if block human from winning if he/she can win
+        - else return random cell    
+        */
+        
+        // TOTAL : 24 CASES
+        
+        // Case 1: row 1.1
+        /*for(int i=0; i<)
+        if(xoTextOnButtonsList.get(0) == currPlayerMark && xoTextOnButtonsList.get(0) == xoTextOnButtonsList.get(1) && xoTextOnButtonsList.get(2) == " ")
+            placeMark(0, )*/
+            
+    }
+    
+    
     private void pcTurnMinimax() {
         int bestScore = Integer.MIN_VALUE;
         int move = 100;

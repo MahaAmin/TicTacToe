@@ -1,36 +1,41 @@
 package com.tictactoe.tictactoefx;
 
+import actions.GameConfig;
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import player.PlayerHandler;
 
-public class WinnerController implements Initializable 
-{
-    @FXML private JFXButton exitButton;
-    @FXML private void resetButtonClicked(ActionEvent event)
-    {
+public class WinnerController implements Initializable {
+
+    @FXML
+    private JFXButton exitButton;
+
+    @FXML
+    private void resetButtonClicked(ActionEvent event) {
         System.out.println("Reset was Pressed");
+        PlayerHandler.resetBoard();
+        PlayerHandler.updateFriendBoard(GameConfig.getXOList(), 0, 0);
     }
-    
-    @FXML private void shareButtonClicked(ActionEvent event)
-    {
+
+    @FXML
+    private void shareButtonClicked(ActionEvent event) {
         System.out.println("Share was pressed");
     }
-    
-    @FXML private void exitButtonClicked(ActionEvent event)
-    {
+
+    @FXML
+    private void exitButtonClicked(ActionEvent event) {
         System.out.println("Exit was pressed");
         exitButton.getScene().getWindow().hide();
-   
+
     }
-    
+
     @Override
-    public void initialize(URL url, ResourceBundle rb) 
-    {
-        
-    }    
-    
+    public void initialize(URL url, ResourceBundle rb) {
+
+    }
+
 }
