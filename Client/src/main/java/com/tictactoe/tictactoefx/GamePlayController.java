@@ -67,7 +67,7 @@ public class GamePlayController implements Initializable {
     int playerXScore;
     int playerOScore;
 
-    boolean gameOverFlag;
+    public boolean gameOverFlag;
 
     // board
     ArrayList<JFXButton> xoButtonList = new ArrayList<>();
@@ -252,7 +252,7 @@ public class GamePlayController implements Initializable {
 
     }
 
-    private void printBoard() {
+    public void printBoard() {
 
         setPlayerXScore.setText(Integer.toString(playerXScore));
         setPlayerOScore.setText(Integer.toString(playerOScore));
@@ -275,6 +275,7 @@ public class GamePlayController implements Initializable {
     }
 
     private String checkForWin() {
+        System.out.println("checl for win");
         String winner = null;
         // check Rows For win
         // 1st row
@@ -315,10 +316,13 @@ public class GamePlayController implements Initializable {
         }
 
         if (isBoardFull() && winner == null) {
+            
             return "Tie";
         } else {
             return winner;
         }
+        
+        
 
     }
 

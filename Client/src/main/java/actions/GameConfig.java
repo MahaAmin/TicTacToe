@@ -70,4 +70,10 @@ public class GameConfig {
     public static ArrayList<String> getXOList() {
         return XOList;
     }
+    
+    public static void resetBoard(ArrayList<String> board){
+        for(int i=0; i<board.size(); i++){
+            board.set(i, " ");
+        }
+    }
 }

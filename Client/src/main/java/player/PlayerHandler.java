@@ -14,12 +14,6 @@ import java.util.Map;
 
 public interface PlayerHandler {
 
-//    public final static PlayerSoc playerSoc = new PlayerSoc();
-    public static void resetBoard(){
-        String board = "{\"cell4\":\" \",\"cell5\":\" \",\"cell2\":\" \",\"cell3\":\" \",\"cell8\":\" \",\"cell6\":\" \",\"cell7\":\" \",\"cell0\":\" \",\"cell1\":\" \"}";
-        GameConfig.setXOList(board);
-    }
-
     public static void sendPlayRequest(int player_id) throws IOException {
         PlayerSoc playerSoc = App.getPlayerSoc();
         Map<String, String> map = new HashMap<>();

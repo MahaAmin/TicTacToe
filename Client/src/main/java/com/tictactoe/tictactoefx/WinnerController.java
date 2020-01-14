@@ -1,5 +1,6 @@
 package com.tictactoe.tictactoefx;
 
+import actions.App;
 import actions.GameConfig;
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
@@ -17,8 +18,14 @@ public class WinnerController implements Initializable {
     @FXML
     private void resetButtonClicked(ActionEvent event) {
         System.out.println("Reset was Pressed");
-        PlayerHandler.resetBoard();
-        PlayerHandler.updateFriendBoard(GameConfig.getXOList(), 0, 0);
+        GamePlayController game = App.getGamePlayController();
+        GameConfig.resetBoard(game.xoTextOnButtonsList);
+        if (GameConfig.getMode() == 1) {
+            game.gameOverFlag = false;
+            game.printBoard();
+        } else if (GameConfig.getMode() == 2) {
+            PlayerHandler.updateFriendBoard(GameConfig.getXOList(), 0, 0);
+        }
     }
 
     @FXML
