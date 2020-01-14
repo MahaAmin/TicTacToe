@@ -132,9 +132,13 @@ public class PlayerSoc {
             case "chooseGame":
                 chooseGame();
                 break;
+            case "gameStatusNotify":
+                gameStatusNotify();
+                break;
         }
 
     }
+
 
     /**
      * after player became login save his data is his socket object
@@ -243,7 +247,7 @@ public class PlayerSoc {
      */
     private void saveGameRequest() {
         Platform.runLater(() -> {
-            //    Alerts.saveGameAlert(jsonMsg);
+            Alerts.saveGameAlert(jsonMsg);
         });
     }
 
@@ -267,6 +271,25 @@ public class PlayerSoc {
                     e.printStackTrace();
                 }
             }
+        });
+
+    }
+
+    /**
+     * for both players
+     */
+    private void gameStatusNotify() {
+        String status = jsonMsg.get("status").toString();
+        Platform.runLater(() -> {
+            if (status.equals("FAIL")) {
+                Alerts.gameFailedAlert();
+                try {
+                    SwitchTo.changeTo(App.getWindow(), 2);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
         });
 
     }

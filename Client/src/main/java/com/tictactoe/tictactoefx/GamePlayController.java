@@ -206,10 +206,8 @@ public class GamePlayController implements Initializable {
         xoButtonList.add(xoBTN9);
 
         if (!GameConfig.getXOList().isEmpty()) {
-            System.out.println("in old list");
             xoTextOnButtonsList = GameConfig.getXOList();
         } else {
-            System.out.println("in new list");
             for (int i = 0; i < xoButtonList.size(); i++) {
                 xoTextOnButtonsList.add(" ");
             }
@@ -338,19 +336,23 @@ public class GamePlayController implements Initializable {
 
         String OColor = "#54dfc4";
         String XColor = "#54dfc4";
-
+        System.out.println(currPlayerMark);
         if (GameConfig.getTurn()) {
             if (currPlayerMark.equals("X")) {
                 XColor = "#F06585";
+                System.out.println("1");
 
             } else {
                 OColor = "#F06585";
+                System.out.println("2");
             }
         } else {
             if (currPlayerMark.equals("X")) {
                 OColor = "#F06585";
+                System.out.println("3");
             } else {
                 XColor = "#F06585";
+                System.out.println("4");
             }
         }
 
@@ -557,7 +559,9 @@ public class GamePlayController implements Initializable {
 
     @FXML
     private void backButtonClicked(ActionEvent event) throws IOException {
-        SwitchTo.DifficultySelectionScene(event);
+        // update game status to fail
+        PlayerHandler.updateGameStatus("FAIL");
+        SwitchTo.dashboardScene(event);
     }
 
     @FXML
