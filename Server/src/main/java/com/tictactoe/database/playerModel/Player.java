@@ -6,13 +6,15 @@
 package com.tictactoe.database.playerModel;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.beans.property.SimpleStringProperty;
 
 /**
  * @author halim
  */
 public class Player {
     private int id; // autoGenerate in database
-    private String name;
+    private SimpleStringProperty name;
+    private String uname;
     private String password; //it's a VARCHAR in database with size (32)
     private String email;
     private int status; // it's a ENUM in database which contain offline(0), online(1), busy(2)
@@ -21,7 +23,10 @@ public class Player {
     private JFXButton btn=new JFXButton();
 
     public String getName() {
-        return name;
+        return name.get();
+    }
+    public void setName(String n){
+        name.set(n);
     }
     public String getScore(){
         return Integer.toString(score);
@@ -42,7 +47,8 @@ public class Player {
     }
     // constactor used for GUI only
     public Player(String n, String p, String e) {
-        name = n;
+        uname = n;
+        name = new SimpleStringProperty(n);
         password = p;
         email = e;
         status = 0; // offline as initial 
@@ -52,7 +58,8 @@ public class Player {
     // constactors used for retrieve in databaseManager only
     public Player(int i, String n,  String e, int s, String a, int sc) {
         id = i;
-        name = n;
+        uname = n;
+        name = new SimpleStringProperty(n);
         email = e;
         status = s;
         score = sc;
@@ -64,7 +71,7 @@ public class Player {
 
     // setDATA for player
     public void setPlayerName(String n) {
-        name = n;
+        uname = n;
     }
 
     public void setPlayerPassword(String p) {
@@ -97,7 +104,7 @@ public class Player {
     }
 
     public String getPlayerName() {
-        return name;
+        return uname;
     }
 
     public String getPlayerPassword() {

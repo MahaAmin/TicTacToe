@@ -35,7 +35,7 @@ public class PlayerSoc {
 
     private void startConnection() {
         try {
-            socket = new Socket("127.0.0.1", 5005);
+            socket = new Socket("192.168.43.76", 5005);
             dis = new DataInputStream(socket.getInputStream());
             ps = new PrintStream(socket.getOutputStream());
 //                oos = new ObjectOutputStream(socket.getOutputStream());
@@ -132,9 +132,13 @@ public class PlayerSoc {
             case "chooseGame":
                 chooseGame();
                 break;
+            case "gameStatusNotify":
+                gameStatusNotify();
+                break;
         }
 
     }
+
 
     /**
      * after player became login save his data is his socket object
@@ -157,21 +161,13 @@ public class PlayerSoc {
     private void playRequest() {
         Platform.runLater(() -> {
 
-           // Alerts.sendRequestAlert(jsonMsg);
-
             try {
-                SwitchTo.InvitationRequestPopupScene(jsonMsg);
+                GameConfig.setRequestPobUpJson(jsonMsg);
+                SwitchTo.InvitationRequestPopupScene();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Alerts.sendRequestAlert(jsonMsg);
-//            try {
-//                SwitchTo.InvitationRequestPopupScene(jsonMsg);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-
-
+//            Alerts.sendRequestAlert(jsonMsg);
 
         });
     }
@@ -219,8 +215,8 @@ public class PlayerSoc {
     private void requestRejected() {
         // inform play1 that players2 rejected his request to play a game
         Platform.runLater(() -> {
-           // Alerts.gameRequestRejected(jsonMsg);
-           try {
+            // Alerts.gameRequestRejected(jsonMsg);
+            try {
                 SwitchTo.RequestRejectedPopupScene();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -251,7 +247,7 @@ public class PlayerSoc {
      */
     private void saveGameRequest() {
         Platform.runLater(() -> {
-        //    Alerts.saveGameAlert(jsonMsg);
+            Alerts.saveGameAlert(jsonMsg);
         });
     }
 
@@ -275,6 +271,25 @@ public class PlayerSoc {
                     e.printStackTrace();
                 }
             }
+        });
+
+    }
+
+    /**
+     * for both players
+     */
+    private void gameStatusNotify() {
+        String status = jsonMsg.get("status").toString();
+        Platform.runLater(() -> {
+            if (status.equals("FAIL")) {
+                Alerts.gameFailedAlert();
+                try {
+                    SwitchTo.changeTo(App.getWindow(), 2);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
         });
 
     }

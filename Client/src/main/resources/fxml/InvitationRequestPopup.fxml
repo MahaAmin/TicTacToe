@@ -28,12 +28,12 @@
             <Font size="15.0" />
          </font>
       </JFXButton>
-      <Label layoutX="241.0" layoutY="149.0" text="Are you ready?">
+      <Label fx:id="contentLabel" layoutX="241.0" layoutY="149.0" text="Are you ready?">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="209.0" layoutY="108.0" text="Wants to play with you">
+      <Label fx:id="headerLabel" layoutX="209.0" layoutY="108.0" text="Wants to play with you">
          <font>
             <Font size="18.0" />
          </font>

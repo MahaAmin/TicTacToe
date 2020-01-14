@@ -109,20 +109,19 @@ public class GameModel {
 
 
     // update status
-    public static void updateGameStatus(JSONObject game) {
+    public static Boolean updateGameStatus(int id, String status) {
         try {
             PreparedStatement preparedStatement = db.connection.prepareStatement("UPDATE games SET status=? WHERE id=?");
-            preparedStatement.setString(1, game.get("status").toString());
-            preparedStatement.setInt(2, Integer.parseInt(game.get("id").toString()));
+            preparedStatement.setString(1, status);
+            preparedStatement.setInt(2, id);
             int isUpdated = preparedStatement.executeUpdate();
             if (isUpdated > 0) {
-                Game g = games.get(Integer.parseInt(game.get("id").toString()));
-                g.setGameStatus(GameStatus.valueOf(game.get(g).toString()));
-                games.replace(Integer.parseInt(game.get("id").toString()), g);
+                return true;
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        return false;
     }
 
     public static void updateGameBoard(JSONObject game, int game_id) {
@@ -162,5 +161,20 @@ public class GameModel {
             ex.printStackTrace();
         }
     }
+
+    public static boolean removeGame(int game_id) {
+        try {
+            PreparedStatement preparedStatement = db.connection.prepareStatement("DELETE FROM games WHERE id=?");
+            preparedStatement.setInt(1, game_id);
+            int isDeleted = preparedStatement.executeUpdate();
+            if (isDeleted > 0) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
 
 }
