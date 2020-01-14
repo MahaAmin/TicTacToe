@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import actions.App;
 import actions.PlayRequest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 
@@ -64,7 +66,10 @@ public class SwitchTo {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle(title);
-        stage.show();
+        App.setPopUpWindow(stage);
+        stage.setAlwaysOnTop(true);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 
     public static void mainScene(ActionEvent event) throws IOException {
@@ -92,35 +97,9 @@ public class SwitchTo {
         popupTransition(0, "Online List");
     }
 
-    public static void InvitationRequestPopupScene(JSONObject data) throws IOException {
+    public static void InvitationRequestPopupScene() throws IOException {
 
         popupTransition(1, "Invitation To Play");
-      /*  String name = data.get("from_name").toString();
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Invitation");
-        alert.setHeaderText(name + " Want To Play With You");
-        alert.setContentText("Are You Ready?");
-
-        ButtonType buttonNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
-        ButtonType buttonYes = new ButtonType("Yes");
-
-
-        //alert.getButtonTypes().setAll(buttonYes, buttonNo);
-
-        Optional<ButtonType> result = alert.showAndWait();
-        Map<String, String> map = new HashMap<>();
-        data.replace("type", "acceptRequest");
-
-        if (result.get() == buttonYes) {
-            // ... user chose "Yes"
-            data.put("response", "true");
-            PlayRequest.sendJSONObject(data);
-
-        } else if (result.get() == buttonNo) {
-            // ... user chose "No"
-            data.put("response", "false");
-            PlayRequest.sendJSONObject(data);
-        }*/
     }
 
 

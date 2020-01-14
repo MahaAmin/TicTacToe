@@ -163,4 +163,19 @@ public class GameModel {
         }
     }
 
+    public static boolean removeGame(int game_id){
+        try {
+            PreparedStatement preparedStatement = db.connection.prepareStatement("DELETE games WHERE id=?");
+            preparedStatement.setInt(1, game_id);
+            int isDeleted = preparedStatement.executeUpdate();
+            if (isDeleted > 0) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
+
 }

@@ -7,6 +7,7 @@ import player.PlayerSoc;
 public class App {
 
     private static Stage window;
+    private static Stage popUpWindow;
     private static PlayerSoc playerSoc;
     private static GamePlayController gamePlayController;
 
@@ -17,6 +18,14 @@ public class App {
 
     public static Stage getWindow() {
         return window;
+    }
+
+    public static void setPopUpWindow(Stage stage) {
+        popUpWindow = stage;
+    }
+
+    public static Stage getPopUpWindow() {
+        return popUpWindow;
     }
 
     public static void setPlayerSoc() {

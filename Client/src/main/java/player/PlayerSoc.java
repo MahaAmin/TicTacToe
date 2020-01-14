@@ -157,21 +157,13 @@ public class PlayerSoc {
     private void playRequest() {
         Platform.runLater(() -> {
 
-           // Alerts.sendRequestAlert(jsonMsg);
-
             try {
-                SwitchTo.InvitationRequestPopupScene(jsonMsg);
+                GameConfig.setRequestPobUpJson(jsonMsg);
+                SwitchTo.InvitationRequestPopupScene();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Alerts.sendRequestAlert(jsonMsg);
-//            try {
-//                SwitchTo.InvitationRequestPopupScene(jsonMsg);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-
-
+//            Alerts.sendRequestAlert(jsonMsg);
 
         });
     }
@@ -219,8 +211,8 @@ public class PlayerSoc {
     private void requestRejected() {
         // inform play1 that players2 rejected his request to play a game
         Platform.runLater(() -> {
-           // Alerts.gameRequestRejected(jsonMsg);
-           try {
+            // Alerts.gameRequestRejected(jsonMsg);
+            try {
                 SwitchTo.RequestRejectedPopupScene();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -251,7 +243,7 @@ public class PlayerSoc {
      */
     private void saveGameRequest() {
         Platform.runLater(() -> {
-        //    Alerts.saveGameAlert(jsonMsg);
+            //    Alerts.saveGameAlert(jsonMsg);
         });
     }
 
