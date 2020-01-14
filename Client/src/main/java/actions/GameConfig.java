@@ -13,6 +13,7 @@ public class GameConfig {
     private static String player_o;
     private static boolean turn = false;
     private static ArrayList<String> XOList = new ArrayList<>();
+    private static JSONObject requestPobUpJson;
 
     public static void setMode(int mod) {
         mode = mod;
@@ -69,5 +70,13 @@ public class GameConfig {
 
     public static ArrayList<String> getXOList() {
         return XOList;
+    }
+
+    public static void setRequestPobUpJson(JSONObject jsonObject) {
+        requestPobUpJson = jsonObject;
+    }
+
+    public static JSONObject getRequestPobUpJson() {
+        return requestPobUpJson;
     }
 }

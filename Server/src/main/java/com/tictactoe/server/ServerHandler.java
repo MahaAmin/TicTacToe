@@ -104,6 +104,9 @@ public class ServerHandler extends Thread {
             case "chosenPlayRequest":
                 chosenPlayRequest();
                 break;
+            case "updateGameStatus":
+                updateGameStatus();
+                break;
         }
 
     }
@@ -157,17 +160,16 @@ public class ServerHandler extends Thread {
         ServerHandler toPlayerHandler = getPlayerHandler(to_id);
         if (toPlayerHandler != null) {
             jsonMsg.replace("type", "playRequest");
+            int game_id = Integer.parseInt(jsonMsg.get("old_game").toString());
             if (jsonMsg.get("response").equals("true")) {
-                int game_id = Integer.parseInt(jsonMsg.get("old_game").toString());
                 game = GameModel.getGame(game_id);
                 jsonMsg.put("game_id", game_id);
                 toPlayerHandler.ps.println(jsonMsg.toJSONString());
             } else {
-                /**
-                 **** TODO
-                 * remove old game
-                 */
+                // remove old game
+                GameModel.removeGame(game_id);
                 jsonMsg.remove("old_game");
+                // create new game and send to player2
                 sendNewGameRequest(toPlayerHandler);
             }
         }
@@ -181,7 +183,7 @@ public class ServerHandler extends Thread {
         // set game data to [from_player]
         game = GameModel.getGame(game_id);
         // send play request to a friend
-        System.out.println("game "+jsonMsg);
+        System.out.println("game " + jsonMsg);
         toPlayerHandler.ps.println(jsonMsg.toJSONString());
     }
 
@@ -253,22 +255,19 @@ public class ServerHandler extends Thread {
      * for both players
      */
     private void saveGameRequest() {
-
-        // send to player 2  a request to save the game
-        getPlayerHandler(game.getToPlayer().getID()).ps.println(jsonMsg.toJSONString());
+        // if player 2 who want to save the game send save game request to player1
+        // if player 1 who want to save the game send save game request to player1
+        whichPlayer(jsonMsg);
     }
 
     /**
      * for both players
      */
     private void saveGameAnswer() {
+
         // if player 2 who want to save the game send save game answer to him
-        if (game.getFromPlayer().getID() == player.getID()) {
-            getPlayerHandler(game.getToPlayer().getID()).ps.println(jsonMsg.toJSONString());
-        } else {
-            // if player 1 who want to save the game send save game answer to him
-            getPlayerHandler(game.getFromPlayer().getID()).ps.println(jsonMsg.toJSONString());
-        }
+        // if player 1 who want to save the game send save game answer to him
+        whichPlayer(jsonMsg);
         // if the both players wants to save the game then save it
         if (jsonMsg.get("response").equals("true")) {
             jsonMsg.remove("type");
@@ -279,6 +278,32 @@ public class ServerHandler extends Thread {
         }
     }
 
+    /**
+     * send json object to player against you
+     */
+    private void whichPlayer(JSONObject jsonObject) {
+        ServerHandler serverHandle;
+
+        if (game.getFromPlayer().getID() == player.getID()) {
+            serverHandle = getPlayerHandler(game.getToPlayer().getID());
+        } else {
+            serverHandle = getPlayerHandler(game.getFromPlayer().getID());
+        }
+        serverHandle.ps.println(jsonObject.toJSONString());
+    }
+
+
+    /**
+     * for both players
+     */
+    private void updateGameStatus() {
+        String status = jsonMsg.get("status").toString();
+        Boolean isUpdated = GameModel.updateGameStatus(game.getId(), status);
+        if (isUpdated) {
+            jsonMsg.replace("type", "gameStatusNotify");
+            whichPlayer(jsonMsg);
+        }
+    }
 
     private ServerHandler getPlayerHandler(int player_id) {
         for (ServerHandler playerHandle : playersSoc) {

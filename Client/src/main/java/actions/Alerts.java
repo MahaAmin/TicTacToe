@@ -154,4 +154,12 @@ public class Alerts {
         alert.showAndWait();
     }
 
+    public static void gameFailedAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Game Failed");
+        alert.setHeaderText("Oops,Game Failed");
+        alert.setContentText("Unfortunately,It seems your competitor close the game");
+        alert.showAndWait();
+    }
+
 }

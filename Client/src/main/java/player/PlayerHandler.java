@@ -51,5 +51,12 @@ public interface PlayerHandler {
         return subMap;
     }
 
+    public static void updateGameStatus(String status){
+        Map<String, String> map = new HashMap<>();
+        map.put("type", "updateGameStatus");
+        map.put("status",status);
+        PlayRequest.sendJSON(map);
+    }
+
 
 }
