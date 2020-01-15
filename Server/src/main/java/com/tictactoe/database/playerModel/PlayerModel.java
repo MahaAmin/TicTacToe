@@ -146,6 +146,7 @@ public class PlayerModel {
     public static void logout(JSONObject player) {
         player.put("status", "0");
         updateStatus(player); // refer to offline
+
     }
 
 

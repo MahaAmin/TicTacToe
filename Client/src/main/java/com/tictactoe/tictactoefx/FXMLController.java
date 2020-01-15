@@ -83,6 +83,7 @@ public class FXMLController implements Initializable {
     @FXML
     private void googleButtonClicked(ActionEvent event) throws IOException {
         System.out.println("Google button is clicked");
+        SwitchTo.GooglePopupScene();
     }
 
     @FXML
