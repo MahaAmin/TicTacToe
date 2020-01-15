@@ -43,6 +43,7 @@ public class SwitchTo {
             add("SaveGameSuccessPopup"); //5 ==> SaveGameSuccessPopup.fxml
             add("Winner"); //6 ==> Winner.fxml
             add("GoogleLoginPopup"); // 7 ==> GoogleLoginPopup.fxml
+            add("WrongCredentialsPopup"); // 8 ==> WrongCredentialsPopup.fxml
         }
     };
 
@@ -127,6 +128,11 @@ public class SwitchTo {
     public static void GooglePopupScene() throws IOException
     {
         popupTransition(7, "Login with Google");
+    }
+    
+    public static void WrongCredentialsPopupScene() throws IOException
+    {
+        popupTransition(8, "Wrong Credentials were entered");
     }
 }
 

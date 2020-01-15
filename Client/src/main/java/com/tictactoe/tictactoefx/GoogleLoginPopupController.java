@@ -11,21 +11,13 @@ import javafx.scene.web.WebView;
 public class GoogleLoginPopupController implements Initializable 
 {
     @FXML private AnchorPane anchorPane;
-       
-        
         WebView browser = new WebView();
-        
-
         WebEngine webEngine = browser.getEngine();
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-
         webEngine.loadContent("https://calendar.google.com");
-        
         anchorPane.getChildren().add(browser);
-                        
-
     }
 }
