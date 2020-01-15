@@ -46,7 +46,6 @@ public class ServerHandler extends Thread {
     public void run() {
         try {
             while (soc!=null&&dis!=null) {
-
                 // receive JSON
                 String data = dis.readLine();
                 if (!data.isEmpty()) {
@@ -321,8 +320,10 @@ public class ServerHandler extends Thread {
         PlayerModel.logout(jsonMsg);
         //System.out.println("This is the logout id"+jsonMsg.get("id"));p
         try{
+        dis.close();
+        ps.close();
         soc.close();
-        playersSoc.remove(this);
+        playersSoc.remove(soc);
         getall();
         }catch(Exception ew){
             System.out.println("socket didn't close in logout function");

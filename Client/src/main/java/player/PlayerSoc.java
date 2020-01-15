@@ -85,7 +85,7 @@ public class PlayerSoc {
         }).start();
     }
 
-    private void closeSocket() {
+    public void closeSocket() {
         try {
             dis.close();
             ps.close();
