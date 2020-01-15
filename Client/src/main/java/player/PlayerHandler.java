@@ -1,6 +1,7 @@
 package player;
 
 import actions.App;
+import actions.GameConfig;
 import actions.PlayRequest;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -12,8 +13,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public interface PlayerHandler {
-
-//    public final static PlayerSoc playerSoc = new PlayerSoc();
 
     public static void sendPlayRequest(int player_id) throws IOException {
         PlayerSoc playerSoc = App.getPlayerSoc();

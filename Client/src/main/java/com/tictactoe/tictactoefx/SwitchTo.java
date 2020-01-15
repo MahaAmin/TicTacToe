@@ -42,6 +42,7 @@ public class SwitchTo {
             add("SaveGameRequestPopup"); //4 ==> SaveGameRequest.fxml
             add("SaveGameSuccessPopup"); //5 ==> SaveGameSuccessPopup.fxml
             add("Winner"); //6 ==> Winner.fxml
+            add("GoogleLoginPopup"); // 7 ==> GoogleLoginPopup.fxml
         }
     };
 
@@ -71,7 +72,7 @@ public class SwitchTo {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
-
+    
     public static void mainScene(ActionEvent event) throws IOException {
         transition(event, 0);
     }
@@ -121,6 +122,11 @@ public class SwitchTo {
 
     public static void WinnerPopupScene() throws IOException {
         popupTransition(6, "Game Result");
+    }
+    
+    public static void GooglePopupScene() throws IOException
+    {
+        popupTransition(7, "Login with Google");
     }
 }
 
