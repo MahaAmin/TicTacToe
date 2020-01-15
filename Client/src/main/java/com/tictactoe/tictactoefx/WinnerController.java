@@ -23,6 +23,7 @@ public class WinnerController implements Initializable {
         if (GameConfig.getMode() == 1) {
             game.gameOverFlag = false;
             game.printBoard();
+            game.currPlayerMark = "X";
         } else if (GameConfig.getMode() == 2) {
             PlayerHandler.updateFriendBoard(GameConfig.getXOList(), 0, 0);
         }

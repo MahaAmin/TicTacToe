@@ -57,7 +57,7 @@ public class GamePlayController implements Initializable {
     // int to choose pc difficult level (Easy(1), Medium(2), Hard(3))
     private int level = GameConfig.getPcLevel();
     // ------------------------------------------------------------------ //
-    private String currPlayerMark;
+    public String currPlayerMark;
     
     int playerXScore;
     int playerOScore;

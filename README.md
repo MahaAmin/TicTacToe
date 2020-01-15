@@ -7,6 +7,9 @@ description
 - [Getting Started](#getting-started)
 - [Prerequisites](#prerequisites)
  - [Installing](#installing)
+ - [Diagrams](#diagrams)
+	 - [Class Diagram](#class-diagram)
+	 - [Database Schema](#database-schema)
   - [Features ](#features)
 	  - [Feature 1](#feature-1)
 
