@@ -51,7 +51,8 @@ import sun.audio.AudioPlayer;
 public class DashboardController implements Initializable {
     @FXML
     private JFXListView<Label> scoreBoardLV = new JFXListView();
-
+    @FXML private JFXButton changePictureButton;
+    
     /*TableView Columns*/
     @FXML
     private TableView<Player> allUsersTable;
@@ -91,6 +92,7 @@ public class DashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
+            changePictureButton.setVisible(false);
             mouseEnteredShadow.setColor(Color.GRAY); //set the shadow color of the  Region.
             mouseExitedShadow.setColor(Color.WHITE);
 
@@ -139,6 +141,11 @@ public class DashboardController implements Initializable {
         allUsersTable.setItems(PlayerModel.playerslist);
     }
     
+    @FXML private void changePictureButtonClicked(ActionEvent event) throws IOException
+    {
+        SwitchTo.ChangeProfilePictureScene(event);
+    }
+    
         private void changeRegionColor(Region region,  DropShadow shadowType)
         {
             region.setEffect(shadowType);
@@ -149,6 +156,18 @@ public class DashboardController implements Initializable {
             */
         
             //Floating effect for profilePic region.
+            @FXML private void profilePictureMouseEntered(MouseEvent event)
+            {
+                changePictureButton.setVisible(true);
+                changeRegionColor(profileRegion, mouseEnteredShadow);
+            }
+            
+            @FXML private void profilePictureMouseExited(MouseEvent event)
+            {
+                changePictureButton.setVisible(false);
+                changeRegionColor(profileRegion, mouseEnteredShadow);
+            }
+            
             @FXML private void profileRegionMouseEntered(MouseEvent event)
             {
                 changeRegionColor(profileRegion, mouseEnteredShadow);
@@ -158,6 +177,8 @@ public class DashboardController implements Initializable {
             {
                  changeRegionColor(profileRegion, mouseExitedShadow);
             }
+            
+
             
             //Floating effect for dashboard Region
             @FXML private void dashboardRegionMouseEntered(MouseEvent event)

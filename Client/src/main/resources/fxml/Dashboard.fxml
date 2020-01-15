@@ -24,7 +24,7 @@
       <Region fx:id="dashboardRegion" layoutX="357.0" layoutY="62.0" onMouseEntered="#dashboardRegionMouseEntered" onMouseExited="#dashboardRegionMouseExited" prefHeight="498.0" prefWidth="287.0" style="-fx-background-color: #F3F5F9; -fx-background-radius: 20;" />
       <Region fx:id="profileRegion" layoutX="9.0" layoutY="205.0" onMouseEntered="#profileRegionMouseEntered" onMouseExited="#profileRegionMouseExited" prefHeight="234.0" prefWidth="322.0" style="-fx-background-radius: 15; -fx-background-color: #F3F5F9;" />
       <Region id="playersList" layoutX="681.0" layoutY="258.0" onMouseEntered="#playersListRegionMouseEntered" onMouseExited="#playersListRegionMouseExited" prefHeight="58.0" prefWidth="298.0" style="-fx-background-radius: 30; -fx-background-color: #11158F;" stylesheets="@../styles/Styles.css" />
-      <JFXButton id="signInButton" alignment="CENTER" defaultButton="true" layoutX="388.0" layoutY="227.0" onAction="#vsPCbuttonClicked" onMouseEntered="#dashboardRegionMouseEntered" onMouseExited="#dashboardRegionMouseExited" prefHeight="58.0" prefWidth="225.0" stylesheets="@../styles/Styles.css" text="VS PC" textAlignment="CENTER" textFill="WHITE">
+      <JFXButton id="signInButton" alignment="CENTER" layoutX="388.0" layoutY="227.0" onAction="#vsPCbuttonClicked" onMouseEntered="#dashboardRegionMouseEntered" onMouseExited="#dashboardRegionMouseExited" prefHeight="58.0" prefWidth="225.0" stylesheets="@../styles/Styles.css" text="VS PC" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
@@ -74,7 +74,7 @@
             <FontIcon iconColor="WHITE" iconLiteral="fa-chain-broken" iconSize="20" />
          </graphic>
       </JFXButton>
-      <Circle fx:id="profilePicture" fill="#004c94" layoutX="170.0" layoutY="205.0" onMouseEntered="#profileRegionMouseEntered" onMouseExited="#profileRegionMouseExited" radius="57.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+      <Circle fx:id="profilePicture" fill="#004c94" layoutX="170.0" layoutY="205.0" onMouseEntered="#profilePictureMouseEntered" onMouseExited="#profilePictureMouseExited" radius="57.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
          <effect>
             <DropShadow height="5.0" radius="2.0" width="5.0" />
          </effect>
@@ -94,5 +94,10 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <JFXButton fx:id="changePictureButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="136.0" layoutY="215.0" onAction="#changePictureButtonClicked" onMouseEntered="#profilePictureMouseEntered" onMouseExited="#profilePictureMouseExited" opacity="0.6" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #11158F;" text="Change" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

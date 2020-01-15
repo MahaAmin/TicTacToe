@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane id="AnchorPane" prefHeight="678.0" prefWidth="1000.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.tictactoe.tictactoefx.ChangeProfilePictureController">
+    <stylesheets>
+        <URL value="@/styles/Styles.css" />
+    </stylesheets>
+   <children>
+      <JFXButton id="backButtonGamePlay" onAction="#backButtonClicked" prefHeight="40.0" prefWidth="63.0" ripplerFill="#c7b1ff" stylesheets="@../styles/Styles.css" text=" ">
+         <graphic>
+            <FontIcon iconColor="WHITE" iconLiteral="fa-angle-left" iconSize="30" translateX="3.0" />
+         </graphic>
+      </JFXButton>
+   </children>
+</AnchorPane>

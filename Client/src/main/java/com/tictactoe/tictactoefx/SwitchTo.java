@@ -30,6 +30,7 @@ public class SwitchTo {
             add("Dashboard"); // 2 ==> Dashboard.fxml
             add("GamePlay"); // 3 ==> GamePlay.fxml
             add("DifficultySelection");//4 ==> DifficultySelection.fxml
+            add("ChangeProfilePicture"); //5 ==> ChangeProfilePicture.fxml
         }
     };
 
@@ -93,6 +94,11 @@ public class SwitchTo {
 
     public static void DifficultySelectionScene(ActionEvent event) throws IOException {
         transition(event, 4);
+    }
+    
+    public static void ChangeProfilePictureScene(ActionEvent event) throws  IOException
+    {
+        transition(event, 5);
     }
 
     public static void onlineListPopUpScene() throws IOException {
