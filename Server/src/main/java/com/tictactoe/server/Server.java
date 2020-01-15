@@ -11,7 +11,6 @@ import java.net.Socket;
 public class Server {
 
     ServerSocket myServerSocket;
-
     public Server() {
         startConnection();
     }
