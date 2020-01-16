@@ -54,6 +54,20 @@ public class DashboardController implements Initializable {
     @FXML private JFXButton changePictureButton;
     
     /*TableView Columns*/
+    //Table 1 {User Specific}
+    @FXML
+    private TableView<Player> userTable;
+
+    @FXML
+    private TableColumn<Player, String> userNameColumnT1;
+    @FXML
+    private TableColumn<Player, String> scoreColumnT1;
+    @FXML
+    private TableColumn<Player, String> avatarColumnT1;
+
+    ObservableList<Player> currentUser = FXCollections.observableArrayList();
+
+
     @FXML
     private TableView<Player> allUsersTable;
     @FXML
@@ -90,6 +104,7 @@ public class DashboardController implements Initializable {
     }
 
     @Override
+
     public void initialize(URL url, ResourceBundle rb) 
     {
             changePictureButton.setVisible(false);
@@ -122,6 +137,12 @@ public class DashboardController implements Initializable {
 
         //Table 1 [User Profile]
         Player current = App.getPlayerSoc().getPlayer();
+        avatarColumnT1.setCellValueFactory(new PropertyValueFactory<>("avatar"));
+        userNameColumnT1.setCellValueFactory(new PropertyValueFactory<>("name"));
+        scoreColumnT1.setCellValueFactory(new PropertyValueFactory<>("score"));
+
+        currentUser.add(current);
+        userTable.setItems(currentUser);
         usernameLabel.setText(current.getPlayerName());
         scoreValueLabel.setText( String.valueOf(current.getPlayerScore()));
 //        userNameColumnT1.setCellValueFactory(new PropertyValueFactory<>("userName"));

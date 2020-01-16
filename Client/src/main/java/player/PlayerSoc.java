@@ -217,8 +217,9 @@ public class PlayerSoc {
     private void requestRejected() {
         // inform play1 that players2 rejected his request to play a game
         Platform.runLater(() -> {
-            // Alerts.gameRequestRejected(jsonMsg);
+
             try {
+                GameConfig.setRejectedPobUpJson(jsonMsg);
                 SwitchTo.RequestRejectedPopupScene();
             } catch (IOException e) {
                 e.printStackTrace();
