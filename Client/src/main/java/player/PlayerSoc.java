@@ -35,7 +35,7 @@ public class PlayerSoc {
 
     private void startConnection() {
         try {
-            socket = new Socket("192.168.43.76", 5005);
+            socket = new Socket("127.0.0.1", 5005);
             dis = new DataInputStream(socket.getInputStream());
             ps = new PrintStream(socket.getOutputStream());
 //                oos = new ObjectOutputStream(socket.getOutputStream());
@@ -215,8 +215,9 @@ public class PlayerSoc {
     private void requestRejected() {
         // inform play1 that players2 rejected his request to play a game
         Platform.runLater(() -> {
-            // Alerts.gameRequestRejected(jsonMsg);
+
             try {
+                GameConfig.setRejectedPobUpJson(jsonMsg);
                 SwitchTo.RequestRejectedPopupScene();
             } catch (IOException e) {
                 e.printStackTrace();

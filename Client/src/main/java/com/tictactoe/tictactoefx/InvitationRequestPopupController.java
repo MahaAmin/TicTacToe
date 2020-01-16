@@ -19,15 +19,18 @@ public class InvitationRequestPopupController implements Initializable {
 
     @FXML
     private Label requestLabel, headerLabel, contentLabel;
-    private JSONObject jsonData;
+    private JSONObject jsonData ;
 
     @FXML
-    private void noButtonClicked(ActionEvent event) {
+    private void noButtonClicked(ActionEvent event) throws IOException {
 
         // ... player2 chose "No"
         jsonData.put("response", "false");
         PlayRequest.sendJSONObject(jsonData);
+        jsonData = GameConfig.getRejectedPobUpJson();
+        SwitchTo.RequestRejectedPopupScene();
         App.getPopUpWindow().close();
+
     }
 
     @FXML

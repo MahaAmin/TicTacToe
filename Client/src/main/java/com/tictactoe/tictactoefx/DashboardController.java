@@ -48,16 +48,16 @@ public class DashboardController implements Initializable {
     /*TableView Columns*/
     //Table 1 {User Specific}
     @FXML
-    private TableView<User> userTable;
+    private TableView<Player> userTable;
 
     @FXML
-    private TableColumn<User, String> userNameColumnT1;
+    private TableColumn<Player, String> userNameColumnT1;
     @FXML
-    private TableColumn<User, String> scoreColumnT1;
+    private TableColumn<Player, String> scoreColumnT1;
     @FXML
-    private TableColumn<User, String> avatarColumnT1;
+    private TableColumn<Player, String> avatarColumnT1;
 
-    ObservableList<User> currentUser = FXCollections.observableArrayList();
+    ObservableList<Player> currentUser = FXCollections.observableArrayList();
 
 
     @FXML
@@ -105,7 +105,7 @@ public class DashboardController implements Initializable {
 
             image1 = new Image(new FileInputStream("C:\\Users\\Jaxon\\Desktop\\me.jpg"));
             ImageView img = new ImageView(image1);
-            currentUser.add(new User(img, "Jaxon Tani", "2nd Tani", "11111"));
+            currentUser.add(new Player());
         } catch (FileNotFoundException ex) {
         }
         //currentUser = FXCollections.observableArrayList();
@@ -119,13 +119,11 @@ public class DashboardController implements Initializable {
 
         //Table 1 [User Profile]
         Player current = App.getPlayerSoc().getPlayer();
-        userNameColumnT1.setCellValueFactory(new PropertyValueFactory<>("userName"));
-
-
-        scoreColumnT1.setCellValueFactory(new PropertyValueFactory<>("score"));
         avatarColumnT1.setCellValueFactory(new PropertyValueFactory<>("avatar"));
+        userNameColumnT1.setCellValueFactory(new PropertyValueFactory<>("name"));
+        scoreColumnT1.setCellValueFactory(new PropertyValueFactory<>("score"));
 
-        currentUser.add(new User(current.getPlayerName(), "f", Integer.toString(current.getPlayerScore()), current.getPlayerAvatar()));
+        currentUser.add(current);
         userTable.setItems(currentUser);
 
         username.setCellValueFactory(new PropertyValueFactory<>("name"));
