@@ -18,11 +18,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.Circle;
 import org.json.simple.JSONObject;
 import player.PlayerHandler;
+import playerModel.Player;
 
 public class GamePlayController implements Initializable {
 
@@ -46,10 +46,6 @@ public class GamePlayController implements Initializable {
     @FXML
     private Region playerXRegion;
 
-    private String xoTXT1, xoTXT2, xoTXT3;
-    private String xoTXT4, xoTXT5, xoTXT6;
-    private String xoTXT7, xoTXT8, xoTXT9;
-
     private final String colorX = "-fx-text-fill: #3989d4; ";
     private final String colorO = "-fx-text-fill: #3abcd4; ";
 
@@ -62,12 +58,12 @@ public class GamePlayController implements Initializable {
     // int to choose pc difficult level (Easy(1), Medium(2), Hard(3))
     private int level = GameConfig.getPcLevel();
     // ------------------------------------------------------------------ //
-    private String currPlayerMark;
+    public String currPlayerMark;
 
     int playerXScore;
     int playerOScore;
 
-    boolean gameOverFlag;
+    public boolean gameOverFlag;
 
     // board
     ArrayList<JFXButton> xoButtonList = new ArrayList<>();
@@ -84,109 +80,48 @@ public class GamePlayController implements Initializable {
     @FXML
     private void xoBTN1Clicked(ActionEvent event) {
 
-        placeMark(0, currPlayerMark);
-        if (checkForWin() != null) {
-            gameOverFlag = true;
-            announceGameResult();
-        }
-        if (!gameOverFlag) {
-            pcTurn();
-        }
+        buttonHandling(0);
     }
 
     @FXML
     private void xoBTN2Clicked(ActionEvent event) {
-        placeMark(1, currPlayerMark);
-        if (checkForWin() != null) {
-            gameOverFlag = true;
-            announceGameResult();
-        }
-        if (!gameOverFlag) {
-            pcTurn();
-        }
+        buttonHandling(1);
     }
 
     @FXML
     private void xoBTN3Clicked(ActionEvent event) {
-        placeMark(2, currPlayerMark);
-        if (checkForWin() != null) {
-            gameOverFlag = true;
-            announceGameResult();
-        }
-        if (!gameOverFlag) {
-            pcTurn();
-        }
+        buttonHandling(2);
     }
 
     @FXML
     private void xoBTN4Clicked(ActionEvent event) {
-        placeMark(3, currPlayerMark);
-        if (checkForWin() != null) {
-            gameOverFlag = true;
-            announceGameResult();
-        }
-        if (!gameOverFlag) {
-            pcTurn();
-        }
+        buttonHandling(3);
 
     }
 
     @FXML
     private void xoBTN5Clicked(ActionEvent event) {
-        placeMark(4, currPlayerMark);
-        if (checkForWin() != null) {
-            gameOverFlag = true;
-            announceGameResult();
-        }
-        if (!gameOverFlag) {
-            pcTurn();
-        }
+        buttonHandling(4);
     }
 
     @FXML
     private void xoBTN6Clicked(ActionEvent event) {
-        placeMark(5, currPlayerMark);
-        if (checkForWin() != null) {
-            gameOverFlag = true;
-            announceGameResult();
-        }
-        if (!gameOverFlag) {
-            pcTurn();
-        }
+        buttonHandling(5);
     }
 
     @FXML
     private void xoBTN7Clicked(ActionEvent event) {
-        placeMark(6, currPlayerMark);
-        if (checkForWin() != null) {
-            gameOverFlag = true;
-            announceGameResult();
-        }
-        pcTurn();
+        buttonHandling(6);
     }
 
     @FXML
     private void xoBTN8Clicked(ActionEvent event) {
-        placeMark(7, currPlayerMark);
-        if (checkForWin() != null) {
-            gameOverFlag = true;
-            announceGameResult();
-        }
-        if (!gameOverFlag) {
-            pcTurn();
-        }
+        buttonHandling(7);
     }
 
     @FXML
     private void xoBTN9Clicked(ActionEvent event) {
-        placeMark(8, currPlayerMark);
-        if (checkForWin() != null) {
-            gameOverFlag = true;
-            announceGameResult();
-        }
-        if (!gameOverFlag) {
-            pcTurn();
-        }
+        buttonHandling(8);
     }
 
     @Override
@@ -212,18 +147,20 @@ public class GamePlayController implements Initializable {
                 xoTextOnButtonsList.add(" ");
             }
         }
-
+        Player current_player = App.getPlayerSoc().getPlayer();
         if (mode == 1) // PCMode
         {
             // human starts game with label X
             currPlayerMark = "X";
+            playerXScore = current_player.getPlayerScore();
+            playerOScore = 0;
             //Change the X & O Player names.
-            playerXLabel.setText(App.getPlayerSoc().getPlayer().getPlayerName());
+            playerXLabel.setText(current_player.getPlayerName());
             playerOLabel.setText("PC O");
 
         } else if (mode == 2) // TwoPlayersMode
         {
-            if (App.getPlayerSoc().getPlayer().getPlayerName().equals(GameConfig.getPlayerX())) {
+            if (current_player.getPlayerName().equals(GameConfig.getPlayerX())) {
                 currPlayerMark = "X";
             } else {
                 currPlayerMark = "O";
@@ -232,11 +169,11 @@ public class GamePlayController implements Initializable {
             //Change the X & O Player names.
             playerXLabel.setText(GameConfig.getPlayerX());
             playerOLabel.setText(GameConfig.getPlayerO());
+            playerXScore=GameConfig.getPlayerXScore();
+            playerOScore=GameConfig.getPlayerOScore();
             playerXCircle.setStyle("-fx-stroke: #F06585; ");
         }
 
-        playerXScore = 0;
-        playerOScore = 0;
 
         //Change Their score
         setPlayerXScore.setText(Integer.toString(playerXScore));
@@ -248,7 +185,18 @@ public class GamePlayController implements Initializable {
 
     }
 
-    private void printBoard() {
+    private void buttonHandling(int buttonNumber) {
+        placeMark(buttonNumber, currPlayerMark);
+        if (checkForWin() != null) {
+            gameOverFlag = true;
+            announceGameResult();
+        }
+        if (mode == 1 && !gameOverFlag) {
+            pcTurn();
+        }
+    }
+
+    public void printBoard() {
 
         setPlayerXScore.setText(Integer.toString(playerXScore));
         setPlayerOScore.setText(Integer.toString(playerOScore));
@@ -311,6 +259,7 @@ public class GamePlayController implements Initializable {
         }
 
         if (isBoardFull() && winner == null) {
+
             return "Tie";
         } else {
             return winner;
@@ -450,18 +399,111 @@ public class GamePlayController implements Initializable {
         changePlayer();
         switch (level) {
             case 1:
-                pcTurnRandom();
+                finalizeTurn(pcTurnRandom());
                 break;
             case 2:
-                //pcTurnMedium();
+                finalizeTurn(pcTurnMedium());
                 break;
             case 3:
-                pcTurnMinimax();
+                finalizeTurn(pcTurnMinimax());
                 break;
         }
     }
 
-    private void pcTurnMinimax() {
+    private void finalizeTurn(int bestMove) {
+        placeMark(bestMove, currPlayerMark);
+        if (checkForWin() != null) {
+            gameOverFlag = true;
+            announceGameResult();
+        }
+        changePlayer();
+    }
+
+    private int pcTurnMedium() {
+        int bestCell;
+        // If AI can win --> AI wins:
+        if (canWin("O") != -1) {
+            bestCell = canWin("O");
+        } // else if human can win --> block him
+        else if (canWin("X") != -1) {
+            bestCell = canWin("X");
+        } // else --> return random available cell
+        else {
+            bestCell = getRandomAvailableCell();
+        }
+
+        // return best cell for ai(medium) move
+        return bestCell;
+    }
+
+    private int canWin(String mark) {
+        int cell;
+
+        // check rows
+        for (int i = 0; i < 9; i += 3) {
+            cell = checkForThirdEmptyCell(mark, xoTextOnButtonsList.get(i), xoTextOnButtonsList.get(i + 1), xoTextOnButtonsList.get(i + 2));
+            switch (cell) {
+                case 1:
+                    return i;
+                case 2:
+                    return i + 1;
+                case 3:
+                    return i + 2;
+            }
+        }
+
+        // check cols
+        for (int i = 0; i < 3; i++) {
+            cell = checkForThirdEmptyCell(mark, xoTextOnButtonsList.get(i), xoTextOnButtonsList.get(i + 3), xoTextOnButtonsList.get(i + 6));
+            switch (cell) {
+                case 1:
+                    return i;
+                case 2:
+                    return i + 3;
+                case 3:
+                    return i + 6;
+            }
+        }
+
+        // check 1st diagonal
+        cell = checkForThirdEmptyCell(mark, xoTextOnButtonsList.get(0), xoTextOnButtonsList.get(4), xoTextOnButtonsList.get(8));
+        switch (cell) {
+            case 1:
+                return 0;
+            case 2:
+                return 4;
+            case 3:
+                return 8;
+        }
+
+        // check 2nd diagonal
+        cell = checkForThirdEmptyCell(mark, xoTextOnButtonsList.get(2), xoTextOnButtonsList.get(4), xoTextOnButtonsList.get(6));
+        switch (cell) {
+            case 1:
+                return 2;
+            case 2:
+                return 4;
+            case 3:
+                return 6;
+        }
+
+        return -1;
+
+    }
+
+    private int checkForThirdEmptyCell(String mark, String s1, String s2, String s3) {
+        if (s1.equals(mark) && s1.equals(s2) && s3.equals(" ")) {
+            return 3;
+        } else if (s1.equals(mark) && s1.equalsIgnoreCase(s3) && s2.equals(" ")) {
+            return 2;
+        } else if (s2.equals(mark) && s2.equalsIgnoreCase(s3) && s1.equals(" ")) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    private int pcTurnMinimax() {
         int bestScore = Integer.MIN_VALUE;
         int move = 100;
 
@@ -476,12 +518,7 @@ public class GamePlayController implements Initializable {
                 }
             }
         }
-        placeMark(move, currPlayerMark);
-        if (checkForWin() != null) {
-            gameOverFlag = true;
-            announceGameResult();
-        }
-        changePlayer();
+        return move;
     }
 
     public int minimax(ArrayList<String> board, int depth, boolean isMaximizing) {
@@ -530,7 +567,7 @@ public class GamePlayController implements Initializable {
         }
     }
 
-    public void pcTurnRandom() {
+    private int getRandomAvailableCell() {
         // vector that carries indeces of current empty cells on the board
         Vector<Integer> availableCells = getAvailableCells();
 
@@ -548,13 +585,11 @@ public class GamePlayController implements Initializable {
         }
 
         // cell Where to play next turn
-        int nextTurn = availableCells.get(rand);
-        placeMark(nextTurn, currPlayerMark);
-        if (checkForWin() != null) {
-            gameOverFlag = true;
-            announceGameResult();
-        }
-        changePlayer();
+        return availableCells.get(rand);
+    }
+
+    public int pcTurnRandom() {
+        return getRandomAvailableCell();
     }
 
     @FXML

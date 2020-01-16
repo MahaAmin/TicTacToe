@@ -5,7 +5,6 @@
  */
 package com.tictactoe.database.playerModel;
 
-import com.mysql.cj.xdevapi.JsonArray;
 import com.tictactoe.actions.App;
 import com.tictactoe.database.DatabaseManager;
 import javafx.collections.FXCollections;
@@ -17,7 +16,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -146,6 +144,7 @@ public class PlayerModel {
     public static void logout(JSONObject player) {
         player.put("status", "0");
         updateStatus(player); // refer to offline
+
     }
 
 
