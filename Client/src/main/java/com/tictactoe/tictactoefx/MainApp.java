@@ -36,6 +36,11 @@ public class MainApp extends Application {
         stage.show();
 
         stage.setOnCloseRequest(e -> {
+           try{
+               super.stop();
+           }catch(Exception ee){
+               ee.getMessage();
+           }
             System.out.println("on close");
             Map<String, String> map = new HashMap<>();
             map.put("type", "logout");
