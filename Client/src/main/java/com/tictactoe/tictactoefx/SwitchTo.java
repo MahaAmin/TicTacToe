@@ -30,6 +30,7 @@ public class SwitchTo {
             add("Dashboard"); // 2 ==> Dashboard.fxml
             add("GamePlay"); // 3 ==> GamePlay.fxml
             add("DifficultySelection");//4 ==> DifficultySelection.fxml
+            add("ChangeProfilePicture"); //5 ==> ChangeProfilePicture.fxml
         }
     };
 
@@ -43,6 +44,7 @@ public class SwitchTo {
             add("SaveGameSuccessPopup"); //5 ==> SaveGameSuccessPopup.fxml
             add("Winner"); //6 ==> Winner.fxml
             add("GoogleLoginPopup"); // 7 ==> GoogleLoginPopup.fxml
+            add("WrongCredentialsPopup"); // 8 ==> WrongCredentialsPopup.fxml
         }
     };
 
@@ -93,6 +95,11 @@ public class SwitchTo {
     public static void DifficultySelectionScene(ActionEvent event) throws IOException {
         transition(event, 4);
     }
+    
+    public static void ChangeProfilePictureScene(ActionEvent event) throws  IOException
+    {
+        transition(event, 5);
+    }
 
     public static void onlineListPopUpScene() throws IOException {
         popupTransition(0, "Online List");
@@ -127,6 +134,11 @@ public class SwitchTo {
     public static void GooglePopupScene() throws IOException
     {
         popupTransition(7, "Login with Google");
+    }
+    
+    public static void WrongCredentialsPopupScene() throws IOException
+    {
+        popupTransition(8, "Wrong Credentials were entered");
     }
 }
 

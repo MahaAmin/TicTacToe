@@ -67,6 +67,7 @@
          </graphic>
       </JFXButton>
       <JFXTextField id="userNameTF" fx:id="usernameTF" labelFloat="true" layoutX="309.0" layoutY="125.0" prefHeight="25.0" prefWidth="298.0" promptText="Username" stylesheets="@../styles/Styles.css" />
+      <JFXPasswordField id="passwordTF" fx:id="passwordTF" labelFloat="true" layoutX="309.0" layoutY="188.0" prefHeight="25.0" prefWidth="298.0" promptText="Password" stylesheets="@../styles/Styles.css" />
       <Label layoutX="385.0" layoutY="428.0" text="Don't have an account yet ?">
          <font>
             <Font size="13.0" />
@@ -89,7 +90,6 @@
 
       <FontIcon iconLiteral="fa-times" iconSize="30" layoutX="352.0" layoutY="93.0" fx:id="xIcon" />
       <FontIcon fx:id="oIcon" iconLiteral="fa-circle-o" iconSize="30" layoutX="538.0" layoutY="93.0" />
-      <JFXPasswordField id="passwordTF" fx:id="passwordTF" labelFloat="true" layoutX="309.0" layoutY="188.0" prefHeight="25.0" prefWidth="298.0" promptText="Password" stylesheets="@../styles/Styles.css" />
       <Region layoutX="309.0" layoutY="321.0" prefHeight="98.0" prefWidth="298.0" style="-fx-background-color: #FEEFF9; -fx-background-radius: 10;" />
       <Circle fill="#fde1ef" layoutX="555.0" layoutY="347.0" radius="17.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
       <JFXButton id="googleButton" fx:id="googleButton" layoutX="361.0" layoutY="347.0" onAction="#googleButtonClicked" onMouseEntered="#googleButtonHovered" onMouseExited="#googleButtonExited" prefHeight="60.0" prefWidth="60.0" stylesheets="@../styles/Styles.css" text=" ">

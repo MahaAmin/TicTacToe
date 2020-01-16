@@ -45,7 +45,8 @@ public class ServerHandler extends Thread {
     @Override
     public void run() {
         try {
-            while (soc!=null&&dis!=null) {
+            while (soc != null && dis != null) {
+
                 // receive JSON
                 String data = dis.readLine();
                 if (!data.isEmpty()) {
@@ -218,13 +219,24 @@ public class ServerHandler extends Thread {
         // friend accept to play with me
         if (jsonMsg.get("response").equals("true")) {
             Player to_player = game.getToPlayer();
+
+            JSONObject jsono = new JSONObject();
+            // update player2 status to busy
+            jsono.put("id", to_player.getID());
+            jsono.put("status", 2);
+            PlayerModel.updateStatus(jsono);
+            // update player1 status to busy
+            jsono.replace("id", from_player.getID());
+            PlayerModel.updateStatus(jsono);
+
             jsonMsg.replace("type", "gameStart");
             jsonMsg.put("to_name", to_player.getPlayerName());
+            jsonMsg.put("from_score", from_player.getPlayerScore());
+            jsonMsg.put("to_score", to_player.getPlayerScore());
             if (jsonMsg.containsKey("old_game")) {
                 jsonMsg.put("board", game.getBoard());
             }
 
-            System.out.println("accept request " + jsonMsg);
             // send to player 1  to start the game
             getPlayerHandler(from_player.getID()).ps.println(jsonMsg.toJSONString());
             // send to player 2  to start the game
@@ -313,19 +325,17 @@ public class ServerHandler extends Thread {
         return null;
     }
 
-//logout and getall function that calls a broadcast message to send the updated data collection to all users
+    //logout and getall function that calls a broadcast message to send the updated data collection to all users
 //this function triggers when a logout request is received at the server side
     private void logout() {
 
         PlayerModel.logout(jsonMsg);
         //System.out.println("This is the logout id"+jsonMsg.get("id"));p
-        try{
-        dis.close();
-        ps.close();
-        soc.close();
-        playersSoc.remove(soc);
-        getall();
-        }catch(Exception ew){
+        try {
+            soc.close();
+            playersSoc.remove(this);
+            getall();
+        } catch (Exception ew) {
             System.out.println("socket didn't close in logout function");
         }
     }

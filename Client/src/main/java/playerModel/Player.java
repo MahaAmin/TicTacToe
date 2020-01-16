@@ -12,13 +12,10 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import player.PlayerHandler;
 
 import java.io.IOException;
 
-/**
- *
- * @author halim
- */
 public class Player {
     private int id; // autoGenerate in database
     private SimpleStringProperty name;
@@ -132,7 +129,11 @@ public class Player {
         btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println(id+":"+name);
+                try {
+                    PlayerHandler.sendPlayRequest(id);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

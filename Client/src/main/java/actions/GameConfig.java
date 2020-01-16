@@ -11,9 +11,12 @@ public class GameConfig {
     private static int pc_level;
     private static String player_x;
     private static String player_o;
+    private static int player_x_score;
+    private static int player_o_score;
     private static boolean turn = false;
     private static ArrayList<String> XOList = new ArrayList<>();
     private static JSONObject requestPobUpJson;
+    private static JSONObject rejectedPobUpJson;
 
     public static void setMode(int mod) {
         mode = mod;
@@ -71,9 +74,9 @@ public class GameConfig {
     public static ArrayList<String> getXOList() {
         return XOList;
     }
-    
-    public static void resetBoard(ArrayList<String> board){
-        for(int i=0; i<board.size(); i++){
+
+    public static void resetBoard(ArrayList<String> board) {
+        for (int i = 0; i < board.size(); i++) {
             board.set(i, " ");
         }
     }
@@ -85,5 +88,29 @@ public class GameConfig {
     public static JSONObject getRequestPobUpJson() {
         return requestPobUpJson;
 
+    }
+
+    public static void setPlayerXSore(int score) {
+        player_x_score = score;
+    }
+
+    public static int getPlayerXScore() {
+        return player_x_score;
+    }
+
+    public static void setPlayerOSore(int score) {
+        player_o_score = score;
+    }
+
+    public static int getPlayerOScore() {
+        return player_o_score;
+    }
+
+    public static void setRejectedPobUpJson(JSONObject jsonObject) {
+        rejectedPobUpJson = jsonObject;
+    }
+
+    public static JSONObject getRejectedPobUpJson() {
+        return rejectedPobUpJson;
     }
 }

@@ -189,6 +189,8 @@ public class PlayerSoc {
         // start the game
         GameConfig.setPlayerX(jsonMsg.get("from_name").toString());
         GameConfig.setPlayerO(jsonMsg.get("to_name").toString());
+        GameConfig.setPlayerXSore(Integer.parseInt(jsonMsg.get("from_score").toString()));
+        GameConfig.setPlayerOSore(Integer.parseInt(jsonMsg.get("to_score").toString()));
         if (jsonMsg.containsKey("old_game")) {
             System.out.println("start old game");
             GameConfig.setXOList(jsonMsg.get("board").toString());
@@ -215,8 +217,9 @@ public class PlayerSoc {
     private void requestRejected() {
         // inform play1 that players2 rejected his request to play a game
         Platform.runLater(() -> {
-            // Alerts.gameRequestRejected(jsonMsg);
+
             try {
+                GameConfig.setRejectedPobUpJson(jsonMsg);
                 SwitchTo.RequestRejectedPopupScene();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -300,6 +303,7 @@ public class PlayerSoc {
             Player pl = new Player();
             pl.setID(Integer.parseInt(jsonMsg.get("id").toString()));
             pl.setPlayerName(jsonMsg.get("name").toString());
+            pl.setPlayerScore(Integer.parseInt(jsonMsg.get("score").toString()));
             App.getPlayerSoc().setPlayer(pl);
             PlayerModel.getPlayers(jsonMsg.get("players").toString());
             // redirect to dashboard
