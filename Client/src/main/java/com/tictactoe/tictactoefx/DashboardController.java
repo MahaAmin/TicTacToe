@@ -114,18 +114,13 @@ public class DashboardController implements Initializable {
             Image image1;
             try
             {
-                image1 = new Image(new FileInputStream("/media/onepiece/partition1/ITI/java/TicTacToe/Client/src/main/java/com/tictactoe/tictactoefx/blue.jpg"));
+                image1 = new Image(new FileInputStream("src/main/java/avatars/blue.jpg"));
                // ImageView img = new ImageView(image1);
                 profilePicture.setFill(new ImagePattern(image1));
             } 
-            catch (FileNotFoundException ex) 
-            {
+            catch (FileNotFoundException ex) {
                 Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            //currentUser.add(new User(img, "Jaxon Tani", "2nd Tani", "11111"));
-
-        
         
         
 
@@ -135,24 +130,9 @@ public class DashboardController implements Initializable {
 
         scoreBoardLV.getStyleClass().add("mylistview");
 
-        //Table 1 [User Profile]
         Player current = App.getPlayerSoc().getPlayer();
-        avatarColumnT1.setCellValueFactory(new PropertyValueFactory<>("avatar"));
-        userNameColumnT1.setCellValueFactory(new PropertyValueFactory<>("name"));
-        scoreColumnT1.setCellValueFactory(new PropertyValueFactory<>("score"));
-
-        currentUser.add(current);
-        userTable.setItems(currentUser);
         usernameLabel.setText(current.getPlayerName());
         scoreValueLabel.setText( String.valueOf(current.getPlayerScore()));
-//        userNameColumnT1.setCellValueFactory(new PropertyValueFactory<>("userName"));
-//
-//
-//        scoreColumnT1.setCellValueFactory(new PropertyValueFactory<>("score"));
-//        avatarColumnT1.setCellValueFactory(new PropertyValueFactory<>("avatar"));
-//
-//        currentUser.add(new User(current.getPlayerName(), "f", Integer.toString(current.getPlayerScore()), current.getPlayerAvatar()));
-//        userTable.setItems(currentUser);
 
         username.setCellValueFactory(new PropertyValueFactory<>("name"));
         score.setCellValueFactory(new PropertyValueFactory<>("score"));
