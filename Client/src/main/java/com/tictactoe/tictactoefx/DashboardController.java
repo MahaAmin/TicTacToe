@@ -2,6 +2,7 @@ package com.tictactoe.tictactoefx;
 
 import actions.App;
 import actions.GameConfig;
+import actions.PlayRequest;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 
@@ -93,9 +94,14 @@ public class DashboardController implements Initializable {
         SwitchTo.DifficultySelectionScene(event);
     }
     
-    @FXML private void logoutButtonClicked(ActionEvent event)
-    {
+    @FXML private void logoutButtonClicked(ActionEvent event) throws IOException {
         System.out.println("logout clicked");
+        Map<String, String> map = new HashMap<>();
+        map.put("type", "logout");
+        map.put("id",Integer.toString(App.getPlayerSoc().getPlayer().getID()));
+        System.out.println(map);
+        PlayRequest.sendJSON(map);
+        SwitchTo.mainScene(event);
     }
 
     @FXML

@@ -332,7 +332,6 @@ public class ServerHandler extends Thread {
         PlayerModel.logout(jsonMsg);
         //System.out.println("This is the logout id"+jsonMsg.get("id"));p
         try {
-            soc.close();
             playersSoc.remove(this);
             getall();
         } catch (Exception ew) {
