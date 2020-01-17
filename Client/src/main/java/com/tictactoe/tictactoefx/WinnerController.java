@@ -27,11 +27,12 @@ public class WinnerController implements Initializable {
     private void resetButtonClicked(ActionEvent event) {
         System.out.println("Reset was Pressed");
         GamePlayController game = App.getGamePlayController();
-        GameConfig.resetBoard(game.xoTextOnButtonsList);
         if (GameConfig.getMode() == 1) {
+            GameConfig.resetBoard(game.xoTextOnButtonsList);
             game.gameOverFlag = false;
             game.printBoard();
             game.currPlayerMark = "X";
+            App.getPopUpWindow().close();
         } else if (GameConfig.getMode() == 2) {
             PlayerHandler.updateFriendBoard(GameConfig.getXOList(), 0, 0);
         }
@@ -48,7 +49,7 @@ public class WinnerController implements Initializable {
 //        exitButton.getScene().getWindow().hide();
         App.getPopUpWindow().close();
         try {
-            SwitchTo.changeTo(App.getWindow(),2);
+            SwitchTo.changeTo(App.getWindow(), 2);
         } catch (IOException e) {
             e.printStackTrace();
         }
