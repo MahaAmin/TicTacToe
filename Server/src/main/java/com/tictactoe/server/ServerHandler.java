@@ -46,7 +46,7 @@ public class ServerHandler extends Thread {
     @Override
     public void run() {
         try {
-            while (soc != null && dis != null) {
+            while (true) {
                 // receive JSON
                 String data = dis.readLine();
                 if (!data.isEmpty()) {

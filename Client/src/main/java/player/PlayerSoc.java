@@ -364,7 +364,12 @@ public class PlayerSoc {
         } else {
             // alert wrong password
             Platform.runLater(() -> {
-                Alerts.wrongPasswordAlert();
+                //Alerts.wrongPasswordAlert();
+                try {
+                    SwitchTo.WrongCredentialsPopupScene();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             });
         }
     }

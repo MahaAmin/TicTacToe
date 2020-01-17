@@ -73,11 +73,7 @@ public class FXMLController implements Initializable {
             passwordTF.validate();
         }
         //make sure that both fields aren't empty before attempting to switch the scene.
-        //Transition to the Dashboard.fxml scene
-//                SwitchTo.dashboardScene(event);
         validate();
-
-
     }
 
     @FXML
