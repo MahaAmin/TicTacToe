@@ -3,6 +3,7 @@ package player;
 import actions.App;
 import actions.GameConfig;
 import actions.PlayRequest;
+import com.tictactoe.tictactoefx.GamePlayController;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -25,12 +26,10 @@ public interface PlayerHandler {
     }
 
     // send updated board to the server
-    public static void updateFriendBoard(ArrayList<String> xoTextOnButtonsList, int playerXScore, int playerOScore) {
+    public static void updateFriendBoard(ArrayList<String> xoTextOnButtonsList) {
         Map<String, String> map = new HashMap<>();
         map.put("type", "updateBoard");
         map.putAll(getXOListASJSON(xoTextOnButtonsList));
-        map.put("playerXScore", Integer.toString(playerXScore));
-        map.put("playerOScore", Integer.toString(playerOScore));
         PlayRequest.sendJSON(map);
     }
 
@@ -69,6 +68,20 @@ public interface PlayerHandler {
         map.put("type", "updateScore");
         map.put("score", Integer.toString(score));
         PlayRequest.sendJSON(map);
+    }
+
+    static void resetGameRequest() {
+        Map<String, String> map = new HashMap<>();
+        map.put("type", "resetGameRequest");
+        PlayRequest.sendJSON(map);
+    }
+
+    static void resetGame() {
+        GamePlayController game = App.getGamePlayController();
+        GameConfig.resetBoard(game.xoTextOnButtonsList);
+        game.gameOverFlag = false;
+        game.printBoard();
+        App.getPopUpWindow().close();
     }
 
 

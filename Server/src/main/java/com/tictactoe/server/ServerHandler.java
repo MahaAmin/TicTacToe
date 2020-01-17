@@ -125,6 +125,12 @@ public class ServerHandler extends Thread {
             case "updateScore":
                 updateScore();
                 break;
+            case "resetGameRequest":
+                resetGameRequest();
+                break;
+            case "resetGameAnswer":
+                resetGameAnswer();
+                break;
         }
 
     }
@@ -133,10 +139,9 @@ public class ServerHandler extends Thread {
     private void setPlayer(JSONObject client) {
 
         player = new Player();
-        player.setID(
-                Integer.parseInt(client.get("id").toString())
-        );
+        player.setID(Integer.parseInt(client.get("id").toString()));
         player.setPlayerName(client.get("name").toString());
+        player.setPlayerScore(Integer.parseInt(client.get("score").toString()));
     }
 
     /**
@@ -309,6 +314,15 @@ public class ServerHandler extends Thread {
     }
 
     /**
+     * for both players
+     */
+    private void resetGameAnswer() {
+        // if player 2 who want to reset the game send reset game answer to him
+        // if player 1 who want to reset the game send reset game answer to him
+        whichPlayer(jsonMsg);
+    }
+
+    /**
      * send json object to player against you
      */
     private void whichPlayer(JSONObject jsonObject) {
@@ -368,6 +382,10 @@ public class ServerHandler extends Thread {
         PlayerModel.updateScore(player.getID(), score);
         jsonMsg.replace("score", score);
         ps.println(jsonMsg.toJSONString());
+    }
+
+    private void resetGameRequest() {
+        whichPlayer(jsonMsg);
     }
 
 

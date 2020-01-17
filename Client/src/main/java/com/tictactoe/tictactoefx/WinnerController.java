@@ -26,15 +26,14 @@ public class WinnerController implements Initializable {
     @FXML
     private void resetButtonClicked(ActionEvent event) {
         System.out.println("Reset was Pressed");
-        GamePlayController game = App.getGamePlayController();
+
         if (GameConfig.getMode() == 1) {
-            GameConfig.resetBoard(game.xoTextOnButtonsList);
-            game.gameOverFlag = false;
-            game.printBoard();
+            GamePlayController game = App.getGamePlayController();
             game.currPlayerMark = "X";
-            App.getPopUpWindow().close();
+            PlayerHandler.resetGame();
         } else if (GameConfig.getMode() == 2) {
-            PlayerHandler.updateFriendBoard(GameConfig.getXOList(), 0, 0);
+//            PlayerHandler.updateFriendBoard(GameConfig.getXOList());
+            PlayerHandler.resetGameRequest();
         }
     }
 

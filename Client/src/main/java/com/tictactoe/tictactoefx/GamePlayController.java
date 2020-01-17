@@ -69,7 +69,7 @@ public class GamePlayController implements Initializable {
     ArrayList<JFXButton> xoButtonList = new ArrayList<>();
 
     // text on each button
-    ArrayList<String> xoTextOnButtonsList = new ArrayList<>();
+    public ArrayList<String> xoTextOnButtonsList = new ArrayList<>();
 
     //Player X and Player Y GUI Top and Bottom Sections
     @FXML
@@ -280,9 +280,16 @@ public class GamePlayController implements Initializable {
     }
 
     public void invokePrintBoard(JSONObject jsonObject) {
-        playerXScore = Integer.parseInt(jsonObject.get("playerXScore").toString());
-        playerOScore = Integer.parseInt(jsonObject.get("playerOScore").toString());
 
+        whichTurn();
+
+        for (int i = 0; i < xoTextOnButtonsList.size(); i++) {
+            xoTextOnButtonsList.set(i, jsonObject.get("cell" + i).toString());
+        }
+        printBoard();
+    }
+
+    private void whichTurn() {
         String OColor = "#54dfc4";
         String XColor = "#54dfc4";
         System.out.println(currPlayerMark);
@@ -307,11 +314,6 @@ public class GamePlayController implements Initializable {
 
         playerXCircle.setStyle("-fx-stroke: " + XColor + "; ");
         playerOCircle.setStyle("-fx-stroke: " + OColor + "; ");
-
-        for (int i = 0; i < xoTextOnButtonsList.size(); i++) {
-            xoTextOnButtonsList.set(i, jsonObject.get("cell" + i).toString());
-        }
-        printBoard();
     }
 
     private boolean isCellAvailable(int index) {
@@ -330,7 +332,7 @@ public class GamePlayController implements Initializable {
                 // if it my turn send updates to the other player
                 if (GameConfig.getTurn()) {
                     // update board in the friend side also
-                    PlayerHandler.updateFriendBoard(xoTextOnButtonsList, playerXScore, playerOScore);
+                    PlayerHandler.updateFriendBoard(xoTextOnButtonsList);
                 }
 
             }

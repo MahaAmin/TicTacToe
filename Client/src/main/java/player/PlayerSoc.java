@@ -141,9 +141,17 @@ public class PlayerSoc {
             case "updateScore":
                 updateScore();
                 break;
+            case "resetGameRequest":
+                resetGameRequest();
+                break;
+            case "resetGameAnswer":
+                resetGameAnswer();
+                break;
         }
 
     }
+
+
 
     /**
      * after player became login save his data is his socket object
@@ -321,6 +329,18 @@ public class PlayerSoc {
         int score = Integer.parseInt(jsonMsg.get("score").toString());
         player.setPlayerScore(score);
     }
+
+    private void resetGameRequest() {
+        Platform.runLater(() -> {
+            Alerts.resetGameRequestAlert(jsonMsg);
+        });
+    }
+
+    private void resetGameAnswer() {
+        Platform.runLater(PlayerHandler::resetGame);
+
+    }
+
 
 
     private void login() throws ParseException {
