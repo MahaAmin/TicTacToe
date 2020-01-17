@@ -59,14 +59,16 @@ public class ServerHandler extends Thread {
                 ps.close();
                 dis.close();
                 soc.close();
-            } catch (IOException e) {
-                ex.printStackTrace();
                 try {
                     playersSoc.remove(this);
+                    System.out.println(playersSoc);
                     MakeStatusOffline();
                 } catch (Exception ew) {
                     System.out.println("socket didn't close in logout function");
                 }
+            } catch (IOException e) {
+                ex.printStackTrace();
+
             }
         }
     }
