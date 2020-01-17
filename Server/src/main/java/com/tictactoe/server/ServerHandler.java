@@ -47,27 +47,38 @@ public class ServerHandler extends Thread {
     public void run() {
         try {
             while (soc != null && dis != null) {
-
                 // receive JSON
                 String data = dis.readLine();
                 if (!data.isEmpty()) {
                     jsonHandle(data);
                 }
-
             }
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            System.out.println("error4");
             try {
                 ps.close();
                 dis.close();
                 soc.close();
-            } catch (IOException ex) {
+                try {
+                    playersSoc.remove(this);
+                    System.out.println(playersSoc);
+                    MakeStatusOffline();
+                } catch (Exception ew) {
+                    System.out.println("socket didn't close in logout function");
+                }
+            } catch (IOException e) {
                 ex.printStackTrace();
+
             }
-        } catch (ParseException e) {
-            e.printStackTrace();
         }
+    }
+
+    private void MakeStatusOffline() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id", player.getID());
+        jsonObject.put("status", "0");
+        PlayerModel.updateStatus(jsonObject);
+        getall();
     }
 
     private void jsonHandle(String data) throws ParseException {
