@@ -65,7 +65,7 @@ public class SwitchTo {
     }
 
     public static void popupTransition(int popUpID, String title) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(SwitchTo.class.getResource("/fxml/" + popUpList.get(popUpID) + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(SwitchTo.class.getResource("/popupsfxml/" + popUpList.get(popUpID) + ".fxml"));
         Parent root = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));

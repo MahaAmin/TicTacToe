@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane id="AnchorPane" prefHeight="274.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.tictactoe.tictactoefx.InvitationRequestPopupController">
+<AnchorPane id="AnchorPane" prefHeight="274.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="popups.InvitationRequestPopupController">
     <stylesheets>
         <URL value="@/styles/Styles.css" />
     </stylesheets>

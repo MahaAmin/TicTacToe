@@ -1,4 +1,4 @@
-package com.tictactoe.tictactoefx;
+package popups;
 
 import animatefx.animation.Shake;
 import com.jfoenix.controls.JFXButton;

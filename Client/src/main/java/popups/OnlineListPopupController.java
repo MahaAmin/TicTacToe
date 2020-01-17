@@ -1,4 +1,4 @@
-package com.tictactoe.tictactoefx;
+package popups;
 
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
