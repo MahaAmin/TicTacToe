@@ -6,6 +6,7 @@ com\tictactoe\database\playerModel\PlayerModel.class
 com\tictactoe\actions\RequestType.class
 com\tictactoe\server\FXMLController.class
 com\tictactoe\actions\App.class
+com\tictactoe\actions\GameTypeScore.class
 com\tictactoe\database\gameModel\Game.class
 com\tictactoe\server\Server.class
 com\tictactoe\server\ServerHandler.class

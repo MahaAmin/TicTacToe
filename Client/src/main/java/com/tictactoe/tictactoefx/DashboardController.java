@@ -166,7 +166,7 @@ public class DashboardController implements Initializable {
             @FXML private void profilePictureMouseExited(MouseEvent event)
             {
                 changePictureButton.setVisible(false);
-                changeRegionColor(profileRegion, mouseEnteredShadow);
+                changeRegionColor(profileRegion, mouseExitedShadow);
             }
             
             @FXML private void profileRegionMouseEntered(MouseEvent event)
