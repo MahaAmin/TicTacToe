@@ -45,6 +45,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import player.PlayerHandler;
+import player.PlayerSoc;
 import playerModel.Player;
 import playerModel.PlayerModel;
 import sun.audio.AudioPlayer;
@@ -95,12 +96,7 @@ public class DashboardController implements Initializable {
     }
     
     @FXML private void logoutButtonClicked(ActionEvent event) throws IOException {
-        System.out.println("logout clicked");
-        Map<String, String> map = new HashMap<>();
-        map.put("type", "logout");
-        map.put("id",Integer.toString(App.getPlayerSoc().getPlayer().getID()));
-        System.out.println(map);
-        PlayRequest.sendJSON(map);
+        App.getPlayerSoc().closeSocket();
         SwitchTo.mainScene(event);
     }
 
