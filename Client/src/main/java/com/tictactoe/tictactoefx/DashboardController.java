@@ -97,24 +97,16 @@ public class DashboardController implements Initializable {
         mouseEnteredShadow.setColor(Color.GRAY); //set the shadow color of the  Region.
         mouseExitedShadow.setColor(Color.WHITE);
 
-        Image image1;
-        try
-        {
-            //image1 = new Image(new FileInputStream("./src/main/java/avatars/0.png"));
-            System.out.println(current.getPlayerAvatar());
-            if(current.getPlayerAvatar()==null){
-                image1 = new Image(new FileInputStream("./src/main/java/avatars/0.png"));
-            }else {
-                image1 = new Image(new FileInputStream(current.getPlayerAvatar()));
+            Image image1;
+            try
+            {
+                image1 = new Image(new FileInputStream("src/main/java/avatars/0.png"));
+               // ImageView img = new ImageView(image1);
+                profilePicture.setFill(new ImagePattern(image1));
+            } 
+            catch (FileNotFoundException ex) {
+                Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            profilePicture.setFill(new ImagePattern(image1));
-            // ImageView img = new ImageView(image1);
-        }
-        catch (FileNotFoundException ex) {
-            Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
-
-        }
-        
         
 
         PlayerModel.players.entrySet().stream().limit(5).forEach((player) -> {

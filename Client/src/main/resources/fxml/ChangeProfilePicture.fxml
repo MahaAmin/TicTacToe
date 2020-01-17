@@ -2,7 +2,9 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import java.net.URL?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
@@ -12,23 +14,24 @@
         <URL value="@/styles/Styles.css" />
     </stylesheets>
    <children>
+      <Region layoutX="127.0" layoutY="14.0" onMouseEntered="#meowRegionMouseEntered" onMouseExited="#meowRegionMouseExited" prefHeight="111.0" prefWidth="765.0" style="-fx-background-color: #F3F5F9; -fx-background-radius: 10;" />
       <JFXButton id="backButtonGamePlay" onAction="#backButtonClicked" prefHeight="40.0" prefWidth="63.0" ripplerFill="#c7b1ff" stylesheets="@../styles/Styles.css" text=" ">
          <graphic>
             <FontIcon iconColor="WHITE" iconLiteral="fa-angle-left" iconSize="30" translateX="3.0" />
          </graphic>
       </JFXButton>
-      <Circle fx:id="imagePreview" fill="#82c3ff" layoutX="500.0" layoutY="194.0" radius="145.0" stroke="#54dfc4" strokeType="INSIDE" strokeWidth="5.0" />
-      <JFXButton layoutX="268.0" layoutY="49.0" onAction="#previousButtonClicked" prefHeight="290.0" prefWidth="54.0" style="-fx-background-color: #FFFFFF;" text=" ">
+      <Circle fx:id="imagePreview" fill="#82c3ff" layoutX="509.0" layoutY="292.0" radius="145.0" stroke="#54dfc4" strokeType="INSIDE" strokeWidth="5.0" />
+      <JFXButton layoutX="250.0" layoutY="147.0" onAction="#previousButtonClicked" prefHeight="290.0" prefWidth="54.0" style="-fx-background-color: #FFFFFF;" text=" ">
          <graphic>
             <FontIcon iconLiteral="fa-chevron-circle-left" iconSize="45" translateX="5.0" />
          </graphic>
       </JFXButton>
-      <JFXButton layoutX="679.0" layoutY="49.0" onAction="#nextButtonClicked" prefHeight="290.0" prefWidth="54.0" style="-fx-background-color: #FFFFFF;" text=" ">
+      <JFXButton layoutX="713.0" layoutY="147.0" onAction="#nextButtonClicked" prefHeight="290.0" prefWidth="54.0" style="-fx-background-color: #FFFFFF;" text=" ">
          <graphic>
             <FontIcon iconLiteral="fa-chevron-circle-right" iconSize="45" translateX="5.0" />
          </graphic>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="379.0" layoutY="395.0" onAction="#selectButtonClicked" prefHeight="69.0" prefWidth="243.0" style="-fx-background-color: #6f60fa;" text="Set profile picture" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="388.0" layoutY="525.0" onAction="#selectButtonClicked" prefHeight="69.0" prefWidth="243.0" style="-fx-background-color: #6f60fa;" text="Set profile picture" textFill="WHITE">
          <graphic>
             <FontIcon iconColor="WHITE" iconLiteral="fa-camera-retro" iconSize="35" translateX="-10.0" />
          </graphic>
@@ -36,5 +39,15 @@
             <Font size="14.0" />
          </font>
       </JFXButton>
+      <Label fx:id="upperLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="149.0" layoutY="35.0" onMouseEntered="#meowRegionMouseEntered" onMouseExited="#meowRegionMouseExited" prefHeight="69.0" prefWidth="721.0" text="Label">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <FontIcon fx:id="pawsIcon1" iconLiteral="fa-paw" iconSize="35" layoutX="190.0" layoutY="53.0" onMouseEntered="#meowRegionMouseEntered" onMouseExited="#meowRegionMouseExited" />
+      <FontIcon fx:id="pawsIcon4" iconLiteral="fa-paw" iconSize="35" layoutX="815.0" layoutY="53.0" onMouseEntered="#meowRegionMouseEntered" onMouseExited="#meowRegionMouseExited" />
+      <FontIcon fx:id="pawsIcon3" iconLiteral="fa-paw" iconSize="35" layoutX="223.0" layoutY="107.0" onMouseEntered="#meowRegionMouseEntered" onMouseExited="#meowRegionMouseExited" />
+      <FontIcon fx:id="pawsIcon2" iconLiteral="fa-paw" iconSize="35" layoutX="157.0" layoutY="90.0" onMouseEntered="#meowRegionMouseEntered" onMouseExited="#meowRegionMouseExited" />
+      <FontIcon fx:id="pawsIcon5" iconLiteral="fa-paw" iconSize="35" layoutX="775.0" layoutY="108.0" onMouseEntered="#meowRegionMouseEntered" onMouseExited="#meowRegionMouseExited" />
    </children>
 </AnchorPane>
