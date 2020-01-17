@@ -90,7 +90,7 @@ public class ServerHandler extends Thread {
                 updateBoard();
                 break;
             case "logout":
-                logout();
+                //logout();
                 break;
             case "getall":
                 System.out.println("This is sending the update");
@@ -371,17 +371,6 @@ public class ServerHandler extends Thread {
 
     //logout and getall function that calls a broadcast message to send the updated data collection to all users
 //this function triggers when a logout request is received at the server side
-    private void logout() {
-
-        PlayerModel.logout(jsonMsg);
-        //System.out.println("This is the logout id"+jsonMsg.get("id"));p
-        try {
-            playersSoc.remove(this);
-            getall();
-        } catch (Exception ew) {
-            System.out.println("socket didn't close in logout function");
-        }
-    }
 
     public void getall() {
         JSONObject resp = new JSONObject();

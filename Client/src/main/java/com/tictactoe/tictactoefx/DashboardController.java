@@ -106,7 +106,7 @@ public class DashboardController implements Initializable {
 
     @FXML
     private void vsOnlinePlayerButtonClicked(ActionEvent event) throws IOException {
-        PlayerHandler.sendPlayRequest(2);
+        //PlayerHandler.sendPlayRequest(2);
     }
 
     @Override
