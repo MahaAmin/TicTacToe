@@ -135,9 +135,22 @@ public class PlayerSoc {
             case "gameStatusNotify":
                 gameStatusNotify();
                 break;
+            case "announceGame":
+                announceGame();
+                break;
+            case "updateScore":
+                updateScore();
+                break;
+            case "resetGameRequest":
+                resetGameRequest();
+                break;
+            case "resetGameAnswer":
+                resetGameAnswer();
+                break;
         }
 
     }
+
 
 
     /**
@@ -297,6 +310,38 @@ public class PlayerSoc {
 
     }
 
+    private void announceGame() {
+        int winner_id = Integer.parseInt(jsonMsg.get("winner_id").toString());
+        if (winner_id != 0 && winner_id == player.getID()) {
+            player.setPlayerScore(Integer.parseInt(jsonMsg.get("new_score").toString()));
+        }
+        Platform.runLater(() -> {
+            try {
+                GameConfig.setWinnerPobUpJson(jsonMsg);
+                SwitchTo.WinnerPopupScene();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private void updateScore() {
+        int score = Integer.parseInt(jsonMsg.get("score").toString());
+        player.setPlayerScore(score);
+    }
+
+    private void resetGameRequest() {
+        Platform.runLater(() -> {
+            Alerts.resetGameRequestAlert(jsonMsg);
+        });
+    }
+
+    private void resetGameAnswer() {
+        Platform.runLater(PlayerHandler::resetGame);
+
+    }
+
+
 
     private void login() throws ParseException {
         if (jsonMsg.get("status").toString() == "true") {
@@ -319,7 +364,12 @@ public class PlayerSoc {
         } else {
             // alert wrong password
             Platform.runLater(() -> {
-                Alerts.wrongPasswordAlert();
+                //Alerts.wrongPasswordAlert();
+                try {
+                    SwitchTo.WrongCredentialsPopupScene();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             });
         }
     }

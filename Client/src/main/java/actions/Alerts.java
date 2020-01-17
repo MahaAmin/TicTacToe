@@ -1,12 +1,14 @@
 package actions;
 
 import com.jfoenix.controls.JFXButton;
+import com.tictactoe.tictactoefx.GamePlayController;
 import com.tictactoe.tictactoefx.SwitchTo;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import org.json.simple.JSONObject;
+import player.PlayerHandler;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -160,6 +162,34 @@ public class Alerts {
         alert.setHeaderText("Oops,Game Failed");
         alert.setContentText("Unfortunately,It seems your competitor close the game");
         alert.showAndWait();
+    }
+
+    public static void resetGameRequestAlert(JSONObject data) {
+
+//        fromPlayer_name,Integer.parseInt(jsonMsg.get("game_id").toString())
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Reset The Game");
+        alert.setHeaderText("Competitor want to play with you again. ");
+        alert.setContentText("Are you ready?");
+
+        ButtonType buttonNo = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+        ButtonType buttonYes = new ButtonType("Yes");
+
+        alert.getButtonTypes().setAll(buttonYes, buttonNo);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        data.replace("type", "resetGameAnswer");
+
+        if (result.get() == buttonYes) {
+            // ... user chose "Yes"
+            data.put("response", "true");
+            PlayRequest.sendJSONObject(data);
+            PlayerHandler.resetGame();
+        } else if (result.get() == buttonNo) {
+            // ... user chose "No"
+            data.put("response", "false");
+            PlayRequest.sendJSONObject(data);
+        }
     }
 
 }

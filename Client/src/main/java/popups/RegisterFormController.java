@@ -1,4 +1,4 @@
-package com.tictactoe.tictactoefx;
+package popups;
 
 import actions.App;
 import actions.PlayRequest;
@@ -13,6 +13,7 @@ import com.jfoenix.controls.JFXSnackbarLayout;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RegexValidator;
 import com.jfoenix.validation.RequiredFieldValidator;
+import com.tictactoe.tictactoefx.SwitchTo;
 
 import java.io.IOException;
 import java.io.StringWriter;

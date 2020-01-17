@@ -1,4 +1,4 @@
-package com.tictactoe.tictactoefx;
+package popups;
 
 import animatefx.animation.Tada;
 import java.net.URL;

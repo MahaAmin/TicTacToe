@@ -1,4 +1,4 @@
-package com.tictactoe.tictactoefx;
+package popups;
 
 import java.net.URL;
 import java.util.ResourceBundle;
