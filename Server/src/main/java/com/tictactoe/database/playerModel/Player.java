@@ -42,6 +42,7 @@ public class Player {
             btn.setText("Online");
             return btn;
         }
+        btn.setStyle("-fx-background-color: #f09b13;");
         btn.setText("Busy");
         return btn;
     }
