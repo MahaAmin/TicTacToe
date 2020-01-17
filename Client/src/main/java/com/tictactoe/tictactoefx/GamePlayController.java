@@ -169,11 +169,10 @@ public class GamePlayController implements Initializable {
             //Change the X & O Player names.
             playerXLabel.setText(GameConfig.getPlayerX());
             playerOLabel.setText(GameConfig.getPlayerO());
-            playerXScore=GameConfig.getPlayerXScore();
-            playerOScore=GameConfig.getPlayerOScore();
+            playerXScore = GameConfig.getPlayerXScore();
+            playerOScore = GameConfig.getPlayerOScore();
             playerXCircle.setStyle("-fx-stroke: #F06585; ");
         }
-
 
         //Change Their score
         setPlayerXScore.setText(Integer.toString(playerXScore));
@@ -259,11 +258,10 @@ public class GamePlayController implements Initializable {
         }
 
         if (isBoardFull() && winner == null) {
-
             return "Tie";
-        } else {
-            return winner;
         }
+
+        return winner;
 
     }
 
@@ -364,7 +362,7 @@ public class GamePlayController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else if (isBoardFull() && !checkForWin().equalsIgnoreCase("Tie")) {
+        } else if (isBoardFull() && checkForWin().equalsIgnoreCase("Tie")) {
             System.out.println("It is a tie!");
             try {
                 SwitchTo.WinnerPopupScene();
