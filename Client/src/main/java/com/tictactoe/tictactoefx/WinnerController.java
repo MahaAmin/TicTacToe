@@ -35,6 +35,7 @@ public class WinnerController implements Initializable {
 //            PlayerHandler.updateFriendBoard(GameConfig.getXOList());
             PlayerHandler.resetGameRequest();
         }
+        App.getPopUpWindow().close();
     }
 
     @FXML

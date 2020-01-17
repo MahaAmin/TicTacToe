@@ -344,13 +344,24 @@ public class GamePlayController implements Initializable {
         xoTextOnButtonsList.set(index, " ");
     }
 
+    private void updateScore(int level){
+        switch(level){
+            case 1:
+                PlayerHandler.updateScore(5);
+                break;
+            case 2:
+                PlayerHandler.updateScore(15);
+                break;
+            case 3:
+                PlayerHandler.updateScore(25);
+                break;
+        }
+    }
     public void announceGameResult() {
         if (mode == 1) {
             if (checkForWin().equalsIgnoreCase("X")) {
-//            playerXScore++;
-//            setPlayerXScore.setText(Integer.toString(playerXScore));
                 System.out.println("Player X Wins!");
-
+                updateScore(level);
                 try {
                     SwitchTo.WinnerPopupScene();
                 } catch (IOException e) {
@@ -366,7 +377,7 @@ public class GamePlayController implements Initializable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            } else if (isBoardFull() && !checkForWin().equalsIgnoreCase("Tie")) {
+            } else if (isBoardFull() && checkForWin().equalsIgnoreCase("Tie")) {
                 System.out.println("It is a tie!");
                 try {
                     SwitchTo.WinnerPopupScene();
@@ -375,18 +386,11 @@ public class GamePlayController implements Initializable {
                 }
             }
 
-        } else if (isBoardFull() && checkForWin().equalsIgnoreCase("Tie")) {
-            System.out.println("It is a tie!");
-            try {
-                SwitchTo.WinnerPopupScene();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         } else {
             if (GameConfig.getTurn()) {
                 if (checkForWin().equalsIgnoreCase("X") || checkForWin().equalsIgnoreCase("O")) {
                     PlayerHandler.announceGameResult(App.getPlayerSoc().getPlayer().getID());
-                } else if (isBoardFull() && !checkForWin().equalsIgnoreCase("Tie")) {
+                } else if (isBoardFull() && checkForWin().equalsIgnoreCase("Tie")) {
                     PlayerHandler.announceGameResult(0);
                 }
             }

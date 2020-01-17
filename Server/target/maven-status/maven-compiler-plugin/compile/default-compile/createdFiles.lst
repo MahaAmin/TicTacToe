@@ -1,7 +1,7 @@
-<<<<<<< HEAD
 com/tictactoe/database/gameModel/Game.class
 com/tictactoe/database/gameModel/GameModel.class
 com/tictactoe/server/MainApp.class
+com/tictactoe/actions/GameTypeScore.class
 com/tictactoe/server/FXMLController.class
 com/tictactoe/database/DBConfig.class
 com/tictactoe/actions/RequestType.class
@@ -14,21 +14,3 @@ com/tictactoe/actions/PlayRequest.class
 com/tictactoe/server/Server.class
 com/tictactoe/database/DatabaseManager.class
 com/tictactoe/actions/DBConnection.class
-=======
-com\tictactoe\database\DatabaseManager.class
-com\tictactoe\actions\DBConnection.class
-com\tictactoe\server\MainApp.class
-com\tictactoe\database\DBConfig.class
-com\tictactoe\database\playerModel\PlayerModel.class
-com\tictactoe\actions\RequestType.class
-com\tictactoe\server\FXMLController.class
-com\tictactoe\actions\App.class
-com\tictactoe\actions\GameTypeScore.class
-com\tictactoe\database\gameModel\Game.class
-com\tictactoe\server\Server.class
-com\tictactoe\server\ServerHandler.class
-com\tictactoe\database\gameModel\GameStatus.class
-com\tictactoe\actions\PlayRequest.class
-com\tictactoe\database\gameModel\GameModel.class
-com\tictactoe\database\playerModel\Player.class
->>>>>>> e98010a8abce11c5f99880180e63f9fd6af9b1e5
