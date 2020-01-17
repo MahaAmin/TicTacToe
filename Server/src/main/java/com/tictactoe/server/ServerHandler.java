@@ -131,6 +131,9 @@ public class ServerHandler extends Thread {
             case "resetGameAnswer":
                 resetGameAnswer();
                 break;
+            case "updateAvatar":
+                updateAvatar();
+                break;
         }
 
     }
@@ -408,5 +411,9 @@ public class ServerHandler extends Thread {
         for (ServerHandler playerHandle : playersSoc) {
             playerHandle.ps.println(resp);
         }
+    }
+
+    public void updateAvatar(){
+        PlayerModel.updateAvatar(Integer.parseInt(jsonMsg.get("id").toString()),jsonMsg.get("src").toString());
     }
 }

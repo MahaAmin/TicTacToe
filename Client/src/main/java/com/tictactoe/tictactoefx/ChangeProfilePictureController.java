@@ -8,12 +8,18 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import actions.App;
+import actions.PlayRequest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import org.json.simple.JSONObject;
+import playerModel.Player;
+import playerModel.PlayerModel;
 
 public class ChangeProfilePictureController implements Initializable {
     ArrayList <Image> ImagesArray = new ArrayList<>();
@@ -47,9 +53,14 @@ public class ChangeProfilePictureController implements Initializable {
         SwitchTo.dashboardScene(event);
     }
     
-    @FXML private void selectButtonClicked(ActionEvent event)
-    {
-        
+    @FXML private void selectButtonClicked(ActionEvent event) throws IOException {
+        String img= "./src/main/java/avatars/"+index+".png";
+        JSONObject req = new JSONObject();
+        req.put("type","updateAvatar");
+        req.put("src",img);
+        req.put("id", App.getPlayerSoc().getPlayer().getID());
+        PlayRequest.sendJSON(req);
+        SwitchTo.dashboardScene(event);
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) 
@@ -57,7 +68,7 @@ public class ChangeProfilePictureController implements Initializable {
         Image image1;
         try
         {
-            image1 = new Image(new FileInputStream("src/main/java/avatars/0.png"));
+            image1 = new Image(new FileInputStream("./src/main/java/avatars/0.png"));
             imagePreview.setFill(new ImagePattern(image1));
         } 
         catch (FileNotFoundException ex) 
@@ -71,7 +82,7 @@ public class ChangeProfilePictureController implements Initializable {
         {
             try 
             {
-                currentImage = new Image(new FileInputStream("src/main/java/avatars/" + i  +".png"));
+                currentImage = new Image(new FileInputStream("./src/main/java/avatars/" + i  +".png"));
                 ImagesArray.add(i, currentImage);
             } 
             

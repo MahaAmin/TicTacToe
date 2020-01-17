@@ -28,6 +28,7 @@ public class PlayerModel {
             pl.setPlayerName(playerJs.get("name").toString());
             pl.setPlayerStatus(Integer.parseInt(playerJs.get("status").toString()));
             pl.setPlayerScore(Integer.parseInt(playerJs.get("score").toString()));
+            pl.setPlayerAvatar(playerJs.get("avatar").toString());
             players.put(Integer.parseInt(playerJs.get("id").toString()), pl);
             playerslist.add(pl);
         });

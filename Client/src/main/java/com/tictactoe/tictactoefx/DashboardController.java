@@ -2,53 +2,35 @@ package com.tictactoe.tictactoefx;
 
 import actions.App;
 import actions.GameConfig;
-import actions.PlayRequest;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.management.PlatformLoggingMXBean;
 import java.net.URL;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.stage.Stage;
-import javafx.util.Callback;
-import player.PlayerHandler;
-import player.PlayerSoc;
 import playerModel.Player;
 import playerModel.PlayerModel;
-import sun.audio.AudioPlayer;
 
 public class DashboardController implements Initializable {
     @FXML
@@ -109,20 +91,29 @@ public class DashboardController implements Initializable {
 
     public void initialize(URL url, ResourceBundle rb) 
     {
-            changePictureButton.setVisible(false);
-            mouseEnteredShadow.setColor(Color.GRAY); //set the shadow color of the  Region.
-            mouseExitedShadow.setColor(Color.WHITE);
+        System.out.println("");
+        Player current = App.getPlayerSoc().getPlayer();
+        changePictureButton.setVisible(false);
+        mouseEnteredShadow.setColor(Color.GRAY); //set the shadow color of the  Region.
+        mouseExitedShadow.setColor(Color.WHITE);
 
-            Image image1;
-            try
-            {
-                image1 = new Image(new FileInputStream("src/main/java/avatars/blue.jpg"));
-               // ImageView img = new ImageView(image1);
-                profilePicture.setFill(new ImagePattern(image1));
-            } 
-            catch (FileNotFoundException ex) {
-                Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
+        Image image1;
+        try
+        {
+            //image1 = new Image(new FileInputStream("./src/main/java/avatars/0.png"));
+            System.out.println(current.getPlayerAvatar());
+            if(current.getPlayerAvatar()==null){
+                image1 = new Image(new FileInputStream("./src/main/java/avatars/0.png"));
+            }else {
+                image1 = new Image(new FileInputStream(current.getPlayerAvatar()));
             }
+            profilePicture.setFill(new ImagePattern(image1));
+            // ImageView img = new ImageView(image1);
+        }
+        catch (FileNotFoundException ex) {
+            Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
         
         
 
@@ -132,7 +123,6 @@ public class DashboardController implements Initializable {
 
         scoreBoardLV.getStyleClass().add("mylistview");
 
-        Player current = App.getPlayerSoc().getPlayer();
         usernameLabel.setText(current.getPlayerName());
         scoreValueLabel.setText( String.valueOf(current.getPlayerScore()));
 

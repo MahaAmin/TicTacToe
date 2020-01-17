@@ -73,6 +73,7 @@ public class PlayerModel {
             playerJson.put("name", player.getPlayerName());
             playerJson.put("score", player.getPlayerScore());
             playerJson.put("status", player.getPlayerStatus());
+            playerJson.put("avatar",player.getPlayerAvatar());
             playerslist.add(player);
             jsonArray.add(playerJson);
         }
@@ -184,6 +185,7 @@ public class PlayerModel {
                 jsonObject.put("name", res.getString("name"));
                 jsonObject.put("status", true);
                 jsonObject.put("score", res.getString("score"));
+                jsonObject.put("avatar",res.getString("avatar"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -191,4 +193,20 @@ public class PlayerModel {
         return jsonObject;
     }
 
+    // update avatar
+    public static void updateAvatar(int player_id, String avatar) {
+        try {
+            PreparedStatement preparedStatement = db.connection.prepareStatement("UPDATE players SET avatar=? WHERE id=?");
+            preparedStatement.setString(1, avatar);
+            preparedStatement.setInt(2, player_id);
+            int isUpdated = preparedStatement.executeUpdate();
+            if (isUpdated > 0) {
+                Player p = players.get(player_id);
+                p.setPlayerAvatar(avatar);
+                players.replace(player_id, p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PlayerModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
