@@ -50,10 +50,24 @@ public interface PlayerHandler {
         return subMap;
     }
 
-    public static void updateGameStatus(String status){
+    public static void updateGameStatus(String status) {
         Map<String, String> map = new HashMap<>();
         map.put("type", "updateGameStatus");
-        map.put("status",status);
+        map.put("status", status);
+        PlayRequest.sendJSON(map);
+    }
+
+    static void announceGameResult(int winner_id) {
+        Map<String, String> map = new HashMap<>();
+        map.put("type", "announceGameResult");
+        map.put("winner_id", Integer.toString(winner_id));
+        PlayRequest.sendJSON(map);
+    }
+
+    static void updateScore(int score) {
+        Map<String, String> map = new HashMap<>();
+        map.put("type", "updateScore");
+        map.put("score", Integer.toString(score));
         PlayRequest.sendJSON(map);
     }
 

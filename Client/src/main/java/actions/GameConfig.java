@@ -17,6 +17,7 @@ public class GameConfig {
     private static ArrayList<String> XOList = new ArrayList<>();
     private static JSONObject requestPobUpJson;
     private static JSONObject rejectedPobUpJson;
+    private static JSONObject winnerPobUpJson;
 
     public static void setMode(int mod) {
         mode = mod;
@@ -112,5 +113,13 @@ public class GameConfig {
 
     public static JSONObject getRejectedPobUpJson() {
         return rejectedPobUpJson;
+    }
+
+    public static void setWinnerPobUpJson(JSONObject jsonObject) {
+        winnerPobUpJson = jsonObject;
+    }
+
+    public static JSONObject getWinnerPobUpJson() {
+        return winnerPobUpJson;
     }
 }

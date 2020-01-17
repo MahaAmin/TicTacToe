@@ -70,7 +70,7 @@ public class SwitchTo {
         stage.setScene(new Scene(root));
         stage.setTitle(title);
         App.setPopUpWindow(stage);
-        stage.setAlwaysOnTop(true);
+//        stage.setAlwaysOnTop(true);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }

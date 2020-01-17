@@ -135,10 +135,15 @@ public class PlayerSoc {
             case "gameStatusNotify":
                 gameStatusNotify();
                 break;
+            case "announceGame":
+                announceGame();
+                break;
+            case "updateScore":
+                updateScore();
+                break;
         }
 
     }
-
 
     /**
      * after player became login save his data is his socket object
@@ -295,6 +300,26 @@ public class PlayerSoc {
 
         });
 
+    }
+
+    private void announceGame() {
+        int winner_id = Integer.parseInt(jsonMsg.get("winner_id").toString());
+        if (winner_id != 0 && winner_id == player.getID()) {
+            player.setPlayerScore(Integer.parseInt(jsonMsg.get("new_score").toString()));
+        }
+        Platform.runLater(() -> {
+            try {
+                GameConfig.setWinnerPobUpJson(jsonMsg);
+                SwitchTo.WinnerPopupScene();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private void updateScore() {
+        int score = Integer.parseInt(jsonMsg.get("score").toString());
+        player.setPlayerScore(score);
     }
 
 

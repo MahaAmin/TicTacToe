@@ -1,5 +1,6 @@
 package com.tictactoe.server;
 
+import com.tictactoe.actions.GameTypeScore;
 import com.tictactoe.database.gameModel.Game;
 import com.tictactoe.database.gameModel.GameModel;
 import com.tictactoe.database.playerModel.Player;
@@ -107,9 +108,16 @@ public class ServerHandler extends Thread {
             case "updateGameStatus":
                 updateGameStatus();
                 break;
+            case "announceGameResult":
+                announceGameResult();
+                break;
+            case "updateScore":
+                updateScore();
+                break;
         }
 
     }
+
 
     private void setPlayer(JSONObject client) {
 
@@ -315,6 +323,42 @@ public class ServerHandler extends Thread {
             whichPlayer(jsonMsg);
         }
     }
+
+
+    /**
+     * for both players
+     * update game status to complete
+     * if any player won then
+     * set winner id in the game
+     * update winner score
+     * else no one won then
+     * send game result fr both players
+     */
+    private void announceGameResult() {
+        int winner_id = Integer.parseInt(jsonMsg.get("winner_id").toString());
+        GameModel.updateGameStatus(game.getId(), "COMPLETE");
+        if (winner_id != 0) {
+            GameModel.setWinner(game.getId(), winner_id);
+            int new_score = player.getPlayerScore() + GameTypeScore.WITH_FRIEND;
+            player.setPlayerScore(new_score);
+            jsonMsg.put("new_score", new_score);
+            PlayerModel.updateScore(player.getID(), new_score);
+        }
+        jsonMsg.replace("type", "announceGame");
+        getPlayerHandler(game.getFromPlayer().getID()).ps.println(jsonMsg.toJSONString());
+        getPlayerHandler(game.getToPlayer().getID()).ps.println(jsonMsg.toJSONString());
+    }
+
+
+    private void updateScore() {
+        int score = Integer.parseInt(jsonMsg.get("score").toString());
+        score += player.getPlayerScore();
+        player.setPlayerScore(score);
+        PlayerModel.updateScore(player.getID(), score);
+        jsonMsg.replace("score", score);
+        ps.println(jsonMsg.toJSONString());
+    }
+
 
     private ServerHandler getPlayerHandler(int player_id) {
         for (ServerHandler playerHandle : playersSoc) {

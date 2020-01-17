@@ -169,8 +169,8 @@ public class GamePlayController implements Initializable {
             //Change the X & O Player names.
             playerXLabel.setText(GameConfig.getPlayerX());
             playerOLabel.setText(GameConfig.getPlayerO());
-            playerXScore=GameConfig.getPlayerXScore();
-            playerOScore=GameConfig.getPlayerOScore();
+            playerXScore = GameConfig.getPlayerXScore();
+            playerOScore = GameConfig.getPlayerOScore();
             playerXCircle.setStyle("-fx-stroke: #F06585; ");
         }
 
@@ -345,33 +345,45 @@ public class GamePlayController implements Initializable {
     }
 
     public void announceGameResult() {
-        if (checkForWin().equalsIgnoreCase("X")) {
-            playerXScore++;
-            setPlayerXScore.setText(Integer.toString(playerXScore));
-            System.out.println("Player X Wins!");
-            try {
-                SwitchTo.WinnerPopupScene();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        if (mode == 1) {
+            if (checkForWin().equalsIgnoreCase("X")) {
+//            playerXScore++;
+//            setPlayerXScore.setText(Integer.toString(playerXScore));
+                System.out.println("Player X Wins!");
 
-        } else if (checkForWin().equalsIgnoreCase("O")) {
-            playerOScore++;
-            setPlayerOScore.setText(Integer.toString(playerOScore));
-            System.out.println("Player O Wins!");
-            try {
-                SwitchTo.WinnerPopupScene();
-            } catch (IOException e) {
-                e.printStackTrace();
+                try {
+                    SwitchTo.WinnerPopupScene();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            } else if (checkForWin().equalsIgnoreCase("O")) {
+//            playerOScore++;
+//            setPlayerOScore.setText(Integer.toString(playerOScore));
+                System.out.println("Player O Wins!");
+                try {
+                    SwitchTo.WinnerPopupScene();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else if (isBoardFull() && !checkForWin().equalsIgnoreCase("Tie")) {
+                System.out.println("It is a tie!");
+                try {
+                    SwitchTo.WinnerPopupScene();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-        } else if (isBoardFull() && !checkForWin().equalsIgnoreCase("Tie")) {
-            System.out.println("It is a tie!");
-            try {
-                SwitchTo.WinnerPopupScene();
-            } catch (IOException e) {
-                e.printStackTrace();
+        } else {
+            if (GameConfig.getTurn()) {
+                if (checkForWin().equalsIgnoreCase("X") || checkForWin().equalsIgnoreCase("O")) {
+                    PlayerHandler.announceGameResult(App.getPlayerSoc().getPlayer().getID());
+                } else if (isBoardFull() && !checkForWin().equalsIgnoreCase("Tie")) {
+                    PlayerHandler.announceGameResult(0);
+                }
             }
         }
+
     }
 
     private Vector<Integer> getAvailableCells() {
