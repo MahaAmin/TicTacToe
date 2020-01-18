@@ -42,7 +42,7 @@ public class SwitchTo {
             add("SaveGameRejectedPopup"); //3 ==> SaveGameRejectedPopup.fxml
             add("SaveGameRequestPopup"); //4 ==> SaveGameRequest.fxml
             add("SaveGameSuccessPopup"); //5 ==> SaveGameSuccessPopup.fxml
-            add("Winner"); //6 ==> Winner.fxml
+            add("WinnerPopup"); //6 ==> Winner.fxml
             add("GoogleLoginPopup"); // 7 ==> GoogleLoginPopup.fxml
             add("WrongCredentialsPopup"); // 8 ==> WrongCredentialsPopup.fxml
             add("RegisterationSuccessfulPopup"); // 9 ==> RegisterationSuccessfulPopup.fxml
