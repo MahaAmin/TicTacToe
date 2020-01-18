@@ -46,6 +46,9 @@ public class SwitchTo {
             add("GoogleLoginPopup"); // 7 ==> GoogleLoginPopup.fxml
             add("WrongCredentialsPopup"); // 8 ==> WrongCredentialsPopup.fxml
             add("RegisterationSuccessfulPopup"); // 9 ==> RegisterationSuccessfulPopup.fxml
+            add("SaveGameConfirmationPopup"); //10 ==> SaveGameConfirmationPopup.fxml
+            add("ServerErrorPopup"); // 11 ==> ServerErrorPopup.fxml
+            add("GameFailedPopup"); //12 ==> GameFailedPopup.fxml
         }
     };
 
@@ -145,6 +148,21 @@ public class SwitchTo {
     public static void RegisterationSuccessfullPopupScene() throws IOException
     {
         popupTransition(9, "Successfully Registered");
+    }
+    
+    public static void SaveGameConfirmationPopupScene() throws IOException
+    {
+        popupTransition(10, "An already saved game was found");
+    }
+    
+    public static void ServerErrorPopupScene() throws IOException
+    {
+        popupTransition(11, "El server moghad shwaya");
+    }
+    
+    public static void GameFailedPopupScene() throws  IOException
+    {
+        popupTransition(12, "Game failed");
     }
 }
 
