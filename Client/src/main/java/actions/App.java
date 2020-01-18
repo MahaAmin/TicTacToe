@@ -1,6 +1,7 @@
 package actions;
 
 import com.tictactoe.tictactoefx.GamePlayController;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 import player.PlayerSoc;
 
@@ -33,6 +34,11 @@ public class App {
     }
 
     public static PlayerSoc getPlayerSoc() {
+        // connect to server socket
+        if (playerSoc.socket.isClosed())
+            setPlayerSoc();
+
+
         return playerSoc;
     }
 
