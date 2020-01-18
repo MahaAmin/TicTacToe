@@ -7,18 +7,18 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane id="AnchorPane" prefHeight="561.0" prefWidth="875.0" style="-fx-background-color: #ffffff;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictactoe.tictactoefx.DifficultySelectionController">
+<AnchorPane id="AnchorPane" prefHeight="678.0" prefWidth="1000.0" style="-fx-background-color: #ffffff;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictactoe.tictactoefx.DifficultySelectionController">
     <stylesheets>
         <URL value="@/styles/Styles.css" />
     </stylesheets>
    <children>
-      <Label layoutX="290.0" layoutY="49.0" text="Select gameplay Difficulty" textFill="#54dfc4">
+      <Label layoutX="352.0" layoutY="48.0" text="Select gameplay Difficulty" textFill="#54dfc4">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <FontIcon iconColor="#6f60fa" iconLiteral="fa-gamepad" iconSize="38" layoutX="417.0" layoutY="124.0" />
-      <JFXButton id="signInButton" alignment="CENTER" defaultButton="true" layoutX="325.0" layoutY="151.0" onAction="#easyButtonClicked" prefHeight="58.0" prefWidth="225.0" stylesheets="@../styles/Styles.css" text="Easy" textAlignment="CENTER" textFill="WHITE">
+      <FontIcon iconColor="#6f60fa" iconLiteral="fa-gamepad" iconSize="50" layoutX="474.0" layoutY="150.0" />
+      <JFXButton id="signInButton" alignment="CENTER" layoutX="388.0" layoutY="212.0" onAction="#easyButtonClicked" prefHeight="58.0" prefWidth="225.0" stylesheets="@../styles/Styles.css" text="Easy" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
@@ -26,7 +26,7 @@
             <FontIcon iconColor="WHITE" iconLiteral="fa-star-half" iconSize="25" />
          </graphic>
       </JFXButton>
-      <JFXButton id="signInButton" alignment="CENTER" defaultButton="true" layoutX="326.0" layoutY="261.0" onAction="#mediumButtonClicked" prefHeight="58.0" prefWidth="225.0" stylesheets="@../styles/Styles.css" text="Medium" textAlignment="CENTER" textFill="WHITE">
+      <JFXButton id="signInButton" alignment="CENTER" defaultButton="true" layoutX="388.0" layoutY="347.0" onAction="#mediumButtonClicked" prefHeight="58.0" prefWidth="225.0" stylesheets="@../styles/Styles.css" text="Medium" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
@@ -34,7 +34,7 @@
             <FontIcon iconColor="WHITE" iconLiteral="fa-star" iconSize="25" />
          </graphic>
       </JFXButton>
-      <JFXButton id="signInButton" alignment="CENTER" defaultButton="true" layoutX="326.0" layoutY="369.0" onAction="#hardButtonClicked" prefHeight="58.0" prefWidth="225.0" stylesheets="@../styles/Styles.css" text="Hard" textAlignment="CENTER" textFill="WHITE">
+      <JFXButton id="signInButton" alignment="CENTER" defaultButton="true" layoutX="388.0" layoutY="493.0" onAction="#hardButtonClicked" prefHeight="58.0" prefWidth="225.0" stylesheets="@../styles/Styles.css" text="Hard" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
@@ -42,7 +42,7 @@
             <FontIcon iconColor="WHITE" iconLiteral="fa-star" iconSize="25" />
          </graphic>
       </JFXButton>
-      <FontIcon iconColor="WHITE" iconLiteral="fa-star" iconSize="26" layoutX="377.0" layoutY="408.0" />
+      <FontIcon iconColor="WHITE" iconLiteral="fa-star" iconSize="26" layoutX="439.0" layoutY="531.0" />
       <JFXButton id="backButtonGamePlay" onAction="#backButtonClicked" prefHeight="40.0" prefWidth="63.0" ripplerFill="#c7b1ff" stylesheets="@../styles/Styles.css" text=" ">
          <graphic>
             <FontIcon iconColor="WHITE" iconLiteral="fa-angle-left" iconSize="30" translateX="3.0" />

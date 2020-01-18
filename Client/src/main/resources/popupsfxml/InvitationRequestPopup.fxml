@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane id="AnchorPane" prefHeight="274.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="popups.InvitationRequestPopupController">
+    <stylesheets>
+        <URL value="@/styles/Styles.css" />
+    </stylesheets>
+   <children>
+      <JFXButton layoutX="329.0" layoutY="203.0" onAction="#yesButtonClicked" prefHeight="57.0" prefWidth="127.0" style="-fx-background-color: #6f60fa;" text="Yes" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXButton>
+      <FontIcon iconColor="#6f60fa" iconLiteral="fa-handshake-o" iconSize="50" layoutX="268.0" layoutY="53.0" />
+      <Label fx:id="requestLabel" layoutX="239.0" layoutY="63.0" text="Username" textFill="#46bca4">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="146.0" layoutY="203.0" onAction="#noButtonClicked" prefHeight="57.0" prefWidth="127.0" style="-fx-background-color: #6f60fa;" text="No" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXButton>
+      <Label fx:id="contentLabel" layoutX="241.0" layoutY="149.0" text="Are you ready?">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="headerLabel" layoutX="209.0" layoutY="108.0" text="Wants to play with you">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

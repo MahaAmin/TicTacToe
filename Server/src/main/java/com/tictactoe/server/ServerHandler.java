@@ -1,5 +1,6 @@
 package com.tictactoe.server;
 
+import com.tictactoe.actions.GameTypeScore;
 import com.tictactoe.database.gameModel.Game;
 import com.tictactoe.database.gameModel.GameModel;
 import com.tictactoe.database.playerModel.Player;
@@ -45,28 +46,39 @@ public class ServerHandler extends Thread {
     @Override
     public void run() {
         try {
-            while (soc != null && dis != null) {
-
+            while (true) {
                 // receive JSON
                 String data = dis.readLine();
                 if (!data.isEmpty()) {
                     jsonHandle(data);
                 }
-
             }
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            System.out.println("error4");
             try {
                 ps.close();
                 dis.close();
                 soc.close();
-            } catch (IOException ex) {
+                try {
+                    playersSoc.remove(this);
+                    System.out.println(playersSoc);
+                    MakeStatusOffline();
+                } catch (Exception ew) {
+                    System.out.println("socket didn't close in logout function");
+                }
+            } catch (IOException e) {
                 ex.printStackTrace();
+
             }
-        } catch (ParseException e) {
-            e.printStackTrace();
         }
+    }
+
+    private void MakeStatusOffline() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id", player.getID());
+        jsonObject.put("status", "0");
+        PlayerModel.updateStatus(jsonObject);
+        getall();
     }
 
     private void jsonHandle(String data) throws ParseException {
@@ -89,7 +101,7 @@ public class ServerHandler extends Thread {
                 updateBoard();
                 break;
             case "logout":
-                logout();
+                //logout();
                 break;
             case "getall":
                 System.out.println("This is sending the update");
@@ -107,17 +119,29 @@ public class ServerHandler extends Thread {
             case "updateGameStatus":
                 updateGameStatus();
                 break;
+            case "announceGameResult":
+                announceGameResult();
+                break;
+            case "updateScore":
+                updateScore();
+                break;
+            case "resetGameRequest":
+                resetGameRequest();
+                break;
+            case "resetGameAnswer":
+                resetGameAnswer();
+                break;
         }
 
     }
 
+
     private void setPlayer(JSONObject client) {
 
         player = new Player();
-        player.setID(
-                Integer.parseInt(client.get("id").toString())
-        );
+        player.setID(Integer.parseInt(client.get("id").toString()));
         player.setPlayerName(client.get("name").toString());
+        player.setPlayerScore(Integer.parseInt(client.get("score").toString()));
     }
 
     /**
@@ -290,6 +314,15 @@ public class ServerHandler extends Thread {
     }
 
     /**
+     * for both players
+     */
+    private void resetGameAnswer() {
+        // if player 2 who want to reset the game send reset game answer to him
+        // if player 1 who want to reset the game send reset game answer to him
+        whichPlayer(jsonMsg);
+    }
+
+    /**
      * send json object to player against you
      */
     private void whichPlayer(JSONObject jsonObject) {
@@ -316,6 +349,46 @@ public class ServerHandler extends Thread {
         }
     }
 
+
+    /**
+     * for both players
+     * update game status to complete
+     * if any player won then
+     * set winner id in the game
+     * update winner score
+     * else no one won then
+     * send game result fr both players
+     */
+    private void announceGameResult() {
+        int winner_id = Integer.parseInt(jsonMsg.get("winner_id").toString());
+        GameModel.updateGameStatus(game.getId(), "COMPLETE");
+        if (winner_id != 0) {
+            GameModel.setWinner(game.getId(), winner_id);
+            int new_score = player.getPlayerScore() + GameTypeScore.WITH_FRIEND;
+            player.setPlayerScore(new_score);
+            jsonMsg.put("new_score", new_score);
+            PlayerModel.updateScore(player.getID(), new_score);
+        }
+        jsonMsg.replace("type", "announceGame");
+        getPlayerHandler(game.getFromPlayer().getID()).ps.println(jsonMsg.toJSONString());
+        getPlayerHandler(game.getToPlayer().getID()).ps.println(jsonMsg.toJSONString());
+    }
+
+
+    private void updateScore() {
+        int score = Integer.parseInt(jsonMsg.get("score").toString());
+        score += player.getPlayerScore();
+        player.setPlayerScore(score);
+        PlayerModel.updateScore(player.getID(), score);
+        jsonMsg.replace("score", score);
+        ps.println(jsonMsg.toJSONString());
+    }
+
+    private void resetGameRequest() {
+        whichPlayer(jsonMsg);
+    }
+
+
     private ServerHandler getPlayerHandler(int player_id) {
         for (ServerHandler playerHandle : playersSoc) {
             if (playerHandle.player.getID() == player_id) {
@@ -327,17 +400,6 @@ public class ServerHandler extends Thread {
 
     //logout and getall function that calls a broadcast message to send the updated data collection to all users
 //this function triggers when a logout request is received at the server side
-    private void logout() {
-
-        PlayerModel.logout(jsonMsg);
-        //System.out.println("This is the logout id"+jsonMsg.get("id"));p
-        try {
-            playersSoc.remove(this);
-            getall();
-        } catch (Exception ew) {
-            System.out.println("socket didn't close in logout function");
-        }
-    }
 
     public void getall() {
         JSONObject resp = new JSONObject();

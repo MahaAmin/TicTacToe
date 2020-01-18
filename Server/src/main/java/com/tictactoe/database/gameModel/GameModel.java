@@ -7,7 +7,6 @@ package com.tictactoe.database.gameModel;
 
 import com.tictactoe.actions.App;
 import com.tictactoe.database.DatabaseManager;
-import com.tictactoe.database.playerModel.Player;
 import com.tictactoe.database.playerModel.PlayerModel;
 import org.json.simple.JSONObject;
 
@@ -146,20 +145,19 @@ public class GameModel {
         }
     }
 
-    public static void setWinner(JSONObject game) {
+    public static Boolean setWinner(int game_id, int winner_id) {
         try {
             PreparedStatement preparedStatement = db.connection.prepareStatement("UPDATE games SET winner=? WHERE id=?");
-            preparedStatement.setInt(1, Integer.parseInt(game.get("winner").toString()));
-            preparedStatement.setInt(2, Integer.parseInt(game.get("id").toString()));
+            preparedStatement.setInt(1, winner_id);
+            preparedStatement.setInt(2, game_id);
             int isUpdated = preparedStatement.executeUpdate();
             if (isUpdated > 0) {
-                Game g = games.get(Integer.parseInt(game.get("id").toString()));
-                g.setWinnerPlayer((Player) game.get("winner"));
-                games.replace(Integer.parseInt(game.get("id").toString()), g);
+                return true;
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        return false;
     }
 
     public static boolean removeGame(int game_id) {

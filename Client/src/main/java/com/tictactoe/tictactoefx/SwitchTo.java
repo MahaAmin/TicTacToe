@@ -45,6 +45,7 @@ public class SwitchTo {
             add("Winner"); //6 ==> Winner.fxml
             add("GoogleLoginPopup"); // 7 ==> GoogleLoginPopup.fxml
             add("WrongCredentialsPopup"); // 8 ==> WrongCredentialsPopup.fxml
+            add("RegisterationSuccessfulPopup"); // 9 ==> RegisterationSuccessfulPopup.fxml
         }
     };
 
@@ -64,13 +65,13 @@ public class SwitchTo {
     }
 
     public static void popupTransition(int popUpID, String title) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(SwitchTo.class.getResource("/fxml/" + popUpList.get(popUpID) + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(SwitchTo.class.getResource("/popupsfxml/" + popUpList.get(popUpID) + ".fxml"));
         Parent root = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle(title);
         App.setPopUpWindow(stage);
-        stage.setAlwaysOnTop(true);
+//        stage.setAlwaysOnTop(true);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
@@ -139,6 +140,11 @@ public class SwitchTo {
     public static void WrongCredentialsPopupScene() throws IOException
     {
         popupTransition(8, "Wrong Credentials were entered");
+    }
+    
+    public static void RegisterationSuccessfullPopupScene() throws IOException
+    {
+        popupTransition(9, "Successfully Registered");
     }
 }
 

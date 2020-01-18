@@ -45,6 +45,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import player.PlayerHandler;
+import player.PlayerSoc;
 import playerModel.Player;
 import playerModel.PlayerModel;
 import sun.audio.AudioPlayer;
@@ -95,18 +96,13 @@ public class DashboardController implements Initializable {
     }
     
     @FXML private void logoutButtonClicked(ActionEvent event) throws IOException {
-        System.out.println("logout clicked");
-        Map<String, String> map = new HashMap<>();
-        map.put("type", "logout");
-        map.put("id",Integer.toString(App.getPlayerSoc().getPlayer().getID()));
-        System.out.println(map);
-        PlayRequest.sendJSON(map);
+        App.getPlayerSoc().closeSocket();
         SwitchTo.mainScene(event);
     }
 
     @FXML
     private void vsOnlinePlayerButtonClicked(ActionEvent event) throws IOException {
-        PlayerHandler.sendPlayRequest(2);
+        //PlayerHandler.sendPlayRequest(2);
     }
 
     @Override
@@ -120,7 +116,7 @@ public class DashboardController implements Initializable {
             Image image1;
             try
             {
-                image1 = new Image(new FileInputStream("src/main/java/avatars/blue.jpg"));
+                image1 = new Image(new FileInputStream("src/main/java/avatars/0.png"));
                // ImageView img = new ImageView(image1);
                 profilePicture.setFill(new ImagePattern(image1));
             } 
@@ -170,7 +166,7 @@ public class DashboardController implements Initializable {
             @FXML private void profilePictureMouseExited(MouseEvent event)
             {
                 changePictureButton.setVisible(false);
-                changeRegionColor(profileRegion, mouseEnteredShadow);
+                changeRegionColor(profileRegion, mouseExitedShadow);
             }
             
             @FXML private void profileRegionMouseEntered(MouseEvent event)

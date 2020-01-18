@@ -64,7 +64,7 @@ public class PlayerModel {
         playerslist = FXCollections.observableArrayList();
         playerslist.removeAll();
         LinkedHashMap<String, JSONObject> jsonOrderedMap = new LinkedHashMap<String, JSONObject>();
-        JSONArray jsonArray=new JSONArray();
+        JSONArray jsonArray = new JSONArray();
         for (Map.Entry<Integer, Player> field : players.entrySet()) {
             Player player = field.getValue();
 
@@ -105,16 +105,16 @@ public class PlayerModel {
 
 
     // update score
-    public void updateScore(JSONObject player) {
+    public static void updateScore(int player_id, int score) {
         try {
             PreparedStatement preparedStatement = db.connection.prepareStatement("UPDATE players SET score=? WHERE id=?");
-            preparedStatement.setInt(1, Integer.parseInt(player.get("score").toString()));
-            preparedStatement.setInt(2, Integer.parseInt(player.get("id").toString()));
+            preparedStatement.setInt(1, score);
+            preparedStatement.setInt(2, player_id);
             int isUpdated = preparedStatement.executeUpdate();
             if (isUpdated > 0) {
-                Player p = players.get("id");
-                p.setPlayerScore((int) player.get("score"));
-                players.replace(Integer.parseInt(player.get("id").toString()), p);
+                Player p = players.get(player_id);
+                p.setPlayerScore(score);
+                players.replace(player_id, p);
             }
         } catch (SQLException ex) {
             Logger.getLogger(PlayerModel.class.getName()).log(Level.SEVERE, null, ex);
@@ -123,7 +123,7 @@ public class PlayerModel {
 
     // update status
     public static void updateStatus(JSONObject player) {
-        System.out.println("update "+player);
+        System.out.println("update " + player);
         try {
             PreparedStatement preparedStatement = db.connection.prepareStatement("UPDATE players SET status=? WHERE id=?");
             preparedStatement.setString(1, player.get("status").toString());
@@ -155,8 +155,8 @@ public class PlayerModel {
             statment.setString(1, player.get("name").toString());
             statment.setString(2, player.get("password").toString());
             statment.setString(3, player.get("email").toString());
-            int isInserted=statment.executeUpdate();
-            if(isInserted>0)
+            int isInserted = statment.executeUpdate();
+            if (isInserted > 0)
                 return true;
         } catch (SQLException e) {
             e.printStackTrace();

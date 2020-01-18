@@ -3,6 +3,7 @@ package player;
 import actions.App;
 import actions.GameConfig;
 import actions.PlayRequest;
+import com.tictactoe.tictactoefx.GamePlayController;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -25,12 +26,10 @@ public interface PlayerHandler {
     }
 
     // send updated board to the server
-    public static void updateFriendBoard(ArrayList<String> xoTextOnButtonsList, int playerXScore, int playerOScore) {
+    public static void updateFriendBoard(ArrayList<String> xoTextOnButtonsList) {
         Map<String, String> map = new HashMap<>();
         map.put("type", "updateBoard");
         map.putAll(getXOListASJSON(xoTextOnButtonsList));
-        map.put("playerXScore", Integer.toString(playerXScore));
-        map.put("playerOScore", Integer.toString(playerOScore));
         PlayRequest.sendJSON(map);
     }
 
@@ -50,11 +49,39 @@ public interface PlayerHandler {
         return subMap;
     }
 
-    public static void updateGameStatus(String status){
+    public static void updateGameStatus(String status) {
         Map<String, String> map = new HashMap<>();
         map.put("type", "updateGameStatus");
-        map.put("status",status);
+        map.put("status", status);
         PlayRequest.sendJSON(map);
+    }
+
+    static void announceGameResult(int winner_id) {
+        Map<String, String> map = new HashMap<>();
+        map.put("type", "announceGameResult");
+        map.put("winner_id", Integer.toString(winner_id));
+        PlayRequest.sendJSON(map);
+    }
+
+    static void updateScore(int score) {
+        Map<String, String> map = new HashMap<>();
+        map.put("type", "updateScore");
+        map.put("score", Integer.toString(score));
+        PlayRequest.sendJSON(map);
+    }
+
+    static void resetGameRequest() {
+        Map<String, String> map = new HashMap<>();
+        map.put("type", "resetGameRequest");
+        PlayRequest.sendJSON(map);
+    }
+
+    static void resetGame() {
+        GamePlayController game = App.getGamePlayController();
+        GameConfig.resetBoard(game.xoTextOnButtonsList);
+        game.gameOverFlag = false;
+        game.printBoard();
+        App.getPopUpWindow().close();
     }
 
 

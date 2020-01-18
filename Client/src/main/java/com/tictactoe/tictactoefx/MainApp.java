@@ -38,17 +38,11 @@ public class MainApp extends Application {
         stage.setOnCloseRequest(e -> {
            try{
                super.stop();
+               App.getPlayerSoc().closeSocket();
            }catch(Exception ee){
                ee.getMessage();
            }
-            System.out.println("on close");
-            Map<String, String> map = new HashMap<>();
-            map.put("type", "logout");
-            map.put("id",Integer.toString(App.getPlayerSoc().getPlayer().getID()));
-            System.out.println(map);
-            PlayRequest.sendJSON(map);
             Platform.exit();
-            System.exit(0);
         });
     }
 

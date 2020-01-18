@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane id="AnchorPane" prefHeight="561.0" prefWidth="875.0" style="-fx-background-color: #FFFFFF;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="popups.OnlineListPopupController">
+    <stylesheets>
+        <URL value="@/styles/Styles.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="346.0" layoutY="22.0" text="Challenge a player" textFill="#6f72fa">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <JFXListView id="onlinePlayersLV" fx:id="onlinePlayersLV" layoutY="97.0" prefHeight="464.0" prefWidth="875.0" stylesheets="@../styles/Styles.css" />
+      <FontIcon iconColor="#44ddba" iconLiteral="fa-flash" iconSize="30" layoutX="322.0" layoutY="50.0" />
+   </children>
+</AnchorPane>
