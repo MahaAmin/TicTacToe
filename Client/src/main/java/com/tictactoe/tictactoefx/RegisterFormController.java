@@ -1,4 +1,4 @@
-package popups;
+package com.tictactoe.tictactoefx;
 
 import actions.App;
 import actions.PlayRequest;
