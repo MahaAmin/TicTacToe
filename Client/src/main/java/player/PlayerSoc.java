@@ -147,10 +147,16 @@ public class PlayerSoc {
             case "resetGameAnswer":
                 resetGameAnswer();
                 break;
+            case "sendMessage":
+                sendMessage();
+                break;
         }
 
     }
 
+    private void sendMessage() {
+        App.getGamePlayController().receiveMessage(jsonMsg.get("message").toString());
+    }
 
 
     /**

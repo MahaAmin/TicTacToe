@@ -134,8 +134,20 @@ public class ServerHandler extends Thread {
             case "updateAvatar":
                 updateAvatar();
                 break;
+            case "sendMessage":
+                sendMessage();
+                break;
         }
 
+    }
+
+
+    private void sendMessage() {
+
+        // send to player 1  to start the game
+        getPlayerHandler(game.getFromPlayer().getID()).ps.println(jsonMsg.toJSONString());
+        // send to player 2  to start the game
+        getPlayerHandler(game.getToPlayer().getID()).ps.println(jsonMsg.toJSONString());
     }
 
 
@@ -413,7 +425,7 @@ public class ServerHandler extends Thread {
         }
     }
 
-    public void updateAvatar(){
-        PlayerModel.updateAvatar(Integer.parseInt(jsonMsg.get("id").toString()),jsonMsg.get("src").toString());
+    public void updateAvatar() {
+        PlayerModel.updateAvatar(Integer.parseInt(jsonMsg.get("id").toString()), jsonMsg.get("src").toString());
     }
 }

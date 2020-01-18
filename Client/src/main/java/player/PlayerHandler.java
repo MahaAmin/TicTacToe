@@ -84,5 +84,12 @@ public interface PlayerHandler {
         App.getPopUpWindow().close();
     }
 
+    static void sendMessage(String message){
+        Map<String, String> map = new HashMap<>();
+        map.put("type", "sendMessage");
+        map.put("message", message);
+        PlayRequest.sendJSON(map);
+    }
+
 
 }

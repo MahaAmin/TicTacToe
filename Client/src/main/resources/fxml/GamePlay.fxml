@@ -115,7 +115,7 @@
       <FontIcon iconColor="#6f60fa" iconLiteral="fa-user-o" iconSize="30" layoutX="127.0" layoutY="306.0" />
       <Label fx:id="playerOLabel" alignment="CENTER" layoutX="703.0" layoutY="344.0" prefHeight="40.0" prefWidth="232.0" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-color: #54dfc4; -fx-border-radius: 20;" text="playerOLabel" />
       <FontIcon iconColor="#6f60fa" iconLiteral="fa-user-o" iconSize="30" layoutX="806.0" layoutY="306.0" />
-      <JFXButton layoutX="421.0" layoutY="19.0" onAction="#saveButtonClicked" prefHeight="42.0" prefWidth="114.0" style="-fx-background-color: #6f60fa; -fx-background-radius: 5;" text="Save" textFill="WHITE">
+      <JFXButton fx:id="saveButton" layoutX="421.0" layoutY="19.0" onAction="#saveButtonClicked" prefHeight="42.0" prefWidth="114.0" style="-fx-background-color: #6f60fa; -fx-background-radius: 5;" text="Save" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
@@ -125,7 +125,7 @@
       </JFXButton>
       <JFXNodesList fx:id="nodeList" layoutX="395.0" layoutY="467.0" prefHeight="30.0" prefWidth="94.0">
          <children>
-            <JFXButton prefHeight="40.0" prefWidth="166.0" style="-fx-background-color: #4A5EFB; -fx-background-radius: 5;" text="Chat with opponent" textFill="WHITE">
+            <JFXButton fx:id="chatButton" prefHeight="40.0" prefWidth="166.0" style="-fx-background-color: #4A5EFB; -fx-background-radius: 5;" text="Chat with opponent" textFill="WHITE">
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fa-commenting" iconSize="25" rotate="180.0">
                      <rotationAxis>

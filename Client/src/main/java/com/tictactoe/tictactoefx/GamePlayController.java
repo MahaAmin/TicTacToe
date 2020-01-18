@@ -26,8 +26,8 @@ import playerModel.Player;
 
 public class GamePlayController implements Initializable {
 
-    @FXML
-    private JFXNodesList nodeList = new JFXNodesList();
+    //    @FXML
+//    private JFXNodesList nodeList = new JFXNodesList();
     @FXML
     private JFXTextArea messageTA;
     @FXML
@@ -40,11 +40,13 @@ public class GamePlayController implements Initializable {
     @FXML
     private JFXButton xoBTN7, xoBTN8, xoBTN9;
 
-    //Player regions (The background color for the score section).
     @FXML
-    private Region playerORegion;
+    private JFXButton saveButton;
     @FXML
-    private Region playerXRegion;
+    private JFXButton chatButton;
+
+    @FXML
+    private JFXNodesList nodeList;
 
     private final String colorX = "-fx-text-fill: #3989d4; ";
     private final String colorO = "-fx-text-fill: #3abcd4; ";
@@ -62,7 +64,7 @@ public class GamePlayController implements Initializable {
 
     int playerXScore;
     int playerOScore;
-
+    Player current_player;
     public boolean gameOverFlag;
 
     // board
@@ -147,7 +149,7 @@ public class GamePlayController implements Initializable {
                 xoTextOnButtonsList.add(" ");
             }
         }
-        Player current_player = App.getPlayerSoc().getPlayer();
+        current_player = App.getPlayerSoc().getPlayer();
         if (mode == 1) // PCMode
         {
             // human starts game with label X
@@ -157,6 +159,8 @@ public class GamePlayController implements Initializable {
             //Change the X & O Player names.
             playerXLabel.setText(current_player.getPlayerName());
             playerOLabel.setText("PC O");
+            saveButton.setVisible(false);
+            nodeList.setVisible(false);
 
         } else if (mode == 2) // TwoPlayersMode
         {
@@ -174,6 +178,7 @@ public class GamePlayController implements Initializable {
             playerXCircle.setStyle("-fx-stroke: #F06585; ");
         }
 
+        messageTA.setDisable(true);
         //Change Their score
         setPlayerXScore.setText(Integer.toString(playerXScore));
         setPlayerOScore.setText(Integer.toString(playerOScore));
@@ -394,7 +399,7 @@ public class GamePlayController implements Initializable {
         } else {
             if (GameConfig.getTurn()) {
                 if (checkForWin().equalsIgnoreCase("X") || checkForWin().equalsIgnoreCase("O")) {
-                    PlayerHandler.announceGameResult(App.getPlayerSoc().getPlayer().getID());
+                    PlayerHandler.announceGameResult(current_player.getID());
                 } else if (isBoardFull() && checkForWin().equalsIgnoreCase("Tie")) {
                     PlayerHandler.announceGameResult(0);
                 }
@@ -636,11 +641,21 @@ public class GamePlayController implements Initializable {
     @FXML
     private void messageTFaction(ActionEvent event) {
         //Get the typed text.
-        String getMessage = messageTF.getText();
-        //Clear the screen.
+        String message = messageTF.getText();
+        if (!message.isEmpty()) {
+            PlayerHandler.sendMessage(current_player.getPlayerName() + ": " + message);
+        }
+
+
+    }
+
+    public void receiveMessage(String msg) {
+        nodeList.animateList(true);
+        nodeList.getStyleClass().add("trigger-node");
+//        Clear the screen.
         messageTF.setText("");
 
-        messageTA.appendText(getMessage);
+        messageTA.appendText(msg);
         messageTA.appendText("\n");
     }
 
