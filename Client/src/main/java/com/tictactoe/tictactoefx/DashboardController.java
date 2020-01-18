@@ -91,8 +91,8 @@ public class DashboardController implements Initializable {
 
     public void initialize(URL url, ResourceBundle rb) 
     {
-        System.out.println("");
         Player current = App.getPlayerSoc().getPlayer();
+        System.out.println(current.getPlayerAvatar());
         changePictureButton.setVisible(false);
         mouseEnteredShadow.setColor(Color.GRAY); //set the shadow color of the  Region.
         mouseExitedShadow.setColor(Color.WHITE);

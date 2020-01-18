@@ -68,7 +68,7 @@ public class ChangeProfilePictureController implements Initializable {
     }
     
     @FXML private void selectButtonClicked(ActionEvent event) throws IOException {
-        String img= "./src/main/java/avatars/"+index+".png";
+        String img= "src/main/java/avatars/"+index+".png";
         JSONObject req = new JSONObject();
         req.put("type","updateAvatar");
         req.put("src",img);
