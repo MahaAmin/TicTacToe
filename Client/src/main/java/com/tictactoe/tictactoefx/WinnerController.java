@@ -21,7 +21,7 @@ public class WinnerController implements Initializable {
     private JFXButton exitButton;
 
     @FXML
-    private Label result_txt;
+    private static Label result_txt;
 
     @FXML
     private void resetButtonClicked(ActionEvent event) {
@@ -69,6 +69,18 @@ public class WinnerController implements Initializable {
                 }
             } else {
                 result_txt.setText("Game finished, It's a Tie.");
+            }
+        } else if (GameConfig.getMode() == 1) {
+            result_txt = new Label();
+            if (GameConfig.getWinner().equals("X")) {
+                System.out.println(result_txt);
+                result_txt.setText("Player X Won!");
+            } else if (GameConfig.getWinner().equals("O")) {
+                System.out.println(result_txt);
+                result_txt.setText("Player O Won!");
+            } else if (GameConfig.getWinner().equals("Tie")) {
+                System.out.println(result_txt);
+                result_txt.setText("IT IS A TIE!");
             }
         }
 

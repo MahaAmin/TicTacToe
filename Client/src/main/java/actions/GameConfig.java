@@ -18,6 +18,7 @@ public class GameConfig {
     private static JSONObject requestPobUpJson;
     private static JSONObject rejectedPobUpJson;
     private static JSONObject winnerPobUpJson;
+    private static String winner;
 
     public static void setMode(int mod) {
         mode = mod;
@@ -121,5 +122,13 @@ public class GameConfig {
 
     public static JSONObject getWinnerPobUpJson() {
         return winnerPobUpJson;
+    }
+    
+    public static void setWinner(String win){
+        winner = win;
+    }
+    
+    public static String getWinner(){
+        return winner;
     }
 }

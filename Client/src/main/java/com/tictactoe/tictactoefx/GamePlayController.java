@@ -344,8 +344,8 @@ public class GamePlayController implements Initializable {
         xoTextOnButtonsList.set(index, " ");
     }
 
-    private void updateScore(int level){
-        switch(level){
+    private void updateScore(int level) {
+        switch (level) {
             case 1:
                 PlayerHandler.updateScore(5);
                 break;
@@ -357,13 +357,16 @@ public class GamePlayController implements Initializable {
                 break;
         }
     }
+
     public void announceGameResult() {
         if (mode == 1) {
             if (checkForWin().equalsIgnoreCase("X")) {
                 System.out.println("Player X Wins!");
                 updateScore(level);
                 try {
+                    GameConfig.setWinner("X");
                     SwitchTo.WinnerPopupScene();
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -373,6 +376,7 @@ public class GamePlayController implements Initializable {
 //            setPlayerOScore.setText(Integer.toString(playerOScore));
                 System.out.println("Player O Wins!");
                 try {
+                    GameConfig.setWinner("O");
                     SwitchTo.WinnerPopupScene();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -380,6 +384,7 @@ public class GamePlayController implements Initializable {
             } else if (isBoardFull() && checkForWin().equalsIgnoreCase("Tie")) {
                 System.out.println("It is a tie!");
                 try {
+                    GameConfig.setWinner("Tie");
                     SwitchTo.WinnerPopupScene();
                 } catch (IOException e) {
                     e.printStackTrace();
