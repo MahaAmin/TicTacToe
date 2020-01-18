@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import actions.App;
 import actions.GameConfig;
 import actions.PlayRequest;
+import com.tictactoe.tictactoefx.SwitchTo;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
