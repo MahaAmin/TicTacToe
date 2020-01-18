@@ -83,7 +83,7 @@
             </LinearGradient>
          </fill>
       </Circle>
-      <Label fx:id="setPlayerXScore" layoutX="135.0" layoutY="172.0" text="0" textFill="WHITE">
+      <Label fx:id="setPlayerXScore" alignment="CENTER" contentDisplay="CENTER" layoutX="114.0" layoutY="172.0" prefHeight="28.0" prefWidth="50.0" text="0" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
@@ -106,7 +106,7 @@
             </LinearGradient>
          </fill>
       </Circle>
-      <Label fx:id="setPlayerOScore" layoutX="806.0" layoutY="172.0" text="0" textFill="WHITE">
+      <Label fx:id="setPlayerOScore" alignment="CENTER" contentDisplay="CENTER" layoutX="785.0" layoutY="172.0" prefHeight="28.0" prefWidth="50.0" text="0" textFill="WHITE">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
