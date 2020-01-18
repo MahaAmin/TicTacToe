@@ -17,7 +17,13 @@ public class GameConfig {
     private static ArrayList<String> XOList = new ArrayList<>();
     private static JSONObject requestPobUpJson;
     private static JSONObject rejectedPobUpJson;
+
+    private static  JSONObject saveGamePobUpJson;
+    private  static JSONObject saveGameRejectedPobUp;
+    private  static JSONObject saveGameSuccesPobUp;
     private static JSONObject winnerPobUpJson;
+    private static String winner;
+
 
     public static void setMode(int mod) {
         mode = mod;
@@ -115,6 +121,16 @@ public class GameConfig {
         return rejectedPobUpJson;
     }
 
+
+    public  static  void setSaveGamePobUpJson(JSONObject jsonObject){saveGamePobUpJson = jsonObject;}
+
+    public  static JSONObject getSaveGamePobUpJson(){return saveGamePobUpJson;}
+
+    public  static  void setSaveGameRejectedPobUp(JSONObject jsonObject){saveGameRejectedPobUp=jsonObject;}
+    public static JSONObject getSaveGameRejectedPobUp(){return saveGameRejectedPobUp;}
+
+    public  static  void setSaveGameSuccesPobUpPobUp(JSONObject jsonObject){saveGameSuccesPobUp=jsonObject;}
+    public static JSONObject getSaveGameSuccesPobUp(){return saveGameSuccesPobUp;}
     public static void setWinnerPobUpJson(JSONObject jsonObject) {
         winnerPobUpJson = jsonObject;
     }
@@ -122,4 +138,13 @@ public class GameConfig {
     public static JSONObject getWinnerPobUpJson() {
         return winnerPobUpJson;
     }
+    
+    public static void setWinner(String win){
+        winner = win;
+    }
+    
+    public static String getWinner(){
+        return winner;
+    }
+
 }

@@ -24,7 +24,7 @@ public class RequestRejectedPopupController implements Initializable {
    
    @FXML private void okButtonClicked(ActionEvent event)
    {
-       jsonData.put("response", "true");
+      // jsonData.put("response", "true");
        App.getPopUpWindow().close();
 
 
@@ -34,17 +34,13 @@ public class RequestRejectedPopupController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         jsonData = GameConfig.getRejectedPobUpJson();
-        try {
-            SwitchTo.RequestRejectedPopupScene();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
 
-        informingLabel.setText(jsonData.get("from_name").toString());
+
+       // informingLabel.setText(jsonData.get("from_name").toString());
 
 
-       informingLabel.setText("Sorry but "+ "username"  + " rejected your play request.");
+       informingLabel.setText("ٍSorry,Your request has been rejected. Try with another player.");
     }
    // jsonData.replace("type", "rejectedRequest");
 

@@ -1,3 +1,5 @@
+
+
 package popups;
 
 import actions.App;
@@ -58,3 +60,4 @@ public class InvitationRequestPopupController implements Initializable {
     }
 
 }
+

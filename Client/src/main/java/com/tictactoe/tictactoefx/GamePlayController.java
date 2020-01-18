@@ -174,7 +174,6 @@ public class GamePlayController implements Initializable {
             playerXCircle.setStyle("-fx-stroke: #F06585; ");
         }
 
-
         //Change Their score
         setPlayerXScore.setText(Integer.toString(playerXScore));
         setPlayerOScore.setText(Integer.toString(playerOScore));
@@ -259,11 +258,10 @@ public class GamePlayController implements Initializable {
         }
 
         if (isBoardFull() && winner == null) {
-
             return "Tie";
-        } else {
-            return winner;
         }
+
+        return winner;
 
     }
 
@@ -346,15 +344,29 @@ public class GamePlayController implements Initializable {
         xoTextOnButtonsList.set(index, " ");
     }
 
+    private void updateScore(int level) {
+        switch (level) {
+            case 1:
+                PlayerHandler.updateScore(5);
+                break;
+            case 2:
+                PlayerHandler.updateScore(15);
+                break;
+            case 3:
+                PlayerHandler.updateScore(25);
+                break;
+        }
+    }
+
     public void announceGameResult() {
         if (mode == 1) {
             if (checkForWin().equalsIgnoreCase("X")) {
-//            playerXScore++;
-//            setPlayerXScore.setText(Integer.toString(playerXScore));
                 System.out.println("Player X Wins!");
-
+                updateScore(level);
                 try {
+                    GameConfig.setWinner("X");
                     SwitchTo.WinnerPopupScene();
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -364,23 +376,26 @@ public class GamePlayController implements Initializable {
 //            setPlayerOScore.setText(Integer.toString(playerOScore));
                 System.out.println("Player O Wins!");
                 try {
+                    GameConfig.setWinner("O");
                     SwitchTo.WinnerPopupScene();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            } else if (isBoardFull() && !checkForWin().equalsIgnoreCase("Tie")) {
+            } else if (isBoardFull() && checkForWin().equalsIgnoreCase("Tie")) {
                 System.out.println("It is a tie!");
                 try {
+                    GameConfig.setWinner("Tie");
                     SwitchTo.WinnerPopupScene();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
+
         } else {
             if (GameConfig.getTurn()) {
                 if (checkForWin().equalsIgnoreCase("X") || checkForWin().equalsIgnoreCase("O")) {
                     PlayerHandler.announceGameResult(App.getPlayerSoc().getPlayer().getID());
-                } else if (isBoardFull() && !checkForWin().equalsIgnoreCase("Tie")) {
+                } else if (isBoardFull() && checkForWin().equalsIgnoreCase("Tie")) {
                     PlayerHandler.announceGameResult(0);
                 }
             }

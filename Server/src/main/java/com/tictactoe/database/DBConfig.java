@@ -7,5 +7,4 @@ public interface DBConfig {
     static final String DB_USER = "root";
     static final String DB_PASSWD = "123456";
 
-
 }
