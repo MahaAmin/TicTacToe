@@ -75,7 +75,14 @@ public class PlayerSoc {
                     /** if server close show alert to all players and close the app */
                     closeSocket();
                     Platform.runLater(() -> {
-                        Alerts.serverIsShuttingDown();
+                       // Alerts.serverIsShuttingDown();
+
+                        try {
+                            GameConfig.setServerErrorPopup(jsonMsg);
+                            SwitchTo.ServerErrorPopupScene();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         App.getWindow().close();
 
                     });
@@ -196,7 +203,14 @@ public class PlayerSoc {
      */
     private void chooseGame() {
         Platform.runLater(() -> {
-            Alerts.chooseGameAlert(jsonMsg);
+           // Alerts.chooseGameAlert(jsonMsg);
+
+            try {
+                GameConfig.setOldSavePobUp(jsonMsg);
+                SwitchTo.SaveGameConfirmationPopupScene();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
     }
 
@@ -342,7 +356,13 @@ public class PlayerSoc {
         String status = jsonMsg.get("status").toString();
         Platform.runLater(() -> {
             if (status.equals("FAIL")) {
-                Alerts.gameFailedAlert();
+                //Alerts.gameFailedAlert();
+                try {
+                    GameConfig.setGameFaildPobUp(jsonMsg);
+                    SwitchTo.GameFailedPopupScene();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 try {
                     SwitchTo.changeTo(App.getWindow(), 2);
                 } catch (IOException e) {
@@ -431,7 +451,12 @@ public class PlayerSoc {
             });
         } else {
             Platform.runLater(() -> {
-                Alerts.wrongPasswordAlert();
+              //  Alerts.wrongPasswordAlert();
+                try {
+                    SwitchTo.WrongCredentialsPopupScene();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             });
         }
     }
