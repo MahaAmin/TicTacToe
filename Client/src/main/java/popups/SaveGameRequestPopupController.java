@@ -23,16 +23,19 @@ public class SaveGameRequestPopupController implements Initializable {
         // ... user chose "No"
         jsonData.put("response", "false");
         PlayRequest.sendJSONObject(jsonData);
-        Platform.runLater(() -> {
+       /* Platform.runLater(() -> {
         try {
 
-            jsonData=GameConfig.getSaveGamePobUpJson();
+            GameConfig.getSaveGameRejectedPobUp();
             SwitchTo.SaveGameRejectedPopupScene();
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        });
-        App.getWindow().close();
+        });*/
+        App.getPopUpWindow().close();
+
 
 
 
@@ -45,21 +48,24 @@ public class SaveGameRequestPopupController implements Initializable {
             jsonData.put("response", "true");
             PlayRequest.sendJSONObject(jsonData);
 
-            Platform.runLater(() -> {
+
+           Platform.runLater(() -> {
 
                 try {
-                    GameConfig.setSaveGameSuccesPobUpPobUp(jsonData);
+                    GameConfig.getSaveGameSuccesPobUp();
                     SwitchTo.SaveGameSuccessPopupScene();
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
               /*  try {
                     SwitchTo.changeTo(App.getWindow(), 2);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }*/
             });
-        App.getWindow().close();
+        App.getPopUpWindow().close();
 
 
     }

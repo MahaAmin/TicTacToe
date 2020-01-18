@@ -238,7 +238,7 @@ public class PlayerSoc {
         Platform.runLater(() -> {
 
             try {
-                GameConfig.setRejectedPobUpJson(jsonMsg);
+              //  GameConfig.setRejectedPobUpJson(jsonMsg);
                 SwitchTo.RequestRejectedPopupScene();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -293,14 +293,29 @@ public class PlayerSoc {
             System.out.println("save answer " + jsonMsg.get("response"));
             System.out.println("save answer " + isAccepted);
         //   Alerts.saveGameAnswerAlert(isAccepted);
-
-         /*  try {
-                GameConfig.setSaveGameSuccesPobUpPobUp(jsonMsg);
-                SwitchTo.SaveGameSuccessPopupScene();
-            } catch (IOException e) {
-                e.printStackTrace();
+            if(isAccepted) {
+                try {
+                    GameConfig.setSaveGameSuccesPobUpPobUp(jsonMsg);
+                    SwitchTo.SaveGameSuccessPopupScene();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+            else
+            {
+                Platform.runLater(() -> {
+                    try {
 
+                        GameConfig.setSaveGameRejectedPobUp(jsonMsg);
+                        SwitchTo.SaveGameRejectedPopupScene();
+
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+                /*
             if (isAccepted) {
                 try {
                     GameConfig.setSaveGameSuccesPobUpPobUp(jsonMsg);
