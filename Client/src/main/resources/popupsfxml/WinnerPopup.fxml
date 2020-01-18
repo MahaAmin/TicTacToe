@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane id="AnchorPane" prefHeight="561.0" prefWidth="875.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="popups.WinnerPopupController">
+    <stylesheets>
+        <URL value="@/styles/Styles.css" />
+    </stylesheets>
+    <children>
+        <Label fx:id="result_txt" alignment="CENTER" contentDisplay="CENTER" layoutX="17.0" layoutY="30.0" prefHeight="58.0" prefWidth="842.0" text="Congratulations, You've WON !! OMG" textAlignment="CENTER" textFill="#6f72fa" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="16.0">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+        <JFXButton id="resetButton" alignment="CENTER" buttonType="RAISED" defaultButton="true" layoutX="325.0" layoutY="142.0" onAction="#resetButtonClicked" prefHeight="58.0" prefWidth="225.0" style="-fx-background-color: #6F72FA;" stylesheets="@../styles/Styles.css" text="Reset" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="326.0" AnchorPane.rightAnchor="324.0">
+            <font>
+                <Font size="14.0" />
+            </font>
+            <graphic>
+                <FontIcon iconColor="WHITE" iconLiteral="fa-undo" iconSize="30" translateX="-5.0" />
+            </graphic>
+        </JFXButton>
+        <JFXButton id="shareButton" alignment="CENTER" buttonType="RAISED" defaultButton="true" layoutX="325.0" layoutY="252.0" onAction="#shareButtonClicked" prefHeight="58.0" prefWidth="225.0" style="-fx-background-color: #6F72FA;" stylesheets="@../styles/Styles.css" text="Share" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="326.0" AnchorPane.rightAnchor="324.0">
+            <font>
+                <Font size="14.0" />
+            </font>
+            <graphic>
+                <FontIcon iconColor="WHITE" iconLiteral="fa-share-alt" iconSize="30" translateX="-5.0" />
+            </graphic>
+        </JFXButton>
+        <JFXButton id="shareButton" fx:id="exitButton" alignment="CENTER" buttonType="RAISED" defaultButton="true" layoutX="326.0" layoutY="350.0" onAction="#exitButtonClicked" prefHeight="58.0" prefWidth="225.0" style="-fx-background-color: #6F72FA;" stylesheets="@../styles/Styles.css" text="Exit" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="326.0" AnchorPane.rightAnchor="324.0">
+            <font>
+                <Font size="14.0" />
+            </font>
+            <graphic>
+                <FontIcon iconColor="WHITE" iconLiteral="fa-television" iconSize="30" translateX="-5.0" />
+            </graphic>
+        </JFXButton>
+    </children>
+</AnchorPane>
