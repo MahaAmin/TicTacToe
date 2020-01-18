@@ -27,8 +27,8 @@ public class InvitationRequestPopupController implements Initializable {
         // ... player2 chose "No"
         jsonData.put("response", "false");
         PlayRequest.sendJSONObject(jsonData);
-        jsonData = GameConfig.getRejectedPobUpJson();
-        SwitchTo.RequestRejectedPopupScene();
+     //   SwitchTo.RequestRejectedPopupScene();
+
         App.getPopUpWindow().close();
 
     }

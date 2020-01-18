@@ -250,7 +250,14 @@ public class PlayerSoc {
      */
     private void saveGameRequest() {
         Platform.runLater(() -> {
-            Alerts.saveGameAlert(jsonMsg);
+           // Alerts.saveGameAlert(jsonMsg);
+
+            try {
+                GameConfig.setSaveGamePobUpJson(jsonMsg);
+                SwitchTo.SaveGameRequestPopupScene();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
     }
 
@@ -258,7 +265,7 @@ public class PlayerSoc {
      * for both players
      * the second player can accept or refuse first player save game request
      */
-    private void saveGameAnswer() {
+   private void saveGameAnswer() {
         Platform.runLater(() -> {
             boolean isAccepted = false;
             if (jsonMsg.get("response").equals("true")) {
@@ -266,14 +273,30 @@ public class PlayerSoc {
             }
             System.out.println("save answer " + jsonMsg.get("response"));
             System.out.println("save answer " + isAccepted);
-            Alerts.saveGameAnswerAlert(isAccepted);
+        //   Alerts.saveGameAnswerAlert(isAccepted);
+
+         /*  try {
+                GameConfig.setSaveGameSuccesPobUpPobUp(jsonMsg);
+                SwitchTo.SaveGameSuccessPopupScene();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             if (isAccepted) {
+                try {
+                    GameConfig.setSaveGameSuccesPobUpPobUp(jsonMsg);
+                    SwitchTo.SaveGameSuccessPopupScene();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
                 try {
                     SwitchTo.changeTo(App.getWindow(), 2);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
+
         });
 
     }
