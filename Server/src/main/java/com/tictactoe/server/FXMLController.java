@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXToggleButton;
 import com.tictactoe.actions.App;
 import com.tictactoe.database.playerModel.Player;
 import com.tictactoe.database.playerModel.PlayerModel;
+import com.tictactoe.database.playerModel.updateView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -61,8 +62,7 @@ public class FXMLController implements Initializable {
         statusColumnT2.setCellValueFactory(new PropertyValueFactory<>("status"));
         usernameColumnT2.setCellValueFactory(new PropertyValueFactory<>("name"));
         scoreColumnT2.setCellValueFactory(new PropertyValueFactory<>("score"));
-        allUsersTable.setItems(PlayerModel.playerslist);
-        System.out.println(PlayerModel.playerslist);
+        allUsersTable.setItems(updateView.GetObservable());
 
     }
 }

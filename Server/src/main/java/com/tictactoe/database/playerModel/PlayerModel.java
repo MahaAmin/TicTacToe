@@ -25,7 +25,6 @@ import java.util.logging.Logger;
 public class PlayerModel {
 
     static DatabaseManager db = App.getDB();
-    public static ObservableList<Player> playerslist;
     private static Map<Integer, Player> players;
 
 
@@ -61,8 +60,6 @@ public class PlayerModel {
     }
 
     public static JSONArray getPlayersJSON() {
-        playerslist = FXCollections.observableArrayList();
-        playerslist.removeAll();
         LinkedHashMap<String, JSONObject> jsonOrderedMap = new LinkedHashMap<String, JSONObject>();
         JSONArray jsonArray = new JSONArray();
         for (Map.Entry<Integer, Player> field : players.entrySet()) {
@@ -74,7 +71,6 @@ public class PlayerModel {
             playerJson.put("score", player.getPlayerScore());
             playerJson.put("status", player.getPlayerStatus());
             playerJson.put("avatar",player.getPlayerAvatar());
-            playerslist.add(player);
             jsonArray.add(playerJson);
         }
 

@@ -13,6 +13,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import playerModel.Player;
 import playerModel.PlayerModel;
+import playerModel.updateView;
 
 import java.io.*;
 import java.net.Socket;
@@ -129,7 +130,7 @@ public class PlayerSoc {
                 break;
             case "getall":
                 System.out.println("This is sending the update");
-                PlayerModel.getPlayers(jsonMsg.get("players").toString());
+                updateView.updatePlayer(PlayerModel.getPlayers(jsonMsg.get("players").toString()));
                 break;
             case "saveGameRequest":
                 saveGameRequest();
