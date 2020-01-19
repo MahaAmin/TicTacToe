@@ -393,13 +393,13 @@ public class PlayerSoc {
 
     private void resetGameRequest() {
         Platform.runLater(() -> {
-           // Alerts.resetGameRequestAlert(jsonMsg);
-            GameConfig.setResetPobUP(jsonMsg);
-            try {
-                SwitchTo.ResetPopupScene();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            Alerts.resetGameRequestAlert(jsonMsg);
+//            GameConfig.setResetPobUP(jsonMsg);
+//            try {
+//                SwitchTo.ResetPopupScene();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
         });
     }
 
