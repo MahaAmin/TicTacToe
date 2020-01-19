@@ -157,6 +157,7 @@ public class ServerHandler extends Thread {
         player.setID(Integer.parseInt(client.get("id").toString()));
         player.setPlayerName(client.get("name").toString());
         player.setPlayerScore(Integer.parseInt(client.get("score").toString()));
+        player.setPlayerAvatar(client.get("avatar").toString());
     }
 
     /**

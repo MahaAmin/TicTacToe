@@ -409,6 +409,7 @@ public class PlayerSoc {
             pl.setID(Integer.parseInt(jsonMsg.get("id").toString()));
             pl.setPlayerName(jsonMsg.get("name").toString());
             pl.setPlayerScore(Integer.parseInt(jsonMsg.get("score").toString()));
+            pl.setPlayerAvatar(jsonMsg.get("avatar").toString());
             App.getPlayerSoc().setPlayer(pl);
             PlayerModel.getPlayers(jsonMsg.get("players").toString());
             // redirect to dashboard

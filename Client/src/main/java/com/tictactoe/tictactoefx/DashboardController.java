@@ -98,7 +98,10 @@ public class DashboardController implements Initializable {
             Image image1;
             try
             {
-                image1 = new Image(new FileInputStream("src/main/java/avatars/0.png"));
+                if(current.getPlayerAvatar()==null)
+                    image1 = new Image(new FileInputStream("src/main/java/avatars/0.png"));
+                else
+                    image1 = new Image(new FileInputStream(current.getPlayerAvatar()));
                // ImageView img = new ImageView(image1);
                 profilePicture.setFill(new ImagePattern(image1));
             } 
