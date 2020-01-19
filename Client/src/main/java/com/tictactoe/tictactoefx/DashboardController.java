@@ -62,7 +62,6 @@ public class DashboardController implements Initializable {
     @FXML
     private TableColumn<Player, JFXButton> status;
     @FXML private Circle profilePicture;
-    @FXML private Label usernameLabel , scoreValueLabel;
     @FXML private Label usernameLabel , scoreValueLabel, levelLabel;
     
     //CSSing some components
