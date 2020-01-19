@@ -62,6 +62,7 @@ public class DashboardController implements Initializable {
     private TableColumn<Player, JFXButton> status;
     @FXML private Circle profilePicture;
     @FXML private Label usernameLabel , scoreValueLabel;
+    @FXML private Label usernameLabel , scoreValueLabel, levelLabel;
     
     //CSSing some components
     @FXML private Region profileRegion, dashboardRegion, scoreBoardRegion, playersListRegion ;
@@ -109,7 +110,13 @@ public class DashboardController implements Initializable {
         });
 
         scoreBoardLV.getStyleClass().add("mylistview");
-
+        if(current.getPlayerScore() < 500)
+            levelLabel.setText("Beginner");
+        else if(current.getPlayerScore() >= 500 && current.getPlayerScore() <= 1000)
+            levelLabel.setText("Intermediate");
+        else 
+            levelLabel.setText("Expert");
+        
         usernameLabel.setText(current.getPlayerName());
         scoreValueLabel.setText( String.valueOf(current.getPlayerScore()));
 
