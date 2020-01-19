@@ -23,6 +23,9 @@ public class GameConfig {
     private  static JSONObject saveGameSuccesPobUp;
     private static JSONObject winnerPobUpJson;
     private static String winner;
+    private static  JSONObject oldSavePobUp;
+    private static  JSONObject serverErrorPopup;
+    private static  JSONObject gameFaildPobUp;
 
 
     public static void setMode(int mod) {
@@ -146,5 +149,12 @@ public class GameConfig {
     public static String getWinner(){
         return winner;
     }
+    public  static void setOldSavePobUp(JSONObject jsonObject){oldSavePobUp=jsonObject;}
+    public  static JSONObject getOldSavePobUp(){return  oldSavePobUp;}
+    public static  void setServerErrorPopup(JSONObject jsonObject){serverErrorPopup=jsonObject;}
+    public static JSONObject getServerErrorPopup(){return serverErrorPopup;}
+    public  static  void setGameFaildPobUp(JSONObject jsonObject){gameFaildPobUp=jsonObject;}
+    public  static  JSONObject getGameFaildPobUp(){return  gameFaildPobUp ;}
+
 
 }

@@ -2,27 +2,42 @@ package popups;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import actions.App;
+import actions.GameConfig;
+import actions.PlayRequest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import org.json.simple.JSONObject;
 
 public class SaveGameConfirmationPopupController implements Initializable {
     @FXML private Label playerNameLabel;
+    private JSONObject jsonData;
     
     @FXML private void yesButtonClicked(ActionEvent event)
     {
-        System.out.println("Yes clicked");
+        // ... user chose "Yes"
+        jsonData.put("response", "true");
+        PlayRequest.sendJSONObject(jsonData);
+        App.getPopUpWindow().close();
     }
     
     @FXML private void noButtonClicked(ActionEvent event)
     {
-        System.out.println("No clicked");
+        // ... user chose "No"
+        jsonData.put("response", "false");
+        PlayRequest.sendJSONObject(jsonData);
+        App.getPopUpWindow().close();
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        String playerName = "Player 1";
+        jsonData= GameConfig.getOldSavePobUp();
+        String playerName = jsonData.get("from_name").toString();
         playerNameLabel.setText("You have an already saved game with " + playerName );
-    }    
+        jsonData.replace("type", "chosenPlayRequest");
+    }
+
     
 }
