@@ -3,6 +3,7 @@ package player;
 import actions.Alerts;
 import actions.App;
 import actions.GameConfig;
+import actions.PlayRequest;
 import com.tictactoe.tictactoefx.SwitchTo;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -358,6 +359,7 @@ public class PlayerSoc {
                     e.printStackTrace();
                 }
                 try {
+                    PlayerHandler.updatePlayers();
                     SwitchTo.changeTo(App.getWindow(), 2);
                 } catch (IOException e) {
                     e.printStackTrace();

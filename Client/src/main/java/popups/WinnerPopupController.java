@@ -49,9 +49,9 @@ public class WinnerPopupController implements Initializable {
     @FXML
     private void exitButtonClicked(ActionEvent event) {
         System.out.println("Exit was pressed");
-//        exitButton.getScene().getWindow().hide();
         App.getPopUpWindow().close();
         try {
+            PlayerHandler.updatePlayers();
             SwitchTo.changeTo(App.getWindow(), 2);
         } catch (IOException e) {
             e.printStackTrace();
@@ -74,13 +74,11 @@ public class WinnerPopupController implements Initializable {
                 result_txt.setText("Game finished, It's a Tie.");
             }
         } else if (GameConfig.getMode() == 1) {
-            if(GameConfig.getWinner().equals("X")){
+            if (GameConfig.getWinner().equals("X")) {
                 result_txt.setText("Player X Won!");
-            }
-            else if(GameConfig.getWinner().equals("O")){
+            } else if (GameConfig.getWinner().equals("O")) {
                 result_txt.setText("Player O Won!");
-            }
-            else if(GameConfig.getWinner().equals("Tie")){
+            } else if (GameConfig.getWinner().equals("Tie")) {
                 result_txt.setText("It is a Tie!");
             }
         }

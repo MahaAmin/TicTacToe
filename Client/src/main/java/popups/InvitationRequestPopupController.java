@@ -55,7 +55,7 @@ public class InvitationRequestPopupController implements Initializable {
         jsonData = GameConfig.getRequestPobUpJson();
         requestLabel.setText(jsonData.get("from_name").toString());
         if (jsonData.containsKey("old_game")) {
-            App.getPopUpWindow().setTitle("Resume Old Game");
+//            App.getPopUpWindow().setTitle("Resume Old Game");
             headerLabel.setText("Want to resume the old game with you!");
             contentLabel.setText("Are You want to resume it?");
         } else {

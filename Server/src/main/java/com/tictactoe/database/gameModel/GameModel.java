@@ -123,8 +123,7 @@ public class GameModel {
         return false;
     }
 
-    public static void updateGameBoard(JSONObject game, int game_id) {
-        System.out.println("game " + game);
+    public static Boolean updateGameBoard(JSONObject game, int game_id) {
         try {
             PreparedStatement preparedStatement = db.connection.prepareStatement("UPDATE games SET board=? , status=? WHERE id=?");
             preparedStatement.setString(1, game.toJSONString());
@@ -132,17 +131,12 @@ public class GameModel {
             preparedStatement.setInt(3, game_id);
             int isUpdated = preparedStatement.executeUpdate();
             if (isUpdated > 0) {
-//                Game g = games.get(Integer.parseInt(game.get("id").toString()));
-//                try {
-//                    g.setBoard((JSONObject) new JSONParser().parse(game.get("board").toString()));
-//                } catch (ParseException ex) {
-////                    Logger.getLogger(GameModel.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//                games.replace(Integer.parseInt(game.get("id").toString()), g);
+                return true;
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        return false;
     }
 
     public static Boolean setWinner(int game_id, int winner_id) {

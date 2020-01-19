@@ -624,8 +624,11 @@ public class GamePlayController implements Initializable {
 
     @FXML
     private void backButtonClicked(ActionEvent event) throws IOException {
-        // update game status to fail
-        PlayerHandler.updateGameStatus("FAIL");
+        if(mode==2){
+            // update game status to fail
+            PlayerHandler.updateGameStatus("FAIL");
+        }
+        PlayerHandler.updatePlayers();
         SwitchTo.dashboardScene(event);
     }
 

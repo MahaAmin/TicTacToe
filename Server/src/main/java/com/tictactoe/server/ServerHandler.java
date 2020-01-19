@@ -3,9 +3,9 @@ package com.tictactoe.server;
 import com.tictactoe.actions.GameTypeScore;
 import com.tictactoe.database.gameModel.Game;
 import com.tictactoe.database.gameModel.GameModel;
+import com.tictactoe.database.gameModel.GameStatus;
 import com.tictactoe.database.playerModel.Player;
 import com.tictactoe.database.playerModel.PlayerModel;
-import com.tictactoe.database.playerModel.updateView;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -63,7 +63,8 @@ public class ServerHandler extends Thread {
                 try {
                     playersSoc.remove(this);
                     System.out.println(playersSoc);
-                    MakeStatusOffline();
+                    // change player status to offline
+                    ChangePlayerStatus(player.getID(),0);
                 } catch (Exception ew) {
                     System.out.println("socket didn't close in logout function");
                 }
@@ -74,10 +75,10 @@ public class ServerHandler extends Thread {
         }
     }
 
-    private void MakeStatusOffline() {
+    private void ChangePlayerStatus(int player_id,int status) {
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("id", player.getID());
-        jsonObject.put("status", "0");
+        jsonObject.put("id", player_id);
+        jsonObject.put("status", status);
         PlayerModel.updateStatus(jsonObject);
         getall();
     }
@@ -187,8 +188,6 @@ public class ServerHandler extends Thread {
                     sendNewGameRequest(toPlayerHandler);
                 }
 
-            } else {
-                // to_player is offline now
             }
         }
     }
@@ -273,6 +272,7 @@ public class ServerHandler extends Thread {
             jsono.replace("id", from_player.getID());
             PlayerModel.updateStatus(jsono);
 
+            GameModel.updateGameStatus(game.getId(), GameStatus.INPROGRESS.toString());
             jsonMsg.replace("type", "gameStart");
             jsonMsg.put("to_name", to_player.getPlayerName());
             jsonMsg.put("from_score", from_player.getPlayerScore());
@@ -287,6 +287,7 @@ public class ServerHandler extends Thread {
             getPlayerHandler(to_player.getID()).ps.println(jsonMsg.toJSONString());
         } else {
             System.out.println("game refused");
+            GameModel.removeGame(game.getId());
             jsonMsg.replace("type", "requestRejected");
             // send to player 1  that player 2 refuse to play with you
             getPlayerHandler(from_player.getID()).ps.println(jsonMsg.toJSONString());
@@ -329,8 +330,14 @@ public class ServerHandler extends Thread {
             jsonMsg.remove("response");
             game.setBoard(jsonMsg);
             GameModel.updateGameBoard(jsonMsg, game.getId());
-
+            // change players to online again
+            ChangePlayerStatus(game.getFromPlayer().getID(),1);
+            ChangePlayerStatus(game.getToPlayer().getID(),1);
         }
+    }
+
+    private void resetGameRequest() {
+        whichPlayer(jsonMsg);
     }
 
     /**
@@ -341,6 +348,7 @@ public class ServerHandler extends Thread {
         // if player 1 who want to reset the game send reset game answer to him
         whichPlayer(jsonMsg);
     }
+
 
     /**
      * send json object to player against you
@@ -359,11 +367,15 @@ public class ServerHandler extends Thread {
 
     /**
      * for both players
+     * update status to fail
      */
     private void updateGameStatus() {
         String status = jsonMsg.get("status").toString();
         Boolean isUpdated = GameModel.updateGameStatus(game.getId(), status);
         if (isUpdated) {
+            // change players to online again
+            ChangePlayerStatus(game.getFromPlayer().getID(),1);
+            ChangePlayerStatus(game.getToPlayer().getID(),1);
             jsonMsg.replace("type", "gameStatusNotify");
             whichPlayer(jsonMsg);
         }
@@ -382,6 +394,10 @@ public class ServerHandler extends Thread {
     private void announceGameResult() {
         int winner_id = Integer.parseInt(jsonMsg.get("winner_id").toString());
         GameModel.updateGameStatus(game.getId(), "COMPLETE");
+
+        // change players to online again
+        ChangePlayerStatus(game.getFromPlayer().getID(),1);
+        ChangePlayerStatus(game.getToPlayer().getID(),1);
         if (winner_id != 0) {
             GameModel.setWinner(game.getId(), winner_id);
             int new_score = player.getPlayerScore() + GameTypeScore.WITH_FRIEND;
@@ -402,10 +418,6 @@ public class ServerHandler extends Thread {
         PlayerModel.updateScore(player.getID(), score);
         jsonMsg.replace("score", score);
         ps.println(jsonMsg.toJSONString());
-    }
-
-    private void resetGameRequest() {
-        whichPlayer(jsonMsg);
     }
 
 

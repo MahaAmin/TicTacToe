@@ -18,14 +18,14 @@ public class GameConfig {
     private static JSONObject requestPobUpJson;
     private static JSONObject rejectedPobUpJson;
 
-    private static  JSONObject saveGamePobUpJson;
-    private  static JSONObject saveGameRejectedPobUp;
-    private  static JSONObject saveGameSuccesPobUp;
+    private static JSONObject saveGamePobUpJson;
+    private static JSONObject saveGameRejectedPobUp;
+    private static JSONObject saveGameSuccesPobUp;
     private static JSONObject winnerPobUpJson;
     private static String winner;
-    private static  JSONObject oldSavePobUp;
-    private static  JSONObject serverErrorPopup;
-    private static  JSONObject gameFaildPobUp;
+    private static JSONObject oldSavePobUp;
+    private static JSONObject serverErrorPopup;
+    private static JSONObject gameFaildPobUp;
     private static JSONObject resetPobUP;
 
 
@@ -92,6 +92,14 @@ public class GameConfig {
         }
     }
 
+    public static ArrayList<String> getEmptyBoard() {
+        ArrayList<String> board = new ArrayList<>();
+        for (int i = 0; i < 9; i++) {
+            board.add(" ");
+        }
+        return board;
+    }
+
     public static void setRequestPobUpJson(JSONObject jsonObject) {
         requestPobUpJson = jsonObject;
     }
@@ -126,15 +134,30 @@ public class GameConfig {
     }
 
 
-    public  static  void setSaveGamePobUpJson(JSONObject jsonObject){saveGamePobUpJson = jsonObject;}
+    public static void setSaveGamePobUpJson(JSONObject jsonObject) {
+        saveGamePobUpJson = jsonObject;
+    }
 
-    public  static JSONObject getSaveGamePobUpJson(){return saveGamePobUpJson;}
+    public static JSONObject getSaveGamePobUpJson() {
+        return saveGamePobUpJson;
+    }
 
-    public  static  void setSaveGameRejectedPobUp(JSONObject jsonObject){saveGameRejectedPobUp=jsonObject;}
-    public static JSONObject getSaveGameRejectedPobUp(){return saveGameRejectedPobUp;}
+    public static void setSaveGameRejectedPobUp(JSONObject jsonObject) {
+        saveGameRejectedPobUp = jsonObject;
+    }
 
-    public  static  void setSaveGameSuccesPobUpPobUp(JSONObject jsonObject){saveGameSuccesPobUp=jsonObject;}
-    public static JSONObject getSaveGameSuccesPobUp(){return saveGameSuccesPobUp;}
+    public static JSONObject getSaveGameRejectedPobUp() {
+        return saveGameRejectedPobUp;
+    }
+
+    public static void setSaveGameSuccesPobUpPobUp(JSONObject jsonObject) {
+        saveGameSuccesPobUp = jsonObject;
+    }
+
+    public static JSONObject getSaveGameSuccesPobUp() {
+        return saveGameSuccesPobUp;
+    }
+
     public static void setWinnerPobUpJson(JSONObject jsonObject) {
         winnerPobUpJson = jsonObject;
     }
@@ -142,22 +165,46 @@ public class GameConfig {
     public static JSONObject getWinnerPobUpJson() {
         return winnerPobUpJson;
     }
-    
-    public static void setWinner(String win){
+
+    public static void setWinner(String win) {
         winner = win;
     }
-    
-    public static String getWinner(){
+
+    public static String getWinner() {
         return winner;
     }
-    public  static void setOldSavePobUp(JSONObject jsonObject){oldSavePobUp=jsonObject;}
-    public  static JSONObject getOldSavePobUp(){return  oldSavePobUp;}
-    public static  void setServerErrorPopup(JSONObject jsonObject){serverErrorPopup=jsonObject;}
-    public static JSONObject getServerErrorPopup(){return serverErrorPopup;}
-    public  static  void setGameFaildPobUp(JSONObject jsonObject){gameFaildPobUp=jsonObject;}
-    public  static  JSONObject getGameFaildPobUp(){return  gameFaildPobUp ;}
-    public  static void setResetPobUP(JSONObject jsonObject){resetPobUP=jsonObject;}
-    public  static JSONObject getResetPobUP(){return resetPobUP;}
+
+    public static void setOldSavePobUp(JSONObject jsonObject) {
+        oldSavePobUp = jsonObject;
+    }
+
+    public static JSONObject getOldSavePobUp() {
+        return oldSavePobUp;
+    }
+
+    public static void setServerErrorPopup(JSONObject jsonObject) {
+        serverErrorPopup = jsonObject;
+    }
+
+    public static JSONObject getServerErrorPopup() {
+        return serverErrorPopup;
+    }
+
+    public static void setGameFaildPobUp(JSONObject jsonObject) {
+        gameFaildPobUp = jsonObject;
+    }
+
+    public static JSONObject getGameFaildPobUp() {
+        return gameFaildPobUp;
+    }
+
+    public static void setResetPobUP(JSONObject jsonObject) {
+        resetPobUP = jsonObject;
+    }
+
+    public static JSONObject getResetPobUP() {
+        return resetPobUP;
+    }
 
 
 }
