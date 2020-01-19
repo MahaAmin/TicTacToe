@@ -24,20 +24,12 @@
       <Region fx:id="dashboardRegion" layoutX="357.0" layoutY="62.0" onMouseEntered="#dashboardRegionMouseEntered" onMouseExited="#dashboardRegionMouseExited" prefHeight="498.0" prefWidth="287.0" style="-fx-background-color: #F3F5F9; -fx-background-radius: 20;" />
       <Region fx:id="profileRegion" layoutX="9.0" layoutY="205.0" onMouseEntered="#profileRegionMouseEntered" onMouseExited="#profileRegionMouseExited" prefHeight="234.0" prefWidth="322.0" style="-fx-background-radius: 15; -fx-background-color: #F3F5F9;" />
       <Region id="playersList" layoutX="681.0" layoutY="258.0" onMouseEntered="#playersListRegionMouseEntered" onMouseExited="#playersListRegionMouseExited" prefHeight="58.0" prefWidth="298.0" style="-fx-background-radius: 30; -fx-background-color: #11158F;" stylesheets="@../styles/Styles.css" />
-      <JFXButton id="signInButton" alignment="CENTER" layoutX="388.0" layoutY="227.0" onAction="#vsPCbuttonClicked" onMouseEntered="#dashboardRegionMouseEntered" onMouseExited="#dashboardRegionMouseExited" prefHeight="58.0" prefWidth="225.0" stylesheets="@../styles/Styles.css" text="VS PC" textAlignment="CENTER" textFill="WHITE">
+      <JFXButton id="signInButton" alignment="CENTER" layoutX="388.0" layoutY="310.0" onAction="#vsPCbuttonClicked" onMouseEntered="#dashboardRegionMouseEntered" onMouseExited="#dashboardRegionMouseExited" prefHeight="58.0" prefWidth="225.0" stylesheets="@../styles/Styles.css" text="VS PC" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
          <graphic>
             <FontIcon iconColor="WHITE" iconLiteral="fa-desktop" iconSize="25" />
-         </graphic>
-      </JFXButton>
-      <JFXButton id="signInButton" alignment="CENTER" defaultButton="true" layoutX="388.0" layoutY="404.0" onAction="#vsOnlinePlayerButtonClicked" onMouseEntered="#dashboardRegionMouseEntered" onMouseExited="#dashboardRegionMouseExited" prefHeight="58.0" prefWidth="225.0" stylesheets="@../styles/Styles.css" text="VS Online Player" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <graphic>
-            <FontIcon iconColor="WHITE" iconLiteral="fa-group" iconSize="25" />
          </graphic>
       </JFXButton>
       <Label layoutX="771.0" layoutY="28.0" onMouseEntered="#scoreBoardRegionMouseEntered" onMouseExited="#scoreBoardRegionMouseExited" text="Score Board" textFill="WHITE">

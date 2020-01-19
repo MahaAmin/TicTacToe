@@ -82,11 +82,6 @@ public class DashboardController implements Initializable {
         SwitchTo.mainScene(event);
     }
 
-    @FXML
-    private void vsOnlinePlayerButtonClicked(ActionEvent event) throws IOException {
-        //PlayerHandler.sendPlayRequest(2);
-    }
-
     @Override
 
     public void initialize(URL url, ResourceBundle rb) 
