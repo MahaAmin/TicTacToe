@@ -49,6 +49,7 @@ public class SwitchTo {
             add("SaveGameConfirmationPopup"); //10 ==> SaveGameConfirmationPopup.fxml
             add("ServerErrorPopup"); // 11 ==> ServerErrorPopup.fxml
             add("GameFailedPopup"); //12 ==> GameFailedPopup.fxml
+            add("ResetPopup"); // 13 ==> ResetPopup.fxml
         }
     };
 
@@ -78,7 +79,7 @@ public class SwitchTo {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
     }
-    
+
     public static void mainScene(ActionEvent event) throws IOException {
         transition(event, 0);
     }
@@ -99,7 +100,7 @@ public class SwitchTo {
     public static void DifficultySelectionScene(ActionEvent event) throws IOException {
         transition(event, 4);
     }
-    
+
     public static void ChangeProfilePictureScene(ActionEvent event) throws  IOException
     {
         transition(event, 5);
@@ -134,35 +135,40 @@ public class SwitchTo {
     public static void WinnerPopupScene() throws IOException {
         popupTransition(6, "Game Result");
     }
-    
+
     public static void GooglePopupScene() throws IOException
     {
         popupTransition(7, "Login with Google");
     }
-    
+
     public static void WrongCredentialsPopupScene() throws IOException
     {
         popupTransition(8, "Wrong Credentials were entered");
     }
-    
+
     public static void RegisterationSuccessfullPopupScene() throws IOException
     {
         popupTransition(9, "Successfully Registered");
     }
-    
+
     public static void SaveGameConfirmationPopupScene() throws IOException
     {
         popupTransition(10, "An already saved game was found");
     }
-    
+
     public static void ServerErrorPopupScene() throws IOException
     {
         popupTransition(11, "El server moghad shwaya");
     }
-    
+
     public static void GameFailedPopupScene() throws  IOException
     {
         popupTransition(12, "Game failed");
+    }
+    
+    public static void ResetPopupScene() throws IOException
+    {
+        popupTransition(13, "Game reset request");
     }
 }
 
