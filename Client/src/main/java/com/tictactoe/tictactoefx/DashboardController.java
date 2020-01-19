@@ -121,6 +121,7 @@ public class DashboardController implements Initializable {
         username.setCellValueFactory(new PropertyValueFactory<>("name"));
         score.setCellValueFactory(new PropertyValueFactory<>("score"));
         status.setCellValueFactory(new PropertyValueFactory<>("status"));
+        PlayerModel.playerslist.remove(current.getID());
         allUsersTable.setItems(PlayerModel.playerslist);
     }
     
