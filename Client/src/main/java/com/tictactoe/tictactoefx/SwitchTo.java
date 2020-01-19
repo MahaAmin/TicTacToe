@@ -49,6 +49,7 @@ public class SwitchTo {
             add("SaveGameConfirmationPopup"); //10 ==> SaveGameConfirmationPopup.fxml
             add("ServerErrorPopup"); // 11 ==> ServerErrorPopup.fxml
             add("GameFailedPopup"); //12 ==> GameFailedPopup.fxml
+            add("ResetPopup"); // 13 ==> ResetPopup.fxml
         }
     };
 
@@ -163,6 +164,11 @@ public class SwitchTo {
     public static void GameFailedPopupScene() throws  IOException
     {
         popupTransition(12, "Game failed");
+    }
+    
+    public static void ResetPopupScene() throws IOException
+    {
+        popupTransition(13, "Game reset request");
     }
 }
 
