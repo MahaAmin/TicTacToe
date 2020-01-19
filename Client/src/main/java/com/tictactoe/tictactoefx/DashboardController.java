@@ -31,6 +31,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import playerModel.Player;
 import playerModel.PlayerModel;
+import playerModel.updateView;
 
 public class DashboardController implements Initializable {
     @FXML
@@ -116,7 +117,7 @@ public class DashboardController implements Initializable {
         username.setCellValueFactory(new PropertyValueFactory<>("name"));
         score.setCellValueFactory(new PropertyValueFactory<>("score"));
         status.setCellValueFactory(new PropertyValueFactory<>("status"));
-        allUsersTable.setItems(PlayerModel.playerslist);
+        allUsersTable.setItems(updateView.GetObservable());
     }
     
     @FXML private void changePictureButtonClicked(ActionEvent event) throws IOException
