@@ -54,9 +54,12 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
+* [JFoenix](http://www.jfoenix.com/) -JavaFX Material Design Library
+* [Ikonli](http://kordamp.org/ikonli/) -Icon packs for Java applications
+* [AnimateFX](https://typhon0.github.io/AnimateFX/) -A library of ready-to-use animations for JavaFX
 * [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [MySQL](https://dev.mysql.com/downloads/connector/j/) - JDBC Type 4 driver for MySQL
+* [JSON-Simple](https://code.google.com/archive/p/json-simple/) -  A simple Java toolkit for JSON
 
 ## Contributing
 

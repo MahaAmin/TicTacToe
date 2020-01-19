@@ -295,23 +295,18 @@ public class GamePlayController implements Initializable {
     private void whichTurn() {
         String OColor = "#54dfc4";
         String XColor = "#54dfc4";
-        System.out.println(currPlayerMark);
         if (GameConfig.getTurn()) {
             if (currPlayerMark.equals("X")) {
                 XColor = "#F06585";
-                System.out.println("1");
 
             } else {
                 OColor = "#F06585";
-                System.out.println("2");
             }
         } else {
             if (currPlayerMark.equals("X")) {
                 OColor = "#F06585";
-                System.out.println("3");
             } else {
                 XColor = "#F06585";
-                System.out.println("4");
             }
         }
 
@@ -364,6 +359,7 @@ public class GamePlayController implements Initializable {
     }
 
     public void announceGameResult() {
+
         if (mode == 1) {
             if (checkForWin().equalsIgnoreCase("X")) {
                 System.out.println("Player X Wins!");

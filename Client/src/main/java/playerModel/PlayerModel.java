@@ -1,5 +1,6 @@
 package playerModel;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.json.simple.JSONArray;
@@ -7,19 +8,19 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class PlayerModel {
     public static Map<Integer, Player> players;
-    public static ObservableList<Player> playerslist;
-    public static void getPlayers(String data) throws ParseException {
+    public static ArrayList<Player> playerslist;
+    public static ArrayList<Player> getPlayers(String data) throws ParseException {
         players = new LinkedHashMap<>();
         JSONParser parser = new JSONParser();
         JSONArray jsonArray = (JSONArray) parser.parse(data);
-        playerslist = FXCollections.observableArrayList();
-        playerslist.removeAll();
+        playerslist =new ArrayList<Player>();
         jsonArray.forEach((playerJson) -> {
             JSONObject playerJs = (JSONObject) playerJson;
             // add player to map
@@ -33,5 +34,7 @@ public class PlayerModel {
             players.put(Integer.parseInt(playerJs.get("id").toString()), pl);
             playerslist.add(pl);
         });
+
+        return playerslist;
     }
 }

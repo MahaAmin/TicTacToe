@@ -16,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -25,22 +26,24 @@ import java.util.logging.Logger;
 public class PlayerModel {
 
     static DatabaseManager db = App.getDB();
-    public static ObservableList<Player> playerslist;
     private static Map<Integer, Player> players;
+    public static ArrayList<Player> playerslist;
 
-
-    public static void getPlayers() {
+    public static ArrayList<Player> getPlayers() {
         players = new LinkedHashMap<>();
+        playerslist =new ArrayList<Player>();
         try {
             Statement stmt = db.connection.createStatement();
             ResultSet resultSet = stmt.executeQuery("SELECT * FROM players ORDER BY score DESC");
             while (resultSet.next()) {
                 players.put(resultSet.getInt("id"), playerObiect(resultSet));
+                playerslist.add(playerObiect(resultSet));
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseManager.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return playerslist;
     }
 
     private static Player playerObiect(ResultSet resultSet) {
@@ -61,8 +64,6 @@ public class PlayerModel {
     }
 
     public static JSONArray getPlayersJSON() {
-        playerslist = FXCollections.observableArrayList();
-        playerslist.removeAll();
         LinkedHashMap<String, JSONObject> jsonOrderedMap = new LinkedHashMap<String, JSONObject>();
         JSONArray jsonArray = new JSONArray();
         for (Map.Entry<Integer, Player> field : players.entrySet()) {
@@ -74,7 +75,6 @@ public class PlayerModel {
             playerJson.put("score", player.getPlayerScore());
             playerJson.put("status", player.getPlayerStatus());
             playerJson.put("avatar",player.getPlayerAvatar());
-            playerslist.add(player);
             jsonArray.add(playerJson);
         }
 
@@ -124,7 +124,6 @@ public class PlayerModel {
 
     // update status
     public static void updateStatus(JSONObject player) {
-        System.out.println("update " + player);
         try {
             PreparedStatement preparedStatement = db.connection.prepareStatement("UPDATE players SET status=? WHERE id=?");
             preparedStatement.setString(1, player.get("status").toString());
@@ -135,6 +134,7 @@ public class PlayerModel {
                 p.setPlayerStatus(Integer.parseInt(player.get("status").toString()));
                 players.replace(Integer.parseInt(player.get("id").toString()), p);
             }
+            updateView.updatePlayer(PlayerModel.getPlayers());
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -145,6 +145,7 @@ public class PlayerModel {
     public static void logout(JSONObject player) {
         player.put("status", "0");
         updateStatus(player); // refer to offline
+        updateView.updatePlayer(PlayerModel.getPlayers());
 
     }
 
