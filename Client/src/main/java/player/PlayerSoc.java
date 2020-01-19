@@ -308,9 +308,7 @@ public class PlayerSoc {
             if (jsonMsg.get("response").equals("true")) {
                 isAccepted = true;
             }
-            System.out.println("save answer " + jsonMsg.get("response"));
-            System.out.println("save answer " + isAccepted);
-            //   Alerts.saveGameAnswerAlert(isAccepted);
+//               Alerts.saveGameAnswerAlert(isAccepted);
             if (isAccepted) {
                 try {
                     GameConfig.setSaveGameSuccesPobUpPobUp(jsonMsg);
