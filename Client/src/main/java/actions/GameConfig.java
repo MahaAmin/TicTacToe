@@ -26,6 +26,7 @@ public class GameConfig {
     private static  JSONObject oldSavePobUp;
     private static  JSONObject serverErrorPopup;
     private static  JSONObject gameFaildPobUp;
+    private static JSONObject resetPobUP;
 
 
     public static void setMode(int mod) {
@@ -155,6 +156,8 @@ public class GameConfig {
     public static JSONObject getServerErrorPopup(){return serverErrorPopup;}
     public  static  void setGameFaildPobUp(JSONObject jsonObject){gameFaildPobUp=jsonObject;}
     public  static  JSONObject getGameFaildPobUp(){return  gameFaildPobUp ;}
+    public  static void setResetPobUP(JSONObject jsonObject){resetPobUP=jsonObject;}
+    public  static JSONObject getResetPobUP(){return resetPobUP;}
 
 
 }

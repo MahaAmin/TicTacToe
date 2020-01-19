@@ -402,7 +402,13 @@ public class PlayerSoc {
 
     private void resetGameRequest() {
         Platform.runLater(() -> {
-            Alerts.resetGameRequestAlert(jsonMsg);
+           // Alerts.resetGameRequestAlert(jsonMsg);
+            GameConfig.setResetPobUP(jsonMsg);
+            try {
+                SwitchTo.ResetPopupScene();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
     }
 
