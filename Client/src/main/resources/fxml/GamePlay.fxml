@@ -134,7 +134,7 @@
                   </FontIcon>
                </graphic>
             </JFXButton>
-            <JFXTextArea fx:id="messageTA" prefHeight="125.0" prefWidth="469.0" promptText="Consider this a chat" style="-fx-background-color: #F9FBFC;" />
+            <JFXTextArea fx:id="messageTA" prefHeight="125.0" prefWidth="469.0" promptText="Consider this a chat" style="-fx-background-color: #F9FBFC; -fx-opacity: 1.0;" />
             <JFXTextField fx:id="messageTF" labelFloat="true" onAction="#messageTFaction" prefHeight="25.0" prefWidth="469.0" promptText="Type your message" style="-fx-background-color: #EEF3FD;" />
          </children>
       </JFXNodesList>

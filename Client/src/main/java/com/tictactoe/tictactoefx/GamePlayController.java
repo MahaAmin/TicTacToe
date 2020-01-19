@@ -320,6 +320,7 @@ public class GamePlayController implements Initializable {
     }
 
     private boolean isCellAvailable(int index) {
+        System.out.println("available  " + xoTextOnButtonsList);
         if ((index >= 0 && index < 9) && (xoTextOnButtonsList.get(index).equals(" "))) {
             return true;
         }
@@ -327,14 +328,19 @@ public class GamePlayController implements Initializable {
     }
 
     private void placeMark(int index, String text) {
+        System.out.println("place mark");
         if (isCellAvailable(index)) {
+            System.out.println("place mark available");
             xoTextOnButtonsList.set(index, text);
             if (mode == 1) {
                 printBoard();
             } else {
+                System.out.println("place mark friend");
                 // if it my turn send updates to the other player
+                System.out.println("turn "+GameConfig.getTurn());
                 if (GameConfig.getTurn()) {
                     // update board in the friend side also
+                    System.out.println("here" + xoTextOnButtonsList);
                     PlayerHandler.updateFriendBoard(xoTextOnButtonsList);
                 }
 
@@ -364,6 +370,7 @@ public class GamePlayController implements Initializable {
     }
 
     public void announceGameResult() {
+
         if (mode == 1) {
             if (checkForWin().equalsIgnoreCase("X")) {
                 System.out.println("Player X Wins!");

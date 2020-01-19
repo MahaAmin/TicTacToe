@@ -13,6 +13,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import playerModel.Player;
 import playerModel.PlayerModel;
+import playerModel.updateView;
 
 import java.io.*;
 import java.net.Socket;
@@ -73,12 +74,13 @@ public class PlayerSoc {
 
                 } catch (Exception ex) {
                     /** if server close show alert to all players and close the app */
+//                    ex.printStackTrace();
                     closeSocket();
                     Platform.runLater(() -> {
-                       // Alerts.serverIsShuttingDown();
-
+                        // Alerts.serverIsShuttingDown();
+                        GameConfig.setServerErrorPopup(jsonMsg);
                         try {
-                            GameConfig.setServerErrorPopup(jsonMsg);
+
                             SwitchTo.ServerErrorPopupScene();
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -128,7 +130,7 @@ public class PlayerSoc {
                 break;
             case "getall":
                 System.out.println("This is sending the update");
-                PlayerModel.getPlayers(jsonMsg.get("players").toString());
+                updateView.updatePlayer(PlayerModel.getPlayers(jsonMsg.get("players").toString()));
                 break;
             case "saveGameRequest":
                 saveGameRequest();
@@ -203,7 +205,7 @@ public class PlayerSoc {
      */
     private void chooseGame() {
         Platform.runLater(() -> {
-           // Alerts.chooseGameAlert(jsonMsg);
+            // Alerts.chooseGameAlert(jsonMsg);
 
             try {
                 GameConfig.setOldSavePobUp(jsonMsg);
@@ -231,6 +233,9 @@ public class PlayerSoc {
         // player x play first [from player]
         if (Integer.parseInt(jsonMsg.get("from_id").toString()) == player.getID())
             GameConfig.setTurn(true);
+        else
+            GameConfig.setTurn(false);
+
         GameConfig.setMode(2);  // two players mode
         Platform.runLater(() -> {
             try {
@@ -252,7 +257,7 @@ public class PlayerSoc {
         Platform.runLater(() -> {
 
             try {
-              //  GameConfig.setRejectedPobUpJson(jsonMsg);
+                //  GameConfig.setRejectedPobUpJson(jsonMsg);
                 SwitchTo.RequestRejectedPopupScene();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -283,7 +288,7 @@ public class PlayerSoc {
      */
     private void saveGameRequest() {
         Platform.runLater(() -> {
-           // Alerts.saveGameAlert(jsonMsg);
+            // Alerts.saveGameAlert(jsonMsg);
 
             try {
                 GameConfig.setSaveGamePobUpJson(jsonMsg);
@@ -298,7 +303,7 @@ public class PlayerSoc {
      * for both players
      * the second player can accept or refuse first player save game request
      */
-   private void saveGameAnswer() {
+    private void saveGameAnswer() {
         Platform.runLater(() -> {
             boolean isAccepted = false;
             if (jsonMsg.get("response").equals("true")) {
@@ -306,17 +311,15 @@ public class PlayerSoc {
             }
             System.out.println("save answer " + jsonMsg.get("response"));
             System.out.println("save answer " + isAccepted);
-        //   Alerts.saveGameAnswerAlert(isAccepted);
-            if(isAccepted) {
+            //   Alerts.saveGameAnswerAlert(isAccepted);
+            if (isAccepted) {
                 try {
                     GameConfig.setSaveGameSuccesPobUpPobUp(jsonMsg);
                     SwitchTo.SaveGameSuccessPopupScene();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
-            else
-            {
+            } else {
                 Platform.runLater(() -> {
                     try {
 
@@ -379,6 +382,9 @@ public class PlayerSoc {
         if (winner_id != 0 && winner_id == player.getID()) {
             player.setPlayerScore(Integer.parseInt(jsonMsg.get("new_score").toString()));
         }
+        GameConfig.resetBoard(App.getGamePlayController().xoTextOnButtonsList);
+
+        System.out.println("winner " + App.getGamePlayController().xoTextOnButtonsList);
         Platform.runLater(() -> {
             try {
                 GameConfig.setWinnerPobUpJson(jsonMsg);
@@ -404,7 +410,6 @@ public class PlayerSoc {
         Platform.runLater(PlayerHandler::resetGame);
 
     }
-
 
 
     private void login() throws ParseException {
@@ -451,7 +456,7 @@ public class PlayerSoc {
             });
         } else {
             Platform.runLater(() -> {
-              //  Alerts.wrongPasswordAlert();
+                //  Alerts.wrongPasswordAlert();
                 try {
                     SwitchTo.WrongCredentialsPopupScene();
                 } catch (IOException e) {

@@ -23,7 +23,8 @@ public class WinnerPopupController implements Initializable {
     private JFXButton exitButton;
 
     @FXML
-    private static Label result_txt;
+    private Label result_txt;
+
 
     @FXML
     private void resetButtonClicked(ActionEvent event) {
@@ -73,7 +74,15 @@ public class WinnerPopupController implements Initializable {
                 result_txt.setText("Game finished, It's a Tie.");
             }
         } else if (GameConfig.getMode() == 1) {
-            
+            if(GameConfig.getWinner().equals("X")){
+                result_txt.setText("Player X Won!");
+            }
+            else if(GameConfig.getWinner().equals("O")){
+                result_txt.setText("Player O Won!");
+            }
+            else if(GameConfig.getWinner().equals("Tie")){
+                result_txt.setText("It is a Tie!");
+            }
         }
 
     }

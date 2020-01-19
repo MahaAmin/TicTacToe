@@ -5,6 +5,7 @@ import com.tictactoe.database.gameModel.Game;
 import com.tictactoe.database.gameModel.GameModel;
 import com.tictactoe.database.playerModel.Player;
 import com.tictactoe.database.playerModel.PlayerModel;
+import com.tictactoe.database.playerModel.updateView;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -67,7 +68,7 @@ public class ServerHandler extends Thread {
                     System.out.println("socket didn't close in logout function");
                 }
             } catch (IOException e) {
-                ex.printStackTrace();
+                e.printStackTrace();
 
             }
         }
@@ -104,7 +105,6 @@ public class ServerHandler extends Thread {
                 //logout();
                 break;
             case "getall":
-                System.out.println("This is sending the update");
                 getall();
                 break;
             case "saveGameRequest":

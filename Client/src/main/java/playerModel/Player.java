@@ -27,6 +27,7 @@ public class Player {
     private String avatar; // optional
     public JFXButton btn = new JFXButton();
     // constructor used for GUI only
+
     public Player(String n, String p, String e){
         name = new SimpleStringProperty(n);
         uname = n;
@@ -40,6 +41,12 @@ public class Player {
     }
     public void setName(String n){
         name.set(n);
+    }
+
+    public Player(String name, int status, int score) {
+        this.name = new SimpleStringProperty(name);
+        this.status = status;
+        this.score = score;
     }
 
     public JFXButton getStatus(){
