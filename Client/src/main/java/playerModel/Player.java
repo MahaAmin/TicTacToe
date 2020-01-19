@@ -39,6 +39,14 @@ public class Player {
     public String getName() {
         return name.get();
     }
+    public String getLevel() {
+        if(score < 500)
+            return "Beginner";
+        else if(score >= 500 && score <= 1000)
+            return "Intermediate";
+        else
+            return "Expert";
+    }
     public void setName(String n){
         name.set(n);
     }

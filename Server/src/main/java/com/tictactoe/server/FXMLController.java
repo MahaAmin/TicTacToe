@@ -58,11 +58,10 @@ public class FXMLController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        PlayerModel.getPlayersJSON();
+        updateView.updatePlayer(PlayerModel.getPlayers());
         statusColumnT2.setCellValueFactory(new PropertyValueFactory<>("status"));
         usernameColumnT2.setCellValueFactory(new PropertyValueFactory<>("name"));
         scoreColumnT2.setCellValueFactory(new PropertyValueFactory<>("score"));
         allUsersTable.setItems(updateView.GetObservable());
-
     }
 }

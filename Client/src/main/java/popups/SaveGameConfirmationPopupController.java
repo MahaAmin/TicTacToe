@@ -34,7 +34,7 @@ public class SaveGameConfirmationPopupController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         jsonData= GameConfig.getOldSavePobUp();
-        String playerName = jsonData.get("from_name").toString();
+        String playerName = jsonData.get("name").toString();
         playerNameLabel.setText("You have an already saved game with " + playerName );
         jsonData.replace("type", "chosenPlayRequest");
     }

@@ -60,9 +60,11 @@ public class DashboardController implements Initializable {
     @FXML
     private TableColumn<Player, String> score;
     @FXML
+    private TableColumn<Player, String> level;
+    @FXML
     private TableColumn<Player, JFXButton> status;
     @FXML private Circle profilePicture;
-    @FXML private Label usernameLabel , scoreValueLabel;
+    @FXML private Label usernameLabel , scoreValueLabel, levelLabel;
     
     //CSSing some components
     @FXML private Region profileRegion, dashboardRegion, scoreBoardRegion, playersListRegion ;
@@ -96,7 +98,10 @@ public class DashboardController implements Initializable {
             Image image1;
             try
             {
-                image1 = new Image(new FileInputStream("src/main/java/avatars/0.png"));
+                if(current.getPlayerAvatar()==null)
+                    image1 = new Image(new FileInputStream("src/main/java/avatars/0.png"));
+                else
+                    image1 = new Image(new FileInputStream(current.getPlayerAvatar()));
                // ImageView img = new ImageView(image1);
                 profilePicture.setFill(new ImagePattern(image1));
             } 
@@ -110,13 +115,20 @@ public class DashboardController implements Initializable {
         });
 
         scoreBoardLV.getStyleClass().add("mylistview");
-
+        if(current.getPlayerScore() < 500)
+            levelLabel.setText("Beginner");
+        else if(current.getPlayerScore() >= 500 && current.getPlayerScore() <= 1000)
+            levelLabel.setText("Intermediate");
+        else 
+            levelLabel.setText("Expert");
+        
         usernameLabel.setText(current.getPlayerName());
         scoreValueLabel.setText( String.valueOf(current.getPlayerScore()));
 
         username.setCellValueFactory(new PropertyValueFactory<>("name"));
         score.setCellValueFactory(new PropertyValueFactory<>("score"));
         status.setCellValueFactory(new PropertyValueFactory<>("status"));
+        level.setCellValueFactory(new PropertyValueFactory<>("level"));
         allUsersTable.setItems(updateView.GetObservable());
     }
     

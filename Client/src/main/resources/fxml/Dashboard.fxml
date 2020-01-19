@@ -40,9 +40,10 @@
       <JFXListView id="scoreBoardLV" fx:id="scoreBoardLV" layoutX="684.0" layoutY="62.0" onMouseEntered="#scoreBoardRegionMouseEntered" onMouseExited="#scoreBoardRegionMouseExited" prefHeight="142.0" prefWidth="287.0" showTooltip="true" stylesheets="@../styles/Styles.css" />
       <TableView fx:id="allUsersTable" layoutX="681.0" layoutY="295.0" onMouseEntered="#playersListRegionMouseEntered" onMouseExited="#playersListRegionMouseExited" prefHeight="353.0" prefWidth="298.0" stylesheets="@../styles/Styles.css">
          <columns>
-            <TableColumn fx:id="username" prefWidth="87.0" text="username" />
-            <TableColumn fx:id="score" prefWidth="95.0" text="score" />
-            <TableColumn fx:id="status" prefWidth="112.0" text="status" />
+            <TableColumn fx:id="username" prefWidth="75.0" text="username" />
+            <TableColumn fx:id="score" prefWidth="53.0" text="score" />
+            <TableColumn fx:id="status" prefWidth="82.0" text="status" />
+            <TableColumn fx:id="level" prefWidth="83.0" text="Level" />
          </columns>
       </TableView>
       <Label layoutX="446.0" layoutY="88.0" onMouseEntered="#dashboardRegionMouseEntered" onMouseExited="#dashboardRegionMouseExited" text="Dashboard" textFill="#4ba1ff">
@@ -76,12 +77,12 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="130.0" layoutY="339.0" onMouseEntered="#profileRegionMouseEntered" onMouseExited="#profileRegionMouseExited" prefHeight="30.0" prefWidth="77.0" text="Score">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="36.0" layoutY="339.0" onMouseEntered="#profileRegionMouseEntered" onMouseExited="#profileRegionMouseExited" prefHeight="30.0" prefWidth="77.0" text="Score">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="scoreValueLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="130.0" layoutY="369.0" onMouseEntered="#profileRegionMouseEntered" onMouseExited="#profileRegionMouseExited" prefHeight="35.0" prefWidth="77.0" text="Value">
+      <Label fx:id="scoreValueLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="36.0" layoutY="369.0" onMouseEntered="#profileRegionMouseEntered" onMouseExited="#profileRegionMouseExited" prefHeight="35.0" prefWidth="77.0" text="Value">
          <font>
             <Font size="18.0" />
          </font>
@@ -91,5 +92,15 @@
             <Font size="14.0" />
          </font>
       </JFXButton>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="213.0" layoutY="336.0" onMouseEntered="#profileRegionMouseEntered" onMouseExited="#profileRegionMouseExited" prefHeight="30.0" prefWidth="77.0" text="Level">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="levelLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="199.0" layoutY="369.0" onMouseEntered="#profileRegionMouseEntered" onMouseExited="#profileRegionMouseExited" prefHeight="35.0" prefWidth="106.0" text="Value">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
