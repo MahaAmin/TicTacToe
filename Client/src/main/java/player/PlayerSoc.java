@@ -73,12 +73,13 @@ public class PlayerSoc {
 
                 } catch (Exception ex) {
                     /** if server close show alert to all players and close the app */
+//                    ex.printStackTrace();
                     closeSocket();
                     Platform.runLater(() -> {
                        // Alerts.serverIsShuttingDown();
-
+                        GameConfig.setServerErrorPopup(jsonMsg);
                         try {
-                            GameConfig.setServerErrorPopup(jsonMsg);
+
                             SwitchTo.ServerErrorPopupScene();
                         } catch (IOException e) {
                             e.printStackTrace();

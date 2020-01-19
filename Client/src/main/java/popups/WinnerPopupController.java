@@ -25,6 +25,7 @@ public class WinnerPopupController implements Initializable {
     @FXML
     private Label result_txt;
 
+
     @FXML
     private void resetButtonClicked(ActionEvent event) {
         System.out.println("Reset was Pressed");
