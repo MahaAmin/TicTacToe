@@ -67,7 +67,7 @@ public class ServerHandler extends Thread {
                     System.out.println("socket didn't close in logout function");
                 }
             } catch (IOException e) {
-                ex.printStackTrace();
+                e.printStackTrace();
 
             }
         }
