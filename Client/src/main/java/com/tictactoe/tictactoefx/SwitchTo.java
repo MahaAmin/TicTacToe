@@ -158,7 +158,7 @@ public class SwitchTo {
 
     public static void ServerErrorPopupScene() throws IOException
     {
-        popupTransition(11, "El server moghad shwaya");
+        popupTransition(11, "Server error!");
     }
 
     public static void GameFailedPopupScene() throws  IOException

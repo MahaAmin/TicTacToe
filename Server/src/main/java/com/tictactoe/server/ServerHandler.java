@@ -177,7 +177,11 @@ public class ServerHandler extends Thread {
                     ServerHandler fromPlayerHandler = getPlayerHandler(from_id);
                     jsonMsg.replace("type", "chooseGame");
                     jsonMsg.put("old_game", old_game_id);
-                    fromPlayerHandler.ps.println(jsonMsg.toJSONString());
+                    if (player.getID() == from_id)
+                        jsonMsg.put("name", toPlayerHandler.player.getPlayerName());
+                    else
+                        jsonMsg.put("name", fromPlayerHandler.player.getPlayerName());
+                    ps.println(jsonMsg.toJSONString());
                 } else {
                     sendNewGameRequest(toPlayerHandler);
                 }

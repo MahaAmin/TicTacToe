@@ -3,8 +3,6 @@ package player;
 import actions.Alerts;
 import actions.App;
 import actions.GameConfig;
-import actions.PlayRequest;
-import com.tictactoe.tictactoefx.GamePlayController;
 import com.tictactoe.tictactoefx.SwitchTo;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -17,9 +15,7 @@ import playerModel.updateView;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+
 
 public class PlayerSoc {
 
@@ -39,8 +35,6 @@ public class PlayerSoc {
             socket = new Socket("127.0.0.1", 5005);
             dis = new DataInputStream(socket.getInputStream());
             ps = new PrintStream(socket.getOutputStream());
-//                oos = new ObjectOutputStream(socket.getOutputStream());
-//                ois = new ObjectInputStream(socket.getInputStream());
             receiveGameThread();
 
         } catch (IOException e) {
@@ -77,7 +71,6 @@ public class PlayerSoc {
 //                    ex.printStackTrace();
                     closeSocket();
                     Platform.runLater(() -> {
-                        // Alerts.serverIsShuttingDown();
                         GameConfig.setServerErrorPopup(jsonMsg);
                         try {
 
@@ -309,9 +302,7 @@ public class PlayerSoc {
             if (jsonMsg.get("response").equals("true")) {
                 isAccepted = true;
             }
-            System.out.println("save answer " + jsonMsg.get("response"));
-            System.out.println("save answer " + isAccepted);
-            //   Alerts.saveGameAnswerAlert(isAccepted);
+//               Alerts.saveGameAnswerAlert(isAccepted);
             if (isAccepted) {
                 try {
                     GameConfig.setSaveGameSuccesPobUpPobUp(jsonMsg);
