@@ -42,8 +42,8 @@
          <columns>
             <TableColumn fx:id="username" prefWidth="75.0" text="username" />
             <TableColumn fx:id="score" prefWidth="53.0" text="score" />
-            <TableColumn fx:id="status" prefWidth="114.0" text="status" />
-            <TableColumn fx:id="level" prefWidth="51.0" text="Level" />
+            <TableColumn fx:id="status" prefWidth="82.0" text="status" />
+            <TableColumn fx:id="level" prefWidth="83.0" text="Level" />
          </columns>
       </TableView>
       <Label layoutX="446.0" layoutY="88.0" onMouseEntered="#dashboardRegionMouseEntered" onMouseExited="#dashboardRegionMouseExited" text="Dashboard" textFill="#4ba1ff">
