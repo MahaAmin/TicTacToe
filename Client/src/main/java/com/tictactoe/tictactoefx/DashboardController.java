@@ -110,7 +110,7 @@ public class DashboardController implements Initializable {
             }
         
 
-        PlayerModel.players.entrySet().stream().limit(5).forEach((player) -> {
+        PlayerModel.players.entrySet().stream().limit(4).forEach((player) -> {
             scoreBoardLV.getItems().add(new Label(player.getValue().getPlayerName() + ": " + player.getValue().getPlayerScore()));
         });
 

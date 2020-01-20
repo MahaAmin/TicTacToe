@@ -190,12 +190,12 @@ public class GamePlayController implements Initializable {
     }
 
     private void buttonHandling(int buttonNumber) {
-        placeMark(buttonNumber, currPlayerMark);
+        Boolean placed = placeMark(buttonNumber, currPlayerMark);
         if (checkForWin() != null) {
             gameOverFlag = true;
             announceGameResult();
-        }
-        if (mode == 1 && !gameOverFlag) {
+        }else if (placed && mode == 1 && !gameOverFlag) {
+            System.out.println("change turn");
             pcTurn();
         }
     }
@@ -261,11 +261,9 @@ public class GamePlayController implements Initializable {
         if (checkTripleEquality(xoTextOnButtonsList.get(2), xoTextOnButtonsList.get(4), xoTextOnButtonsList.get(6))) {
             winner = xoTextOnButtonsList.get(2);
         }
-
         if (isBoardFull() && winner == null) {
             return "Tie";
         }
-
         return winner;
 
     }
@@ -321,7 +319,7 @@ public class GamePlayController implements Initializable {
         return false;
     }
 
-    private void placeMark(int index, String text) {
+    private Boolean placeMark(int index, String text) {
         if (isCellAvailable(index)) {
             xoTextOnButtonsList.set(index, text);
             if (mode == 1) {
@@ -334,9 +332,11 @@ public class GamePlayController implements Initializable {
                 }
 
             }
+            return true;
 
         } else {
             System.out.println("can not place mark");
+            return false;
         }
     }
 
@@ -426,6 +426,7 @@ public class GamePlayController implements Initializable {
     }
 
     private void pcTurn() {
+        System.out.println("pcTurn");
         changePlayer();
         switch (level) {
             case 1:
@@ -445,8 +446,10 @@ public class GamePlayController implements Initializable {
         if (checkForWin() != null) {
             gameOverFlag = true;
             announceGameResult();
+        }else{
+            changePlayer();
         }
-        changePlayer();
+
     }
 
     private int pcTurnMedium() {
@@ -536,11 +539,11 @@ public class GamePlayController implements Initializable {
     private int pcTurnMinimax() {
         int bestScore = Integer.MIN_VALUE;
         int move = 100;
-
+        int counter=0;
         for (int i = 0; i < 9; i++) {
             if (isCellAvailable(i)) {
                 placeMark(i, "O");
-                int score = minimax(xoTextOnButtonsList, 0, false);
+                int score = minimax(xoTextOnButtonsList, 0, false,counter);
                 removeCell(i);
                 if (score > bestScore) {
                     bestScore = score;
@@ -551,7 +554,8 @@ public class GamePlayController implements Initializable {
         return move;
     }
 
-    public int minimax(ArrayList<String> board, int depth, boolean isMaximizing) {
+    public int minimax(ArrayList<String> board, int depth, boolean isMaximizing,int counter) {
+        counter++;
         /*
             Score function:
             X-win = -10;
@@ -572,12 +576,12 @@ public class GamePlayController implements Initializable {
         }
 
         // recursive part
-        if (isMaximizing) {
+        if (isMaximizing && counter < 500) {
             int bestScore = Integer.MIN_VALUE;
             for (int i = 0; i < 9; i++) {
                 if (isCellAvailable(i)) {
                     placeMark(i, "O");
-                    int score = minimax(board, depth + 1, false);
+                    int score = minimax(board, depth + 1, false,counter);
                     removeCell(i);
                     bestScore = Math.max(score, bestScore);
                 }
@@ -588,7 +592,7 @@ public class GamePlayController implements Initializable {
             for (int i = 0; i < 9; i++) {
                 if (isCellAvailable(i)) {
                     placeMark(i, "X");
-                    int score = minimax(board, depth + 1, true);
+                    int score = minimax(board, depth + 1, true,counter);
                     removeCell(i);
                     bestScore = Math.min(score, bestScore);
                 }
@@ -607,24 +611,27 @@ public class GamePlayController implements Initializable {
         // Random number to choose index from availableCells vector
         int rand = 0;
         Random random = new Random();
-        while (true) {
+        int counter = 0;
+        while (counter < 200) {
+            counter++;
             rand = random.nextInt(availableCellsLength);
             if (rand != 0) {
                 break;
             }
-        }
 
+        }
         // cell Where to play next turn
         return availableCells.get(rand);
     }
 
     public int pcTurnRandom() {
+        System.out.println("pcTurnRandom");
         return getRandomAvailableCell();
     }
 
     @FXML
     private void backButtonClicked(ActionEvent event) throws IOException {
-        if(mode==2){
+        if (mode == 2) {
             // update game status to fail
             PlayerHandler.updateGameStatus("FAIL");
         }
