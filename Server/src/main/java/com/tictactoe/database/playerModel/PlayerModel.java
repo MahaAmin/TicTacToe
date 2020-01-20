@@ -153,13 +153,16 @@ public class PlayerModel {
     // function used to register in GUI
     public static boolean createPlayer(JSONObject player) {
         try {
-            PreparedStatement statment = db.connection.prepareStatement("INSERT players SET name=?, password=?, email=?");
+            PreparedStatement statment = db.connection.prepareStatement("INSERT players SET name=?, password=?, email=?, avatar=?");
             statment.setString(1, player.get("name").toString());
             statment.setString(2, player.get("password").toString());
             statment.setString(3, player.get("email").toString());
+            statment.setString(4,"src/main/java/avatars/0.png");
             int isInserted = statment.executeUpdate();
-            if (isInserted > 0)
+            if (isInserted > 0){
+                updateView.updatePlayer(PlayerModel.getPlayers());
                 return true;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
