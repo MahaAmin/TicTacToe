@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane id="AnchorPane" prefHeight="616.0" prefWidth="1022.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictactoe.server.FXMLController">
+   <children>
+      <Region layoutX="389.0" layoutY="95.0" prefHeight="75.0" prefWidth="251.0" style="-fx-background-radius: 5; -fx-background-color: #FCFBFC;" />
+      <Label layoutX="386.0" layoutY="34.0" text="Server Dashboard" textFill="#4ba1ff">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <JFXToggleButton fx:id="serverToggleButton" layoutX="425.0" layoutY="93.0" onAction="#serverToggleClicked" selected="true" size="14.0" text="Close Server" toggleColor="WHITE" toggleLineColor="#9691f4">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXToggleButton>
+      <TableView fx:id="allUsersTable" layoutX="-1.0" layoutY="198.0" prefHeight="419.0" prefWidth="1022.0" stylesheets="@../styles/Styles.css">
+         <columns>
+            <TableColumn fx:id="statusColumnT2" prefWidth="174.0" text="Status" />
+            <TableColumn fx:id="usernameColumnT2" prefWidth="454.0" text="Username" />
+            <TableColumn fx:id="scoreColumnT2" prefWidth="392.0" text="Score" />
+         </columns>
+      </TableView>
+      <FontIcon iconLiteral="fa-cubes" iconSize="35" layoutX="333.0" layoutY="69.0" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane id="AnchorPane" prefHeight="678.0" prefWidth="1000.0" style="-fx-background-color: #ffffff;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictactoe.tictactoefx.DashboardController">
+    <stylesheets>
+        <URL value="@/styles/Styles.css" />
+    </stylesheets>
+   <children>
+      <Region fx:id="scoreBoardRegion" layoutX="669.0" layoutY="14.0" onMouseEntered="#scoreBoardRegionMouseEntered" onMouseExited="#scoreBoardRegionMouseExited" prefHeight="201.0" prefWidth="322.0" style="-fx-background-color: #F3F5F9; -fx-background-radius: 20;" />
+      <Region fx:id="playersListRegion" layoutX="669.0" layoutY="227.0" onMouseEntered="#playersListRegionMouseEntered" onMouseExited="#playersListRegionMouseExited" prefHeight="439.0" prefWidth="322.0" style="-fx-background-color: #F3F5F9; -fx-background-radius: 20;" />
+      <Region id="scoreBoardRegion" layoutX="684.0" layoutY="25.0" onMouseEntered="#scoreBoardRegionMouseEntered" onMouseExited="#scoreBoardRegionMouseExited" prefHeight="58.0" prefWidth="287.0" style="-fx-background-radius: 30; -fx-background-color: #11158F;" stylesheets="@../styles/Styles.css" />
+      <Region fx:id="dashboardRegion" layoutX="357.0" layoutY="62.0" onMouseEntered="#dashboardRegionMouseEntered" onMouseExited="#dashboardRegionMouseExited" prefHeight="498.0" prefWidth="287.0" style="-fx-background-color: #F3F5F9; -fx-background-radius: 20;" />
+      <Region fx:id="profileRegion" layoutX="9.0" layoutY="205.0" onMouseEntered="#profileRegionMouseEntered" onMouseExited="#profileRegionMouseExited" prefHeight="234.0" prefWidth="322.0" style="-fx-background-radius: 15; -fx-background-color: #F3F5F9;" />
+      <Region id="playersList" layoutX="681.0" layoutY="258.0" onMouseEntered="#playersListRegionMouseEntered" onMouseExited="#playersListRegionMouseExited" prefHeight="58.0" prefWidth="298.0" style="-fx-background-radius: 30; -fx-background-color: #11158F;" stylesheets="@../styles/Styles.css" />
+      <JFXButton id="signInButton" alignment="CENTER" layoutX="388.0" layoutY="310.0" onAction="#vsPCbuttonClicked" onMouseEntered="#dashboardRegionMouseEntered" onMouseExited="#dashboardRegionMouseExited" prefHeight="58.0" prefWidth="225.0" stylesheets="@../styles/Styles.css" text="VS PC" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <graphic>
+            <FontIcon iconColor="WHITE" iconLiteral="fa-desktop" iconSize="25" />
+         </graphic>
+      </JFXButton>
+      <Label layoutX="771.0" layoutY="28.0" onMouseEntered="#scoreBoardRegionMouseEntered" onMouseExited="#scoreBoardRegionMouseExited" text="Score Board" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <JFXListView id="scoreBoardLV" fx:id="scoreBoardLV" layoutX="684.0" layoutY="62.0" onMouseEntered="#scoreBoardRegionMouseEntered" onMouseExited="#scoreBoardRegionMouseExited" prefHeight="142.0" prefWidth="287.0" showTooltip="true" stylesheets="@../styles/Styles.css" />
+      <TableView fx:id="allUsersTable" layoutX="681.0" layoutY="295.0" onMouseEntered="#playersListRegionMouseEntered" onMouseExited="#playersListRegionMouseExited" prefHeight="353.0" prefWidth="298.0" stylesheets="@../styles/Styles.css">
+         <columns>
+            <TableColumn fx:id="username" prefWidth="75.0" text="username" />
+            <TableColumn fx:id="score" prefWidth="53.0" text="score" />
+            <TableColumn fx:id="status" prefWidth="82.0" text="status" />
+            <TableColumn fx:id="level" prefWidth="83.0" text="Level" />
+         </columns>
+      </TableView>
+      <Label layoutX="446.0" layoutY="88.0" onMouseEntered="#dashboardRegionMouseEntered" onMouseExited="#dashboardRegionMouseExited" text="Dashboard" textFill="#4ba1ff">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <FontIcon iconColor="#54dfc4" iconLiteral="fa-table" iconSize="40" layoutX="397.0" layoutY="125.0" onMouseEntered="#dashboardRegionMouseEntered" onMouseExited="#dashboardRegionMouseExited" />
+      <FontIcon iconColor="#e77f9a" iconLiteral="fa-bar-chart-o" iconSize="25" layoutX="728.0" layoutY="51.0" onMouseEntered="#scoreBoardRegionMouseEntered" onMouseExited="#scoreBoardRegionMouseExited" />
+      <Label layoutX="777.0" layoutY="261.0" onMouseEntered="#playersListRegionMouseEntered" onMouseExited="#playersListRegionMouseExited" text="Players List" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <FontIcon iconColor="#e77f9a" iconLiteral="fa-user-o" iconSize="25" layoutX="742.0" layoutY="284.0" onMouseEntered="#playersListRegionMouseEntered" onMouseExited="#playersListRegionMouseExited" />
+      <JFXButton id="signInButton" alignment="CENTER" defaultButton="true" layoutX="447.0" layoutY="579.0" onAction="#logoutButtonClicked" prefHeight="35.0" prefWidth="106.0" stylesheets="@../styles/Styles.css" text="Logout" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <graphic>
+            <FontIcon iconColor="WHITE" iconLiteral="fa-chain-broken" iconSize="20" />
+         </graphic>
+      </JFXButton>
+      <Circle fx:id="profilePicture" fill="#004c94" layoutX="170.0" layoutY="205.0" onMouseEntered="#profilePictureMouseEntered" onMouseExited="#profilePictureMouseExited" radius="57.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+         <effect>
+            <DropShadow height="5.0" radius="2.0" width="5.0" />
+         </effect>
+      </Circle>
+      <Label fx:id="usernameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="7.0" layoutY="272.0" onMouseEntered="#profileRegionMouseEntered" onMouseExited="#profileRegionMouseExited" prefHeight="45.0" prefWidth="322.0" text="Username">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="36.0" layoutY="339.0" onMouseEntered="#profileRegionMouseEntered" onMouseExited="#profileRegionMouseExited" prefHeight="30.0" prefWidth="77.0" text="Score">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="scoreValueLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="36.0" layoutY="369.0" onMouseEntered="#profileRegionMouseEntered" onMouseExited="#profileRegionMouseExited" prefHeight="35.0" prefWidth="77.0" text="Value">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="changePictureButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="136.0" layoutY="215.0" onAction="#changePictureButtonClicked" onMouseEntered="#profilePictureMouseEntered" onMouseExited="#profilePictureMouseExited" opacity="0.6" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #11158F;" text="Change" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="213.0" layoutY="336.0" onMouseEntered="#profileRegionMouseEntered" onMouseExited="#profileRegionMouseExited" prefHeight="30.0" prefWidth="77.0" text="Level">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="levelLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="199.0" layoutY="369.0" onMouseEntered="#profileRegionMouseEntered" onMouseExited="#profileRegionMouseExited" prefHeight="35.0" prefWidth="106.0" text="Value">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

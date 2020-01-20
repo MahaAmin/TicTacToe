@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane id="AnchorPane" prefHeight="678.0" prefWidth="1000.0" style="-fx-background-color: #ffffff;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tictactoe.tictactoefx.DifficultySelectionController">
+    <stylesheets>
+        <URL value="@/styles/Styles.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="352.0" layoutY="48.0" text="Select gameplay Difficulty" textFill="#54dfc4">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <FontIcon iconColor="#6f60fa" iconLiteral="fa-gamepad" iconSize="50" layoutX="474.0" layoutY="150.0" />
+      <JFXButton id="signInButton" alignment="CENTER" layoutX="388.0" layoutY="212.0" onAction="#easyButtonClicked" prefHeight="58.0" prefWidth="225.0" stylesheets="@../styles/Styles.css" text="Easy" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <graphic>
+            <FontIcon iconColor="WHITE" iconLiteral="fa-star-half" iconSize="25" />
+         </graphic>
+      </JFXButton>
+      <JFXButton id="signInButton" alignment="CENTER" defaultButton="true" layoutX="388.0" layoutY="347.0" onAction="#mediumButtonClicked" prefHeight="58.0" prefWidth="225.0" stylesheets="@../styles/Styles.css" text="Medium" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <graphic>
+            <FontIcon iconColor="WHITE" iconLiteral="fa-star" iconSize="25" />
+         </graphic>
+      </JFXButton>
+      <JFXButton id="signInButton" alignment="CENTER" defaultButton="true" layoutX="388.0" layoutY="493.0" onAction="#hardButtonClicked" prefHeight="58.0" prefWidth="225.0" stylesheets="@../styles/Styles.css" text="Hard" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <graphic>
+            <FontIcon iconColor="WHITE" iconLiteral="fa-star" iconSize="25" />
+         </graphic>
+      </JFXButton>
+      <FontIcon iconColor="WHITE" iconLiteral="fa-star" iconSize="26" layoutX="439.0" layoutY="531.0" />
+      <JFXButton id="backButtonGamePlay" onAction="#backButtonClicked" prefHeight="40.0" prefWidth="63.0" ripplerFill="#c7b1ff" stylesheets="@../styles/Styles.css" text=" ">
+         <graphic>
+            <FontIcon iconColor="WHITE" iconLiteral="fa-angle-left" iconSize="30" translateX="3.0" />
+         </graphic>
+      </JFXButton>
+   </children>
+</AnchorPane>

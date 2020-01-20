@@ -1,0 +1,197 @@
+#AnchorPane
+{
+    -fx-background-color: white;
+}
+
+/*Input TextField*/
+#userNameTF, #passwordTF
+{
+     -fx-border-radius: 30em 30em 30em 30em;
+     -fx-background-color: #F3F3FA;
+    -fx-text-box-border: transparent;
+    -fx-border-width: 2px;
+}
+
+/*Buttons*/
+#signInButton 
+{
+    -fx-background-color:  #6F72FA;
+    -fx-background-radius:  35;
+}
+
+#signUpButton 
+{
+    -fx-background-color:  #3B7AE2;
+    -fx-background-radius: 35;
+}
+
+#backButtonRegister
+{
+    -fx-background-color:  #480958;
+    -fx-border-width: 0  0.1 0.1 0.1;
+    -fx-background-radius: 0 5 0 0;
+}
+
+/*
+Dashboard.fxml
+*/
+
+/*ScoreBoard ListView*/
+#scoreBoardLV .list-cell
+{
+     -fx-alignment: center;
+}
+
+#scoreBoardRegion
+{
+    -fx-background-color: #4D6AD2;
+    /*-fx-background-radius:  15 0 0 0;*/
+}
+
+#playersList 
+{
+    -fx-background-color: #4D6AD2;
+     /*-fx-background-radius:  0 15 0 0;*/
+
+}
+
+#googleButton
+{
+    -fx-background-color:  #DA7FBF;
+    -fx-background-radius: 5;
+}
+
+
+#facebookButton
+{
+    -fx-background-color:  #64D0F9;
+    -fx-background-radius: 5;
+}
+
+/*
+GamePlay.FXML
+*/
+
+/*Buttons*/
+#backButtonGamePlay
+{
+     -fx-background-color:  #480958;
+    -fx-border-width: 0  0.1 0.1 0.1;
+    -fx-background-radius: 0 0 5 0;
+}
+
+#xoBTN1 ,#xoBTN2, #xoBTN3, #xoBTN4 , #xoBTN5,  #xoBTN6,  #xoBTN7,  #xoBTN8,  #xoBTN9
+{
+    -fx-background-color: white;
+    -fx-border-color: #DADADA;
+}
+
+#xoBTN1
+{
+        -fx-border-width: 0 3 3 0;
+}
+
+#xoBTN2 
+{
+      -fx-border-width: 0 0 3 0;
+     
+}
+
+#xoBTN3 
+{
+    -fx-border-width: 0 0 3 3;
+}
+
+#xoBTN4 
+{
+     -fx-border-width: 0 3 3 0;
+}
+
+#xoBTN5 
+{
+     -fx-border-width: 0 0 3 0;
+}
+
+#xoBTN6 
+{
+     -fx-border-width: 0 0 3 3;
+}
+
+ #xoBTN7
+ {
+     -fx-border-width: 0 3 0 0;
+ }
+ 
+  #xoBTN8
+  {
+      -fx-border-width: 0 0 0 0;
+  }
+  
+    #xoBTN9 
+    {
+        -fx-border-width: 0 0 0 3;
+    }
+    
+    
+    /*
+    RegisterForm.FXML
+    */
+    
+    /*Toast on password mismatch*/
+    .jfx-snackbar-content
+    {
+        -fx-background-color: #F3F3FA;
+    }
+    
+ .jfx-snackbar-action 
+ {
+     -fx-background-color: #a06afa;
+     -fx-text-fill: white;
+ }
+ 
+ #playerRegion
+ {
+     -fx-background-color:   #6f60fa;
+     -fx-background-radius: 20;
+ }
+ 
+ /*Styling the Dashboard Tables on the left*/
+
+.table-view:focused{
+    -fx-background-color:  #F3F5F9;
+}
+
+.table-view .column-header {
+    -fx-background-color: #EEF3FD;
+}
+
+.table-view .column-header-background .label{
+    -fx-text-fill: #062F7A;
+}
+
+.table-column {
+  -fx-alignment: CENTER;
+}
+
+/*Styling the table on the right*/
+/*Change the text color to white upon selection*/
+
+.list-view .list-cell:selected .label {
+    -fx-text-fill: white;
+}
+
+/*Change color of all rows */
+
+.list-view .label {
+    -fx-text-fill: #062F7A;
+}
+
+.list-view, .list-view:focused
+{
+    -fx-background-color: #F3F5F9;
+}
+
+#onlinePlayersLV
+{
+     -fx-alignment: center;
+}

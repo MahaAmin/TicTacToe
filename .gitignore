@@ -1,0 +1,8 @@
+.idea
+TicTacToeFX.iml
+*.class
+Server/src/main/java/com/tictactoe/database/DBConfig.java
+Client/target/
+Server/target/
+Server/src/main/java/com/tictactoe/database/DBConfig.java
+Server/target/Server-1.0-SNAPSHOT.jar

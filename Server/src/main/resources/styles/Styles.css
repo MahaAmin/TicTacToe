@@ -1,0 +1,19 @@
+.button {
+    -fx-font-weight: bold;
+}
+
+.table-view:focused{
+    -fx-background-color:  #F3F5F9;
+}
+
+.table-view .column-header {
+    -fx-background-color: #EEF3FD;
+}
+
+.table-view .column-header-background .label{
+    -fx-text-fill: #062F7A;
+}
+
+.table-column {
+  -fx-alignment: CENTER;
+}

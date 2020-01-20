@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane id="AnchorPane" prefHeight="274.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="popups.RegisterationSuccessfulPopupController">
+    <stylesheets>
+        <URL value="@/styles/Styles.css" />
+    </stylesheets>
+   <children>
+      <FontIcon fx:id="childIcon" iconColor="#6f60fa" iconLiteral="fa-child" iconSize="50" layoutX="288.0" layoutY="73.0" />
+      <Label id="informingLabel" fx:id="informingLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="41.0" layoutY="99.0" prefHeight="27.0" prefWidth="519.0" text="Successfully registered" textFill="#54dfc4">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label id="informingLabel" fx:id="informingLabel1" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="135.0" prefHeight="50.0" prefWidth="528.0" text="Please use your email and password to login and start playing">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="247.0" layoutY="196.0" onAction="#okButtonClicked" prefHeight="57.0" prefWidth="127.0" style="-fx-background-color: #6f60fa;" text="Ok" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>
