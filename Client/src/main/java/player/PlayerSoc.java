@@ -33,7 +33,7 @@ public class PlayerSoc {
 
     private void startConnection() {
         try {
-            socket = new Socket("192.168.43.17", 5005);
+            socket = new Socket("127.0.0.1", 5005);
             dis = new DataInputStream(socket.getInputStream());
             ps = new PrintStream(socket.getOutputStream());
             receiveGameThread();

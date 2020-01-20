@@ -65,7 +65,7 @@ public class DashboardController implements Initializable {
     private TableColumn<Player, JFXButton> status;
     @FXML private Circle profilePicture;
     @FXML private Label usernameLabel , scoreValueLabel, levelLabel;
-    
+
     //CSSing some components
     @FXML private Region profileRegion, dashboardRegion, scoreBoardRegion, playersListRegion ;
     DropShadow mouseEnteredShadow = new DropShadow(); // GRAY Color ( onMouseEntered)
@@ -90,7 +90,6 @@ public class DashboardController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) 
     {
         Player current = App.getPlayerSoc().getPlayer();
-        System.out.println(current.getPlayerAvatar());
         changePictureButton.setVisible(false);
         mouseEnteredShadow.setColor(Color.GRAY); //set the shadow color of the  Region.
         mouseExitedShadow.setColor(Color.WHITE);
@@ -99,13 +98,13 @@ public class DashboardController implements Initializable {
             try
             {
                 if(current.getPlayerAvatar()==null)
-                    image1 = new Image(new FileInputStream("src/main/java/avatars/0.png"));
+                    image1 = new Image(getClass().getResourceAsStream("/avatars/0.png"));
                 else
-                    image1 = new Image(new FileInputStream(current.getPlayerAvatar()));
-               // ImageView img = new ImageView(image1);
+                    image1 = new Image(getClass().getResourceAsStream(current.getPlayerAvatar()));
+//               // ImageView img = new ImageView(image1);
                 profilePicture.setFill(new ImagePattern(image1));
             } 
-            catch (FileNotFoundException ex) {
+            catch (Exception ex) {
                 Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
             }
         
