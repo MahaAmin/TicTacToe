@@ -159,8 +159,10 @@ public class PlayerModel {
             statment.setString(3, player.get("email").toString());
             statment.setString(4,"src/main/java/avatars/0.png");
             int isInserted = statment.executeUpdate();
-            if (isInserted > 0)
+            if (isInserted > 0){
+                updateView.updatePlayer(PlayerModel.getPlayers());
                 return true;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
