@@ -19,6 +19,7 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.json.simple.JSONObject;
+import player.PlayerHandler;
 
 
 public class SwitchTo {
@@ -66,6 +67,8 @@ public class SwitchTo {
         window.setScene(scene);
         window.setResizable(false);
         window.show();
+        if(sceneID==2)
+            PlayerHandler.updatePlayers();
     }
 
     public static void popupTransition(int popUpID, String title) throws IOException {

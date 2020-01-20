@@ -628,7 +628,6 @@ public class GamePlayController implements Initializable {
             // update game status to fail
             PlayerHandler.updateGameStatus("FAIL");
         }
-        PlayerHandler.updatePlayers();
         SwitchTo.dashboardScene(event);
     }
 

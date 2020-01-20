@@ -16,6 +16,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import org.json.simple.JSONObject;
 import org.kordamp.ikonli.javafx.FontIcon;
+import player.PlayerHandler;
+import playerModel.Player;
 
 public class SaveGameSuccessPopupController implements Initializable {
     private JSONObject jsonData;

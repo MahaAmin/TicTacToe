@@ -51,7 +51,6 @@ public class WinnerPopupController implements Initializable {
         System.out.println("Exit was pressed");
         App.getPopUpWindow().close();
         try {
-            PlayerHandler.updatePlayers();
             SwitchTo.changeTo(App.getWindow(), 2);
         } catch (IOException e) {
             e.printStackTrace();

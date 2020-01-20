@@ -306,7 +306,6 @@ public class PlayerSoc {
 //               Alerts.saveGameAnswerAlert(isAccepted);
             if (isAccepted) {
                 try {
-                    PlayerHandler.updatePlayers();
                     GameConfig.setSaveGameSuccesPobUpPobUp(jsonMsg);
                     SwitchTo.SaveGameSuccessPopupScene();
                 } catch (IOException e) {
@@ -360,7 +359,6 @@ public class PlayerSoc {
                     e.printStackTrace();
                 }
                 try {
-                    PlayerHandler.updatePlayers();
                     SwitchTo.changeTo(App.getWindow(), 2);
                 } catch (IOException e) {
                     e.printStackTrace();
