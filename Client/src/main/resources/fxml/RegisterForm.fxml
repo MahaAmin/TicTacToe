@@ -20,9 +20,9 @@
    <children>
 
       <JFXTextField id="userNameTF" fx:id="usernameTF" labelFloat="true" layoutX="310.0" layoutY="190.0" prefHeight="25.0" prefWidth="298.0" promptText="Username" stylesheets="@../styles/Styles.css" />
+      <JFXTextField id="userNameTF" fx:id="emailTF" labelFloat="true" layoutX="310.0" layoutY="259.0" prefHeight="25.0" prefWidth="298.0" promptText="Email" stylesheets="@../styles/Styles.css" />
       <JFXPasswordField id="passwordTF" fx:id="passwordPF" labelFloat="true" layoutX="310.0" layoutY="326.0" prefHeight="25.0" prefWidth="298.0" promptText="Password" stylesheets="@../styles/Styles.css" />
       <JFXPasswordField id="passwordTF" fx:id="confirmPasswordPF" labelFloat="true" layoutX="310.0" layoutY="393.0" prefHeight="25.0" prefWidth="298.0" promptText="Confirm Password" stylesheets="@../styles/Styles.css" />
-      <JFXTextField id="userNameTF" fx:id="emailTF" labelFloat="true" layoutX="310.0" layoutY="259.0" prefHeight="25.0" prefWidth="298.0" promptText="Email" stylesheets="@../styles/Styles.css" />
       <JFXButton id="signUpButton" fx:id="registerButton" buttonType="RAISED" layoutX="309.0" layoutY="454.0" onAction="#registerButtonClicked" prefHeight="58.0" prefWidth="298.0" stylesheets="@../styles/Styles.css" text="Register" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="14.0" />

@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import org.json.simple.JSONObject;
 import org.kordamp.ikonli.javafx.FontIcon;
+import player.PlayerHandler;
 
 public class SaveGameSuccessPopupController implements Initializable {
     private JSONObject jsonData;
@@ -25,6 +26,7 @@ public class SaveGameSuccessPopupController implements Initializable {
     {
         App.getPopUpWindow().close();
         try {
+            PlayerHandler.updatePlayers();
             SwitchTo.changeTo(App.getWindow(), 2);
         } catch (IOException e) {
             e.printStackTrace();

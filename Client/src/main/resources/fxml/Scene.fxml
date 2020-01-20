@@ -66,7 +66,7 @@
             <FontIcon iconColor="WHITE" iconLiteral="fa-unlock-alt" iconSize="25" />
          </graphic>
       </JFXButton>
-      <JFXTextField id="userNameTF" fx:id="usernameTF" labelFloat="true" layoutX="309.0" layoutY="125.0" prefHeight="25.0" prefWidth="298.0" promptText="Username" stylesheets="@../styles/Styles.css" />
+      <JFXTextField id="userNameTF" fx:id="usernameTF" labelFloat="true" layoutX="309.0" layoutY="125.0" prefHeight="25.0" prefWidth="298.0" promptText="Email" stylesheets="@../styles/Styles.css" />
       <JFXPasswordField id="passwordTF" fx:id="passwordTF" labelFloat="true" layoutX="309.0" layoutY="188.0" prefHeight="25.0" prefWidth="298.0" promptText="Password" stylesheets="@../styles/Styles.css" />
       <Label layoutX="385.0" layoutY="428.0" text="Don't have an account yet ?">
          <font>
