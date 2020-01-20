@@ -306,6 +306,7 @@ public class PlayerSoc {
 //               Alerts.saveGameAnswerAlert(isAccepted);
             if (isAccepted) {
                 try {
+                    PlayerHandler.updatePlayers();
                     GameConfig.setSaveGameSuccesPobUpPobUp(jsonMsg);
                     SwitchTo.SaveGameSuccessPopupScene();
                 } catch (IOException e) {
