@@ -15,11 +15,28 @@ description
 
 ## Getting Started
 
-How to run the project
+There are two ways to run the project.
+
+-First through the terminal and jar files.
+open the terminal and cd to the Server jar file directory and run:
+```
+java -jar ./Server.jar
+```
+the server dashboard will pop up and the server should now be listening to requests on the localhost port 5005
+
+Next open another terminal and cd to the Client jar file directory and run:
+```
+java -jar ./Client.jar
+```
+and the login screen should open bare in mind the jar files are made that the client and the server both run on the same machine 
+if you want to run them on different machines one small change should be made and it's to change the connection ip in the Client project in a class called PlayerSoc.java from 127.0.0.1 to the ip of the machine which the server is runing on.
+
+-Second through the projects
+it's as easy as running the Server project first then the Client project.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+java 8u111 or higher recommended
 
 ```
 Give examples
@@ -45,8 +62,20 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Features
 
-Explain how to run the automated tests for this system
+Client Side Features:
+-login
+-SignUp
+-play with pc with 3 difficulty levels
+-play with online friends
+-chat while playing
+-have an avatar and score level
+-see who has the highest score in the game
+-see who is online offline or busy playing with someone else
 
+Server side Features:
+-see a list of all users 
+-see players status and score
+-close and reopen the server
 
 ## Deployment
 
