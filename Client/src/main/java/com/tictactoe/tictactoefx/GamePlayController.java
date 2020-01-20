@@ -539,11 +539,10 @@ public class GamePlayController implements Initializable {
     private int pcTurnMinimax() {
         int bestScore = Integer.MIN_VALUE;
         int move = 100;
-        int counter=0;
         for (int i = 0; i < 9; i++) {
             if (isCellAvailable(i)) {
                 placeMark(i, "O");
-                int score = minimax(xoTextOnButtonsList, 0, false,counter);
+                int score = minimax(xoTextOnButtonsList, 0, false);
                 removeCell(i);
                 if (score > bestScore) {
                     bestScore = score;
@@ -554,8 +553,7 @@ public class GamePlayController implements Initializable {
         return move;
     }
 
-    public int minimax(ArrayList<String> board, int depth, boolean isMaximizing,int counter) {
-        counter++;
+    public int minimax(ArrayList<String> board, int depth, boolean isMaximizing) {
         /*
             Score function:
             X-win = -10;
@@ -576,12 +574,12 @@ public class GamePlayController implements Initializable {
         }
 
         // recursive part
-        if (isMaximizing && counter < 500) {
+        if (isMaximizing) {
             int bestScore = Integer.MIN_VALUE;
             for (int i = 0; i < 9; i++) {
                 if (isCellAvailable(i)) {
                     placeMark(i, "O");
-                    int score = minimax(board, depth + 1, false,counter);
+                    int score = minimax(board, depth + 1, false);
                     removeCell(i);
                     bestScore = Math.max(score, bestScore);
                 }
@@ -592,7 +590,7 @@ public class GamePlayController implements Initializable {
             for (int i = 0; i < 9; i++) {
                 if (isCellAvailable(i)) {
                     placeMark(i, "X");
-                    int score = minimax(board, depth + 1, true,counter);
+                    int score = minimax(board, depth + 1, true);
                     removeCell(i);
                     bestScore = Math.min(score, bestScore);
                 }
