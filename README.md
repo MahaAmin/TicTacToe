@@ -62,21 +62,21 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Features
 
-Client Side Features:
--login
--SignUp
--play with pc with 3 difficulty levels
--play with online friends
--chat while playing
--have an avatar and score level
--see who has the highest score in the game
--see who is online offline or busy playing with someone else
-
-Server side Features:
--see a list of all users 
--see players status and score
--close and reopen the server
-
+Client Side Features:</br>
+-login</br>
+-SignUp</br>
+-play with pc with 3 difficulty levels</br>
+-play with online friends</br>
+-chat while playing</br>
+-have an avatar and score level</br>
+-see who has the highest score in the game</br>
+-see who is online offline or busy playing with someone else</br>
+</br>
+Server side Features:</br>
+-see a list of all users</br> 
+-see players status and score</br>
+-close and reopen the server</br>
+</br>
 ## Deployment
 
 Add additional notes about how to deploy this on a live system
