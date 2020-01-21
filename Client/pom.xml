@@ -16,9 +16,8 @@
 
     <organization>
         <!-- Used as the 'Vendor' for JNLP generation -->
-        <name>Your Organisation</name>
+        <name>ITI Cloud</name>
     </organization>
-
     <build>
         <plugins>
             <plugin>
