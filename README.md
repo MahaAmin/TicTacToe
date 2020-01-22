@@ -1,6 +1,8 @@
 # Tic Tac Toe
 
-description
+A network based Tic tac toe game, this implementation was done as the java project @ ITI intake 40 by students of the open source cloud platform development track.
+
+![hg](https://github.com/MahaAmin/TicTacToe/blob/master/GamePlay%20Preview.gif)
 
 # Contents
 
